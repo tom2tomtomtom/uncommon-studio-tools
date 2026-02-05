@@ -5,14 +5,12 @@ import {
   ChevronRight,
   Home,
   Zap,
-  DollarSign,
   Bot,
   Terminal,
   Sparkles,
   Chrome,
   Shield,
   AlertTriangle,
-  Lightbulb,
   Play,
   Database
 } from 'lucide-react';
@@ -51,87 +49,7 @@ export default function PowerHacksPage() {
         </div>
       </div>
 
-      {/* Section 1: Max Tiers */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <DollarSign className="h-5 w-5 text-amber-500" />
-            The Claude Max Tiers
-          </CardTitle>
-          <CardDescription>
-            Why serious agentic work requires higher capacity
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="text-muted-foreground">
-            Heavy Cowork usage (agentic tasks) consumes tokens 10–20x faster than standard chat.
-            Pro users will hit limits quickly during deep research.
-          </p>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div className="p-4 rounded-lg border">
-              <p className="font-medium">Max 5x</p>
-              <p className="text-2xl font-bold text-primary">$100/mo</p>
-              <p className="text-sm text-muted-foreground mt-1">
-                5x the capacity of Pro. Good for regular agentic use.
-              </p>
-            </div>
-            <div className="p-4 rounded-lg border border-primary/50 bg-primary/5">
-              <p className="font-medium">Max 20x</p>
-              <p className="text-2xl font-bold text-primary">$200/mo</p>
-              <p className="text-sm text-muted-foreground mt-1">
-                20x capacity + priority access. For power users running constant Cowork sessions.
-              </p>
-            </div>
-          </div>
-          <div className="p-3 rounded-lg bg-muted text-sm">
-            <strong>When to upgrade:</strong> If you regularly hit usage limits during Cowork research sessions
-            or need zero-latency priority access.
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Section 2: Financial Optimization */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <DollarSign className="h-5 w-5 text-green-500" />
-            API Cost Optimization
-          </CardTitle>
-          <CardDescription>
-            Discounts for developers and heavy data analysis
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="p-4 rounded-lg border bg-green-500/5 border-green-500/20">
-            <div className="flex items-center gap-2 mb-2">
-              <Badge variant="outline" className="bg-green-500/10 text-green-600 border-green-500/30">50% Off</Badge>
-              <p className="font-medium">The Batch API Discount</p>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              For non-urgent workloads (like analyzing 200 customer support transcripts overnight),
-              use the <strong>Batch API</strong>. It costs 50% less than standard calls for all models
-              if you can accept a 12-24 hour turnaround.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-lg border bg-green-500/5 border-green-500/20">
-            <div className="flex items-center gap-2 mb-2">
-              <Badge variant="outline" className="bg-green-500/10 text-green-600 border-green-500/30">90% Off</Badge>
-              <p className="font-medium">Prompt Caching</p>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              For repetitive tasks using large context (like a codebase or legal style guide),
-              use <strong>Prompt Caching</strong>. Pay 25% premium to write the cache once,
-              but subsequent reads cost <strong>90% less</strong>.
-            </p>
-            <div className="mt-2 p-2 bg-muted rounded text-sm font-mono">
-              150k token codebase × 20 analyses: $9.00 → $1.42 with caching
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Section 2: Cowork Hacks */}
+      {/* Cowork Hacks */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">

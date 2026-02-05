@@ -80,16 +80,6 @@ export default function ChromeExtensionPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="p-4 rounded-lg border border-amber-500/50 bg-amber-500/5">
-            <p className="font-medium flex items-center gap-2">
-              <Key className="h-4 w-4 text-amber-500" />
-              Prerequisite
-            </p>
-            <p className="text-sm text-muted-foreground mt-1">
-              You must have a paid subscription (<strong>Claude Pro, Team, or Enterprise</strong>) to use the extension.
-            </p>
-          </div>
-
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold shrink-0">

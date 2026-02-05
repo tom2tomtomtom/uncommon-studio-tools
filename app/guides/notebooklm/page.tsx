@@ -70,55 +70,6 @@ export default function NotebookLMPage() {
         </CardContent>
       </Card>
 
-      {/* Pricing */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Plans & Pricing</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="p-4 rounded-lg border">
-              <p className="font-medium">Free</p>
-              <p className="text-2xl font-bold text-muted-foreground">$0</p>
-              <ul className="text-xs text-muted-foreground mt-2 space-y-1">
-                <li>• 50 sources/notebook</li>
-                <li>• Limited Audio Overviews</li>
-                <li>• Basic features</li>
-              </ul>
-            </div>
-            <div className="p-4 rounded-lg border border-primary/50 bg-primary/5">
-              <p className="font-medium">Plus</p>
-              <p className="text-2xl font-bold text-primary">$19.99/mo</p>
-              <p className="text-xs text-muted-foreground">(Google One AI Premium)</p>
-              <ul className="text-xs text-muted-foreground mt-2 space-y-1">
-                <li>• 300 sources/notebook</li>
-                <li>• 5x Audio Overviews</li>
-                <li>• Custom response styles</li>
-                <li>• Team notebooks</li>
-              </ul>
-            </div>
-            <div className="p-4 rounded-lg border">
-              <p className="font-medium">Pro</p>
-              <p className="text-2xl font-bold">$49.99/mo</p>
-              <ul className="text-xs text-muted-foreground mt-2 space-y-1">
-                <li>• Higher limits</li>
-                <li>• Priority processing</li>
-                <li>• Advanced analytics</li>
-              </ul>
-            </div>
-            <div className="p-4 rounded-lg border">
-              <p className="font-medium">Ultra</p>
-              <p className="text-2xl font-bold">$250/mo</p>
-              <ul className="text-xs text-muted-foreground mt-2 space-y-1">
-                <li>• Highest capacity</li>
-                <li>• Enterprise features</li>
-                <li>• Premium support</li>
-              </ul>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Audio Overviews */}
       <Card>
         <CardHeader>
@@ -209,12 +160,6 @@ export default function NotebookLMPage() {
               <div className="p-2 rounded border text-sm">Audio files</div>
               <div className="p-2 rounded border text-sm">Copied text</div>
             </div>
-          </div>
-
-          <div className="p-3 rounded-lg bg-muted">
-            <p className="text-sm">
-              <strong>Source limits:</strong> Free = 50 sources/notebook | Plus = 300 sources/notebook
-            </p>
           </div>
 
           <div>

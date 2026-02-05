@@ -8,13 +8,9 @@ import {
   Lightbulb,
   Zap,
   FolderOpen,
-  FileText,
   Upload,
-  Users,
   Globe,
-  BookOpen,
-  Code,
-  GraduationCap
+  Code
 } from 'lucide-react';
 
 export default function PerplexityPage() {
@@ -68,51 +64,6 @@ export default function PerplexityPage() {
         </CardContent>
       </Card>
 
-      {/* Pricing Tiers */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Plans & Pricing</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 sm:grid-cols-3">
-            <div className="p-4 rounded-lg border">
-              <p className="font-medium">Free</p>
-              <p className="text-2xl font-bold text-muted-foreground">$0</p>
-              <ul className="text-sm text-muted-foreground mt-2 space-y-1">
-                <li>• Unlimited basic searches</li>
-                <li>• 5-10 Pro searches/day</li>
-                <li>• Basic model access</li>
-              </ul>
-            </div>
-            <div className="p-4 rounded-lg border border-primary/50 bg-primary/5">
-              <p className="font-medium">Pro</p>
-              <p className="text-2xl font-bold text-primary">$20/mo</p>
-              <ul className="text-sm text-muted-foreground mt-2 space-y-1">
-                <li>• 600+ Pro searches/day</li>
-                <li>• GPT-5.2, Claude 4.5, Gemini 3</li>
-                <li>• $5/mo API credits</li>
-                <li>• 50 files per Space</li>
-              </ul>
-            </div>
-            <div className="p-4 rounded-lg border">
-              <p className="font-medium">Max</p>
-              <p className="text-2xl font-bold">$200/mo</p>
-              <ul className="text-sm text-muted-foreground mt-2 space-y-1">
-                <li>• Unlimited everything</li>
-                <li>• Priority access</li>
-                <li>• Higher API credits</li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-4 p-3 rounded-lg bg-muted">
-            <p className="text-sm flex items-center gap-2">
-              <GraduationCap className="h-4 w-4 text-primary" />
-              <strong>Students & Educators:</strong> Get Pro free for 12 months through the Perplexity Education Plan.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Search Modes */}
       <Card>
         <CardHeader>
@@ -127,10 +78,7 @@ export default function PerplexityPage() {
         <CardContent>
           <div className="space-y-4">
             <div className="p-4 rounded-lg border">
-              <div className="flex items-center justify-between">
-                <p className="font-medium">Quick Search</p>
-                <Badge variant="outline">Free</Badge>
-              </div>
+              <p className="font-medium">Quick Search</p>
               <p className="text-sm text-muted-foreground mt-1">
                 Fast answers for simple questions. Uses fewer sources and provides concise responses.
                 Best for quick fact checks or definitions.
@@ -138,10 +86,7 @@ export default function PerplexityPage() {
             </div>
 
             <div className="p-4 rounded-lg border border-primary/50 bg-primary/5">
-              <div className="flex items-center justify-between">
-                <p className="font-medium">Pro Search</p>
-                <Badge variant="outline" className="bg-primary/10">Pro</Badge>
-              </div>
+              <p className="font-medium">Pro Search</p>
               <p className="text-sm text-muted-foreground mt-1">
                 Multi-step reasoning with deeper analysis. Searches more sources, asks clarifying questions,
                 and provides comprehensive answers. Best for research and complex topics.
@@ -149,10 +94,7 @@ export default function PerplexityPage() {
             </div>
 
             <div className="p-4 rounded-lg border">
-              <div className="flex items-center justify-between">
-                <p className="font-medium">Reasoning Search</p>
-                <Badge variant="outline">Pro</Badge>
-              </div>
+              <p className="font-medium">Reasoning Search</p>
               <p className="text-sm text-muted-foreground mt-1">
                 Shows Claude/GPT's step-by-step thinking process. Best for math, logic problems,
                 and understanding how the AI reaches conclusions.
@@ -160,10 +102,7 @@ export default function PerplexityPage() {
             </div>
 
             <div className="p-4 rounded-lg border">
-              <div className="flex items-center justify-between">
-                <p className="font-medium">Research Mode</p>
-                <Badge variant="outline">Pro</Badge>
-              </div>
+              <p className="font-medium">Research Mode</p>
               <p className="text-sm text-muted-foreground mt-1">
                 Deep-dive research that creates a structured report. Searches extensively,
                 synthesizes findings, and organizes into sections. Best for academic research or reports.
@@ -249,11 +188,6 @@ export default function PerplexityPage() {
             </ul>
           </div>
 
-          <div className="p-3 rounded-lg bg-muted">
-            <p className="text-sm">
-              <strong>File limits:</strong> Pro = 50 files/Space | Enterprise = 500 files/Space
-            </p>
-          </div>
         </CardContent>
       </Card>
 
@@ -345,8 +279,7 @@ export default function PerplexityPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-muted-foreground">
-            Pro subscribers receive <strong>$5/month in API credits</strong> to use the Sonar API.
-            This lets you add Perplexity's citation-backed search to your own applications.
+            The Sonar API lets you add Perplexity's citation-backed search to your own applications.
           </p>
 
           <div>
