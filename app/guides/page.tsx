@@ -18,9 +18,18 @@ import {
   FolderOpen,
   Puzzle,
   Compass,
-  Mic
+  Mic,
+  Video,
+  Workflow,
+  AudioLines,
+  Presentation,
+  Brain,
+  Mail,
+  Banana,
+  Clapperboard
 } from 'lucide-react';
 
+// Claude Enterprise
 const claudeGuides = [
   {
     slug: 'projects',
@@ -123,16 +132,8 @@ const claudeGuides = [
   },
 ];
 
-const otherTools = [
-  {
-    slug: 'perplexity',
-    title: 'Perplexity AI',
-    description: 'Master Pro Search, Spaces, Focus Modes, and the Sonar API for research',
-    icon: Compass,
-    difficulty: 'Beginner',
-    time: '15 min',
-    color: 'text-teal-500',
-  },
+// Google (Workspace AI, NotebookLM, Nano Banana, Veo 3)
+const googleGuides = [
   {
     slug: 'notebooklm',
     title: 'NotebookLM',
@@ -144,6 +145,26 @@ const otherTools = [
   },
 ];
 
+// Perplexity Enterprise Pro
+const perplexityGuides = [
+  {
+    slug: 'perplexity',
+    title: 'Perplexity AI',
+    description: 'Master Pro Search, Spaces, Focus Modes, and the Sonar API for research',
+    icon: Compass,
+    difficulty: 'Beginner',
+    time: '15 min',
+    color: 'text-teal-500',
+  },
+];
+
+// Placeholder sections for tools without guides yet
+const n8nGuides: Guide[] = [];
+const runwayGuides: Guide[] = [];
+const elevenLabsGuides: Guide[] = [];
+const aidenGuides: Guide[] = [];
+const gammaGuides: Guide[] = [];
+
 interface Guide {
   slug: string;
   title: string;
@@ -153,6 +174,24 @@ interface Guide {
   time: string;
   color: string;
 }
+
+interface ToolSection {
+  title: string;
+  guides: Guide[];
+  color: string;
+  comingSoon?: boolean;
+}
+
+const sections: ToolSection[] = [
+  { title: 'Claude Enterprise', guides: claudeGuides, color: 'text-orange-500' },
+  { title: 'Google', guides: googleGuides, color: 'text-blue-500' },
+  { title: 'Perplexity Enterprise Pro', guides: perplexityGuides, color: 'text-teal-500' },
+  { title: 'n8n', guides: n8nGuides, color: 'text-green-500', comingSoon: true },
+  { title: 'Runway Enterprise', guides: runwayGuides, color: 'text-purple-500', comingSoon: true },
+  { title: 'ElevenLabs', guides: elevenLabsGuides, color: 'text-pink-500', comingSoon: true },
+  { title: 'AIDEN Studio', guides: aidenGuides, color: 'text-red-500', comingSoon: true },
+  { title: 'Gamma', guides: gammaGuides, color: 'text-yellow-500', comingSoon: true },
+];
 
 function GuideCard({ guide }: { guide: Guide }) {
   const Icon = guide.icon;
@@ -224,31 +263,34 @@ export default function GuidesPage() {
         </CardContent>
       </Card>
 
-      {/* Claude Section */}
-      <div className="space-y-4">
-        <div className="flex items-center gap-2">
-          <h2 className="text-xl font-semibold">Claude</h2>
-          <Badge variant="outline" className="text-xs">{claudeGuides.length} guides</Badge>
+      {/* Tool Sections */}
+      {sections.map((section) => (
+        <div key={section.title} className="space-y-4">
+          <div className="flex items-center gap-2">
+            <h2 className={`text-xl font-semibold ${section.color}`}>{section.title}</h2>
+            {section.guides.length > 0 ? (
+              <Badge variant="outline" className="text-xs">{section.guides.length} {section.guides.length === 1 ? 'guide' : 'guides'}</Badge>
+            ) : (
+              <Badge variant="outline" className="text-xs bg-muted">Coming Soon</Badge>
+            )}
+          </div>
+          {section.guides.length > 0 ? (
+            <div className="grid gap-4">
+              {section.guides.map((guide) => (
+                <GuideCard key={guide.slug} guide={guide} />
+              ))}
+            </div>
+          ) : (
+            <Card className="border-dashed">
+              <CardContent className="pt-6 pb-6">
+                <p className="text-sm text-muted-foreground text-center">
+                  Guides for {section.title} are in development
+                </p>
+              </CardContent>
+            </Card>
+          )}
         </div>
-        <div className="grid gap-4">
-          {claudeGuides.map((guide) => (
-            <GuideCard key={guide.slug} guide={guide} />
-          ))}
-        </div>
-      </div>
-
-      {/* Other Tools Section */}
-      <div className="space-y-4">
-        <div className="flex items-center gap-2">
-          <h2 className="text-xl font-semibold">Other AI Tools</h2>
-          <Badge variant="outline" className="text-xs">{otherTools.length} guides</Badge>
-        </div>
-        <div className="grid gap-4">
-          {otherTools.map((guide) => (
-            <GuideCard key={guide.slug} guide={guide} />
-          ))}
-        </div>
-      </div>
+      ))}
 
       {/* Quick Tips Link */}
       <Card>
