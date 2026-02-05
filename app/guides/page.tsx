@@ -15,7 +15,8 @@ import {
   Zap,
   Chrome,
   Plug,
-  FolderOpen
+  FolderOpen,
+  Puzzle
 } from 'lucide-react';
 
 const guides = [
@@ -60,6 +61,15 @@ const guides = [
     title: 'Cowork: The Autonomous Agent',
     description: 'Assign multi-step jobs that Claude executes while you do other work',
     icon: Bot,
+    difficulty: 'Intermediate',
+    time: '20 min',
+    color: 'text-purple-500',
+  },
+  {
+    slug: 'cowork-plugins',
+    title: 'Cowork Plugins',
+    description: 'Transform Claude into a specialized employee with role-based skill bundles',
+    icon: Puzzle,
     difficulty: 'Intermediate',
     time: '20 min',
     color: 'text-purple-500',

@@ -299,6 +299,38 @@ Available now. Link in bio."`}
         </CardContent>
       </Card>
 
+      {/* Team Administration */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Team Administration (Enterprise)</CardTitle>
+          <CardDescription>
+            Admin controls for managing skills across your organization
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <p className="font-medium">Skill Provisioning</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Admins can <strong>force-install</strong> specific skills (e.g., "Legal Compliance Check") to all team members
+              so they appear automatically in their accounts. This ensures company-wide consistency.
+            </p>
+          </div>
+          <div>
+            <p className="font-medium">Artifact Security Controls</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Admins can <strong>disable the ability for Artifacts to use MCP connectors</strong> globally.
+              This prevents potential data exfiltration through artifact code that connects to external services.
+            </p>
+          </div>
+          <div className="p-3 rounded-lg bg-muted">
+            <p className="text-sm">
+              <strong>Access:</strong> Team admins can find these controls in
+              <strong> Admin Settings → Capabilities → Organization Defaults</strong>
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Next Steps */}
       <Card className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5">
         <CardContent className="pt-6">
