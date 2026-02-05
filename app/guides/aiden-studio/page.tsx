@@ -12,28 +12,23 @@ import {
   Brain,
   Lightbulb,
   MessageSquare,
-  Palette,
   Target,
   Layers,
-  Sparkles,
   Users,
   FileText,
   Beaker,
-  Presentation,
   Upload,
   Zap,
   Grid3X3,
   Copy,
   ClipboardCheck,
   BarChart3,
-  Play,
   Star,
   AlertTriangle,
   ArrowRight,
   Plus,
   Timer,
-  LayoutGrid,
-  Table2
+  LayoutGrid
 } from 'lucide-react';
 
 export default function AidenStudioPage() {
@@ -60,7 +55,7 @@ export default function AidenStudioPage() {
           Guides
         </Link>
         <ChevronRight className="h-4 w-4" />
-        <span className="text-foreground">AIDEN Studio</span>
+        <span className="text-foreground">AIDEN.services</span>
       </nav>
 
       {/* Header */}
@@ -74,7 +69,7 @@ export default function AidenStudioPage() {
             <Brain className="h-6 w-6" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold">AIDEN Studio Complete Guide</h1>
+            <h1 className="text-3xl font-bold">AIDEN.services Complete Guide</h1>
             <p className="text-muted-foreground">A Beginner's Step-by-Step Manual for Every Feature</p>
           </div>
         </div>
@@ -86,12 +81,12 @@ export default function AidenStudioPage() {
           <div className="flex items-start gap-3">
             <Lightbulb className="h-5 w-5 text-amber-500 mt-0.5" />
             <div>
-              <p className="font-medium">What is AIDEN Studio?</p>
+              <p className="font-medium">What is AIDEN.services?</p>
               <p className="text-muted-foreground mt-1">
-                AIDEN Studio is a complete <strong>AI Creative Director suite</strong> comprising four integrated products:
+                AIDEN.services is a complete <strong>AI Creative Director suite</strong> comprising three integrated products:
                 <strong> AIDEN.pitch</strong> (campaign development), <strong>AIDEN.test</strong> (synthetic research),
-                <strong> AIDEN.chat</strong> (334-phantom AI strategy), and <strong>AIDEN PPTX</strong> (presentation generation).
-                Together they form an end-to-end creative workflow: <strong>DISCOVER → DEVELOP → TEST → REFINE → PRESENT</strong>.
+                and <strong>AIDEN.chat</strong> (334-phantom AI strategy).
+                Together they form an end-to-end creative workflow: <strong>DISCOVER → DEVELOP → TEST → REFINE</strong>.
               </p>
             </div>
           </div>
@@ -99,7 +94,7 @@ export default function AidenStudioPage() {
       </Card>
 
       {/* Quick Navigation */}
-      <div className="grid gap-3 sm:grid-cols-4">
+      <div className="grid gap-3 sm:grid-cols-3">
         <button
           onClick={() => { setOpenSections(['pitch']); document.getElementById('pitch')?.scrollIntoView({ behavior: 'smooth' }); }}
           className="p-4 rounded-lg border hover:border-red-500 hover:bg-red-500/5 transition-colors text-left"
@@ -123,14 +118,6 @@ export default function AidenStudioPage() {
           <MessageSquare className="h-5 w-5 text-blue-500 mb-2" />
           <p className="font-medium text-sm">AIDEN.chat</p>
           <p className="text-xs text-muted-foreground">334-Phantom AI</p>
-        </button>
-        <button
-          onClick={() => { setOpenSections(['pptx']); document.getElementById('pptx')?.scrollIntoView({ behavior: 'smooth' }); }}
-          className="p-4 rounded-lg border hover:border-green-500 hover:bg-green-500/5 transition-colors text-left"
-        >
-          <Presentation className="h-5 w-5 text-green-500 mb-2" />
-          <p className="font-medium text-sm">AIDEN PPTX</p>
-          <p className="text-xs text-muted-foreground">Presentation Generator</p>
         </button>
       </div>
 
@@ -537,99 +524,6 @@ export default function AidenStudioPage() {
         </Card>
       </Collapsible>
 
-      {/* AIDEN PPTX Section */}
-      <Collapsible id="pptx" open={openSections.includes('pptx')} onOpenChange={() => toggleSection('pptx')}>
-        <Card>
-          <CollapsibleTrigger className="w-full">
-            <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
-              <div className="flex items-center justify-between">
-                <CardTitle className="flex items-center gap-2">
-                  <Presentation className="h-5 w-5 text-green-500" />
-                  AIDEN PPTX - Professional Presentation Generator
-                </CardTitle>
-                <ChevronDown className={`h-5 w-5 transition-transform ${openSections.includes('pptx') ? 'rotate-180' : ''}`} />
-              </div>
-              <CardDescription>
-                60 slide types with intelligent content detection
-              </CardDescription>
-            </CardHeader>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
-            <CardContent className="space-y-6 pt-0">
-              {/* Quick Start */}
-              <div className="space-y-4 p-4 rounded-lg border">
-                <div className="flex items-center gap-2">
-                  <Play className="h-5 w-5 text-primary" />
-                  <h3 className="font-semibold">Quick Start Commands</h3>
-                </div>
-                <div className="bg-muted rounded-lg p-4 font-mono text-xs space-y-1">
-                  <p className="text-muted-foreground"># AIDEN Sales Deck (23 slides)</p>
-                  <p>node ~/.claude/skills/aiden-pptx/scripts/aiden-sales-deck.js</p>
-                  <p className="text-muted-foreground mt-2"># AIDEN Pitch Deck (16 slides)</p>
-                  <p>node ~/.claude/skills/aiden-pptx/scripts/aiden-pitch-deck.js</p>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  Output: <code className="bg-muted px-1 rounded">~/Presentations/AIDEN/</code>
-                </p>
-              </div>
-
-              {/* 60 Slide Types */}
-              <div className="space-y-4 p-4 rounded-lg border">
-                <div className="flex items-center gap-2">
-                  <Table2 className="h-5 w-5 text-primary" />
-                  <h3 className="font-semibold">The 60 Slide Types</h3>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2 text-xs">
-                  <div className="p-2 rounded bg-muted/50">
-                    <strong>1-5 Basic:</strong> Title, Text+Image, Full Image, Text Only, Multi-Column
-                  </div>
-                  <div className="p-2 rounded bg-muted/50">
-                    <strong>6-10 Data:</strong> Bar Chart, Stats, Comparison, Pricing, Pie Chart
-                  </div>
-                  <div className="p-2 rounded bg-muted/50">
-                    <strong>11-20 Diagrams:</strong> Process, Timeline, Cycle, Pyramid, Matrix, Funnel, etc.
-                  </div>
-                  <div className="p-2 rounded bg-muted/50">
-                    <strong>21-25 Content:</strong> Quote, Team, FAQ, Contact, Section Divider
-                  </div>
-                  <div className="p-2 rounded bg-muted/50">
-                    <strong>26-40 Advanced:</strong> Venn, Before/After, Charts, Journey Map, etc.
-                  </div>
-                  <div className="p-2 rounded bg-muted/50">
-                    <strong>41-60 Business:</strong> Case Study, Logos, Awards, Tech Stack, Thank You
-                  </div>
-                </div>
-              </div>
-
-              {/* Design System */}
-              <div className="space-y-4 p-4 rounded-lg border">
-                <div className="flex items-center gap-2">
-                  <Palette className="h-5 w-5 text-primary" />
-                  <h3 className="font-semibold">Design System</h3>
-                </div>
-                <div className="flex gap-3">
-                  <div className="flex items-center gap-2">
-                    <div className="h-6 w-6 rounded bg-black border"></div>
-                    <span className="text-xs">Background</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="h-6 w-6 rounded bg-white border"></div>
-                    <span className="text-xs">Text</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="h-6 w-6 rounded bg-red-500"></div>
-                    <span className="text-xs">Accents</span>
-                  </div>
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  <strong>Auto-detection:</strong> Keywords like &quot;timeline&quot;, &quot;process&quot;, &quot;pricing&quot;, &quot;team&quot; auto-select slide types.
-                </p>
-              </div>
-            </CardContent>
-          </CollapsibleContent>
-        </Card>
-      </Collapsible>
-
       {/* Complete Workflow */}
       <Card>
         <CardHeader>
@@ -647,8 +541,6 @@ export default function AidenStudioPage() {
             <Badge variant="outline" className="text-purple-500 border-purple-500">TEST</Badge>
             <ArrowRight className="h-4 w-4 text-muted-foreground" />
             <Badge variant="outline" className="text-orange-500 border-orange-500">REFINE</Badge>
-            <ArrowRight className="h-4 w-4 text-muted-foreground" />
-            <Badge variant="outline" className="text-green-500 border-green-500">PRESENT</Badge>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-muted-foreground">
             <span>AIDEN.chat</span>
@@ -658,8 +550,6 @@ export default function AidenStudioPage() {
             <span>AIDEN.test</span>
             <ArrowRight className="h-3 w-3" />
             <span>Iterate</span>
-            <ArrowRight className="h-3 w-3" />
-            <span>AIDEN PPTX</span>
           </div>
         </CardContent>
       </Card>
