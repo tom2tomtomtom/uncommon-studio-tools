@@ -21,7 +21,7 @@ import {
   Mic
 } from 'lucide-react';
 
-const guides = [
+const claudeGuides = [
   {
     slug: 'projects',
     title: 'The Art of Project Setup',
@@ -115,12 +115,15 @@ const guides = [
   {
     slug: 'power-hacks',
     title: 'Power Hacks & Optimization',
-    description: 'Advanced techniques for cost savings, speed, and automation',
+    description: 'Advanced techniques for speed and automation',
     icon: Zap,
     difficulty: 'Advanced',
     time: '25 min',
     color: 'text-amber-500',
   },
+];
+
+const otherTools = [
   {
     slug: 'perplexity',
     title: 'Perplexity AI',
@@ -140,6 +143,50 @@ const guides = [
     color: 'text-rose-500',
   },
 ];
+
+interface Guide {
+  slug: string;
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  difficulty: string;
+  time: string;
+  color: string;
+}
+
+function GuideCard({ guide }: { guide: Guide }) {
+  const Icon = guide.icon;
+  return (
+    <Link href={`/guides/${guide.slug}`}>
+      <Card className="hover:border-primary/50 hover:bg-muted/50 transition-all cursor-pointer group">
+        <CardHeader className="pb-3">
+          <div className="flex items-start justify-between">
+            <div className="flex items-center gap-3">
+              <div className={`${guide.color}`}>
+                <Icon className="h-6 w-6" />
+              </div>
+              <div>
+                <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                  {guide.title}
+                </CardTitle>
+                <CardDescription className="mt-1">
+                  {guide.description}
+                </CardDescription>
+              </div>
+            </div>
+            <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+          </div>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <div className="flex gap-2">
+            <Badge variant="secondary">{guide.difficulty}</Badge>
+            <Badge variant="outline">{guide.time}</Badge>
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
+  );
+}
 
 export default function GuidesPage() {
   return (
@@ -162,7 +209,7 @@ export default function GuidesPage() {
           </div>
           <div>
             <h1 className="text-3xl font-bold">Getting Started Guides</h1>
-            <p className="text-muted-foreground">Step-by-step tutorials to master Claude, Perplexity, NotebookLM, and more</p>
+            <p className="text-muted-foreground">Step-by-step tutorials to master your AI tools</p>
           </div>
         </div>
       </div>
@@ -177,41 +224,30 @@ export default function GuidesPage() {
         </CardContent>
       </Card>
 
-      {/* Guides Grid */}
-      <div className="grid gap-4">
-        {guides.map((guide) => {
-          const Icon = guide.icon;
-          return (
-            <Link key={guide.slug} href={`/guides/${guide.slug}`}>
-              <Card className="hover:border-primary/50 hover:bg-muted/50 transition-all cursor-pointer group">
-                <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className={`${guide.color}`}>
-                        <Icon className="h-6 w-6" />
-                      </div>
-                      <div>
-                        <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                          {guide.title}
-                        </CardTitle>
-                        <CardDescription className="mt-1">
-                          {guide.description}
-                        </CardDescription>
-                      </div>
-                    </div>
-                    <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="flex gap-2">
-                    <Badge variant="secondary">{guide.difficulty}</Badge>
-                    <Badge variant="outline">{guide.time}</Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          );
-        })}
+      {/* Claude Section */}
+      <div className="space-y-4">
+        <div className="flex items-center gap-2">
+          <h2 className="text-xl font-semibold">Claude</h2>
+          <Badge variant="outline" className="text-xs">{claudeGuides.length} guides</Badge>
+        </div>
+        <div className="grid gap-4">
+          {claudeGuides.map((guide) => (
+            <GuideCard key={guide.slug} guide={guide} />
+          ))}
+        </div>
+      </div>
+
+      {/* Other Tools Section */}
+      <div className="space-y-4">
+        <div className="flex items-center gap-2">
+          <h2 className="text-xl font-semibold">Other AI Tools</h2>
+          <Badge variant="outline" className="text-xs">{otherTools.length} guides</Badge>
+        </div>
+        <div className="grid gap-4">
+          {otherTools.map((guide) => (
+            <GuideCard key={guide.slug} guide={guide} />
+          ))}
+        </div>
       </div>
 
       {/* Quick Tips Link */}
