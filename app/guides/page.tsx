@@ -16,7 +16,9 @@ import {
   Chrome,
   Plug,
   FolderOpen,
-  Puzzle
+  Puzzle,
+  Compass,
+  Mic
 } from 'lucide-react';
 
 const guides = [
@@ -119,6 +121,24 @@ const guides = [
     time: '25 min',
     color: 'text-amber-500',
   },
+  {
+    slug: 'perplexity',
+    title: 'Perplexity AI',
+    description: 'Master Pro Search, Spaces, Focus Modes, and the Sonar API for research',
+    icon: Compass,
+    difficulty: 'Beginner',
+    time: '15 min',
+    color: 'text-teal-500',
+  },
+  {
+    slug: 'notebooklm',
+    title: 'NotebookLM',
+    description: 'Transform documents into AI-powered study guides with Audio Overviews',
+    icon: Mic,
+    difficulty: 'Beginner',
+    time: '15 min',
+    color: 'text-rose-500',
+  },
 ];
 
 export default function GuidesPage() {
@@ -142,7 +162,7 @@ export default function GuidesPage() {
           </div>
           <div>
             <h1 className="text-3xl font-bold">Getting Started Guides</h1>
-            <p className="text-muted-foreground">Step-by-step tutorials to master Claude's most powerful features</p>
+            <p className="text-muted-foreground">Step-by-step tutorials to master Claude, Perplexity, NotebookLM, and more</p>
           </div>
         </div>
       </div>
@@ -151,7 +171,7 @@ export default function GuidesPage() {
       <Card className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5">
         <CardContent className="pt-6">
           <p className="text-muted-foreground">
-            These guides are designed for non-technical users. Each one walks you through a specific Claude feature
+            These guides are designed for non-technical users. Each one walks you through a specific AI tool or feature
             with plain-English explanations and copy-paste commands. No coding experience required.
           </p>
         </CardContent>
