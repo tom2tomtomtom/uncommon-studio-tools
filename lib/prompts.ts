@@ -19,16 +19,16 @@ export interface Team {
 }
 
 export const teams: Team[] = [
-  { slug: "creative", name: "Creative", solutionCount: 6 },
-  { slug: "strategy", name: "Strategy", solutionCount: 5 },
-  { slug: "account-management", name: "Account Management", solutionCount: 5 },
+  { slug: "creative", name: "Creative", solutionCount: 7 },
+  { slug: "strategy", name: "Strategy", solutionCount: 7 },
+  { slug: "account-management", name: "Account Management", solutionCount: 6 },
   { slug: "production", name: "Production", solutionCount: 5 },
-  { slug: "design", name: "Design", solutionCount: 5 },
-  { slug: "digital", name: "Digital", solutionCount: 5 },
+  { slug: "design", name: "Design", solutionCount: 6 },
+  { slug: "digital", name: "Digital", solutionCount: 6 },
   { slug: "copywriting", name: "Copywriting", solutionCount: 5 },
   { slug: "new-business", name: "New Business", solutionCount: 5 },
   { slug: "project-management", name: "Project Management", solutionCount: 5 },
-  { slug: "studio-operations", name: "Studio Operations", solutionCount: 4 }
+  { slug: "studio-operations", name: "Studio Operations", solutionCount: 8 }
 ];
 
 export const prompts: Prompt[] = [
@@ -375,6 +375,79 @@ Which one idea could break through and drive real results?
 
 **4. Content Calendar Thinking**
 How do these ideas connect? What's the content rhythm?`
+  },
+  {
+    id: "creative-7",
+    teamSlug: "creative",
+    teamName: "Creative",
+    name: "AIDEN Big Idea Workshop",
+    toolRecommendation: "AIDEN.pitch",
+    description: "Use AIDEN Studio to generate breakthrough campaign concepts with the three-variant system (Straight, Punchy, Brave) and explore creative territories systematically.",
+    knowledgeToUpload: [
+      "Creative brief (PDF or DOCX)",
+      "Brand guidelines",
+      "Target audience profiles",
+      "Competitor campaign examples",
+      "Previous campaign performance"
+    ],
+    prompt: `AIDEN.pitch is your AI Creative Director for campaign development. Here's how to use it:
+
+## The 7-Step AIDEN.pitch Workflow:
+
+**Step 1: Upload Brief**
+- Drag and drop your brief (PDF/DOCX) or paste text
+- AIDEN parses: objectives, audience, tone, messages, budget, timeline
+- Review and edit any field with the pencil icon
+
+**Step 2: Strategy Generation**
+Click "Generate Strategy" to get:
+- Consumer, Market, Cultural, and Brand insights
+- "Back Up with Stats" adds Perplexity-sourced statistics
+- Use the Problem-Solution Framework:
+  1. The Problem
+  2. Select Key Insight (choose your foundation)
+  3. Tension/Opportunity
+  4. The Solution
+
+**Step 3: Territories**
+AIDEN generates 3-5 creative positioning angles:
+- Each with: Insight, Angle, Why It Works, Score
+- Add your favorites to "The Wall"
+- Select at least one to proceed
+
+**Step 4: Big Idea (The Three-Variant System)**
+AIDEN creates ideas at three risk levels:
+
+| Variant | Character | Best For |
+|---------|-----------|----------|
+| STRAIGHT | Balanced, professional | Client presentations |
+| PUNCHY | Bold, aggressive | Competitive markets |
+| BRAVE | Unconventional, risky | Innovation, disruption |
+
+Each includes: Tagline, Manifesto, Visual Metaphor, Rationale, Mechanism, Amplification
+
+**Step 5: Copy Suite**
+Generate copy across ALL channels:
+- CORE: Headlines (20), Long-form
+- DIGITAL: Social, Email, Press Release, OOH
+- BROADCAST: TV (15s/30s/60s), YouTube, Radio
+- Choose tone: Straight, Comedic, Absurd, Visual-led, Dialogue-led
+- Generation takes 3-5 minutes - don't refresh!
+
+**Step 6: Overview**
+- Campaign coherence check
+- AI-generated strategic summary
+- Export as JSON or PDF
+
+**Step 7: Pitch**
+- AI-generated pitch deck narrative
+- Download as PowerPoint (.pptx)
+
+## Pro Tips:
+- Use "Rethink" to regenerate any step
+- Pin best ideas to The Wall as you go
+- The chat sidebar provides real-time refinement
+- Export Copy as JSON for downstream production`
   },
 
   // ============================================
@@ -3407,6 +3480,1239 @@ How do tools work together?
 
 **8. Success Metrics**
 How will we know if the new tools are working?`
+  },
+  {
+    id: "ops-5",
+    teamSlug: "studio-operations",
+    teamName: "Studio Operations",
+    name: "Project Budget Tracker",
+    toolRecommendation: "Claude",
+    description: "Track project budgets, flag overspend risks, and generate financial status reports for leadership.",
+    knowledgeToUpload: [
+      "Budget templates and rate cards",
+      "Project cost estimates",
+      "Vendor invoices and actuals",
+      "Time tracking data"
+    ],
+    prompt: `You are helping track and manage project budgets for the agency.
+
+## Budget Tracking Framework:
+
+**PROJECT DETAILS**
+- Project name:
+- Client:
+- Project code:
+- Budget owner:
+- Reporting period:
+
+---
+
+**BUDGET SUMMARY**
+
+| Category | Budgeted | Actual | Remaining | % Used |
+|----------|----------|--------|-----------|--------|
+| Internal Labor | | | | |
+| Freelance/Contract | | | | |
+| Production | | | | |
+| Media/Paid | | | | |
+| Travel | | | | |
+| Other | | | | |
+| **TOTAL** | | | | |
+
+---
+
+**BURN RATE ANALYSIS**
+- Project timeline: [Start] to [End]
+- Current milestone: [Phase]
+- Time elapsed: [%]
+- Budget consumed: [%]
+- Burn rate status: [On track / Ahead / Behind]
+
+**RISK FLAGS**
+🔴 Critical (>20% over): [Items]
+🟡 Warning (10-20% over): [Items]
+🟢 On track: [Items]
+
+---
+
+**VARIANCE ANALYSIS**
+
+Where are we over/under budget and why?
+
+| Line Item | Variance | Reason | Action |
+|-----------|----------|--------|--------|
+| | | | |
+
+---
+
+**FORECAST TO COMPLETION**
+Based on current burn rate:
+- Projected final spend: $
+- Projected variance: $ (+/-)
+- Confidence level: [High/Medium/Low]
+
+**RECOMMENDED ACTIONS**
+1. [Action to address overages]
+2. [Action to optimize remaining budget]
+3. [Escalation if needed]
+
+---
+
+**CHANGE LOG**
+| Date | Change | Impact | Approved By |
+|------|--------|--------|-------------|
+| | | | |
+
+**NOTES FOR CLIENT/LEADERSHIP**
+Key points for status update.`
+  },
+  {
+    id: "ops-6",
+    teamSlug: "studio-operations",
+    teamName: "Studio Operations",
+    name: "Vendor Evaluation & Brief",
+    toolRecommendation: "Claude Project",
+    description: "Evaluate vendors, create RFPs, and manage supplier relationships for production and services.",
+    knowledgeToUpload: [
+      "Vendor list and past performance",
+      "Contract terms and rate cards",
+      "Project requirements",
+      "Budget parameters"
+    ],
+    prompt: `You are helping evaluate vendors and create briefs for external partners.
+
+## Vendor Evaluation & RFP Framework:
+
+**PART 1: VENDOR EVALUATION**
+
+**Project/Service Need:**
+What do we need a vendor for?
+
+**Evaluation Criteria:**
+
+| Criteria | Weight | Vendor A | Vendor B | Vendor C |
+|----------|--------|----------|----------|----------|
+| Quality of Work | 25% | | | |
+| Price/Value | 20% | | | |
+| Reliability | 20% | | | |
+| Communication | 15% | | | |
+| Turnaround Time | 10% | | | |
+| Cultural Fit | 10% | | | |
+| **WEIGHTED SCORE** | 100% | | | |
+
+**Past Performance:**
+For existing vendors, document:
+- Projects completed
+- Quality rating (1-5)
+- On-time delivery rate
+- Issues encountered
+- Would use again? Y/N
+
+---
+
+**PART 2: RFP/BRIEF TEMPLATE**
+
+**PROJECT OVERVIEW**
+- Project name:
+- Client (if shareable):
+- Project description:
+- Key objectives:
+
+**SCOPE OF WORK**
+Detailed description of deliverables:
+1. [Deliverable 1]
+2. [Deliverable 2]
+3. [Deliverable 3]
+
+**SPECIFICATIONS**
+- Format/dimensions:
+- Technical requirements:
+- Quality standards:
+- Brand guidelines attached: Y/N
+
+**TIMELINE**
+| Milestone | Date |
+|-----------|------|
+| Brief sent | |
+| Questions due | |
+| Proposals due | |
+| Selection | |
+| Kick-off | |
+| First draft | |
+| Final delivery | |
+
+**BUDGET**
+- Budget range: $X - $Y
+- Payment terms: [Net 30, milestone-based, etc.]
+
+**SUBMISSION REQUIREMENTS**
+What we need in their proposal:
+- Pricing breakdown
+- Timeline
+- Team/resources
+- Relevant samples
+- References
+
+**EVALUATION PROCESS**
+How we'll select the winning vendor.
+
+**CONTACT**
+Who to direct questions to.
+
+---
+
+**PART 3: VENDOR RELATIONSHIP MANAGEMENT**
+
+**Preferred Vendor List:**
+| Category | Vendor | Specialty | Rate | Notes |
+|----------|--------|-----------|------|-------|
+| | | | | |
+
+**Vendor Review Schedule:**
+- Quarterly performance check-ins
+- Annual rate negotiations
+- Annual relationship review`
+  },
+  {
+    id: "ops-7",
+    teamSlug: "studio-operations",
+    teamName: "Studio Operations",
+    name: "Role Brief & Interview Guide",
+    toolRecommendation: "Claude Project",
+    description: "Write job descriptions, create interview questions, and build candidate evaluation frameworks.",
+    knowledgeToUpload: [
+      "Role requirements and responsibilities",
+      "Team structure and reporting lines",
+      "Company values and culture",
+      "Existing job descriptions"
+    ],
+    prompt: `You are helping hire great people by creating clear role definitions and structured interview processes.
+
+## PART 1: JOB DESCRIPTION
+
+**[Role Title]**
+
+**About Us**
+[Agency description - 2-3 sentences on who we are and what we do]
+
+**About the Role**
+[What this person will do and why it matters - 3-4 sentences]
+
+**What You'll Do**
+- [Key responsibility 1]
+- [Key responsibility 2]
+- [Key responsibility 3]
+- [Key responsibility 4]
+- [Key responsibility 5]
+
+**What You'll Bring**
+Must-haves:
+- [Required skill/experience 1]
+- [Required skill/experience 2]
+- [Required skill/experience 3]
+
+Nice-to-haves:
+- [Bonus skill 1]
+- [Bonus skill 2]
+
+**What We Offer**
+- [Benefit 1]
+- [Benefit 2]
+- [Benefit 3]
+
+**How to Apply**
+[Instructions and what to include]
+
+---
+
+## PART 2: INTERVIEW GUIDE
+
+**Role:** [Title]
+**Interview Stage:** [Phone screen / Skills interview / Culture fit / Final]
+**Duration:** [Time]
+**Interviewer(s):** [Names]
+
+**Before the Interview:**
+- Review CV/portfolio
+- Review previous interview notes
+- Prepare specific questions about their experience
+
+**Interview Structure:**
+
+**1. Opening (5 min)**
+- Welcome and introductions
+- Explain the interview format
+- Ask if they have questions before we begin
+
+**2. Background (10 min)**
+- Walk me through your career journey to this point
+- What attracted you to this role?
+- What do you know about our agency?
+
+**3. Skills Assessment (20 min)**
+
+[For this specific role, ask about:]
+
+**Question 1:** [Skill-specific question]
+- Looking for: [What good looks like]
+- Red flag: [What to watch out for]
+
+**Question 2:** [Scenario-based question]
+- Looking for: [What good looks like]
+- Red flag: [What to watch out for]
+
+**Question 3:** [Portfolio/work sample discussion]
+- Looking for: [What good looks like]
+- Red flag: [What to watch out for]
+
+**4. Culture Fit (10 min)**
+- Tell me about a time you disagreed with a colleague. How did you handle it?
+- Describe your ideal working environment.
+- What kind of feedback helps you grow?
+
+**5. Their Questions (10 min)**
+- What questions do you have for us?
+
+**6. Close (5 min)**
+- Explain next steps
+- Timeline for decision
+- Thank them
+
+---
+
+## PART 3: CANDIDATE SCORECARD
+
+| Criteria | Score (1-5) | Notes |
+|----------|-------------|-------|
+| Relevant Experience | | |
+| Technical Skills | | |
+| Communication | | |
+| Cultural Fit | | |
+| Problem-Solving | | |
+| Growth Potential | | |
+| **Overall Recommendation** | | |
+
+**Hire / Maybe / Pass**
+
+**Key Strengths:**
+**Key Concerns:**
+**Notes for Next Interviewer:**`
+  },
+  {
+    id: "ops-8",
+    teamSlug: "studio-operations",
+    teamName: "Studio Operations",
+    name: "Compliance Checklist Generator",
+    toolRecommendation: "Claude",
+    description: "Generate compliance checklists for campaigns covering GDPR, accessibility, industry regulations, and client policies.",
+    knowledgeToUpload: [
+      "Regulatory requirements (GDPR, CCPA, etc.)",
+      "Industry-specific regulations",
+      "Client compliance policies",
+      "Past compliance issues and learnings"
+    ],
+    prompt: `You are helping ensure campaigns and deliverables meet all compliance requirements.
+
+## Compliance Checklist Generator
+
+**PROJECT DETAILS**
+- Project name:
+- Client:
+- Industry:
+- Markets/regions:
+- Deliverable types:
+
+---
+
+## DATA & PRIVACY COMPLIANCE
+
+**GDPR (EU/UK)**
+☐ Privacy policy linked/visible
+☐ Cookie consent mechanism in place
+☐ Data collection purposes clearly stated
+☐ Opt-out mechanism available
+☐ Data retention period defined
+☐ Third-party data sharing disclosed
+☐ Right to erasure process documented
+☐ Data processing agreement with client
+
+**CCPA (California)**
+☐ "Do Not Sell My Personal Information" link
+☐ Privacy notice includes required disclosures
+☐ Consumer request process in place
+
+**Email/Marketing**
+☐ CAN-SPAM compliant (unsubscribe, physical address)
+☐ CASL compliant (Canada - express consent)
+☐ Opt-in vs opt-out appropriate for region
+☐ Suppression lists honored
+
+---
+
+## ACCESSIBILITY COMPLIANCE
+
+**WCAG 2.1 AA (Web)**
+☐ Color contrast ratio meets minimum (4.5:1 text, 3:1 UI)
+☐ Alt text on all images
+☐ Keyboard navigation works
+☐ Screen reader compatible
+☐ Captions on video content
+☐ Form labels properly associated
+☐ Focus indicators visible
+☐ No content that flashes more than 3x/second
+
+**Document Accessibility (PDF)**
+☐ Tagged for screen readers
+☐ Reading order logical
+☐ Alt text on images
+☐ Sufficient color contrast
+
+**Video/Audio**
+☐ Captions provided
+☐ Audio description available (if needed)
+☐ Transcript available
+
+---
+
+## ADVERTISING COMPLIANCE
+
+**General**
+☐ Claims substantiated and documented
+☐ Disclaimers included where required
+☐ Small print legible (minimum font sizes)
+☐ Testimonials genuine and disclosed
+☐ Competitor references accurate and fair
+
+**Industry-Specific**
+☐ Financial services disclaimers (APR, risk warnings)
+☐ Healthcare/pharma compliance (fair balance)
+☐ Alcohol age-gating and responsible messaging
+☐ Food/nutrition claims verified
+☐ Gambling responsible gambling messaging
+☐ Automotive (MPG, pricing disclaimers)
+
+**Platform-Specific**
+☐ Meta ad policies
+☐ Google ad policies
+☐ TikTok ad policies
+☐ LinkedIn ad policies
+☐ Platform character/format limits
+
+---
+
+## BRAND & LEGAL
+
+**Intellectual Property**
+☐ Image licenses valid and documented
+☐ Music/audio licenses secured
+☐ Font licenses cover intended use
+☐ Stock footage rights cleared
+☐ No trademark infringement
+☐ UGC permissions obtained
+
+**Client Brand Guidelines**
+☐ Logo usage correct
+☐ Color palette accurate
+☐ Typography correct
+☐ Tone of voice aligned
+☐ Required legal language included
+
+---
+
+## SIGN-OFF
+
+| Compliance Area | Reviewed By | Date | Status |
+|-----------------|-------------|------|--------|
+| Data/Privacy | | | ☐ |
+| Accessibility | | | ☐ |
+| Advertising | | | ☐ |
+| Brand/Legal | | | ☐ |
+
+**Notes/Exceptions:**
+Document any known issues or client-approved exceptions.
+
+**Final Approval:** _________________ Date: _______`
+  },
+  {
+    id: "strategy-6",
+    teamSlug: "strategy",
+    teamName: "Strategy",
+    name: "Strategic Scenario Planner",
+    toolRecommendation: "Claude Project",
+    description: "Model best/worst/likely scenarios for campaigns, launches, or market changes to pressure-test strategies.",
+    knowledgeToUpload: [
+      "Market data and trends",
+      "Business objectives and KPIs",
+      "Historical campaign performance",
+      "Competitive landscape data"
+    ],
+    prompt: `You are helping pressure-test strategies by modeling different scenarios and their implications.
+
+## Scenario Planning Framework
+
+**CONTEXT**
+- What are we planning for? (Campaign launch, market entry, rebrand, etc.)
+- Key decision being made:
+- Timeline:
+- Stakeholders:
+
+---
+
+## SCENARIO DEVELOPMENT
+
+### SCENARIO 1: BEST CASE 🟢
+
+**Assumptions:**
+- [Positive assumption 1]
+- [Positive assumption 2]
+- [Positive assumption 3]
+
+**What Happens:**
+[Narrative description of how things unfold in this scenario]
+
+**Key Metrics:**
+| Metric | Projection |
+|--------|------------|
+| | |
+
+**Probability:** [%]
+
+**What Would Need to Be True:**
+- [Condition 1]
+- [Condition 2]
+
+**Early Indicators:**
+- [Signal that suggests this is happening]
+- [Signal that suggests this is happening]
+
+---
+
+### SCENARIO 2: MOST LIKELY CASE 🟡
+
+**Assumptions:**
+- [Realistic assumption 1]
+- [Realistic assumption 2]
+- [Realistic assumption 3]
+
+**What Happens:**
+[Narrative description of how things unfold in this scenario]
+
+**Key Metrics:**
+| Metric | Projection |
+|--------|------------|
+| | |
+
+**Probability:** [%]
+
+**What Would Need to Be True:**
+- [Condition 1]
+- [Condition 2]
+
+**Early Indicators:**
+- [Signal that suggests this is happening]
+- [Signal that suggests this is happening]
+
+---
+
+### SCENARIO 3: WORST CASE 🔴
+
+**Assumptions:**
+- [Negative assumption 1]
+- [Negative assumption 2]
+- [Negative assumption 3]
+
+**What Happens:**
+[Narrative description of how things unfold in this scenario]
+
+**Key Metrics:**
+| Metric | Projection |
+|--------|------------|
+| | |
+
+**Probability:** [%]
+
+**What Would Need to Be True:**
+- [Condition 1]
+- [Condition 2]
+
+**Early Indicators:**
+- [Signal that suggests this is happening]
+- [Signal that suggests this is happening]
+
+---
+
+## STRATEGIC IMPLICATIONS
+
+**If Best Case:**
+- Opportunities to capitalize on:
+- Resources needed:
+- Risks of overcommitting:
+
+**If Most Likely:**
+- What success looks like:
+- Key priorities:
+- Trade-offs to accept:
+
+**If Worst Case:**
+- Mitigation actions:
+- Pivot options:
+- Kill criteria (when to stop):
+
+---
+
+## CONTINGENCY PLANS
+
+| Trigger | Action | Owner |
+|---------|--------|-------|
+| [If X happens] | [Do Y] | [Who] |
+| [If X happens] | [Do Y] | [Who] |
+| [If X happens] | [Do Y] | [Who] |
+
+---
+
+## MONITORING PLAN
+
+**Key Indicators to Track:**
+| Indicator | Source | Frequency | Threshold |
+|-----------|--------|-----------|-----------|
+| | | | |
+
+**Review Cadence:** [Weekly/Monthly]
+**Decision Points:** [When we'll reassess the strategy]
+
+---
+
+## RECOMMENDATION
+
+Based on scenario analysis:
+- Recommended approach:
+- Key risks to manage:
+- Success criteria:`
+  },
+  {
+    id: "strategy-7",
+    teamSlug: "strategy",
+    teamName: "Strategy",
+    name: "AIDEN Strategy & Insight Generator",
+    toolRecommendation: "AIDEN.chat",
+    description: "Use AIDEN.chat's 334-phantom AI to brainstorm strategic insights, explore creative territories, and build strategic boards for campaigns.",
+    knowledgeToUpload: [
+      "Brand and market research",
+      "Consumer insights and data",
+      "Competitor analysis",
+      "Business objectives",
+      "Previous campaign learnings"
+    ],
+    prompt: `AIDEN.chat is your AI strategy partner with a 334-phantom memory system. Here's how to use it for strategic work:
+
+## The AIDEN.chat Interface:
+
+**5-Panel Layout:**
+1. Header - Navigation, toggles, phantom stats
+2. Left Sidebar - Workspaces, conversations, documents
+3. 3D Brain - Visual phantom activation (optional)
+4. Chat - Strategic conversation
+5. Boards - Pin insights, ideas, copy (optional)
+
+## Setting Up a Strategy Session:
+
+**1. Create a Workspace**
+- Click workspace dropdown → "+ New Workspace"
+- Name it for your client or project
+- Add description for context
+
+**2. Upload Context Documents**
+- Drag files onto upload zone (PDF, TXT, images)
+- Click lightning icon to add to conversation context
+- AIDEN analyzes and references your materials
+
+## The 3D Brain & Phantoms:
+
+**Phantom States:**
+- 🔴 Fired (pulsing) = Currently active in response
+- 🟠 Active = Recently triggered
+- 🔵 Cold = Not recently used
+
+**Trigger Types:**
+- Word Triggers: Direct keyword matching
+- Intent Triggers: Pattern detection
+- Emotional Contexts: State matching
+- Conversation Contexts: Dialogue position
+
+Watch phantoms fire as you discuss strategy - it shows which memory patterns AIDEN is drawing from.
+
+## Strategic Boards:
+
+Pin AIDEN's best outputs to three board types:
+
+| Board | Categories | Use For |
+|-------|------------|---------|
+| INSIGHTS | Audience, Tension, Opportunity, Positioning, Territory, Proof Point | Strategic foundations |
+| IDEAS | Campaign, Activation, Content, Experience, Partnership, Wild | Creative concepts |
+| COPY | Headline, Tagline, Body, CTA, Social, Script, Manifesto | Marketing copy |
+
+**To Pin:**
+1. Hover over any AIDEN message
+2. Click pin icon (top-right)
+3. Select board and category
+4. Edit content if needed (max 2000 chars)
+5. Click "Pin"
+
+## Strategy Conversation Starters:
+
+**For Consumer Insight:**
+"Based on [audience], what tensions exist between what they want and what they're getting from the category?"
+
+**For Market Opportunity:**
+"Looking at [competitor landscape], where's the white space that [brand] could own?"
+
+**For Cultural Relevance:**
+"What cultural shifts or moments could [brand] connect with authentically?"
+
+**For Brand Positioning:**
+"If [brand] were a person at a party, how would they introduce themselves?"
+
+**For Territory Exploration:**
+"Give me 5 different strategic territories for [objective], ranging from safe to brave."
+
+## Export & Integration:
+
+**Export Boards:**
+- Markdown (.md) - For documentation
+- JSON - For AIDEN.pitch integration
+
+**Workflow Connection:**
+AIDEN.chat boards → Export JSON → Import to AIDEN.pitch for campaign development
+
+## Pro Tips:
+- Ask AIDEN to challenge your assumptions
+- Use "what if" questions to explore scenarios
+- Pin as you go - don't lose good insights
+- The Board Map (fullscreen) shows connections between pinned items
+- Semantic search finds content by meaning, not just keywords`
+  },
+  {
+    id: "account-6",
+    teamSlug: "account-management",
+    teamName: "Account Management",
+    name: "Client Relationship Health Check",
+    toolRecommendation: "Claude",
+    description: "Assess client relationship health, identify risks, and recommend proactive actions to strengthen partnerships.",
+    knowledgeToUpload: [
+      "Meeting notes and call summaries",
+      "Project history and performance",
+      "Client feedback and NPS data",
+      "Contract and commercial details"
+    ],
+    prompt: `You are helping assess and improve client relationship health.
+
+## Client Health Assessment
+
+**CLIENT OVERVIEW**
+- Client name:
+- Account manager:
+- Relationship length:
+- Annual value:
+- Assessment date:
+- Last assessment:
+
+---
+
+## HEALTH SCORE DASHBOARD
+
+Rate each dimension 1-5 (1=Critical, 5=Excellent):
+
+| Dimension | Score | Trend | Notes |
+|-----------|-------|-------|-------|
+| **Satisfaction** | /5 | ↑↓→ | |
+| **Communication** | /5 | ↑↓→ | |
+| **Trust** | /5 | ↑↓→ | |
+| **Value Perception** | /5 | ↑↓→ | |
+| **Strategic Alignment** | /5 | ↑↓→ | |
+| **Commercial Health** | /5 | ↑↓→ | |
+| **OVERALL HEALTH** | /30 | | |
+
+**Health Status:**
+- 25-30: 🟢 Healthy - Nurture and grow
+- 18-24: 🟡 At Risk - Monitor closely
+- Below 18: 🔴 Critical - Immediate action needed
+
+---
+
+## DETAILED ASSESSMENT
+
+**1. Satisfaction**
+- Recent feedback received:
+- Last NPS/survey score:
+- Unsolicited positive comments:
+- Complaints or concerns raised:
+
+**2. Communication**
+- Frequency of contact:
+- Quality of interactions:
+- Responsiveness (us to them):
+- Responsiveness (them to us):
+- Any communication breakdowns:
+
+**3. Trust**
+- Do they share openly with us?
+- Are we involved early in planning?
+- Do they accept our recommendations?
+- Any trust issues to address:
+
+**4. Value Perception**
+- Do they see ROI from our work?
+- How do they describe us to others?
+- Are they price-sensitive?
+- Competitive pressure:
+
+**5. Strategic Alignment**
+- Do we understand their business goals?
+- Is our work aligned to their priorities?
+- Are we seen as strategic or tactical?
+- Growth opportunities:
+
+**6. Commercial Health**
+- Payment history:
+- Budget trend (growing/stable/shrinking):
+- Contract status:
+- Profitability:
+
+---
+
+## RISK FACTORS
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| | High/Med/Low | High/Med/Low | |
+
+**Red Flags:**
+- ☐ Reduced communication
+- ☐ Budget cuts
+- ☐ New decision makers
+- ☐ Competitive pitches
+- ☐ Delayed payments
+- ☐ Scope creep without budget
+- ☐ Negative feedback
+
+---
+
+## RELATIONSHIP MAP
+
+**Key Stakeholders:**
+| Name | Role | Relationship | Engagement Level |
+|------|------|--------------|------------------|
+| | | Champion/Supporter/Neutral/Detractor | High/Med/Low |
+
+**Gaps in Relationships:**
+- Who don't we know that we should?
+- Who has influence we're not connected to?
+
+---
+
+## ACTION PLAN
+
+**Immediate Actions (This Week):**
+1. [Action]
+2. [Action]
+
+**Short-term (This Month):**
+1. [Action]
+2. [Action]
+
+**Long-term (This Quarter):**
+1. [Action]
+2. [Action]
+
+---
+
+## GROWTH OPPORTUNITIES
+
+| Opportunity | Value | Next Step | Owner |
+|-------------|-------|-----------|-------|
+| | | | |
+
+---
+
+## REVIEW SCHEDULE
+
+- Next health check: [Date]
+- Next QBR/relationship review: [Date]
+- Contract renewal date: [Date]`
+  },
+  {
+    id: "digital-6",
+    teamSlug: "digital",
+    teamName: "Digital",
+    name: "SEO Content Strategy",
+    toolRecommendation: "Perplexity",
+    description: "Research keywords, analyze competitors, and build comprehensive SEO content strategies.",
+    knowledgeToUpload: [
+      "Current rankings and organic traffic data",
+      "Competitor URLs and content",
+      "Business goals and target audience",
+      "Existing content inventory"
+    ],
+    prompt: `You are developing an SEO content strategy to improve organic search visibility.
+
+## SEO Content Strategy Framework
+
+**BUSINESS CONTEXT**
+- Website:
+- Industry:
+- Target audience:
+- Primary business goals:
+- Current organic traffic:
+- Main competitors:
+
+---
+
+## KEYWORD RESEARCH
+
+**1. Seed Keywords**
+Start with core topics related to the business:
+| Seed Keyword | Monthly Volume | Current Rank | Difficulty |
+|--------------|----------------|--------------|------------|
+| | | | |
+
+**2. Keyword Expansion**
+For each seed, identify:
+
+**Head Terms (High volume, competitive):**
+| Keyword | Volume | Difficulty | Intent | Priority |
+|---------|--------|------------|--------|----------|
+| | | | | |
+
+**Long-tail Keywords (Lower volume, less competitive):**
+| Keyword | Volume | Difficulty | Intent | Priority |
+|---------|--------|------------|--------|----------|
+| | | | | |
+
+**Questions (What people ask):**
+| Question Keyword | Volume | Featured Snippet? |
+|------------------|--------|-------------------|
+| | | |
+
+**3. Intent Mapping**
+| Keyword | Intent Type | Funnel Stage | Content Type Needed |
+|---------|-------------|--------------|---------------------|
+| | Informational/Commercial/Transactional/Navigational | Awareness/Consideration/Decision | Blog/Landing Page/Product Page |
+
+---
+
+## COMPETITOR ANALYSIS
+
+**Competitor 1: [Name]**
+- Domain authority:
+- Top ranking keywords:
+- Content strengths:
+- Gaps we can exploit:
+
+**Competitor 2: [Name]**
+[Same structure]
+
+**Content Gap Analysis:**
+Keywords competitors rank for that we don't:
+| Keyword | Comp 1 Rank | Comp 2 Rank | Our Rank | Opportunity |
+|---------|-------------|-------------|----------|-------------|
+| | | | | |
+
+---
+
+## CONTENT PLAN
+
+**Topic Clusters:**
+
+**Cluster 1: [Pillar Topic]**
+- Pillar page: [Title]
+- Supporting content:
+  - [Article 1 - target keyword]
+  - [Article 2 - target keyword]
+  - [Article 3 - target keyword]
+
+**Cluster 2: [Pillar Topic]**
+[Same structure]
+
+**Content Calendar:**
+| Month | Content Piece | Target Keyword | Content Type | Funnel Stage |
+|-------|---------------|----------------|--------------|--------------|
+| | | | | |
+
+---
+
+## ON-PAGE OPTIMIZATION
+
+**For Each Priority Page:**
+
+| Element | Current | Optimized |
+|---------|---------|-----------|
+| Title Tag | | |
+| Meta Description | | |
+| H1 | | |
+| URL | | |
+| Internal Links | | |
+
+**Technical SEO Checklist:**
+☐ Site speed optimized
+☐ Mobile-friendly
+☐ XML sitemap submitted
+☐ Robots.txt configured
+☐ Schema markup implemented
+☐ No broken links
+☐ HTTPS enabled
+
+---
+
+## LINK BUILDING OPPORTUNITIES
+
+| Opportunity Type | Target | Approach | Priority |
+|------------------|--------|----------|----------|
+| Guest posting | | | |
+| Resource link building | | | |
+| Broken link building | | | |
+| Digital PR | | | |
+
+---
+
+## MEASUREMENT & KPIs
+
+**Primary KPIs:**
+| Metric | Current | 3-Month Target | 6-Month Target |
+|--------|---------|----------------|----------------|
+| Organic Traffic | | | |
+| Keyword Rankings (Top 10) | | | |
+| Organic Conversions | | | |
+| Domain Authority | | | |
+
+**Tracking Tools:**
+- Google Search Console
+- Google Analytics
+- [Rank tracking tool]
+- [Other tools]
+
+**Reporting Cadence:** [Weekly/Monthly]
+
+---
+
+## QUICK WINS
+
+Immediate optimizations that can have fast impact:
+1. [Quick win 1]
+2. [Quick win 2]
+3. [Quick win 3]
+
+---
+
+## 90-DAY ROADMAP
+
+**Month 1:** Foundation
+- [Action]
+- [Action]
+
+**Month 2:** Content
+- [Action]
+- [Action]
+
+**Month 3:** Amplification
+- [Action]
+- [Action]`
+  },
+  {
+    id: "design-6",
+    teamSlug: "design",
+    teamName: "Design",
+    name: "Accessibility Review Checklist",
+    toolRecommendation: "Claude",
+    description: "Audit designs for WCAG compliance, color contrast, and inclusive design principles.",
+    knowledgeToUpload: [
+      "Design files (Figma/Sketch/XD)",
+      "Brand guidelines",
+      "Target WCAG level (A, AA, AAA)",
+      "User research on accessibility needs"
+    ],
+    prompt: `You are conducting an accessibility review to ensure designs are inclusive and WCAG compliant.
+
+## Accessibility Review Checklist
+
+**PROJECT DETAILS**
+- Project name:
+- Designer:
+- Review date:
+- Target compliance level: ☐ WCAG 2.1 A  ☐ WCAG 2.1 AA  ☐ WCAG 2.1 AAA
+- Deliverable type: ☐ Website  ☐ App  ☐ Document  ☐ Email  ☐ Other
+
+---
+
+## 1. COLOR & CONTRAST
+
+**Color Contrast Ratios:**
+| Element | Foreground | Background | Ratio | Pass/Fail |
+|---------|------------|------------|-------|-----------|
+| Body text | | | 4.5:1 min | |
+| Large text (18pt+) | | | 3:1 min | |
+| UI components | | | 3:1 min | |
+| Icons | | | 3:1 min | |
+
+**Color Usage:**
+☐ Color is not the only way to convey information
+☐ Links distinguishable without color (underline, icon)
+☐ Error states use more than just red
+☐ Charts/graphs accessible without color
+☐ Tested with color blindness simulators
+
+**Tools Used:**
+- [ ] WebAIM Contrast Checker
+- [ ] Stark plugin
+- [ ] Color blindness simulator
+
+---
+
+## 2. TYPOGRAPHY
+
+☐ Base font size minimum 16px
+☐ Line height minimum 1.5 for body text
+☐ Paragraph spacing minimum 2x font size
+☐ No justified text (causes uneven spacing)
+☐ Font is legible (avoid decorative fonts for body)
+☐ All caps used sparingly (harder to read)
+☐ Text can be resized to 200% without loss of content
+
+**Font Choices:**
+| Use | Font | Weight | Size | Line Height | Pass |
+|-----|------|--------|------|-------------|------|
+| Body | | | | | |
+| Headings | | | | | |
+| UI | | | | | |
+
+---
+
+## 3. LAYOUT & SPACING
+
+☐ Touch targets minimum 44x44px (mobile)
+☐ Adequate spacing between interactive elements
+☐ Content readable without horizontal scrolling (to 320px width)
+☐ Logical reading order maintained
+☐ Focus order follows visual order
+☐ White space used effectively to group content
+
+---
+
+## 4. IMAGES & MEDIA
+
+☐ All images have alt text planned
+☐ Decorative images marked as decorative
+☐ Complex images have extended descriptions
+☐ Text in images avoided where possible
+☐ Icons have labels or tooltips
+☐ Video has captions placeholder
+☐ Audio has transcript placeholder
+
+**Alt Text Notes:**
+| Image | Alt Text | Notes |
+|-------|----------|-------|
+| | | |
+
+---
+
+## 5. FORMS & INPUTS
+
+☐ All inputs have visible labels
+☐ Labels positioned above or beside inputs (not placeholder only)
+☐ Required fields clearly indicated
+☐ Error messages clear and specific
+☐ Error messages positioned near the field
+☐ Form instructions provided upfront
+☐ Adequate space for error messages
+
+**Form Review:**
+| Field | Label | Error State | Hint Text | Pass |
+|-------|-------|-------------|-----------|------|
+| | | | | |
+
+---
+
+## 6. NAVIGATION & WAYFINDING
+
+☐ Skip link to main content designed
+☐ Breadcrumbs included (if applicable)
+☐ Current page/state clearly indicated
+☐ Consistent navigation placement
+☐ Multiple ways to find content
+☐ Focus indicators visible and clear
+☐ Mobile menu accessible
+
+---
+
+## 7. INTERACTIVE ELEMENTS
+
+☐ Buttons look like buttons
+☐ Links look like links
+☐ Interactive elements have visible hover/focus states
+☐ States designed: default, hover, focus, active, disabled
+☐ Loading states indicate progress
+☐ Modals/overlays can be dismissed
+☐ Carousels have pause controls
+
+**State Design:**
+| Element | Default | Hover | Focus | Active | Disabled |
+|---------|---------|-------|-------|--------|----------|
+| Primary Button | | | | | |
+| Link | | | | | |
+| Input | | | | | |
+
+---
+
+## 8. CONTENT STRUCTURE
+
+☐ Clear visual hierarchy
+☐ Headings used in logical order (H1 → H2 → H3)
+☐ Content chunked into scannable sections
+☐ Lists used for related items
+☐ Tables used only for tabular data
+☐ Abbreviations explained
+
+---
+
+## 9. MOTION & ANIMATION
+
+☐ Animations respect reduced motion preferences
+☐ No content flashes more than 3 times/second
+☐ Animations don't distract from content
+☐ Auto-playing media can be paused
+☐ Parallax effects have alternative
+
+---
+
+## 10. INCLUSIVE DESIGN CONSIDERATIONS
+
+☐ Design works for one-handed use
+☐ Design considers cognitive load
+☐ Instructions don't rely on spatial references only ("click the button on the right")
+☐ Design considers users with low vision (beyond contrast)
+☐ Emergency/time-sensitive info not conveyed by color alone
+
+---
+
+## SUMMARY
+
+**Overall Compliance:** ☐ Pass  ☐ Pass with Notes  ☐ Fail
+
+**Critical Issues (Must Fix):**
+1. [Issue and location]
+2. [Issue and location]
+
+**Recommended Improvements:**
+1. [Improvement]
+2. [Improvement]
+
+**Notes for Development:**
+[Any implementation considerations]
+
+---
+
+**Reviewed by:** _______________
+**Date:** _______________
+**Next Review:** _______________`
   }
 ];
 
