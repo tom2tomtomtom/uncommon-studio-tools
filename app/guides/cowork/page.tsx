@@ -232,6 +232,54 @@ export default function CoworkPage() {
         </CardContent>
       </Card>
 
+      {/* Advanced Architecture */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Advanced Architecture</CardTitle>
+          <CardDescription>
+            Understanding how Cowork operates under the hood
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div>
+            <p className="font-medium flex items-center gap-2">
+              Parallel Sub-agents
+            </p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Cowork can spin up multiple independent instances of Claude to work simultaneously.
+              This dramatically reduces wait time for research-heavy tasks.
+            </p>
+            <div className="bg-muted p-3 rounded-lg mt-2 text-sm font-mono">
+              "Research these 5 competitors <strong>in parallel using subagents</strong>. Create a separate analysis file for each."
+            </div>
+            <p className="text-sm text-muted-foreground mt-2">
+              Claude will spawn 5 sub-agents, each researching one company simultaneously—turning 5 hours of work into 20 minutes.
+            </p>
+          </div>
+
+          <div>
+            <p className="font-medium">The VM Sandbox</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Cowork runs in an isolated Linux virtual machine (Apple Virtualization Framework) on your local machine.
+              This means Claude cannot accidentally modify your actual system files—only the files you explicitly grant access to via MCP.
+            </p>
+          </div>
+
+          <div>
+            <p className="font-medium">The "Amnesia" Constraint & Workaround</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Unlike Projects, Cowork sessions have <strong>no memory</strong> of previous sessions. Every task starts completely fresh.
+            </p>
+            <div className="p-3 rounded-lg bg-muted mt-2">
+              <p className="text-sm">
+                <strong>Workaround:</strong> Create a <code className="bg-background px-1 rounded">Context.md</code> file with key information
+                (project goals, conventions, previous decisions). Start each session with "Read Context.md first, then..."
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Safety */}
       <Card className="border-amber-500/50">
         <CardHeader>

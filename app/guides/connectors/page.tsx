@@ -266,7 +266,35 @@ export default function ConnectorsPage() {
               <div className="p-3 rounded-lg border">
                 <p className="font-medium text-sm">Third-Party Aggregators</p>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Services like Rube or Composio connect hundreds of SaaS apps via a single MCP URL.
+                  Services like Rube or Composio connect 800+ SaaS apps via a single MCP URL.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Rube/Composio Deep Dive */}
+          <div className="p-4 rounded-lg border bg-muted/50">
+            <p className="font-medium mb-3">Third-Party Aggregators: Rube & Composio</p>
+            <p className="text-sm text-muted-foreground mb-3">
+              These "gateway" services let you connect to Linear, HubSpot, Salesforce, Jira, and hundreds more
+              without building custom integrations for each.
+            </p>
+            <div className="space-y-3">
+              <div>
+                <p className="text-sm font-medium">Setup</p>
+                <ol className="text-sm text-muted-foreground list-decimal list-inside mt-1 space-y-1">
+                  <li>Create an account at Rube.app or Composio</li>
+                  <li>Connect your desired SaaS tools in their dashboard</li>
+                  <li>Generate an MCP URL</li>
+                  <li>Go to <strong>Settings → Connectors</strong> in Claude and paste the URL</li>
+                </ol>
+              </div>
+              <div>
+                <p className="text-sm font-medium">Dynamic Tool Loading (Expert Feature)</p>
+                <p className="text-sm text-muted-foreground mt-1">
+                  These gateways use "on-demand tool loading"—they only inject tool definitions (e.g., "Search Jira")
+                  when you actually ask for it, rather than loading all 800 tools into Claude's context window.
+                  This saves context space and improves response quality.
                 </p>
               </div>
             </div>
