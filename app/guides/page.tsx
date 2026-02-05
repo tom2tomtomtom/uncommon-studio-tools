@@ -13,7 +13,8 @@ import {
   Sparkles,
   Layers,
   Zap,
-  Chrome
+  Chrome,
+  Plug
 } from 'lucide-react';
 
 const guides = [
@@ -70,6 +71,15 @@ const guides = [
     difficulty: 'Intermediate',
     time: '20 min',
     color: 'text-pink-500',
+  },
+  {
+    slug: 'connectors',
+    title: 'Connectors & Integrations',
+    description: 'Connect Claude to Google Workspace, GitHub, and any SaaS tool via MCP',
+    icon: Plug,
+    difficulty: 'Intermediate',
+    time: '20 min',
+    color: 'text-cyan-500',
   },
   {
     slug: 'chrome-extension',
