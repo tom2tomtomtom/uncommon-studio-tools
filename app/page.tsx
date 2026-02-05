@@ -133,78 +133,122 @@ export default function HomePage() {
       </div>
 
       {/* Tool Recommendations */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4">AI Tool Guide</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-2xl font-bold mb-2">AI Tool Guide</h2>
+          <p className="text-muted-foreground">Four tools, four different superpowers. Choose based on what you're trying to accomplish.</p>
+        </div>
+
+        <div className="grid gap-6">
+          {/* Claude Projects */}
           <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <FileText className="h-5 w-5 text-primary" />
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center gap-2">
+                <FileText className="h-6 w-6 text-primary" />
                 Claude Projects
               </CardTitle>
-              <CardDescription>Persistent context with uploaded knowledge</CardDescription>
+              <CardDescription className="text-base">Your AI creative partner with a perfect memory</CardDescription>
             </CardHeader>
-            <CardContent>
-              <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>Campaign strategy and creative development</li>
-                <li>Brand guidelines and tone of voice</li>
-                <li>Client briefs and background materials</li>
-                <li>Long-running pitch development</li>
-              </ul>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">What it is:</strong> A dedicated workspace in Claude where you upload documents once and they stay forever. Claude remembers everything you've shared—brand guidelines, past campaigns, client history—so you never have to re-explain context.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">How to use it:</strong> Create a Project for each major client or campaign. Upload their brand book, tone of voice guide, past creative work, and any briefs. Now every conversation starts with Claude already knowing the brand inside-out. Ask it to write copy, develop concepts, or review work—all in the client's voice.
+              </p>
+              <div className="pt-2 border-t">
+                <p className="text-xs font-medium text-foreground mb-2">Best for:</p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary">Campaign strategy</Badge>
+                  <Badge variant="secondary">Long-running pitches</Badge>
+                  <Badge variant="secondary">Brand-consistent copy</Badge>
+                  <Badge variant="secondary">Creative development</Badge>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
+          {/* Claude Skills */}
           <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-primary" />
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center gap-2">
+                <Sparkles className="h-6 w-6 text-primary" />
                 Claude Skills
               </CardTitle>
-              <CardDescription>Reusable workflows you can download</CardDescription>
+              <CardDescription className="text-base">Pre-built workflows you install once and use forever</CardDescription>
             </CardHeader>
-            <CardContent>
-              <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>Creative brief development</li>
-                <li>Concept presentation formatting</li>
-                <li>Copywriting and script reviews</li>
-                <li>Production spec sheets</li>
-              </ul>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">What it is:</strong> Downloadable instruction sets that teach Claude how to perform specific tasks. Think of them as "apps" for Claude—install a Creative Brief skill, and Claude knows exactly how to structure briefs, what questions to ask, and what format to output.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">How to use it:</strong> Download a .zip file from this site, go to Claude.ai → Settings → Capabilities → Upload Skill. Once installed, just tell Claude to use that skill: "Use the Creative Brief skill to write a brief for this campaign." The skill stays in your account forever.
+              </p>
+              <div className="pt-2 border-t">
+                <p className="text-xs font-medium text-foreground mb-2">Best for:</p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary">Repeatable formats</Badge>
+                  <Badge variant="secondary">QA & review processes</Badge>
+                  <Badge variant="secondary">Document templates</Badge>
+                  <Badge variant="secondary">Team standardization</Badge>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
+          {/* Claude Cowork */}
           <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Monitor className="h-5 w-5 text-primary" />
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center gap-2">
+                <Monitor className="h-6 w-6 text-primary" />
                 Claude Cowork
               </CardTitle>
-              <CardDescription>Desktop automation via Claude Desktop</CardDescription>
+              <CardDescription className="text-base">An AI assistant that works directly on your computer</CardDescription>
             </CardHeader>
-            <CardContent>
-              <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>File processing and asset organization</li>
-                <li>Spreadsheet work and budget tracking</li>
-                <li>Meeting notes and status reports</li>
-                <li>+ Gemini MCP for concept visuals</li>
-              </ul>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">What it is:</strong> A feature in Claude Desktop that lets Claude see your screen, control your mouse and keyboard, open apps, and work with files on your computer. It's like having an intern who can actually do the work, not just tell you how to do it.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">How to use it:</strong> Download Claude Desktop (Pro/Max required). Open Cowork mode and describe what you need: "Organize these 50 campaign assets into folders by client" or "Turn these meeting notes into a status report in Google Docs." Claude does the clicking while you grab coffee. Add the Chrome extension for web tasks, or Gemini MCP for AI image generation.
+              </p>
+              <div className="pt-2 border-t">
+                <p className="text-xs font-medium text-foreground mb-2">Best for:</p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary">File organization</Badge>
+                  <Badge variant="secondary">Spreadsheet work</Badge>
+                  <Badge variant="secondary">Document creation</Badge>
+                  <Badge variant="secondary">Repetitive tasks</Badge>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
+          {/* Perplexity */}
           <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Globe className="h-5 w-5 text-primary" />
-                Perplexity
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center gap-2">
+                <Globe className="h-6 w-6 text-primary" />
+                Perplexity Pro
               </CardTitle>
-              <CardDescription>Real-time web research with citations</CardDescription>
+              <CardDescription className="text-base">Real-time research that actually cites its sources</CardDescription>
             </CardHeader>
-            <CardContent>
-              <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>Competitive creative analysis</li>
-                <li>Cultural trends and insights</li>
-                <li>Award-winning campaign research</li>
-                <li>Industry news and developments</li>
-              </ul>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">What it is:</strong> An AI search engine that reads the internet in real-time and gives you synthesized answers with clickable citations. Unlike Claude (which has a knowledge cutoff), Perplexity knows what happened yesterday. Every claim links to its source so you can verify.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">How to use it:</strong> Use Pro Search for deep research—it reads 10x more sources and shows its reasoning. Ask specific questions: "What campaigns won Cannes Lions for sustainability in 2024?" or "What's Nike's current brand positioning vs Adidas?" Export findings as Markdown for your decks.
+              </p>
+              <div className="pt-2 border-t">
+                <p className="text-xs font-medium text-foreground mb-2">Best for:</p>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary">Competitive analysis</Badge>
+                  <Badge variant="secondary">Cultural trends</Badge>
+                  <Badge variant="secondary">Award research</Badge>
+                  <Badge variant="secondary">Fact-checking</Badge>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
