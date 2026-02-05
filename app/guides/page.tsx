@@ -19,14 +19,11 @@ import {
   Puzzle,
   Compass,
   Mic,
-  Video,
   Workflow,
+  Video,
   AudioLines,
   Presentation,
-  Brain,
-  Mail,
-  Banana,
-  Clapperboard
+  Brain
 } from 'lucide-react';
 
 // Claude Enterprise
@@ -132,7 +129,7 @@ const claudeGuides = [
   },
 ];
 
-// Google (Workspace AI, NotebookLM, Nano Banana, Veo 3)
+// Google
 const googleGuides = [
   {
     slug: 'notebooklm',
@@ -158,12 +155,70 @@ const perplexityGuides = [
   },
 ];
 
-// Placeholder sections for tools without guides yet
-const n8nGuides: Guide[] = [];
-const runwayGuides: Guide[] = [];
-const elevenLabsGuides: Guide[] = [];
-const aidenGuides: Guide[] = [];
-const gammaGuides: Guide[] = [];
+// n8n
+const n8nGuides = [
+  {
+    slug: 'n8n',
+    title: 'n8n Workflow Automation',
+    description: 'Build AI-powered automations with code-level flexibility and self-hosting',
+    icon: Workflow,
+    difficulty: 'Intermediate',
+    time: '25 min',
+    color: 'text-green-500',
+  },
+];
+
+// Runway Enterprise
+const runwayGuides = [
+  {
+    slug: 'runway',
+    title: 'Runway Video Generation',
+    description: 'Create AI video from text, animate images, and use motion controls',
+    icon: Video,
+    difficulty: 'Intermediate',
+    time: '20 min',
+    color: 'text-purple-500',
+  },
+];
+
+// ElevenLabs
+const elevenLabsGuides = [
+  {
+    slug: 'elevenlabs',
+    title: 'ElevenLabs Voice AI',
+    description: 'Generate lifelike speech, clone voices, and dub content in 32 languages',
+    icon: AudioLines,
+    difficulty: 'Beginner',
+    time: '15 min',
+    color: 'text-pink-500',
+  },
+];
+
+// AIDEN Studio
+const aidenGuides = [
+  {
+    slug: 'aiden-studio',
+    title: 'AIDEN Studio',
+    description: 'AI Creative Director for campaign strategy and asset creation',
+    icon: Brain,
+    difficulty: 'Intermediate',
+    time: '20 min',
+    color: 'text-red-500',
+  },
+];
+
+// Gamma
+const gammaGuides = [
+  {
+    slug: 'gamma',
+    title: 'Gamma Presentations',
+    description: 'AI-powered presentations that design themselves from a single prompt',
+    icon: Presentation,
+    difficulty: 'Beginner',
+    time: '15 min',
+    color: 'text-yellow-500',
+  },
+];
 
 interface Guide {
   slug: string;
@@ -179,18 +234,17 @@ interface ToolSection {
   title: string;
   guides: Guide[];
   color: string;
-  comingSoon?: boolean;
 }
 
 const sections: ToolSection[] = [
   { title: 'Claude Enterprise', guides: claudeGuides, color: 'text-orange-500' },
   { title: 'Google', guides: googleGuides, color: 'text-blue-500' },
   { title: 'Perplexity Enterprise Pro', guides: perplexityGuides, color: 'text-teal-500' },
-  { title: 'n8n', guides: n8nGuides, color: 'text-green-500', comingSoon: true },
-  { title: 'Runway Enterprise', guides: runwayGuides, color: 'text-purple-500', comingSoon: true },
-  { title: 'ElevenLabs', guides: elevenLabsGuides, color: 'text-pink-500', comingSoon: true },
-  { title: 'AIDEN Studio', guides: aidenGuides, color: 'text-red-500', comingSoon: true },
-  { title: 'Gamma', guides: gammaGuides, color: 'text-yellow-500', comingSoon: true },
+  { title: 'n8n', guides: n8nGuides, color: 'text-green-500' },
+  { title: 'Runway Enterprise', guides: runwayGuides, color: 'text-purple-500' },
+  { title: 'ElevenLabs', guides: elevenLabsGuides, color: 'text-pink-500' },
+  { title: 'AIDEN Studio', guides: aidenGuides, color: 'text-red-500' },
+  { title: 'Gamma', guides: gammaGuides, color: 'text-yellow-500' },
 ];
 
 function GuideCard({ guide }: { guide: Guide }) {
@@ -228,6 +282,8 @@ function GuideCard({ guide }: { guide: Guide }) {
 }
 
 export default function GuidesPage() {
+  const totalGuides = sections.reduce((acc, section) => acc + section.guides.length, 0);
+
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       {/* Breadcrumb */}
@@ -248,7 +304,7 @@ export default function GuidesPage() {
           </div>
           <div>
             <h1 className="text-3xl font-bold">Getting Started Guides</h1>
-            <p className="text-muted-foreground">Step-by-step tutorials to master your AI tools</p>
+            <p className="text-muted-foreground">{totalGuides} tutorials across {sections.length} AI platforms</p>
           </div>
         </div>
       </div>
@@ -268,27 +324,15 @@ export default function GuidesPage() {
         <div key={section.title} className="space-y-4">
           <div className="flex items-center gap-2">
             <h2 className={`text-xl font-semibold ${section.color}`}>{section.title}</h2>
-            {section.guides.length > 0 ? (
-              <Badge variant="outline" className="text-xs">{section.guides.length} {section.guides.length === 1 ? 'guide' : 'guides'}</Badge>
-            ) : (
-              <Badge variant="outline" className="text-xs bg-muted">Coming Soon</Badge>
-            )}
+            <Badge variant="outline" className="text-xs">
+              {section.guides.length} {section.guides.length === 1 ? 'guide' : 'guides'}
+            </Badge>
           </div>
-          {section.guides.length > 0 ? (
-            <div className="grid gap-4">
-              {section.guides.map((guide) => (
-                <GuideCard key={guide.slug} guide={guide} />
-              ))}
-            </div>
-          ) : (
-            <Card className="border-dashed">
-              <CardContent className="pt-6 pb-6">
-                <p className="text-sm text-muted-foreground text-center">
-                  Guides for {section.title} are in development
-                </p>
-              </CardContent>
-            </Card>
-          )}
+          <div className="grid gap-4">
+            {section.guides.map((guide) => (
+              <GuideCard key={guide.slug} guide={guide} />
+            ))}
+          </div>
         </div>
       ))}
 
