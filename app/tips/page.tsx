@@ -15,7 +15,19 @@ import {
   FolderSync,
   Play,
   DollarSign,
-  Trash2
+  Trash2,
+  FileText,
+  Share2,
+  Layers,
+  Keyboard,
+  MessageSquare,
+  Image,
+  Copy,
+  RefreshCw,
+  Download,
+  Users,
+  History,
+  PanelTop
 } from 'lucide-react';
 
 export default function TipsPage() {
@@ -193,6 +205,181 @@ export default function TipsPage() {
         </CardContent>
       </Card>
 
+      {/* Section 6: Prompt Engineering Shortcuts */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <FileText className="h-5 w-5 text-primary" />
+            Prompt Engineering Shortcuts
+          </CardTitle>
+          <CardDescription>
+            Techniques to get more consistent and useful responses from Claude
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <TipBlock
+            title="System Prompts in Projects"
+            problem="Starting every conversation with the same instructions"
+            trick='Add a system prompt in Project settings—it applies to every conversation automatically. Great for setting tone, format preferences, or domain context without repeating yourself.'
+            icon={<MessageSquare className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Output Formatting"
+            problem="Getting inconsistent response formats"
+            trick='Ask for "JSON only" or "markdown table" and Claude will stick to it. Be explicit about structure: "Return a JSON object with keys: title, summary, tags" works better than "give me some JSON."'
+            icon={<Code className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Chain-of-Thought Triggers"
+            problem="Need Claude to show its reasoning"
+            trick={`Start with "Think step by step" or "Let's work through this" to activate deeper reasoning. For complex problems, ask Claude to "explain your approach before giving the answer."`}
+            icon={<Brain className="h-4 w-4" />}
+          />
+        </CardContent>
+      </Card>
+
+      {/* Section 7: File & Context Management */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <FolderSync className="h-5 w-5 text-primary" />
+            File & Context Management
+          </CardTitle>
+          <CardDescription>
+            Work efficiently with files, images, and long conversations
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <TipBlock
+            title="Drag-and-Drop Files"
+            problem="Typing out file contents manually"
+            trick='Drag PDFs, images, code files, CSVs directly into the chat. Claude can read most document types, analyze spreadsheets, and understand code structure instantly.'
+            icon={<FileText className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Context Window Optimization"
+            problem="Conversations getting confused or repetitive"
+            trick='Start fresh conversations for new topics; use Projects for ongoing work. When a conversation gets long, summarize key decisions and start a new chat with that context.'
+            icon={<Layers className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Screenshot Analysis"
+            problem="Describing UI bugs or designs in words"
+            trick='Take a screenshot and drop it in—Claude can see and analyze images. Works great for UI feedback, error messages, diagrams, handwritten notes, and even whiteboard photos.'
+            icon={<Image className="h-4 w-4" />}
+          />
+        </CardContent>
+      </Card>
+
+      {/* Section 8: Collaboration Workflows */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Share2 className="h-5 w-5 text-primary" />
+            Collaboration Workflows
+          </CardTitle>
+          <CardDescription>
+            Share your Claude work and integrate with team processes
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <TipBlock
+            title="Sharing Conversations"
+            problem="Copying outputs to share with team"
+            trick='Click Share → Public Link to create a shareable URL. The recipient sees the full conversation context, making it easy to hand off research or get feedback on Claude-generated work.'
+            icon={<Share2 className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Project Templates"
+            problem="Setting up the same context repeatedly"
+            trick='Create a "template" Project with common files, system prompts, and reference docs. Duplicate it for each new client or project to start with your preferred setup.'
+            icon={<Users className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Export to Docs"
+            problem="Getting responses into Google Docs/Word"
+            trick='Ask Claude to format as markdown, then paste into your doc editor. Most editors (Notion, Google Docs, Word) convert markdown formatting automatically on paste.'
+            icon={<Download className="h-4 w-4" />}
+          />
+        </CardContent>
+      </Card>
+
+      {/* Section 9: Advanced Artifacts */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Layers className="h-5 w-5 text-primary" />
+            Advanced Artifacts
+          </CardTitle>
+          <CardDescription>
+            Build sophisticated tools and applications with Claude's artifact system
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <TipBlock
+            title="Multi-File Applications"
+            problem="Need more than a single code file"
+            trick='Ask Claude to "create a React app with separate components"—it builds a full structure. You can request specific file organization like "separate the CSS, add a utils folder, and create a types file."'
+            icon={<Code className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Version Iteration"
+            problem="Lost a good previous version"
+            trick='Click the version history dots on artifacts to go back to any previous version. You can also branch: "keep this version but try a different approach" creates a parallel iteration.'
+            icon={<History className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Interactive Tools"
+            problem="Need a calculator, converter, or dashboard"
+            trick='Ask Claude to build it as an artifact—use it directly without deploying. Great for unit converters, data visualizers, color pickers, or any tool you need occasionally.'
+            icon={<PanelTop className="h-4 w-4" />}
+          />
+        </CardContent>
+      </Card>
+
+      {/* Section 10: Keyboard Shortcuts & Speed */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Keyboard className="h-5 w-5 text-primary" />
+            Keyboard Shortcuts & Speed
+          </CardTitle>
+          <CardDescription>
+            Navigate faster with keyboard commands and quick actions
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <TipBlock
+            title="Quick Commands"
+            problem="Clicking buttons is slow"
+            trick='Cmd+Enter sends message, Cmd+Shift+; opens new chat, Cmd+K opens command palette. Learn these three and you will navigate 50% faster.'
+            icon={<Keyboard className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Copy Code Blocks"
+            problem="Manually selecting code blocks"
+            trick='Click the copy icon on any code block for one-click copy. Hover over any code block to reveal the copy button in the top-right corner.'
+            icon={<Copy className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Regenerate Responses"
+            problem="Response wasn't quite right"
+            trick='Click the refresh icon to get a new response without retyping. You can also edit your original message and resubmit to refine what you are asking for.'
+            icon={<RefreshCw className="h-4 w-4" />}
+          />
+        </CardContent>
+      </Card>
+
       {/* Quick Reference */}
       <Card className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5">
         <CardHeader>
@@ -201,12 +388,24 @@ export default function TipsPage() {
             Quick Reference Commands
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <CommandRef command="claude -p 'question'" description="One-shot answer, no session" />
-            <CommandRef command="claude commit" description="Auto-generate commit message" />
-            <CommandRef command="claude chat --resume" description="Resume last conversation" />
-            <CommandRef command="claude config" description="Open settings" />
+        <CardContent className="space-y-6">
+          <div>
+            <h4 className="text-sm font-medium mb-3">CLI Commands</h4>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <CommandRef command="claude -p 'question'" description="One-shot answer, no session" />
+              <CommandRef command="claude commit" description="Auto-generate commit message" />
+              <CommandRef command="claude chat --resume" description="Resume last conversation" />
+              <CommandRef command="claude config" description="Open settings" />
+            </div>
+          </div>
+          <div>
+            <h4 className="text-sm font-medium mb-3">Keyboard Shortcuts</h4>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <CommandRef command="Cmd + Enter" description="Send message" />
+              <CommandRef command="Cmd + Shift + ;" description="New chat" />
+              <CommandRef command="Cmd + K" description="Command palette" />
+              <CommandRef command="Cmd + /" description="Toggle sidebar" />
+            </div>
           </div>
         </CardContent>
       </Card>
