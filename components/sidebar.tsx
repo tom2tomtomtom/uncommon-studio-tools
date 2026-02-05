@@ -16,7 +16,8 @@ import {
   Puzzle,
   Menu,
   X,
-  BookOpen
+  BookOpen,
+  Lightbulb
 } from 'lucide-react';
 
 const teamIcons: Record<string, string> = {
@@ -114,6 +115,9 @@ export function Sidebar() {
           </NavLink>
           <NavLink href="/guides" icon={<BookOpen className="h-4 w-4" />} collapsed={collapsed} active={pathname.startsWith('/guides')}>
             Guides
+          </NavLink>
+          <NavLink href="/tips" icon={<Lightbulb className="h-4 w-4" />} collapsed={collapsed} active={pathname === '/tips'}>
+            Expert Tips
           </NavLink>
           <NavLink href="/plugins" icon={<Puzzle className="h-4 w-4" />} collapsed={collapsed} active={pathname === '/plugins'}>
             Cowork Plugins
