@@ -1,0 +1,11 @@
+{
+  "name": "production",
+  "title": "Production",
+  "description": "Turn Claude into your production expert. Get help with video production, photo shoots, print specs, vendor management, and asset delivery.",
+  "version": "1.0.0",
+  "capabilities": {
+    "skills": true,
+    "commands": true,
+    "connectors": true
+  }
+}

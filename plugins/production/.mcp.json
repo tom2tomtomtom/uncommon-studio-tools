@@ -24,6 +24,14 @@
         "GOOGLE_CLIENT_SECRET": "${GOOGLE_CLIENT_SECRET}"
       },
       "optional": true
+    },
+    "frame-io": {
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-frameio"],
+      "env": {
+        "FRAMEIO_TOKEN": "${FRAMEIO_TOKEN}"
+      },
+      "optional": true
     }
   }
 }
