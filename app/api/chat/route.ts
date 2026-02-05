@@ -6,8 +6,8 @@ interface Message {
 }
 
 interface ChatRequest {
-  provider: 'perplexity' | 'anthropic';
-  apiKey: string;
+  provider?: 'perplexity' | 'anthropic';
+  apiKey?: string;
   messages: Message[];
   systemPrompt: string;
 }
@@ -15,10 +15,14 @@ interface ChatRequest {
 export async function POST(request: NextRequest) {
   try {
     const body: ChatRequest = await request.json();
-    const { provider, apiKey, messages, systemPrompt } = body;
+    const { provider = 'anthropic', messages, systemPrompt } = body;
+
+    // Use client API key if provided, otherwise fall back to server env var
+    const apiKey = body.apiKey ||
+      (provider === 'anthropic' ? process.env.ANTHROPIC_API_KEY : process.env.PERPLEXITY_API_KEY);
 
     if (!apiKey) {
-      return NextResponse.json({ error: 'API key required' }, { status: 400 });
+      return NextResponse.json({ error: 'API key not configured' }, { status: 400 });
     }
 
     if (provider === 'anthropic') {
@@ -44,7 +48,7 @@ export async function POST(request: NextRequest) {
         const error = await response.text();
         console.error('Anthropic API error:', error);
         return NextResponse.json(
-          { error: 'Failed to get response from Claude. Please check your API key.' },
+          { error: 'Failed to get response from Claude.' },
           { status: response.status }
         );
       }
@@ -78,7 +82,7 @@ export async function POST(request: NextRequest) {
         const error = await response.text();
         console.error('Perplexity API error:', error);
         return NextResponse.json(
-          { error: 'Failed to get response from Perplexity. Please check your API key.' },
+          { error: 'Failed to get response from Perplexity.' },
           { status: response.status }
         );
       }

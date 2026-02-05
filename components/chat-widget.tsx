@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { prompts, teams } from '@/lib/prompts';
-import { MessageCircle, X, Send, Loader2, Key, Sparkles } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 interface Message {
@@ -14,12 +14,7 @@ interface Message {
   content: string;
 }
 
-const API_KEY_STORAGE = 'ai-api-key';
-const API_PROVIDER_STORAGE = 'ai-api-provider';
-
-type Provider = 'perplexity' | 'anthropic';
-
-const SYSTEM_PROMPT = `You are an AI assistant for a PR & Communications toolkit with ${teams.length} specialized teams and ${prompts.length}+ AI prompts.
+const SYSTEM_PROMPT = `You are a helpful AI assistant for an AI toolkit with ${teams.length} specialized teams and ${prompts.length}+ AI prompts designed to help with various business tasks.
 
 Available Teams and their focus areas:
 ${teams.map(t => {
@@ -29,7 +24,7 @@ ${teams.map(t => {
 }).join('\n')}
 
 Your job:
-1. Understand the user's PR/communications challenge
+1. Understand what the user is trying to accomplish
 2. Recommend the most relevant team(s) and specific prompts
 3. Explain why each recommendation fits their needs
 4. Keep responses concise and actionable
@@ -41,23 +36,12 @@ export function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: '👋 Hi! I\'m your AI Tool Finder. Describe your PR or communications challenge, and I\'ll recommend the perfect tools from our specialized teams!'
+      content: '👋 Hi! I\'m your AI assistant. Tell me what you\'re working on and I\'ll recommend the best tools and prompts from our library!'
     }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [apiKey, setApiKey] = useState('');
-  const [provider, setProvider] = useState<Provider>('anthropic');
-  const [showSettings, setShowSettings] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  // Load saved settings
-  useEffect(() => {
-    const savedKey = localStorage.getItem(API_KEY_STORAGE);
-    const savedProvider = localStorage.getItem(API_PROVIDER_STORAGE) as Provider;
-    if (savedKey) setApiKey(savedKey);
-    if (savedProvider) setProvider(savedProvider);
-  }, []);
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -66,14 +50,8 @@ export function ChatWidget() {
     }
   }, [messages]);
 
-  const saveSettings = () => {
-    localStorage.setItem(API_KEY_STORAGE, apiKey);
-    localStorage.setItem(API_PROVIDER_STORAGE, provider);
-    setShowSettings(false);
-  };
-
   const sendMessage = async () => {
-    if (!input.trim() || !apiKey) return;
+    if (!input.trim()) return;
 
     const userMessage = input.trim();
     setInput('');
@@ -81,41 +59,22 @@ export function ChatWidget() {
     setIsLoading(true);
 
     try {
-      let response: string;
-
-      if (provider === 'anthropic') {
-        const res = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            provider: 'anthropic',
-            apiKey,
-            messages: [...messages, { role: 'user', content: userMessage }],
-            systemPrompt: SYSTEM_PROMPT,
-          }),
-        });
-        const data = await res.json();
-        response = data.content || data.error || 'Sorry, something went wrong.';
-      } else {
-        const res = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            provider: 'perplexity',
-            apiKey,
-            messages: [...messages, { role: 'user', content: userMessage }],
-            systemPrompt: SYSTEM_PROMPT,
-          }),
-        });
-        const data = await res.json();
-        response = data.content || data.error || 'Sorry, something went wrong.';
-      }
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [...messages, { role: 'user', content: userMessage }],
+          systemPrompt: SYSTEM_PROMPT,
+        }),
+      });
+      const data = await res.json();
+      const response = data.content || data.error || 'Sorry, something went wrong.';
 
       setMessages(prev => [...prev, { role: 'assistant', content: response }]);
     } catch {
       setMessages(prev => [
         ...prev,
-        { role: 'assistant', content: '❌ Failed to get a response. Please check your API key and try again.' }
+        { role: 'assistant', content: '❌ Failed to get a response. Please try again.' }
       ]);
     } finally {
       setIsLoading(false);
@@ -183,67 +142,17 @@ export function ChatWidget() {
             <div className="flex items-center justify-between p-4 border-b">
               <div className="flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-primary" />
-                <span className="font-semibold">AI Tool Finder</span>
+                <span className="font-semibold">AI Assistant</span>
               </div>
-              <div className="flex items-center gap-1">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8"
-                  onClick={() => setShowSettings(!showSettings)}
-                >
-                  <Key className="h-4 w-4" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8"
+                onClick={() => setIsOpen(false)}
+              >
+                <X className="h-4 w-4" />
+              </Button>
             </div>
-
-            {/* Settings Panel */}
-            <AnimatePresence>
-              {showSettings && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className="border-b overflow-hidden"
-                >
-                  <div className="p-4 space-y-3">
-                    <div className="flex gap-2">
-                      <Button
-                        variant={provider === 'anthropic' ? 'default' : 'outline'}
-                        size="sm"
-                        onClick={() => setProvider('anthropic')}
-                      >
-                        Claude
-                      </Button>
-                      <Button
-                        variant={provider === 'perplexity' ? 'default' : 'outline'}
-                        size="sm"
-                        onClick={() => setProvider('perplexity')}
-                      >
-                        Perplexity
-                      </Button>
-                    </div>
-                    <Input
-                      type="password"
-                      placeholder={provider === 'anthropic' ? 'sk-ant-...' : 'pplx-...'}
-                      value={apiKey}
-                      onChange={(e) => setApiKey(e.target.value)}
-                    />
-                    <Button size="sm" onClick={saveSettings} className="w-full">
-                      Save Settings
-                    </Button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
 
             {/* Messages */}
             <ScrollArea ref={scrollRef} className="flex-1 p-4">
@@ -260,7 +169,7 @@ export function ChatWidget() {
                           : 'bg-muted'
                       }`}
                     >
-                      {msg.role === 'assistant' 
+                      {msg.role === 'assistant'
                         ? renderMessage(formatMessage(msg.content))
                         : msg.content
                       }
@@ -279,34 +188,23 @@ export function ChatWidget() {
 
             {/* Input */}
             <div className="p-4 border-t">
-              {!apiKey ? (
-                <Button
-                  variant="outline"
-                  className="w-full gap-2"
-                  onClick={() => setShowSettings(true)}
-                >
-                  <Key className="h-4 w-4" />
-                  Add API Key to Chat
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  sendMessage();
+                }}
+                className="flex gap-2"
+              >
+                <Input
+                  placeholder="What are you working on?"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  disabled={isLoading}
+                />
+                <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
+                  <Send className="h-4 w-4" />
                 </Button>
-              ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    sendMessage();
-                  }}
-                  className="flex gap-2"
-                >
-                  <Input
-                    placeholder="Describe your challenge..."
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    disabled={isLoading}
-                  />
-                  <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
-                    <Send className="h-4 w-4" />
-                  </Button>
-                </form>
-              )}
+              </form>
             </div>
           </motion.div>
         )}
