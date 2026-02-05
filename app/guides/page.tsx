@@ -14,10 +14,20 @@ import {
   Layers,
   Zap,
   Chrome,
-  Plug
+  Plug,
+  FolderOpen
 } from 'lucide-react';
 
 const guides = [
+  {
+    slug: 'projects',
+    title: 'The Art of Project Setup',
+    description: 'Create context containers that make Claude your specialized consultant',
+    icon: FolderOpen,
+    difficulty: 'Beginner',
+    time: '15 min',
+    color: 'text-emerald-500',
+  },
   {
     slug: 'mcp-setup',
     title: 'MCP Configuration',
