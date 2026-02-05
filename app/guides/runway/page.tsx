@@ -290,6 +290,59 @@ export default function RunwayPage() {
         </CardContent>
       </Card>
 
+      {/* Camera Angle Reference */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Camera Angle Reference</CardTitle>
+          <CardDescription>Cinematic terminology for professional results</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left py-2 font-medium">Angle</th>
+                  <th className="text-left py-2 font-medium">Effect</th>
+                  <th className="text-left py-2 font-medium">Use For</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                <tr>
+                  <td className="py-2 font-medium">Eye level</td>
+                  <td className="py-2 text-muted-foreground">Neutral, equals</td>
+                  <td className="py-2 text-muted-foreground">Standard conversations</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-medium">Low angle</td>
+                  <td className="py-2 text-muted-foreground">Power, heroic</td>
+                  <td className="py-2 text-muted-foreground">Dominant characters, products</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-medium">High angle</td>
+                  <td className="py-2 text-muted-foreground">Vulnerability</td>
+                  <td className="py-2 text-muted-foreground">Isolation, smallness</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-medium">Dutch angle</td>
+                  <td className="py-2 text-muted-foreground">Tension, unease</td>
+                  <td className="py-2 text-muted-foreground">Drama, something wrong</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-medium">Extreme close-up</td>
+                  <td className="py-2 text-muted-foreground">Intensity</td>
+                  <td className="py-2 text-muted-foreground">Emotion, details</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-medium">Wide shot</td>
+                  <td className="py-2 text-muted-foreground">Context, scale</td>
+                  <td className="py-2 text-muted-foreground">Establishing scenes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Enterprise Features */}
       <Card>
         <CardHeader>

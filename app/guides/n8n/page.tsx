@@ -13,7 +13,8 @@ import {
   Zap,
   Code,
   Shield,
-  Users
+  Users,
+  Sparkles
 } from 'lucide-react';
 
 export default function N8nPage() {
@@ -299,6 +300,127 @@ export default function N8nPage() {
               <p className="font-medium text-sm">Support</p>
               <p className="text-xs text-muted-foreground">Dedicated support, SLAs, priority response</p>
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* 10 Golden Rules */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-amber-500" />
+            The 10 Golden Rules
+          </CardTitle>
+          <CardDescription>Essential practices for reliable workflows</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="grid gap-3">
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">1. Name Everything Immediately</p>
+              <p className="text-xs text-muted-foreground">Right-click every node and give it a clear name. "Get Unread Emails" not "Gmail1"</p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">2. Test One Item First</p>
+              <p className="text-xs text-muted-foreground">Use "Execute Node" instead of full workflow to avoid 500 accidental emails</p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">3. Use Limit Node for Testing</p>
+              <p className="text-xs text-muted-foreground">Add a Limit node set to 2-3 items while building, remove when going live</p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">4. Always Build Error Handling</p>
+              <p className="text-xs text-muted-foreground">Create an Error Workflow that notifies you via Slack/email when things fail</p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">5. Add Wait Nodes for APIs</p>
+              <p className="text-xs text-muted-foreground">Add 1-2 second delays between API calls to prevent rate limit errors</p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">6. Never Hardcode Credentials</p>
+              <p className="text-xs text-muted-foreground">Use Settings → Credentials or environment variables, never paste keys in nodes</p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">7. Use Project-Level Variables</p>
+              <p className="text-xs text-muted-foreground">Store reusable values in Settings → Variables: {"{{ $vars.api_base_url }}"}</p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">8. Check Data Structure at Each Step</p>
+              <p className="text-xs text-muted-foreground">Click nodes and check Output tab—mismatched structure is the #1 error cause</p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">9. Use Expressions for Dynamic Data</p>
+              <p className="text-xs text-muted-foreground">{"{{ $json.firstName }}"} not "John" — always reference data dynamically</p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">10. Document with Sticky Notes</p>
+              <p className="text-xs text-muted-foreground">Right-click canvas → Add Sticky Note to explain complex sections</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Common Errors */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Troubleshooting Common Errors</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left py-2 font-medium">Error</th>
+                  <th className="text-left py-2 font-medium">Cause</th>
+                  <th className="text-left py-2 font-medium">Solution</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                <tr>
+                  <td className="py-2 font-medium">Node execution failed</td>
+                  <td className="py-2 text-muted-foreground">Couldn't complete task</td>
+                  <td className="py-2 text-muted-foreground">Check credentials, API status, data format</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-medium">Referenced node unexecuted</td>
+                  <td className="py-2 text-muted-foreground">Using data from node that hasn't run</td>
+                  <td className="py-2 text-muted-foreground">Ensure nodes are connected and upstream</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-medium">ETIMEDOUT</td>
+                  <td className="py-2 text-muted-foreground">Connection failed</td>
+                  <td className="py-2 text-muted-foreground">Check internet, firewall, increase timeout</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-medium">HTTP 429 Rate limit</td>
+                  <td className="py-2 text-muted-foreground">Too many requests</td>
+                  <td className="py-2 text-muted-foreground">Add Wait nodes, batch 10-50 items</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-medium">Data format issues</td>
+                  <td className="py-2 text-muted-foreground">Structure mismatch</td>
+                  <td className="py-2 text-muted-foreground">Use Set node to restructure, check input/output</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Expression Reference */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Code className="h-5 w-5 text-primary" />
+            Expression Quick Reference
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="p-4 rounded-lg bg-muted font-mono text-sm space-y-2">
+            <p><span className="text-primary">{"{{ $json.fieldName }}"}</span> <span className="text-muted-foreground">- Current node data</span></p>
+            <p><span className="text-primary">{"{{ $now }}"}</span> <span className="text-muted-foreground">- Current timestamp</span></p>
+            <p><span className="text-primary">{"{{ $('NodeName').item.json }}"}</span> <span className="text-muted-foreground">- Specific node's data</span></p>
+            <p><span className="text-primary">{"{{ $vars.variableName }}"}</span> <span className="text-muted-foreground">- Variable value</span></p>
+            <p><span className="text-primary">{"{{ $json.items.length }}"}</span> <span className="text-muted-foreground">- Array length</span></p>
           </div>
         </CardContent>
       </Card>

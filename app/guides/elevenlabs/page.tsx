@@ -131,11 +131,27 @@ export default function ElevenLabsPage() {
 
           <div>
             <p className="font-medium mb-2">Audio Tags (Eleven v3)</p>
-            <div className="flex flex-wrap gap-2">
-              {['[excited]', '[whispers]', '[sighs]', '[laughs]', '[sad]', '[angry]'].map((tag) => (
+            <div className="flex flex-wrap gap-2 mb-3">
+              {['[excited]', '[whispers]', '[sighs]', '[laughs]', '[sad]', '[angry]', '[pause]', '[serious]'].map((tag) => (
                 <Badge key={tag} variant="outline" className="font-mono">{tag}</Badge>
               ))}
             </div>
+            <div className="p-3 rounded-lg bg-muted font-mono text-xs">
+              <p className="text-muted-foreground mb-1">Example script with tags:</p>
+              <p>[excited] Welcome to the show, everyone! [pause]</p>
+              <p>Today we have an incredible announcement.</p>
+              <p>[whispers] But first, let me tell you a secret...</p>
+            </div>
+          </div>
+
+          <div>
+            <p className="font-medium mb-2">Pronunciation Tips</p>
+            <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+              <li><strong>Emphasis:</strong> Write in ALL CAPS: "This is VERY important"</li>
+              <li><strong>Pauses:</strong> Use "..." for longer pauses</li>
+              <li><strong>Numbers:</strong> Spell out: "three hundred" not "300"</li>
+              <li><strong>Difficult words:</strong> Spell phonetically: "Nguyen" → "Win"</li>
+            </ul>
           </div>
 
           <div className="p-3 rounded-lg bg-muted">
@@ -186,6 +202,31 @@ export default function ElevenLabsPage() {
               <li>Maintain consistent microphone distance and tone</li>
               <li>Only your own voice can be cloned (ethical requirement)</li>
             </ul>
+          </div>
+
+          <div className="p-4 rounded-lg border border-primary/50 bg-primary/5">
+            <p className="font-medium text-sm">The Mood Pass Technique (For Professional Cloning)</p>
+            <p className="text-sm text-muted-foreground mt-2 mb-2">
+              Record the same content in different emotional states to teach the AI your full range:
+            </p>
+            <div className="grid gap-2 sm:grid-cols-2 text-sm">
+              <div className="p-2 rounded border">
+                <p className="font-medium">Pass 1: Neutral</p>
+                <p className="text-xs text-muted-foreground">Natural, calm and clear</p>
+              </div>
+              <div className="p-2 rounded border">
+                <p className="font-medium">Pass 2: Energetic</p>
+                <p className="text-xs text-muted-foreground">Excitement and enthusiasm</p>
+              </div>
+              <div className="p-2 rounded border">
+                <p className="font-medium">Pass 3: Serious</p>
+                <p className="text-xs text-muted-foreground">Gravity and importance</p>
+              </div>
+              <div className="p-2 rounded border">
+                <p className="font-medium">Pass 4: Warm/Friendly</p>
+                <p className="text-xs text-muted-foreground">Like talking to a friend</p>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>

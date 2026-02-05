@@ -216,15 +216,67 @@ export default function GammaPage() {
       <Card>
         <CardHeader>
           <CardTitle>Smart Layouts & Diagrams</CardTitle>
+          <CardDescription>Type /smart in any card to create diagrams</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-muted-foreground">
             12+ Smart Diagram types that adapt to your content:
           </p>
-          <div className="grid gap-2 sm:grid-cols-3">
-            {['Venn Diagrams', 'Flowcharts', 'Org Charts', 'Process Diagrams', 'Timelines', 'Comparisons'].map((type) => (
+          <div className="grid gap-2 sm:grid-cols-4">
+            {['Flowchart', 'Timeline', 'Org Chart', 'Venn Diagram', 'Process', 'Comparison', 'SWOT', 'Mind Map', 'Funnel', 'Cycle', 'Matrix', 'Pyramid'].map((type) => (
               <div key={type} className="p-2 rounded border text-sm text-center">{type}</div>
             ))}
+          </div>
+          <div className="p-3 rounded-lg bg-muted">
+            <p className="font-mono text-sm text-muted-foreground">
+              Type <span className="text-primary">/smart</span> then describe: "Create a flowchart showing customer journey from awareness to purchase"
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* AI Commands */}
+      <Card>
+        <CardHeader>
+          <CardTitle>AI Chat Commands</CardTitle>
+          <CardDescription>Use the AI chat panel for bulk edits</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left py-2 font-medium">What You Want</th>
+                  <th className="text-left py-2 font-medium">Command</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                <tr>
+                  <td className="py-2">Reduce text</td>
+                  <td className="py-2 text-muted-foreground italic">"Make all slides 30% shorter"</td>
+                </tr>
+                <tr>
+                  <td className="py-2">Add visuals</td>
+                  <td className="py-2 text-muted-foreground italic">"Add relevant images to slides 3, 5, 8"</td>
+                </tr>
+                <tr>
+                  <td className="py-2">Change style</td>
+                  <td className="py-2 text-muted-foreground italic">"Make images more minimalistic"</td>
+                </tr>
+                <tr>
+                  <td className="py-2">Add data</td>
+                  <td className="py-2 text-muted-foreground italic">"Add a pie chart showing market breakdown"</td>
+                </tr>
+                <tr>
+                  <td className="py-2">Translate</td>
+                  <td className="py-2 text-muted-foreground italic">"Translate entire deck to Spanish"</td>
+                </tr>
+                <tr>
+                  <td className="py-2">Add notes</td>
+                  <td className="py-2 text-muted-foreground italic">"Generate speaker notes for each slide"</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </CardContent>
       </Card>

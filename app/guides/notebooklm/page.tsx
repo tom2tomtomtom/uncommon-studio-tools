@@ -174,6 +174,137 @@ export default function NotebookLMPage() {
         </CardContent>
       </Card>
 
+      {/* Interface Layout */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Understanding the Interface</CardTitle>
+          <CardDescription>Three-panel layout for research and creation</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="p-4 rounded-lg bg-muted font-mono text-xs overflow-x-auto">
+            <pre>{`┌─────────────────────────────────────────────────────────────┐
+│  SOURCES PANEL     │    CHAT AREA         │  STUDIO PANEL  │
+│  (Left side)       │    (Center)          │  (Right side)  │
+│                    │                      │                │
+│  • List of all     │  • Ask questions     │  • Generate    │
+│    your uploaded   │  • Get answers with  │    outputs:    │
+│    documents       │    citations [1][2]  │    - Audio     │
+│  • Add new sources │  • Click citations   │    - Slides    │
+│  • 50 sources max  │    to see original   │    - Mind maps │
+│                    │    text              │    - Tables    │
+└─────────────────────────────────────────────────────────────┘`}</pre>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">Sources Panel (Left)</p>
+              <p className="text-xs text-muted-foreground">Upload materials, check/uncheck to include in answers</p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">Chat Area (Center)</p>
+              <p className="text-xs text-muted-foreground">Ask questions, click citations to verify sources</p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium text-sm">Studio Panel (Right)</p>
+              <p className="text-xs text-muted-foreground">Generate Audio, Mind Maps, Study Guides, Timelines</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Better Prompts */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Effective Prompts</CardTitle>
+          <CardDescription>Get better answers with specific prompts</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left py-2 font-medium">What You Want</th>
+                  <th className="text-left py-2 font-medium">Prompt to Use</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                <tr>
+                  <td className="py-2">Just the facts</td>
+                  <td className="py-2 text-muted-foreground italic">"List only the verified statistics and data points from my sources"</td>
+                </tr>
+                <tr>
+                  <td className="py-2">Compare sources</td>
+                  <td className="py-2 text-muted-foreground italic">"How do Source A and Source B differ on [topic]?"</td>
+                </tr>
+                <tr>
+                  <td className="py-2">Find contradictions</td>
+                  <td className="py-2 text-muted-foreground italic">"Are there any conflicting claims between my sources?"</td>
+                </tr>
+                <tr>
+                  <td className="py-2">Identify gaps</td>
+                  <td className="py-2 text-muted-foreground italic">"What important questions do my sources NOT answer?"</td>
+                </tr>
+                <tr>
+                  <td className="py-2">Create outline</td>
+                  <td className="py-2 text-muted-foreground italic">"Create a 10-slide presentation outline using only facts from my sources"</td>
+                </tr>
+                <tr>
+                  <td className="py-2">Extract quotes</td>
+                  <td className="py-2 text-muted-foreground italic">"Find the 5 most compelling quotes about [topic]"</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* 3-Layer Research Method */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-amber-500" />
+            The 3-Layer Research Method
+          </CardTitle>
+          <CardDescription>Professional approach for comprehensive research</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="p-4 rounded-lg border">
+            <p className="font-medium flex items-center gap-2">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 text-white text-xs font-semibold">1</span>
+              Layer 1: Gather Quality Sources
+            </p>
+            <ul className="text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside ml-8">
+              <li>Use Perplexity or Gemini to research your topic first</li>
+              <li>Collect 20-50 high-quality URLs (.edu, .gov, major publications)</li>
+              <li>Avoid random blogs, outdated content, promotional material</li>
+            </ul>
+          </div>
+
+          <div className="p-4 rounded-lg border">
+            <p className="font-medium flex items-center gap-2">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 text-white text-xs font-semibold">2</span>
+              Layer 2: Build Your Knowledge Base
+            </p>
+            <ul className="text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside ml-8">
+              <li>Upload all gathered sources to NotebookLM</li>
+              <li>Ask: "What are the main themes across all my sources?"</li>
+              <li>Save summaries as new notes (Sources → Three dots → Save as note)</li>
+            </ul>
+          </div>
+
+          <div className="p-4 rounded-lg border">
+            <p className="font-medium flex items-center gap-2">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 text-white text-xs font-semibold">3</span>
+              Layer 3: Refine and Discover
+            </p>
+            <ul className="text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside ml-8">
+              <li>Ask: "What did I miss? What questions remain unanswered?"</li>
+              <li>Look for contradictions, gaps, and opportunities</li>
+              <li>Add new sources to fill gaps, repeat process</li>
+            </ul>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Core Features */}
       <Card>
         <CardHeader>
