@@ -27,7 +27,9 @@ import {
   Download,
   Users,
   History,
-  PanelTop
+  PanelTop,
+  BookOpen,
+  ArrowRight
 } from 'lucide-react';
 
 export default function TipsPage() {
@@ -377,6 +379,28 @@ export default function TipsPage() {
             trick='Click the refresh icon to get a new response without retyping. You can also edit your original message and resubmit to refine what you are asking for.'
             icon={<RefreshCw className="h-4 w-4" />}
           />
+        </CardContent>
+      </Card>
+
+      {/* Link to Guides */}
+      <Card>
+        <CardContent className="pt-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="font-semibold">Want deeper tutorials?</h3>
+              <p className="text-sm text-muted-foreground">
+                Check out our step-by-step guides for each AI platform.
+              </p>
+            </div>
+            <Link
+              href="/guides"
+              className="flex items-center gap-1 text-primary hover:underline font-medium"
+            >
+              <BookOpen className="h-4 w-4" />
+              Guides
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </CardContent>
       </Card>
 
