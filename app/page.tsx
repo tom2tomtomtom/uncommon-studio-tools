@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { RecentlyUsed } from '@/components/recently-used';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, Zap, Users, FileText, Download, Monitor, Globe, Image, Puzzle, Lightbulb } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Users, FileText, Download, Monitor, Globe, Image } from 'lucide-react';
 
 const teamIcons: Record<string, string> = {
   'creative': '🎨',
@@ -40,48 +40,6 @@ export default function HomePage() {
           <StatCard icon={<Zap className="h-5 w-5" />} label="Tools" value="4 AI Tools" />
         </div>
       </div>
-
-      {/* Plugins CTA */}
-      <Card className="bg-gradient-to-r from-primary/10 via-primary/5 to-background border-primary/20 shadow-sm hover:shadow-md transition-shadow">
-        <CardContent className="flex flex-col sm:flex-row items-center justify-between gap-4 py-6">
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <Puzzle className="h-6 w-6" />
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg">New: Cowork Plugins</h3>
-              <p className="text-sm text-muted-foreground">Install once, use forever. Turn Claude into a specialist for your department.</p>
-            </div>
-          </div>
-          <Button asChild className="w-full sm:w-auto">
-            <Link href="/plugins">
-              Explore Plugins
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-        </CardContent>
-      </Card>
-
-      {/* Expert Tips CTA */}
-      <Card className="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-background border-amber-500/20 shadow-sm hover:shadow-md transition-shadow">
-        <CardContent className="flex flex-col sm:flex-row items-center justify-between gap-4 py-6">
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600">
-              <Lightbulb className="h-6 w-6" />
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg">Expert Tips & Meta-Workflows</h3>
-              <p className="text-sm text-muted-foreground">Power-user techniques: CLI shortcuts, artifact hacks, memory hygiene.</p>
-            </div>
-          </div>
-          <Button asChild variant="outline" className="w-full sm:w-auto">
-            <Link href="/tips">
-              View Tips
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-        </CardContent>
-      </Card>
 
       {/* Recently Copied - client component, renders only if has items */}
       <RecentlyUsed />
