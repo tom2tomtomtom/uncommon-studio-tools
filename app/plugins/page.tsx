@@ -104,6 +104,15 @@ const plugins = [
     useCases: ['Process SOPs', 'Onboarding', 'Budget management'],
     color: 'bg-stone-50 dark:bg-stone-950/30 border-stone-200 dark:border-stone-900/50',
   },
+  {
+    slug: 'competitor-research',
+    name: 'Competitor Research',
+    emoji: '🔍',
+    description: 'Researches competitor websites, apps, and business strategies then delivers prioritized improvement recommendations. Use when analyzing competitors, benchmarking your product, or planning feature roadmaps.',
+    commands: ['/landscape-map', '/feature-gaps', '/improvement-plan'],
+    useCases: ['Competitive analysis', 'Product benchmarking', 'Roadmap planning'],
+    color: 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900/50',
+  },
 ];
 
 export default function PluginsPage() {
