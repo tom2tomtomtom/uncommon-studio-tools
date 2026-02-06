@@ -28,7 +28,9 @@ import {
   Github,
   Rocket,
   Palette,
-  Play
+  Play,
+  CheckCircle2,
+  ArrowDown
 } from 'lucide-react';
 
 export default function ClaudeCodePage() {
@@ -78,6 +80,36 @@ export default function ClaudeCodePage() {
                 project, edits files, runs commands, creates commits, and builds features &mdash; all while asking your
                 permission before making changes. Think of it as a senior developer sitting next to you who can
                 plan, code, debug, and test autonomously.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Quick Start Track */}
+      <Card className="border-2 border-green-500/30 bg-gradient-to-r from-green-500/5 via-green-500/10 to-green-500/5">
+        <CardContent className="pt-6">
+          <div className="flex items-start gap-3">
+            <Rocket className="h-6 w-6 text-green-500 mt-0.5 shrink-0" />
+            <div className="space-y-3">
+              <div>
+                <p className="font-semibold text-lg">Just want to try it? Start here.</p>
+                <p className="text-muted-foreground mt-1">
+                  Skip the full guide. These two steps take 10 minutes and you&apos;ll build a real website from scratch.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <a href="#install" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">
+                  <ArrowDown className="h-4 w-4" />
+                  1. Install (2 min)
+                </a>
+                <a href="#demo" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">
+                  <ArrowDown className="h-4 w-4" />
+                  2. Try the Demo (8 min)
+                </a>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Everything below the demo is optional &mdash; come back when you&apos;re ready to go deeper.
               </p>
             </div>
           </div>
@@ -177,7 +209,7 @@ export default function ClaudeCodePage() {
       </div>
 
       {/* Installation */}
-      <Card>
+      <Card id="install" className="scroll-mt-20">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">1</span>
@@ -314,7 +346,7 @@ export default function ClaudeCodePage() {
       {/* =========================================
           SECTION: HANDS-ON DEMO
           ========================================= */}
-      <div className="space-y-2 pt-4">
+      <div id="demo" className="space-y-2 pt-4 scroll-mt-20">
         <h2 className="text-2xl font-bold flex items-center gap-2">
           <Rocket className="h-6 w-6 text-primary" />
           Hands-On Demo: Zero to Prototype
@@ -537,10 +569,33 @@ claude`}</pre>
         </CardContent>
       </Card>
 
+      {/* Quick Start: You're done */}
+      <Card className="border-2 border-green-500/30 bg-gradient-to-r from-green-500/5 via-green-500/10 to-green-500/5">
+        <CardContent className="pt-6">
+          <div className="flex items-start gap-3">
+            <CheckCircle2 className="h-6 w-6 text-green-500 mt-0.5 shrink-0" />
+            <div className="space-y-2">
+              <p className="font-semibold text-lg">You did it.</p>
+              <p className="text-muted-foreground">
+                You just went from a blank folder to a branded, version-controlled prototype. That&apos;s the core of Claude Code.
+                Everything below is optional &mdash; deeper workflows, shortcuts, and advanced features for when you&apos;re ready.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Bookmark this page and come back when you want to learn about{' '}
+                <a href="#workflows" className="text-primary hover:underline">core workflows</a>,{' '}
+                <a href="#git" className="text-primary hover:underline">Git &amp; GitHub</a>,{' '}
+                <a href="#config" className="text-primary hover:underline">configuration</a>, or{' '}
+                <a href="#advanced" className="text-primary hover:underline">advanced features</a>.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* =========================================
           SECTION: CORE WORKFLOWS
           ========================================= */}
-      <div className="space-y-2 pt-4">
+      <div id="workflows" className="space-y-2 pt-4 scroll-mt-20">
         <h2 className="text-2xl font-bold">Core Workflows</h2>
         <p className="text-muted-foreground">The five things you&apos;ll use Claude Code for most often.</p>
       </div>
@@ -757,7 +812,7 @@ claude`}</pre>
       {/* =========================================
           SECTION: GIT & GITHUB
           ========================================= */}
-      <div className="space-y-2 pt-4">
+      <div id="git" className="space-y-2 pt-4 scroll-mt-20">
         <h2 className="text-2xl font-bold">Git &amp; GitHub</h2>
         <p className="text-muted-foreground">Version control and collaboration &mdash; handled by Claude.</p>
       </div>
@@ -937,7 +992,7 @@ claude`}</pre>
       {/* =========================================
           SECTION: CONFIGURATION
           ========================================= */}
-      <div className="space-y-2 pt-4">
+      <div id="config" className="space-y-2 pt-4 scroll-mt-20">
         <h2 className="text-2xl font-bold">Configuration</h2>
         <p className="text-muted-foreground">Teach Claude your project&apos;s rules so it follows them every session.</p>
       </div>
@@ -1195,7 +1250,7 @@ claude`}</pre>
       {/* =========================================
           SECTION: ADVANCED FEATURES
           ========================================= */}
-      <div className="space-y-2 pt-4">
+      <div id="advanced" className="space-y-2 pt-4 scroll-mt-20">
         <h2 className="text-2xl font-bold">Advanced Features</h2>
         <p className="text-muted-foreground">Power-user tools for automation, integrations, and multi-agent workflows.</p>
       </div>
