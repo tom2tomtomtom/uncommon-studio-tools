@@ -257,7 +257,7 @@ function GuideCard({ guide }: { guide: Guide }) {
   const Icon = guide.icon;
   return (
     <Link href={`/guides/${guide.slug}`}>
-      <Card className="hover:border-primary/50 hover:bg-muted/50 transition-all cursor-pointer group">
+      <Card className="hover:border-primary/50 hover:bg-muted/50 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group">
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">

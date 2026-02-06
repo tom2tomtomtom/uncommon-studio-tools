@@ -172,7 +172,7 @@ export default function PluginsPage() {
         <h2 className="text-2xl font-bold mb-4">Available Plugins</h2>
         <div className="grid gap-6 lg:grid-cols-2">
           {plugins.map(plugin => (
-            <Card key={plugin.slug} className={`border-2 ${plugin.color}`}>
+            <Card key={plugin.slug} className={`border-2 ${plugin.color} hover:shadow-lg hover:-translate-y-1 transition-all duration-200`}>
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <span className="text-3xl">{plugin.emoji}</span>

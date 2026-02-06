@@ -72,7 +72,7 @@ export default function HomePage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {teams.map(team => (
             <Link key={team.slug} href={`/team/${team.slug}`}>
-              <Card className="h-full hover:shadow-md transition-shadow cursor-pointer group">
+              <Card className="h-full hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer group">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3">
                     <span className="text-2xl">{teamIcons[team.slug] || '📁'}</span>
@@ -82,7 +82,7 @@ export default function HomePage() {
                   </CardTitle>
                   <CardDescription className="flex items-center justify-between">
                     <span>{team.solutionCount} prompts</span>
-                    <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -357,7 +357,7 @@ export default function HomePage() {
 
 function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string | number }) {
   return (
-    <div className="flex items-center gap-3 bg-card border border-border/50 rounded-xl px-5 py-3 shadow-sm">
+    <div className="flex items-center gap-3 bg-card border border-border/50 rounded-xl px-5 py-3 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
       <div className="text-primary">{icon}</div>
       <div>
         <div className="font-semibold text-foreground">{value}</div>
@@ -386,7 +386,7 @@ function SkillDownload({ name, file, description }: { name: string; file: string
     <a
       href={`/skills/${file}`}
       download
-      className="flex items-start gap-2 p-3 rounded-lg border hover:bg-muted transition-colors"
+      className="flex items-start gap-2 p-3 rounded-lg border hover:bg-muted hover:shadow-sm hover:border-primary/30 transition-all duration-200"
     >
       <Download className="h-4 w-4 text-primary mt-0.5 shrink-0" />
       <div>

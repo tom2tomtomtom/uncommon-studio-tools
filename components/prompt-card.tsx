@@ -87,7 +87,7 @@ export function PromptCard({ prompt }: PromptCardProps) {
   return (
     <Card
       id={prompt.id}
-      className="group transition-all duration-200 hover:shadow-md scroll-mt-20 border-border/50 rounded-xl overflow-hidden"
+      className="group transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 scroll-mt-20 border-border/50 rounded-xl overflow-hidden"
     >
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CardHeader className="pb-3">
