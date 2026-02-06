@@ -220,19 +220,83 @@ export default function HomePage() {
             Download Claude Skills
           </CardTitle>
           <CardDescription>
-            Install these reusable workflows in Claude.ai: Settings → Capabilities → Upload Skill
+            33 reusable workflows — install in Claude.ai: Settings → Capabilities → Upload Skill
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <SkillDownload name="Brief Builder" file="brief-builder.zip" description="Structure creative briefs with objectives, audience, and deliverables" />
-            <SkillDownload name="Concept Deck" file="concept-deck.zip" description="Build concept presentations with strategic narratives and visual direction" />
-            <SkillDownload name="Creative Review" file="creative-review.zip" description="Score creative work against briefs with structured feedback" />
-            <SkillDownload name="Script Doctor" file="script-doctor.zip" description="Analyze and improve scripts for video, radio, and social content" />
-            <SkillDownload name="Production Specs" file="production-specs.zip" description="Generate spec sheets with formats, dimensions, and delivery requirements" />
-            <SkillDownload name="Copywriting" file="copywriting.zip" description="Write on-brand copy for ads, emails, social, and web" />
-            <SkillDownload name="Status Report" file="status-report.zip" description="Create RAG-rated project updates with milestones and risk flags" />
-            <SkillDownload name="Competitor Research" file="competitor-research.zip" description="Analyze competitors and get prioritized improvement recommendations" />
+        <CardContent className="space-y-6">
+          {/* Strategy & Research */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Strategy & Research</h4>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <SkillDownload name="Brand Positioning" file="brand-positioning.zip" description="Run positioning workshops with messaging hierarchies" />
+              <SkillDownload name="Strategy Brief Builder" file="strategy-brief-builder.zip" description="Build comms strategy briefs from loose inputs" />
+              <SkillDownload name="Competitor Analysis" file="competitor-analysis.zip" description="Deep-dive a specific competitor's positioning and strategy" />
+              <SkillDownload name="Competitor Research" file="competitor-research.zip" description="Benchmark your product and get improvement recommendations" />
+              <SkillDownload name="Category Scanner" file="competitor-category-scanner.zip" description="Map competitive landscapes and identify positioning gaps" />
+              <SkillDownload name="Audience & Culture" file="audience-cultural-insight.zip" description="Research audiences with demographic and cultural analysis" />
+              <SkillDownload name="RFP Assessment" file="rfp-assessment-v2.zip" description="Evaluate RFP opportunities with strategic go/no-go scoring" />
+            </div>
+          </div>
+
+          {/* Content & Copy */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Content & Copy</h4>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <SkillDownload name="Copywriting" file="copywriting.zip" description="Write on-brand copy for ads, emails, social, and web" />
+              <SkillDownload name="Content Transformer" file="content-transformer.zip" description="Repurpose one piece into LinkedIn, email, social, and blog formats" />
+              <SkillDownload name="Social Copy Writer" file="social-copy-writer.zip" description="Platform-specific social posts with tone and hashtag calibration" />
+              <SkillDownload name="Content Calendar" file="content-calendar-generator.zip" description="Generate editorial calendars with tentpole mapping" />
+              <SkillDownload name="Brand Voice Enforcer" file="brand-voice-enforcer.zip" description="Check copy against brand guidelines for tone and terminology" />
+              <SkillDownload name="Talking Points" file="talking-points.zip" description="Spokesperson key messages with bridge phrases and Q&A" />
+            </div>
+          </div>
+
+          {/* Media & PR */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Media & PR</h4>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <SkillDownload name="Media Release Writer" file="media-release-writer.zip" description="Draft press releases with proper structure and quote formatting" />
+              <SkillDownload name="Media Pitch Crafter" file="media-pitch-crafter.zip" description="Craft journalist pitches with strong angles and subject lines" />
+              <SkillDownload name="Media List Intelligence" file="media-list-intelligence.zip" description="Research journalists and prioritize contacts for stories" />
+              <SkillDownload name="Coverage Report" file="coverage-report-builder.zip" description="Build media coverage reports with sentiment and share of voice" />
+              <SkillDownload name="Crisis Comms Drafter" file="crisis-comms-drafter.zip" description="Draft holding statements and stakeholder messaging for incidents" />
+            </div>
+          </div>
+
+          {/* Creative & Production */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Creative & Production</h4>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <SkillDownload name="Creative Review" file="creative-review.zip" description="Score creative work against briefs with structured feedback" />
+              <SkillDownload name="Design Critique" file="design-critique.zip" description="Structured design feedback on hierarchy, typography, and accessibility" />
+              <SkillDownload name="Production Specs" file="production-specs.zip" description="Generate spec sheets with formats, dimensions, and delivery requirements" />
+              <SkillDownload name="Event & Launch Planner" file="event-launch-planner.zip" description="Create run sheets, logistics checklists, and launch timelines" />
+            </div>
+          </div>
+
+          {/* Account & Operations */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Account & Operations</h4>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <SkillDownload name="Client Comms Writer" file="client-comms-writer.zip" description="Draft status reports, WIP updates, and recap emails" />
+              <SkillDownload name="Client Management" file="client-management.zip" description="Assess relationship health with scorecards and growth strategies" />
+              <SkillDownload name="Meeting Notes" file="meeting-notes-actions.zip" description="Structured summaries with action items, owners, and deadlines" />
+              <SkillDownload name="Stakeholder Update" file="stakeholder-update.zip" description="RAG-rated status reports with milestones and risk flags" />
+              <SkillDownload name="Email Drafter" file="email-drafter.zip" description="Professional emails for pitching, follow-ups, and introductions" />
+              <SkillDownload name="Executive Comms" file="executive-comms.zip" description="Leadership emails, board updates, and company announcements" />
+              <SkillDownload name="Process Docs" file="process-docs.zip" description="Standardized SOPs and workflow guides with versioning" />
+              <SkillDownload name="Digital Analytics" file="digital-analytics.zip" description="Performance reports with KPI dashboards and recommendations" />
+              <SkillDownload name="QA Testing" file="qa-testing.zip" description="QA reports with severity ratings and acceptance criteria" />
+            </div>
+          </div>
+
+          {/* New Business */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">New Business</h4>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <SkillDownload name="Proposal Writer" file="new-business-proposal-writer.zip" description="Write proposals, pitch decks, and capability statements" />
+              <SkillDownload name="Pitch/RFP Reviewer" file="pitch-rfp-reviewer.zip" description="Evaluate submissions for gaps and improvement opportunities" />
+            </div>
           </div>
         </CardContent>
       </Card>
