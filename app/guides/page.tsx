@@ -49,11 +49,11 @@ const claudeGuides = [
   },
   {
     slug: 'claude-code',
-    title: 'Claude Code for Non-Coders',
-    description: 'Use the command-line interface to manage projects with plain English',
+    title: 'Claude Code',
+    description: 'An AI agent that lives in your terminal and works directly with your files',
     icon: Terminal,
-    difficulty: 'Beginner',
-    time: '15 min',
+    difficulty: 'Beginner → Advanced',
+    time: '50 min',
     color: 'text-green-500',
   },
   {
