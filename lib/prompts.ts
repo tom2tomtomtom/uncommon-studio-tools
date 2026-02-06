@@ -19,16 +19,16 @@ export interface Team {
 }
 
 export const teams: Team[] = [
-  { slug: "creative", name: "Creative", solutionCount: 7 },
-  { slug: "strategy", name: "Strategy", solutionCount: 7 },
-  { slug: "account-management", name: "Account Management", solutionCount: 6 },
-  { slug: "production", name: "Production", solutionCount: 5 },
-  { slug: "design", name: "Design", solutionCount: 6 },
-  { slug: "digital", name: "Digital", solutionCount: 6 },
-  { slug: "copywriting", name: "Copywriting", solutionCount: 5 },
-  { slug: "new-business", name: "New Business", solutionCount: 5 },
-  { slug: "project-management", name: "Project Management", solutionCount: 5 },
-  { slug: "studio-operations", name: "Studio Operations", solutionCount: 8 }
+  { slug: "creative", name: "Creative", solutionCount: 9 },
+  { slug: "strategy", name: "Strategy", solutionCount: 8 },
+  { slug: "account-management", name: "Account Management", solutionCount: 8 },
+  { slug: "production", name: "Production", solutionCount: 7 },
+  { slug: "design", name: "Design", solutionCount: 8 },
+  { slug: "digital", name: "Digital", solutionCount: 7 },
+  { slug: "copywriting", name: "Copywriting", solutionCount: 7 },
+  { slug: "new-business", name: "New Business", solutionCount: 6 },
+  { slug: "project-management", name: "Project Management", solutionCount: 7 },
+  { slug: "studio-operations", name: "Studio Operations", solutionCount: 9 }
 ];
 
 export const prompts: Prompt[] = [
@@ -4713,6 +4713,1297 @@ Immediate optimizations that can have fast impact:
 **Reviewed by:** _______________
 **Date:** _______________
 **Next Review:** _______________`
+  },
+
+  // ============================================
+  // COWORK PROMPTS (All Departments)
+  // ============================================
+  {
+    id: "creative-8",
+    teamSlug: "creative",
+    teamName: "Creative",
+    name: "Mood Board & Reference Collector",
+    toolRecommendation: "Claude Cowork",
+    description: "Browse the web collecting visual references for a creative project, organize images and links into categorized folders, and compile a mood board document.",
+    knowledgeToUpload: [],
+    prompt: `You are working in Claude Desktop Cowork mode as a creative researcher helping build a mood board and visual reference library for a creative project.
+
+## Before You Start
+Make sure you have:
+- A creative brief or project description open
+- A destination folder created on the desktop or in the project directory
+- Chrome or Safari open for web browsing
+- A Google Doc or Keynote file open for the final mood board
+
+## Step-by-Step Instructions
+
+**Step 1: Set Up the Folder Structure**
+- Open Finder and navigate to the project folder
+- Create the following subfolders:
+  - /References/Photography
+  - /References/Typography
+  - /References/Color-Palettes
+  - /References/Layout-Inspiration
+  - /References/Competitor-Examples
+  - /References/Texture-Pattern
+
+**Step 2: Gather Visual References**
+- Open Chrome and search for visual references related to the brief's themes, mood, and audience
+- For each relevant image or page:
+  - Take a screenshot (Cmd+Shift+4) and save to the appropriate subfolder
+  - Copy the source URL into a running list
+- Aim for 5-8 references per category
+
+**Step 3: Organize and Rename Files**
+- Go through each subfolder in Finder
+- Rename files with a consistent naming convention: [Category]-[Description]-[Number].png
+  - Example: Photography-Warm-Natural-Light-01.png
+  - Example: Typography-Bold-Sans-Serif-01.png
+
+**Step 4: Compile the Mood Board Document**
+- Open the Google Doc or Keynote file
+- Create sections matching the folder categories
+- For each section:
+  - Insert the best 3-4 images
+  - Add a brief note explaining why each reference is relevant
+  - Include the source URL
+- Add a summary page at the top with:
+  - Project name and brief overview
+  - Key themes identified
+  - Overall mood/tone direction
+  - Color palette extracted from references
+
+**Step 5: Final Review**
+- Review the mood board for coherence—do all references tell the same story?
+- Remove any that feel off-brand or contradictory
+- Add a "Next Steps" section suggesting how to apply these references
+
+## Output
+- A populated folder structure with organized, renamed reference images
+- A completed mood board document ready for team review`
+  },
+  {
+    id: "strategy-8",
+    teamSlug: "strategy",
+    teamName: "Strategy",
+    name: "Competitive Audit Capture",
+    toolRecommendation: "Claude Cowork",
+    description: "Visit competitor websites, capture key pages and messaging, and compile findings into a structured competitive audit document.",
+    knowledgeToUpload: [],
+    prompt: `You are working in Claude Desktop Cowork mode as a strategist conducting a competitive audit by visiting competitor websites and capturing key information.
+
+## Before You Start
+Make sure you have:
+- A list of 3-5 competitor URLs to audit
+- Chrome open for web browsing
+- A Google Doc or Google Sheets file open for the audit document
+- A folder created for screenshots (e.g., /Competitive-Audit/Screenshots)
+
+## Step-by-Step Instructions
+
+**Step 1: Set Up the Audit Document**
+- Open the Google Doc and create the following structure:
+  - Title: "[Client Name] Competitive Audit - [Date]"
+  - Table of Contents with one section per competitor
+  - Summary section at the top (to be filled last)
+- Create a Google Sheet with columns: Competitor | Page | Key Message | CTA | Visual Style | Notes
+
+**Step 2: Audit Each Competitor**
+For each competitor website:
+- Open the site in Chrome
+- Capture and analyze these key pages:
+
+  **Homepage:**
+  - Screenshot the full homepage (Cmd+Shift+4)
+  - Note the hero message/headline
+  - Note the primary CTA
+  - Note the visual style and brand tone
+
+  **About/Company Page:**
+  - Screenshot the page
+  - Note their positioning statement
+  - Note key differentiators they claim
+
+  **Product/Service Pages:**
+  - Screenshot 2-3 key service pages
+  - Note how they describe their offering
+  - Note pricing if visible
+
+  **Blog/Content:**
+  - Note content themes and frequency
+  - Screenshot any standout content
+
+- Save all screenshots to /Competitive-Audit/Screenshots/[CompetitorName]/
+
+**Step 3: Fill In the Audit Spreadsheet**
+- For each page captured, add a row to the Google Sheet
+- Include: competitor name, page URL, key message, primary CTA, visual style notes
+
+**Step 4: Compile the Audit Document**
+- For each competitor, write a 1-page summary including:
+  - Brand positioning (how they present themselves)
+  - Key messages and tone of voice
+  - Visual identity assessment
+  - Strengths and weaknesses
+  - Embed the most relevant screenshots
+
+**Step 5: Write the Executive Summary**
+- Fill in the summary section at the top:
+  - Competitive landscape overview
+  - Common themes across competitors
+  - White space opportunities (what no one is doing)
+  - Recommendations for differentiation
+
+## Output
+- A completed competitive audit document with screenshots and analysis
+- A companion spreadsheet with structured data for easy comparison`
+  },
+  {
+    id: "account-7",
+    teamSlug: "account-management",
+    teamName: "Account Management",
+    name: "Meeting Prep Assembler",
+    toolRecommendation: "Claude Cowork",
+    description: "Pull files from project folders, compile a meeting agenda, and pre-fill status update templates so you walk into every client meeting fully prepared.",
+    knowledgeToUpload: [],
+    prompt: `You are working in Claude Desktop Cowork mode as an account manager preparing for a client meeting by assembling all necessary documents and pre-filling templates.
+
+## Before You Start
+Make sure you have:
+- The project folder open in Finder
+- Access to the latest status documents, timelines, and deliverables
+- A meeting agenda template (Google Doc) open
+- Calendar details for the meeting (attendees, time, objectives)
+
+## Step-by-Step Instructions
+
+**Step 1: Review the Project Folder**
+- Open Finder and navigate to the project folder
+- Identify the most recent versions of:
+  - Project timeline/Gantt chart
+  - Status report from last meeting
+  - Any deliverables completed since last meeting
+  - Outstanding feedback or approval documents
+  - Budget tracker
+- Note any missing or outdated documents
+
+**Step 2: Build the Meeting Agenda**
+- Open the Google Doc agenda template
+- Fill in the header:
+  - Meeting title: "[Client Name] Status Meeting - [Date]"
+  - Attendees list
+  - Meeting objective
+  - Duration
+- Create the agenda sections:
+  1. Review of action items from last meeting (5 min)
+  2. Work in progress update (10 min)
+  3. Deliverables for review/approval (15 min)
+  4. Timeline and upcoming milestones (5 min)
+  5. Budget status (5 min)
+  6. Open discussion and next steps (10 min)
+
+**Step 3: Pre-Fill Status Updates**
+- For each active workstream, fill in:
+  - Current status (On Track / At Risk / Delayed)
+  - What was completed since last meeting
+  - What's in progress now
+  - What's coming up next
+  - Any blockers or decisions needed from client
+- Reference specific file names and folder locations for deliverables
+
+**Step 4: Prepare Review Materials**
+- Gather any deliverables that need client review
+- Create a "For Review" subfolder in the project directory
+- Copy the latest versions of review items into this folder
+- Add a cover sheet or summary note for each item
+
+**Step 5: Compile Action Items from Last Meeting**
+- Open the notes from the previous meeting
+- List each action item with its current status:
+  - ✅ Completed
+  - 🔄 In progress
+  - ⚠️ Not started / blocked
+- Note any items that need to carry forward
+
+**Step 6: Final Checklist**
+- [ ] Agenda is complete with times and owners
+- [ ] All status updates are current
+- [ ] Review materials are in the shared folder
+- [ ] Previous action items are tracked
+- [ ] Any pre-reads have been sent to attendees
+
+## Output
+- A completed meeting agenda document
+- A "For Review" folder with latest deliverables
+- Pre-filled status updates for each workstream`
+  },
+  {
+    id: "production-6",
+    teamSlug: "production",
+    teamName: "Production",
+    name: "Asset Organizer",
+    toolRecommendation: "Claude Cowork",
+    description: "Sort, rename, and organize campaign asset files by specs and deliverable type into a clean folder structure ready for delivery or archiving.",
+    knowledgeToUpload: [],
+    prompt: `You are working in Claude Desktop Cowork mode as a production coordinator organizing campaign assets into a structured delivery folder.
+
+## Before You Start
+Make sure you have:
+- Finder open with the raw assets folder (where files have been dumped)
+- A delivery spec sheet or media plan listing required deliverables and sizes
+- A destination folder for the organized output
+
+## Step-by-Step Instructions
+
+**Step 1: Audit the Raw Assets**
+- Open the raw assets folder in Finder
+- Catalog every file, noting:
+  - File name
+  - File type (PSD, AI, MP4, JPG, PNG, PDF, etc.)
+  - Dimensions/size where apparent
+  - Which deliverable it likely belongs to
+- Flag any missing assets or duplicates
+
+**Step 2: Create the Delivery Folder Structure**
+- In the destination folder, create this hierarchy:
+
+  /[Campaign-Name]-Final-Assets/
+    /Print/
+      /Magazine/
+      /OOH/
+      /Collateral/
+    /Digital/
+      /Display-Banners/
+      /Social/
+        /Facebook/
+        /Instagram/
+        /LinkedIn/
+      /Email/
+      /Website/
+    /Video/
+      /TVC/
+      /Online-Video/
+      /Social-Video/
+    /Audio/
+    /Source-Files/
+      /Working-Files/
+      /Fonts/
+      /Stock-Assets/
+
+**Step 3: Sort Files into Folders**
+- Move each file from the raw folder into the appropriate subfolder
+- Match files to deliverable specs from the media plan
+- Keep source/working files separate from final output files
+
+**Step 4: Rename Files Consistently**
+- Apply this naming convention:
+  [Client]-[Campaign]-[Deliverable]-[Size]-[Version].[ext]
+  - Example: Acme-Summer2024-DisplayBanner-300x250-v1.jpg
+  - Example: Acme-Summer2024-InstagramStory-1080x1920-v2.mp4
+- Ensure no spaces in file names (use hyphens)
+
+**Step 5: Create a Delivery Manifest**
+- Open a new document (TextEdit or Google Sheets)
+- Create a table listing every deliverable:
+  | Deliverable | Size | Format | File Name | Status |
+  |-------------|------|--------|-----------|--------|
+- Mark each as: ✅ Complete | ⚠️ Missing | 🔄 Awaiting final
+
+**Step 6: Quality Check**
+- Verify file counts match the delivery spec
+- Check that no files are corrupted (open a sample from each folder)
+- Ensure no draft/WIP files made it into the final folders
+- Confirm naming convention is consistent throughout
+
+## Output
+- A cleanly organized folder structure with all assets properly filed
+- A delivery manifest document listing all deliverables and their status
+- A list of any missing or incomplete assets`
+  },
+  {
+    id: "design-7",
+    teamSlug: "design",
+    teamName: "Design",
+    name: "Design Asset Export & Filing",
+    toolRecommendation: "Claude Cowork",
+    description: "Export design files, resize and rename assets for various platforms, and organize everything into delivery-ready folders.",
+    knowledgeToUpload: [],
+    prompt: `You are working in Claude Desktop Cowork mode as a design coordinator handling asset export, resizing, and filing from design tools into delivery folders.
+
+## Before You Start
+Make sure you have:
+- Design files exported or ready to export (from Figma, Sketch, or Adobe)
+- An export spec listing required sizes, formats, and platforms
+- Finder open for file management
+- Preview or an image viewer app for verification
+
+## Step-by-Step Instructions
+
+**Step 1: Review the Export Spec**
+- Check the spec sheet for required deliverables:
+  - Platform (web, social, print, email)
+  - Dimensions (width x height in px or mm)
+  - File formats (PNG, JPG, SVG, PDF)
+  - Resolution (72dpi for screen, 300dpi for print)
+  - Color space (RGB for digital, CMYK for print)
+  - Max file size limits if specified
+
+**Step 2: Create the Export Folder Structure**
+- In Finder, create:
+  /[Project]-Exports/
+    /Web/
+      /1x/
+      /2x/
+    /Social/
+      /Instagram/ (1080x1080, 1080x1350, 1080x1920)
+      /Facebook/ (1200x628, 1080x1080)
+      /LinkedIn/ (1200x627, 1080x1080)
+      /Twitter/ (1600x900, 800x800)
+    /Print/
+      /CMYK/
+      /Bleed-Files/
+    /Email/
+    /Presentations/
+
+**Step 3: Export and Sort Assets**
+- Export each asset from the design tool in all required formats
+- Save directly into the appropriate subfolder
+- For responsive/multi-size assets, export each size variant
+
+**Step 4: Rename All Files**
+- Apply consistent naming:
+  [Project]-[AssetName]-[Platform]-[Size]-[Variant].[ext]
+  - Example: BrandRefresh-Hero-Instagram-1080x1080-Dark.png
+  - Example: BrandRefresh-Logo-Web-2x.svg
+
+**Step 5: Verify Exports**
+- Open each folder and spot-check files:
+  - Correct dimensions (right-click > Get Info in Finder)
+  - Correct format and color space
+  - No cropping or quality issues
+  - Transparency preserved where needed (PNG/SVG)
+- Create a checklist document tracking each export:
+  | Asset | Platform | Size | Format | Verified |
+  |-------|----------|------|--------|----------|
+
+**Step 6: Package for Delivery**
+- Add a README.txt to the root export folder listing:
+  - Project name and date
+  - Contents overview
+  - Naming convention used
+  - Any notes for the recipient
+- Compress the folder if needed for sharing (right-click > Compress)
+
+## Output
+- A complete set of exported, renamed, and organized design assets
+- A verification checklist confirming all sizes and formats
+- A packaged delivery folder ready to share`
+  },
+  {
+    id: "digital-7",
+    teamSlug: "digital",
+    teamName: "Digital",
+    name: "Analytics Report Builder",
+    toolRecommendation: "Claude Cowork",
+    description: "Pull data from analytics dashboards, capture key charts and metrics, and compile everything into a formatted performance report.",
+    knowledgeToUpload: [],
+    prompt: `You are working in Claude Desktop Cowork mode as a digital analyst compiling a performance report from analytics dashboards.
+
+## Before You Start
+Make sure you have:
+- Chrome open with access to analytics platforms (Google Analytics, social dashboards, ad platforms)
+- A report template open in Google Slides or Google Docs
+- A folder for screenshots and data exports
+- The reporting period clearly defined (dates)
+
+## Step-by-Step Instructions
+
+**Step 1: Set Up the Report Template**
+- Open the report template and update:
+  - Report title: "[Client/Campaign] Performance Report"
+  - Reporting period: [Start Date] - [End Date]
+  - Prepared by and date
+- Create sections for each channel/platform being reported on
+
+**Step 2: Capture Website Analytics**
+- Open Google Analytics (or equivalent)
+- Set the date range to the reporting period
+- Screenshot and record these metrics:
+  - Sessions, Users, New Users
+  - Bounce Rate, Avg. Session Duration, Pages/Session
+  - Top 10 Landing Pages by traffic
+  - Traffic Sources breakdown (Organic, Paid, Social, Direct, Referral)
+  - Goal completions/conversions
+  - Device breakdown (Desktop vs Mobile vs Tablet)
+- Save screenshots to /Report-Assets/Website/
+
+**Step 3: Capture Social Media Metrics**
+- For each active social platform, capture:
+  - Follower count and growth
+  - Post reach and impressions
+  - Engagement rate (likes, comments, shares)
+  - Top performing posts (screenshot them)
+  - Audience demographics if available
+- Save screenshots to /Report-Assets/Social/[Platform]/
+
+**Step 4: Capture Paid Media Performance**
+- For each ad platform (Google Ads, Meta Ads, etc.):
+  - Campaign spend vs budget
+  - Impressions, Clicks, CTR
+  - CPC, CPM, CPA
+  - Conversions and conversion rate
+  - Top performing ad creatives (screenshot)
+- Save screenshots to /Report-Assets/Paid/[Platform]/
+
+**Step 5: Compile the Report**
+- For each section in the template:
+  - Insert the relevant screenshots and charts
+  - Add the key metrics in a summary table
+  - Write a brief analysis (2-3 sentences) explaining:
+    - What happened
+    - Why it matters
+    - What we should do about it
+  - Highlight wins with a ✅ and concerns with a ⚠️
+
+**Step 6: Write the Executive Summary**
+- At the top of the report, add:
+  - 3-5 key takeaways
+  - Overall performance vs KPIs
+  - Top recommendation for next period
+  - Budget status
+
+**Step 7: Add Recommendations**
+- Based on the data, list 3-5 actionable recommendations
+- Prioritize by expected impact
+- Include specific next steps for each
+
+## Output
+- A completed performance report with data, charts, and analysis
+- An organized folder of report screenshots and data exports
+- Clear recommendations for the next reporting period`
+  },
+  {
+    id: "copywriting-6",
+    teamSlug: "copywriting",
+    teamName: "Copywriting",
+    name: "Copy Deck Formatter",
+    toolRecommendation: "Claude Cowork",
+    description: "Take raw approved copy and format it into final delivery documents with proper structure, annotations, and version tracking.",
+    knowledgeToUpload: [],
+    prompt: `You are working in Claude Desktop Cowork mode as a copywriter formatting approved copy into final delivery documents.
+
+## Before You Start
+Make sure you have:
+- The approved copy in a document (Google Doc, Word, or text file)
+- The copy deck template open (Google Doc or Word)
+- The media plan or deliverables list showing where each piece of copy goes
+- Brand guidelines open for reference (tone, style rules)
+
+## Step-by-Step Instructions
+
+**Step 1: Review All Approved Copy**
+- Open the approved copy document
+- Identify each distinct piece of copy and what deliverable it belongs to:
+  - Headlines
+  - Body copy
+  - CTAs
+  - Social posts
+  - Email subject lines and body
+  - Banner copy
+  - Landing page copy
+- Flag any copy that seems incomplete or unclear
+
+**Step 2: Set Up the Copy Deck**
+- Open the copy deck template and fill in the header:
+  - Client name
+  - Campaign name
+  - Date
+  - Version number
+  - Author
+  - Approval status
+- Create sections for each deliverable type
+
+**Step 3: Format Each Deliverable**
+For each piece of copy, create an entry with:
+- **Deliverable name** (e.g., "Facebook Ad - Awareness - Version A")
+- **Placement/platform** (where it will appear)
+- **Character/word limits** (from the spec)
+- **Headline:** [formatted headline]
+- **Body copy:** [formatted body]
+- **CTA:** [formatted CTA]
+- **Legal/disclaimer:** [if applicable]
+- **Character count:** [actual count vs limit]
+- **Notes:** [any production or design notes]
+
+**Step 4: Apply Formatting Standards**
+- Use consistent heading styles throughout
+- Bold all headlines
+- Italicize stage directions or notes to designers
+- Use [BRACKETS] for variable content or personalization tokens
+- Add word/character counts next to any length-restricted copy
+- Highlight any copy that's over the character limit in red
+
+**Step 5: Add Version Tracking**
+- At the top of the document, add a version history table:
+  | Version | Date | Changes | Approved By |
+  |---------|------|---------|-------------|
+- Mark the current version status: Draft / For Review / Approved / Final
+
+**Step 6: Cross-Reference with Deliverables List**
+- Compare the copy deck against the media plan
+- Ensure every required deliverable has copy assigned
+- Mark any gaps: "COPY NEEDED - [deliverable name]"
+- Verify character counts are within limits for every piece
+
+**Step 7: Final Review**
+- Read through the entire deck for consistency
+- Check spelling and grammar
+- Verify brand voice is consistent throughout
+- Ensure all placeholders are clearly marked
+
+## Output
+- A completed, formatted copy deck document
+- Version tracking with approval status
+- A gap analysis noting any missing copy`
+  },
+  {
+    id: "newbusiness-6",
+    teamSlug: "new-business",
+    teamName: "New Business",
+    name: "Pitch Deck Assembler",
+    toolRecommendation: "Claude Cowork",
+    description: "Gather slides, case studies, and credentials from across the agency and assemble them into a cohesive pitch deck for a new business opportunity.",
+    knowledgeToUpload: [],
+    prompt: `You are working in Claude Desktop Cowork mode as a new business coordinator assembling a pitch deck from existing agency materials.
+
+## Before You Start
+Make sure you have:
+- The RFP or pitch brief open (what the prospect is looking for)
+- Access to the agency's credentials/case study library folder
+- Google Slides or Keynote open for the pitch deck
+- The agency's master template/brand guidelines
+
+## Step-by-Step Instructions
+
+**Step 1: Analyze the Opportunity**
+- Read through the RFP or pitch brief
+- Identify the key things the prospect cares about:
+  - Industry/sector
+  - Services needed
+  - Key challenges they've mentioned
+  - Evaluation criteria
+  - Presentation format and time limit
+
+**Step 2: Plan the Deck Structure**
+- Create the slide outline:
+  1. Title slide (prospect name, date, confidential)
+  2. Agenda / What we'll cover
+  3. Understanding of the brief (show we've listened)
+  4. About the agency (relevant positioning)
+  5. Relevant experience (2-3 case studies)
+  6. Our approach / methodology
+  7. The team (who they'll work with)
+  8. Proposed timeline and next steps
+  9. Thank you / contact details
+
+**Step 3: Gather Case Studies**
+- Open the agency's case study library in Finder
+- Select 2-3 case studies most relevant to:
+  - The prospect's industry
+  - The type of work being pitched
+  - Results that will resonate
+- Copy the selected case study slides/materials into a working folder
+
+**Step 4: Assemble the Deck**
+- Open the pitch deck template in Google Slides or Keynote
+- Build out each section:
+  - Copy relevant slides from the master credentials deck
+  - Insert case study slides from the working folder
+  - Update all placeholder text with prospect-specific content
+  - Ensure the agency positioning emphasizes what matters to this prospect
+
+**Step 5: Customize for the Prospect**
+- Replace generic language with prospect-specific references
+- Tailor the "Understanding" section to their specific brief
+- Adjust case study narratives to highlight relevance to their needs
+- Update the team slide with the actual team proposed
+- Add prospect's logo to the title slide (if appropriate)
+
+**Step 6: Quality Check**
+- Review every slide for:
+  - [ ] Correct prospect name (no wrong client names!)
+  - [ ] Consistent formatting and fonts
+  - [ ] Up-to-date statistics and results
+  - [ ] No confidential information from other clients
+  - [ ] All images are high quality
+  - [ ] Slide numbers are correct
+  - [ ] Total slide count is appropriate for time limit
+
+**Step 7: Prepare Supporting Materials**
+- Create a "Leave Behind" folder with:
+  - PDF export of the deck
+  - Detailed case studies (full versions)
+  - Team bios
+  - Relevant credentials or certifications
+
+## Output
+- A completed, customized pitch deck ready for review
+- A supporting materials folder for leave-behind
+- A checklist confirming all prospect-specific details are correct`
+  },
+  {
+    id: "pm-6",
+    teamSlug: "project-management",
+    teamName: "Project Management",
+    name: "Status Report Compiler",
+    toolRecommendation: "Claude Cowork",
+    description: "Collect updates from project files and team documents, then compile a comprehensive weekly status report with progress, risks, and next steps.",
+    knowledgeToUpload: [],
+    prompt: `You are working in Claude Desktop Cowork mode as a project manager compiling the weekly status report from multiple project sources.
+
+## Before You Start
+Make sure you have:
+- Access to all active project folders in Finder
+- The project management tool open (Asana, Monday, Basecamp, etc.) in Chrome
+- A status report template open in Google Docs
+- The previous week's status report for reference
+
+## Step-by-Step Instructions
+
+**Step 1: Set Up This Week's Report**
+- Open the status report template
+- Fill in the header:
+  - "Weekly Status Report - Week of [Date]"
+  - Prepared by: [Your name]
+  - Distribution: [Stakeholder list]
+- Copy the project list from last week's report as a starting framework
+
+**Step 2: Gather Updates from Each Project**
+For each active project:
+- Open the project folder in Finder
+- Check for any new deliverables or documents since last week
+- Open the project management tool and review:
+  - Tasks completed this week
+  - Tasks in progress
+  - Tasks overdue or at risk
+  - Upcoming deadlines in the next 2 weeks
+- Note the overall project health: 🟢 On Track | 🟡 At Risk | 🔴 Off Track
+
+**Step 3: Fill In the Status Report**
+For each project, complete this section:
+- **Project Name:** [Name]
+- **Client:** [Client]
+- **Status:** 🟢/🟡/🔴
+- **Completed This Week:**
+  - [Task 1]
+  - [Task 2]
+- **In Progress:**
+  - [Task 1] - [% complete or expected completion]
+  - [Task 2]
+- **Coming Up Next Week:**
+  - [Task 1] - [Due date]
+  - [Task 2]
+- **Risks/Blockers:**
+  - [Risk description and mitigation]
+- **Decisions Needed:**
+  - [Decision needed and from whom]
+
+**Step 4: Compile the Executive Summary**
+- At the top of the report, write:
+  - Total active projects: [#]
+  - Projects on track: [#] 🟢
+  - Projects at risk: [#] 🟡
+  - Projects off track: [#] 🔴
+  - Key wins this week (2-3 bullets)
+  - Key concerns (1-2 bullets)
+  - Decisions needed from leadership
+
+**Step 5: Update the Resource Overview**
+- Note any resource conflicts or availability issues
+- Flag team members who are over-allocated
+- Note any upcoming PTO that affects project timelines
+
+**Step 6: Review and Format**
+- Read through the full report for consistency
+- Ensure all dates are correct
+- Verify project statuses match the detailed updates
+- Check that last week's "Coming Up" items are accounted for
+- Format consistently with headers, bullets, and status icons
+
+## Output
+- A completed weekly status report ready for distribution
+- An executive summary highlighting key items for leadership
+- A clear list of decisions needed and action items`
+  },
+  {
+    id: "ops-9",
+    teamSlug: "studio-operations",
+    teamName: "Studio Operations",
+    name: "Timesheet & Utilization Tracker",
+    toolRecommendation: "Claude Cowork",
+    description: "Pull timesheet data from project tools, organize entries by person and project, and compile utilization reports showing billable vs. non-billable time.",
+    knowledgeToUpload: [],
+    prompt: `You are working in Claude Desktop Cowork mode as a studio operations coordinator compiling timesheet and utilization data into a report.
+
+## Before You Start
+Make sure you have:
+- Access to the time tracking tool in Chrome (Harvest, Toggl, Clockify, or similar)
+- Google Sheets or Excel open for the utilization report
+- A list of all team members and their expected billable hours
+- The reporting period defined (usually weekly or monthly)
+
+## Step-by-Step Instructions
+
+**Step 1: Export Timesheet Data**
+- Open the time tracking tool in Chrome
+- Set the date range to the reporting period
+- Export the detailed time entries as CSV or download the report
+- Save the export to a working folder
+
+**Step 2: Set Up the Utilization Spreadsheet**
+- Open Google Sheets and create the following tabs:
+  - **Summary** - high-level utilization by person
+  - **By Project** - hours broken down by project
+  - **By Person** - individual detail views
+  - **Trends** - week-over-week or month-over-month comparison
+
+**Step 3: Organize Data by Person**
+- In the "By Person" tab, create a section for each team member:
+  | Date | Project | Task | Hours | Billable? |
+  |------|---------|------|-------|-----------|
+- Populate from the exported timesheet data
+- Calculate totals:
+  - Total hours logged
+  - Billable hours
+  - Non-billable hours
+  - Utilization rate (billable / available hours × 100)
+
+**Step 4: Organize Data by Project**
+- In the "By Project" tab, create:
+  | Project | Client | Team Member | Hours | Budget | Remaining |
+  |---------|--------|-------------|-------|--------|-----------|
+- Calculate per-project totals
+- Compare against project budget allocations
+- Flag projects over budget or trending over
+
+**Step 5: Build the Summary Dashboard**
+- In the Summary tab, create:
+  | Team Member | Role | Available Hrs | Logged Hrs | Billable Hrs | Util % | Target |
+  |-------------|------|---------------|------------|--------------|--------|--------|
+- Add conditional formatting:
+  - Green: Utilization ≥ target
+  - Yellow: Utilization within 10% of target
+  - Red: Utilization > 10% below target
+- Calculate team averages and totals
+
+**Step 6: Identify Issues and Patterns**
+- Flag team members with:
+  - Missing timesheets (low logged hours)
+  - Very high overtime (burnout risk)
+  - Low utilization (underbooked)
+  - High non-billable ratio
+- Note projects consuming more time than budgeted
+- Compare against previous periods for trends
+
+**Step 7: Compile the Report**
+- Create a summary document or add a notes section:
+  - Overall team utilization rate vs target
+  - Top 3 projects by hours consumed
+  - Team members above/below utilization targets
+  - Recommendations (rebalance workload, address missing timesheets, etc.)
+  - Action items for the coming period
+
+## Output
+- A completed utilization spreadsheet with all tabs populated
+- A summary report highlighting key metrics and issues
+- Flagged items requiring management attention`
+  },
+
+  // ============================================
+  // NEW PERPLEXITY PROMPTS
+  // ============================================
+  {
+    id: "creative-9",
+    teamSlug: "creative",
+    teamName: "Creative",
+    name: "Creative Award & Trend Research",
+    toolRecommendation: "Perplexity",
+    description: "Research award-winning campaigns, emerging creative trends, and innovative techniques to inspire and inform creative development.",
+    knowledgeToUpload: [
+      "Current creative brief or project description",
+      "Campaign category or industry",
+      "Target audience and market"
+    ],
+    prompt: `You are a senior creative researcher investigating award-winning campaigns, emerging creative trends, and innovative techniques to fuel creative development.
+
+## Research Framework
+
+**1. Award-Winning Campaign Analysis**
+Research the most recent and relevant award winners from:
+- Cannes Lions (specify category if relevant)
+- D&AD
+- One Show
+- Clios
+- Effies (for effectiveness)
+- Webby Awards (for digital)
+
+For each standout campaign, provide:
+- Campaign name and agency
+- Client and brief overview
+- The big idea in one sentence
+- Why it won (jury commentary if available)
+- Key executional elements
+- Results achieved
+- Source/link
+
+**2. Emerging Creative Trends**
+Identify 5-7 current trends in creative advertising:
+- What's the trend?
+- Where is it showing up? (examples)
+- Why is it resonating with audiences?
+- How long has it been building?
+- Is it peaking, growing, or declining?
+- How might it apply to our brief/category?
+
+**3. Technology & Innovation**
+Research new tools, platforms, or techniques being used:
+- AI in creative production
+- New social media formats or features
+- Emerging media channels
+- Interactive or immersive experiences
+- New production techniques
+
+**4. Category-Specific Insights**
+For the specific industry/category:
+- What creative approaches are working?
+- What's overused or clichéd?
+- What's the white space no one is exploring?
+- What are international markets doing differently?
+
+## Key Questions to Answer
+1. What's the most innovative campaign in this category right now?
+2. What creative approach would feel fresh vs. expected?
+3. What techniques or formats haven't been fully explored yet?
+4. What can we learn from adjacent categories?
+5. What's the audience responding to culturally right now?
+
+## Output Format
+Provide a structured research report with:
+- Executive summary of key findings
+- Detailed campaign case studies (3-5)
+- Trend analysis with visual references
+- Innovation spotlight section
+- Recommendations for creative direction
+- All sources cited with links`
+  },
+  {
+    id: "account-8",
+    teamSlug: "account-management",
+    teamName: "Account Management",
+    name: "Client Industry Researcher",
+    toolRecommendation: "Perplexity",
+    description: "Research a client's industry landscape, recent news, competitive dynamics, and market trends to prepare for client conversations and strategic planning.",
+    knowledgeToUpload: [
+      "Client name and industry",
+      "Specific topics or questions to research",
+      "Known competitors",
+      "Upcoming meeting or planning context"
+    ],
+    prompt: `You are a senior account director conducting deep industry research to prepare for an important client conversation or strategic planning session.
+
+## Research Framework
+
+**1. Industry Landscape Overview**
+Research and summarize:
+- Industry size and growth trajectory
+- Key market segments
+- Major industry players and market share
+- Recent M&A activity or significant deals
+- Regulatory environment and upcoming changes
+- Industry associations and publications of note
+
+**2. Client Company Analysis**
+Research the client specifically:
+- Recent news and press releases (last 6 months)
+- Financial performance (if publicly available)
+- Recent product launches or strategic initiatives
+- Leadership changes or organizational updates
+- Public statements on strategy or direction
+- Social media presence and sentiment
+- Employee reviews and employer brand (Glassdoor)
+
+**3. Competitive Intelligence**
+For each key competitor:
+- Recent campaign activity and messaging
+- New products or services launched
+- Strategic pivots or announcements
+- Market positioning and differentiation
+- Digital presence and engagement metrics
+- Notable wins or losses
+
+**4. Market Trends & Dynamics**
+- Consumer behavior shifts in this category
+- Technology disruptions affecting the industry
+- Cultural or societal trends impacting the market
+- Economic factors and their impact
+- Sustainability and ESG considerations
+- Generational shifts in the customer base
+
+**5. Media & Communication Landscape**
+- How is the industry being covered in the press?
+- What narratives are dominating trade media?
+- What are industry influencers and thought leaders saying?
+- What topics are trending in industry social conversations?
+
+## Key Questions to Answer
+1. What are the 3 biggest challenges facing this industry right now?
+2. What opportunities are competitors missing?
+3. What's the client likely worried about?
+4. What trends should the client be getting ahead of?
+5. What would make us look like we truly understand their business?
+
+## Output Format
+Deliver a structured briefing document:
+- One-page executive summary with key takeaways
+- Detailed sections for each research area above
+- "Conversation Starters" — 5 insights that would impress the client
+- Risks and opportunities to watch
+- All sources cited with links and dates`
+  },
+  {
+    id: "production-7",
+    teamSlug: "production",
+    teamName: "Production",
+    name: "Vendor & Location Scout",
+    toolRecommendation: "Perplexity",
+    description: "Research production vendors, shoot locations, or talent options with capabilities, pricing benchmarks, and availability information.",
+    knowledgeToUpload: [
+      "Production brief or treatment",
+      "Budget range",
+      "Location/market requirements",
+      "Timeline and shoot dates"
+    ],
+    prompt: `You are a senior production manager researching vendors, locations, and talent for an upcoming production.
+
+## Research Framework
+
+**1. Vendor Research**
+Based on the production needs, research potential vendors for:
+
+*If researching production companies/directors:*
+- Company name and website
+- Notable work and reel highlights
+- Specialties (live action, animation, tabletop, etc.)
+- Director roster and their styles
+- General pricing tier (boutique, mid-range, premium)
+- Location (local vs. travel required)
+- Recent awards or recognition
+
+*If researching post-production:*
+- Edit houses, color grading, VFX, sound design
+- Software and capabilities
+- Recent notable projects
+- Turnaround time expectations
+
+*If researching specialized vendors:*
+- Photography studios/photographers
+- Music/sound design houses
+- Casting agencies
+- Prop houses and set builders
+- Equipment rental companies
+
+**2. Location Scouting Research**
+For shoot locations, research:
+- Venue options matching the creative vision
+- Permit requirements and processes
+- Typical rental costs and availability
+- Logistical considerations (parking, load-in, power)
+- Weather patterns for the proposed dates
+- Local crew availability
+- Travel and accommodation options for the team
+- Insurance and liability requirements
+
+**3. Talent Research**
+For talent or casting needs:
+- Casting agency options in the market
+- Talent rate benchmarks (SAG-AFTRA rates, non-union ranges)
+- Usage rights and buyout cost structures
+- Diversity and representation considerations
+- Celebrity or influencer options and estimated fees
+
+**4. Budget Benchmarking**
+- Typical cost ranges for this type of production
+- Where to invest vs. where to save
+- Hidden costs to plan for (overtime, weather days, reshoots)
+- Cost comparison across markets/regions
+
+## Key Questions to Answer
+1. What are the top 3 vendor options for each production need?
+2. What should we budget for realistically?
+3. What are the permit/logistical risks to plan around?
+4. Where can we find production value without increasing cost?
+5. What's the timeline risk for availability and booking?
+
+## Output Format
+Deliver a structured research brief:
+- Recommended vendor shortlist with pros/cons for each
+- Location options with photos, costs, and logistics
+- Budget benchmark ranges with notes
+- Timeline and booking recommendations
+- Risk factors and contingency suggestions
+- All sources cited with links`
+  },
+  {
+    id: "design-8",
+    teamSlug: "design",
+    teamName: "Design",
+    name: "Design Trend & Benchmark Research",
+    toolRecommendation: "Perplexity",
+    description: "Research current design trends, benchmark competitor visual identities, and gather inspiration for design direction and brand development.",
+    knowledgeToUpload: [
+      "Project brief or design challenge",
+      "Client's current brand guidelines",
+      "Industry or category",
+      "Competitor list"
+    ],
+    prompt: `You are a senior designer and design strategist researching current trends and benchmarking competitor visual identities to inform a design project.
+
+## Research Framework
+
+**1. Design Trend Analysis**
+Research current trends across relevant design disciplines:
+
+*Visual Identity & Branding:*
+- Logo design trends (what's in, what's out)
+- Color palette trends by industry
+- Typography trends and popular typefaces
+- Photography and illustration styles
+- Brand system approaches (flexible vs. rigid identity)
+
+*Digital & UI Design:*
+- Web design trends and patterns
+- Mobile app design conventions
+- Micro-interactions and animation trends
+- Accessibility-driven design approaches
+- Dark mode and theme considerations
+
+*Print & Physical:*
+- Packaging design innovations
+- Editorial and publication design
+- Environmental and signage design
+- Material and finish trends
+
+**2. Competitor Visual Audit**
+For each competitor, research and analyze:
+- Brand identity system (logo, colors, typography)
+- Website design and UX approach
+- Social media visual language
+- Campaign visual style
+- Packaging or physical materials (if applicable)
+- Where they sit on the spectrum (premium/accessible, bold/subtle, etc.)
+
+Create a visual positioning map:
+- X-axis: Traditional ←→ Modern
+- Y-axis: Corporate ←→ Expressive
+- Plot competitors and identify whitespace
+
+**3. Category Conventions**
+- What visual language is expected in this industry?
+- What design codes signal quality/trust/innovation?
+- Where is the category visually homogeneous?
+- What would it take to stand out while staying credible?
+
+**4. Inspiration Beyond Category**
+Research design excellence from:
+- Adjacent industries
+- Award-winning design (D&AD, AIGA, Type Directors Club)
+- Design-led brands regardless of category
+- Cultural and art movements influencing design
+
+## Key Questions to Answer
+1. What visual direction would differentiate in this category?
+2. What design trends are relevant vs. faddish?
+3. Where are competitors visually similar (opportunities to break out)?
+4. What design choices signal the brand attributes we want?
+5. What's the audience expecting vs. what would surprise them?
+
+## Output Format
+Deliver a structured design research report:
+- Trend overview with visual examples and links
+- Competitor visual audit with screenshots and analysis
+- Visual positioning map
+- Recommended design directions (3 options) with rationale
+- Inspiration references with sources
+- All sources cited with links`
+  },
+  {
+    id: "copywriting-7",
+    teamSlug: "copywriting",
+    teamName: "Copywriting",
+    name: "Tone & Language Research",
+    toolRecommendation: "Perplexity",
+    description: "Research audience language patterns, cultural references, and competitor messaging to inform tone of voice development and copywriting direction.",
+    knowledgeToUpload: [
+      "Target audience profile",
+      "Brand or project brief",
+      "Current tone of voice guidelines (if any)",
+      "Competitor list"
+    ],
+    prompt: `You are a senior copywriter and verbal identity specialist researching language patterns, cultural references, and competitor messaging to shape copywriting direction.
+
+## Research Framework
+
+**1. Audience Language Analysis**
+Research how the target audience communicates:
+- What platforms do they use? (Reddit, TikTok, LinkedIn, forums, etc.)
+- What slang, jargon, or terminology is natural to them?
+- What tone resonates? (casual, authoritative, irreverent, aspirational)
+- What cultural references land with this group?
+- What language turns them off or feels inauthentic?
+- How do they talk about the product/service category?
+- What are their pain points in their own words?
+
+**2. Competitor Messaging Audit**
+For each key competitor, analyze:
+- Tagline and headline approach
+- Tone of voice (describe in 3-4 adjectives)
+- Key messages and value propositions
+- Website copy style and length
+- Social media voice and engagement style
+- Email marketing tone
+- Ad copy patterns
+
+Create a messaging map:
+| Competitor | Tagline | Tone | Key Message | Differentiator |
+|------------|---------|------|-------------|----------------|
+
+**3. Category Language Conventions**
+- What words and phrases are used by everyone in this category?
+- What claims are overused? ("innovative," "best-in-class," etc.)
+- What clichés should we avoid?
+- Is there industry jargon that builds credibility vs. alienates?
+- What language is legally restricted? (claims, superlatives)
+
+**4. Cultural & Linguistic Trends**
+- Current cultural moments relevant to the brand/audience
+- Language trends from social media and pop culture
+- Humor styles that are working in advertising right now
+- Sensitivity considerations (what to avoid)
+- Inclusivity in language (evolving norms and preferences)
+
+**5. Tone of Voice Inspiration**
+Research brands known for excellent copy, especially:
+- Brands in adjacent categories with strong voices
+- D&AD Writing for Advertising winners
+- Viral campaigns driven by copy
+- Brands that successfully shifted their tone of voice
+
+## Key Questions to Answer
+1. How does this audience expect to be spoken to?
+2. What tone would differentiate from competitors?
+3. What cultural references or language patterns feel authentic?
+4. What words and phrases are overused in this category?
+5. What tone of voice would build trust with this audience?
+
+## Output Format
+Deliver a structured language research brief:
+- Audience language profile with real examples
+- Competitor messaging comparison matrix
+- Category cliché and overuse list
+- Recommended tone of voice direction (3 options with rationale)
+- Word bank: words to use, words to avoid
+- Cultural references and hooks to consider
+- All sources cited with links`
+  },
+  {
+    id: "pm-7",
+    teamSlug: "project-management",
+    teamName: "Project Management",
+    name: "Tool & Process Benchmarking",
+    toolRecommendation: "Perplexity",
+    description: "Research industry-standard tools, processes, and methodologies for agency project management to improve workflows and efficiency.",
+    knowledgeToUpload: [
+      "Current tools and processes in use",
+      "Pain points and challenges",
+      "Team size and structure",
+      "Budget for tools"
+    ],
+    prompt: `You are a project management consultant researching best-in-class tools, processes, and methodologies for a creative agency looking to improve its operations.
+
+## Research Framework
+
+**1. Project Management Methodologies**
+Research and compare methodologies relevant to agency work:
+- Agile/Scrum adaptations for creative agencies
+- Kanban for creative workflows
+- Hybrid waterfall-agile approaches
+- Lean methodology for agency operations
+- OKR frameworks for agency goal setting
+
+For each, provide:
+- Overview and key principles
+- Pros and cons for creative agency environments
+- Notable agencies using this approach
+- Implementation complexity
+- Best suited for (type of work, team size)
+
+**2. Tool Landscape Analysis**
+Research current tools across these categories:
+
+*Project Management Platforms:*
+- Asana, Monday.com, Basecamp, ClickUp, Wrike, Teamwork
+- Compare: features, pricing, agency-specific capabilities, integrations
+
+*Resource Management:*
+- Float, Resource Guru, Forecast, Productive
+- Compare: capacity planning, utilization tracking, forecasting
+
+*Time Tracking:*
+- Harvest, Toggl, Clockify, Everhour
+- Compare: ease of use, integrations, reporting
+
+*Collaboration:*
+- Slack, Microsoft Teams, Notion, Confluence
+- Compare: agency use cases, integration with PM tools
+
+*Proofing & Approvals:*
+- Frame.io, Ziflow, PageProof, Filestage
+- Compare: asset types supported, client experience, pricing
+
+**3. Agency Benchmarks & Best Practices**
+Research industry benchmarks:
+- Average utilization rates for creative agencies
+- Typical project management overhead percentage
+- Billable vs. non-billable ratio benchmarks
+- Common workflow stages and approval processes
+- How top agencies structure their PM function
+
+**4. Process Improvement Opportunities**
+Research common agency pain points and solutions:
+- Brief intake and scoping processes
+- Creative review and approval workflows
+- Client feedback loops
+- Resource allocation and capacity planning
+- Project handoff between departments
+- Scope creep management
+- Remote/hybrid collaboration
+
+## Key Questions to Answer
+1. What tool stack do leading agencies of our size use?
+2. What methodology best fits creative agency workflows?
+3. Where are the biggest efficiency gains available?
+4. What processes have the most impact when improved?
+5. What's the expected ROI of better PM tools and processes?
+
+## Output Format
+Deliver a structured benchmarking report:
+- Methodology comparison with recommendation
+- Tool comparison matrix with pricing and ratings
+- Industry benchmark data
+- Top 5 process improvement recommendations
+- Implementation roadmap suggestion
+- Case studies from comparable agencies
+- All sources cited with links`
   }
 ];
 

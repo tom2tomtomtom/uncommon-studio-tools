@@ -36,7 +36,7 @@ export default function RootLayout({
           </a>
           <div className="flex min-h-screen">
             <Sidebar />
-            <main className="flex-1 ml-0 md:ml-64">
+            <div className="flex-1 ml-0 md:ml-64">
               <header className="sticky top-0 z-30 bg-background/80 backdrop-blur-sm border-b">
                 <div className="flex items-center justify-between px-4 md:px-6 h-16">
                   {/* Spacer for mobile menu button */}
@@ -51,7 +51,7 @@ export default function RootLayout({
               <main id="main-content" tabIndex={-1} className="p-4 md:p-6 outline-none">
                 {children}
               </main>
-            </main>
+            </div>
           </div>
           <ChatWidget />
           <Toaster />
