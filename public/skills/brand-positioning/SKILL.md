@@ -1,6 +1,6 @@
 ---
 name: brand-positioning
-description: Facilitate brand positioning workshops and develop positioning frameworks. Use when defining or refining how a brand is positioned in its market.
+description: Facilitates brand positioning workshops and develops positioning frameworks with messaging hierarchies. Delivers positioning statements, competitive maps, and differentiation matrices. Use when defining brand positioning, running positioning workshops, creating messaging hierarchies, or refining market differentiation.
 ---
 
 # Brand Positioning Workshop

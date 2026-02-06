@@ -325,6 +325,46 @@ export default function CoworkPage() {
         </CardContent>
       </Card>
 
+      {/* Cost & Usage */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            Cost & Usage Guide
+          </CardTitle>
+          <CardDescription>
+            Cowork uses significantly more tokens than standard chat — here's how to manage it
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-3">
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium">How Cowork Uses Your Plan</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                A single Cowork session can use <strong>5-20x more tokens</strong> than a standard chat message.
+                On Pro plans, expect to use roughly 10-15% of your daily limit per complex Cowork task.
+                Max plan users get significantly higher limits.
+              </p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium">Monitor Your Usage</p>
+              <p className="text-sm text-muted-foreground mt-1">
+                Check your usage at <strong>Settings → Subscription</strong> in Claude Desktop.
+                The usage meter updates in real-time during Cowork sessions so you can track consumption.
+              </p>
+            </div>
+            <div className="p-3 rounded-lg border">
+              <p className="font-medium">Cost-Saving Tips</p>
+              <ul className="text-sm text-muted-foreground mt-1 space-y-1 list-disc list-inside">
+                <li><strong>Batch tasks:</strong> Combine related work into one session instead of running multiple short ones</li>
+                <li><strong>Be specific:</strong> Vague prompts cause Claude to explore more paths, using more tokens</li>
+                <li><strong>Use standard chat first:</strong> Only use Cowork when the task requires computer actions</li>
+                <li><strong>Interrupt early:</strong> If Claude goes down the wrong path, correct it immediately</li>
+              </ul>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Next Steps */}
       <Card className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5">
         <CardContent className="pt-6">

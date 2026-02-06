@@ -40,11 +40,12 @@ const claudeGuides = [
   {
     slug: 'mcp-setup',
     title: 'MCP Configuration',
-    description: 'Set up Model Context Protocol to give Claude access to your files and tools',
+    description: 'Connect Claude to Slack, Notion, Google Drive, and other tools using MCP servers',
     icon: Settings,
     difficulty: 'Beginner',
     time: '10 min',
     color: 'text-blue-500',
+    lastVerified: 'Feb 2026',
   },
   {
     slug: 'claude-code',
@@ -72,6 +73,7 @@ const claudeGuides = [
     difficulty: 'Intermediate',
     time: '20 min',
     color: 'text-purple-500',
+    lastVerified: 'Feb 2026',
   },
   {
     slug: 'cowork-plugins',
@@ -81,6 +83,7 @@ const claudeGuides = [
     difficulty: 'Intermediate',
     time: '20 min',
     color: 'text-purple-500',
+    lastVerified: 'Feb 2026',
   },
   {
     slug: 'deep-research',
@@ -99,6 +102,7 @@ const claudeGuides = [
     difficulty: 'Intermediate',
     time: '20 min',
     color: 'text-pink-500',
+    lastVerified: 'Feb 2026',
   },
   {
     slug: 'connectors',
@@ -108,11 +112,12 @@ const claudeGuides = [
     difficulty: 'Intermediate',
     time: '20 min',
     color: 'text-cyan-500',
+    lastVerified: 'Feb 2026',
   },
   {
     slug: 'chrome-extension',
     title: 'Claude in Chrome',
-    description: 'Turn your browser into an agentic workspace with workflow recording',
+    description: 'Use Claude directly on any webpage — summarize articles, fill forms, and capture research',
     icon: Chrome,
     difficulty: 'Intermediate',
     time: '15 min',
@@ -121,7 +126,7 @@ const claudeGuides = [
   {
     slug: 'power-hacks',
     title: 'Power Hacks & Optimization',
-    description: 'Advanced techniques for speed and automation',
+    description: 'Advanced techniques: CLI shortcuts, memory hygiene, meta-configuration, and cost control',
     icon: Zap,
     difficulty: 'Advanced',
     time: '25 min',
@@ -228,6 +233,7 @@ interface Guide {
   difficulty: string;
   time: string;
   color: string;
+  lastVerified?: string;
 }
 
 interface ToolSection {
@@ -274,6 +280,9 @@ function GuideCard({ guide }: { guide: Guide }) {
           <div className="flex gap-2">
             <Badge variant="secondary">{guide.difficulty}</Badge>
             <Badge variant="outline">{guide.time}</Badge>
+            {guide.lastVerified && (
+              <Badge variant="outline" className="text-xs text-muted-foreground">Verified {guide.lastVerified}</Badge>
+            )}
           </div>
         </CardContent>
       </Card>

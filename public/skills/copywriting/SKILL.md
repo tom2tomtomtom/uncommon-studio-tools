@@ -1,6 +1,6 @@
 ---
 name: copywriting
-description: Create compelling, on-brand copy for marketing materials. Use for ads, emails, social posts, web copy, and sales content.
+description: Writes headlines, email sequences, social posts, ad copy, and web copy with brand voice consistency. Delivers publication-ready copy with multiple variants. Use when writing ad copy, crafting email campaigns, creating social content, developing web copy, or generating headline options.
 ---
 
 # Copywriting and Content Creation

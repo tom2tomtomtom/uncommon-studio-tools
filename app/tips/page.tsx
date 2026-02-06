@@ -58,13 +58,44 @@ export default function TipsPage() {
         </div>
       </div>
 
+      {/* Featured Power Tips */}
+      <Card className="bg-gradient-to-r from-amber-500/5 via-amber-500/10 to-amber-500/5 border-amber-500/30">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Zap className="h-5 w-5 text-amber-500" />
+            Featured Power Tips
+          </CardTitle>
+          <CardDescription>
+            Two techniques that dramatically improve your Claude experience
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <TipBlock
+            title="The Skill Factory: Let Claude Build Skills for You"
+            problem="Writing YAML metadata and skill instructions manually is tedious and error-prone"
+            trick='Upload any reference document (brand guide, coding standards, meeting template) and ask: "Convert this into a valid Skill.md file with YAML frontmatter and markdown body for a Custom Skill." Claude writes the skill, you zip and install it. Full guide in the Custom Skills how-to.'
+            icon={<Sparkles className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title='Self-Healing Skills: Fix Skills That Don&apos;t Trigger'
+            problem="You installed a skill but Claude ignores it"
+            trick={'The issue is almost always the description field. Go back to Claude and ask: "You aren\'t invoking this skill when I ask for X. Rewrite the YAML description to be more trigger-happy and specific so you know exactly when to use it." Then re-upload.'}
+            icon={<Zap className="h-4 w-4" />}
+          />
+        </CardContent>
+      </Card>
+
       {/* Section 1: Meta-Configuration */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Settings className="h-5 w-5 text-primary" />
-            Meta-Configuration: Using Claude to Set Up Claude
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <Settings className="h-5 w-5 text-primary" />
+              Meta-Configuration: Using Claude to Set Up Claude
+            </CardTitle>
+            <Badge variant="secondary" className="shrink-0">Everyone</Badge>
+          </div>
           <CardDescription>
             Use Claude's knowledge of its own ecosystem to generate setup files automatically
           </CardDescription>
@@ -96,10 +127,13 @@ export default function TipsPage() {
       {/* Section 2: CLI & Developer Shortcuts */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Terminal className="h-5 w-5 text-primary" />
-            CLI & Developer Shortcuts
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <Terminal className="h-5 w-5 text-primary" />
+              CLI & Developer Shortcuts
+            </CardTitle>
+            <Badge variant="outline" className="shrink-0">Power User</Badge>
+          </div>
           <CardDescription>
             Speed up your terminal workflow with these command-line hacks
           </CardDescription>
@@ -133,10 +167,13 @@ export default function TipsPage() {
       {/* Section 3: Artifact Power Moves */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
-            Artifact Power Moves
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-primary" />
+              Artifact Power Moves
+            </CardTitle>
+            <Badge variant="secondary" className="shrink-0">Everyone</Badge>
+          </div>
           <CardDescription>
             Move beyond simple code previews to create persistent, interactive tools
           </CardDescription>
@@ -161,10 +198,13 @@ export default function TipsPage() {
       {/* Section 4: Cowork & Browser Hacks */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Globe className="h-5 w-5 text-primary" />
-            Cowork & Browser Hacks
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <Globe className="h-5 w-5 text-primary" />
+              Cowork & Browser Hacks
+            </CardTitle>
+            <Badge variant="secondary" className="shrink-0">Everyone</Badge>
+          </div>
           <CardDescription>
             Optimize how the agent works to save time and money
           </CardDescription>
@@ -189,10 +229,13 @@ export default function TipsPage() {
       {/* Section 5: Memory Hygiene */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Brain className="h-5 w-5 text-primary" />
-            Memory Hygiene
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <Brain className="h-5 w-5 text-primary" />
+              Memory Hygiene
+            </CardTitle>
+            <Badge variant="secondary" className="shrink-0">Everyone</Badge>
+          </div>
           <CardDescription>
             Keep Claude's "brain" clean to ensure better responses
           </CardDescription>
@@ -210,10 +253,13 @@ export default function TipsPage() {
       {/* Section 6: Prompt Engineering Shortcuts */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <FileText className="h-5 w-5 text-primary" />
-            Prompt Engineering Shortcuts
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <FileText className="h-5 w-5 text-primary" />
+              Prompt Engineering Shortcuts
+            </CardTitle>
+            <Badge variant="secondary" className="shrink-0">Everyone</Badge>
+          </div>
           <CardDescription>
             Techniques to get more consistent and useful responses from Claude
           </CardDescription>
@@ -245,10 +291,13 @@ export default function TipsPage() {
       {/* Section 7: File & Context Management */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <FolderSync className="h-5 w-5 text-primary" />
-            File & Context Management
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <FolderSync className="h-5 w-5 text-primary" />
+              File & Context Management
+            </CardTitle>
+            <Badge variant="secondary" className="shrink-0">Everyone</Badge>
+          </div>
           <CardDescription>
             Work efficiently with files, images, and long conversations
           </CardDescription>
@@ -280,10 +329,13 @@ export default function TipsPage() {
       {/* Section 8: Collaboration Workflows */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Share2 className="h-5 w-5 text-primary" />
-            Collaboration Workflows
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <Share2 className="h-5 w-5 text-primary" />
+              Collaboration Workflows
+            </CardTitle>
+            <Badge variant="secondary" className="shrink-0">Everyone</Badge>
+          </div>
           <CardDescription>
             Share your Claude work and integrate with department workflows
           </CardDescription>
@@ -315,10 +367,13 @@ export default function TipsPage() {
       {/* Section 9: Advanced Artifacts */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Layers className="h-5 w-5 text-primary" />
-            Advanced Artifacts
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <Layers className="h-5 w-5 text-primary" />
+              Advanced Artifacts
+            </CardTitle>
+            <Badge variant="outline" className="shrink-0">Power User</Badge>
+          </div>
           <CardDescription>
             Build sophisticated tools and applications with Claude's artifact system
           </CardDescription>
@@ -350,10 +405,13 @@ export default function TipsPage() {
       {/* Section 10: Keyboard Shortcuts & Speed */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Keyboard className="h-5 w-5 text-primary" />
-            Keyboard Shortcuts & Speed
-          </CardTitle>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <Keyboard className="h-5 w-5 text-primary" />
+              Keyboard Shortcuts & Speed
+            </CardTitle>
+            <Badge variant="secondary" className="shrink-0">Everyone</Badge>
+          </div>
           <CardDescription>
             Navigate faster with keyboard commands and quick actions
           </CardDescription>
@@ -362,7 +420,7 @@ export default function TipsPage() {
           <TipBlock
             title="Quick Commands"
             problem="Clicking buttons is slow"
-            trick='Cmd+Enter sends message, Cmd+Shift+O opens new chat, Cmd+K opens command palette. Learning these three shortcuts keeps you in flow without reaching for the mouse.'
+            trick='Cmd+Enter (Ctrl+Enter on Windows) sends message, Cmd+Shift+O (Ctrl+Shift+O) opens new chat, Cmd+K (Ctrl+K) opens command palette. Learning these three shortcuts keeps you in flow without reaching for the mouse.'
             icon={<Keyboard className="h-4 w-4" />}
           />
 
@@ -423,12 +481,12 @@ export default function TipsPage() {
             </div>
           </div>
           <div>
-            <h4 className="text-sm font-medium mb-3">Keyboard Shortcuts</h4>
+            <h4 className="text-sm font-medium mb-3">Keyboard Shortcuts (macOS / Windows)</h4>
             <div className="grid gap-3 sm:grid-cols-2">
-              <CommandRef command="Cmd + Enter" description="Send message" />
-              <CommandRef command="Cmd + Shift + O" description="New chat" />
-              <CommandRef command="Cmd + K" description="Command palette" />
-              <CommandRef command="Cmd + Shift + S" description="Toggle sidebar" />
+              <CommandRef command="Cmd/Ctrl + Enter" description="Send message" />
+              <CommandRef command="Cmd/Ctrl + Shift + O" description="New chat" />
+              <CommandRef command="Cmd/Ctrl + K" description="Command palette" />
+              <CommandRef command="Cmd/Ctrl + Shift + S" description="Toggle sidebar" />
             </div>
           </div>
         </CardContent>

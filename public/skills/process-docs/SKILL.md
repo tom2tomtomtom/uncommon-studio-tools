@@ -1,6 +1,6 @@
 ---
 name: process-docs
-description: Create standardized process documentation and SOPs. Use for workflow guides, quality control systems, and operational procedures.
+description: Creates standardized SOPs, workflow guides, and quality control checklists with versioning and ownership. Delivers ready-to-publish process documents with step-by-step procedures. Use when documenting workflows, standardizing team processes, building QA checklists, or creating onboarding documentation.
 ---
 
 # Process Standardization and Quality Control

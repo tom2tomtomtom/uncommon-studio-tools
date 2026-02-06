@@ -105,14 +105,14 @@ export default function HomePage() {
                 <FileText className="h-6 w-6 text-primary" />
                 Claude Projects
               </CardTitle>
-              <CardDescription className="text-base">Your AI creative partner with a perfect memory</CardDescription>
+              <CardDescription className="text-base">Upload once, Claude remembers everything across conversations</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">What it is:</strong> A dedicated workspace in Claude where you upload documents once and they persist across conversations. Claude remembers everything you've shared — brand guidelines, past campaigns, client history — so you never have to re-explain context.
+                <strong className="text-foreground">What it does for you:</strong> Upload your client briefs, brand guidelines, and references once — Claude remembers everything across conversations so you never re-explain context. Every conversation starts with Claude already knowing the brand inside-out.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">How to use it:</strong> Create a Project for each major client or campaign. Upload their brand book, tone of voice guide, past creative work, and any briefs. Now every conversation starts with Claude already knowing the brand inside-out. Ask it to write copy, develop concepts, or review work—all in the client's voice.
+                <strong className="text-foreground">How to use it:</strong> Create a Project for each major client or campaign. Upload their brand book, tone of voice guide, past creative work, and any briefs. Ask it to write copy, develop concepts, or review work — all in the client's voice, every time.
               </p>
               <div className="pt-2 border-t">
                 <p className="text-xs font-medium text-foreground mb-2">Best for:</p>
@@ -133,11 +133,11 @@ export default function HomePage() {
                 <Sparkles className="h-6 w-6 text-primary" />
                 Claude Skills
               </CardTitle>
-              <CardDescription className="text-base">Pre-built workflows you install once and reuse anytime</CardDescription>
+              <CardDescription className="text-base">Install a skill once and Claude follows the same process every time</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">What it is:</strong> Downloadable instruction sets that teach Claude how to perform specific tasks. Think of them as "apps" for Claude — install a Creative Brief skill, and Claude knows exactly how to structure briefs, what questions to ask, and what format to output.
+                <strong className="text-foreground">What it does for you:</strong> Install a skill once and Claude knows how to write press releases, review creative briefs, or build pitch decks — the same way, every time. Think of skills as "apps" that teach Claude your exact process.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 <strong className="text-foreground">How to use it:</strong> Download a .zip file from this site, go to Claude.ai → Settings → Capabilities → Upload Skill. Once installed, just tell Claude to use that skill: "Use the Creative Brief skill to write a brief for this campaign." The skill stays in your account until you remove it.
@@ -161,11 +161,11 @@ export default function HomePage() {
                 <Monitor className="h-6 w-6 text-primary" />
                 Claude Cowork
               </CardTitle>
-              <CardDescription className="text-base">An AI assistant that works directly on your computer</CardDescription>
+              <CardDescription className="text-base">Tell Claude what you need done and watch it work on your actual computer</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">What it is:</strong> A feature in Claude Desktop that lets Claude see your screen, control your mouse and keyboard, open apps, and work with files on your computer. It handles the repetitive tasks so you can focus on the creative ones.
+                <strong className="text-foreground">What it does for you:</strong> Tell Claude what you need done and watch it work — it opens apps, moves files, fills spreadsheets, and creates documents on your actual computer. It handles the repetitive tasks so you can focus on the creative ones.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 <strong className="text-foreground">How to use it:</strong> Download Claude Desktop (Pro/Max required). Open Cowork mode and describe what you need: "Organize these 50 campaign assets into folders by client" or "Turn these meeting notes into a status report in Google Docs." Add the Chrome extension for web tasks, or Gemini MCP for AI image generation.
@@ -189,11 +189,11 @@ export default function HomePage() {
                 <Globe className="h-6 w-6 text-primary" />
                 Perplexity Pro
               </CardTitle>
-              <CardDescription className="text-base">Real-time research that actually cites its sources</CardDescription>
+              <CardDescription className="text-base">Get research answers with clickable sources you can verify</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">What it is:</strong> An AI search engine that reads the internet in real-time and gives you synthesized answers with clickable citations. Unlike Claude (which has a knowledge cutoff), Perplexity knows what happened yesterday. Every claim links to its source so you can verify.
+                <strong className="text-foreground">What it does for you:</strong> Get research answers with clickable sources — competitive analysis, trend reports, and fact-checking backed by real citations you can verify. Unlike Claude (which has a knowledge cutoff), Perplexity knows what happened yesterday.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 <strong className="text-foreground">How to use it:</strong> Use Pro Search for deep research — it reads 10x more sources and shows its reasoning. Ask specific questions: "What campaigns won Cannes Lions for sustainability in 2025?" or "What's Nike's current brand positioning vs Adidas?" Export findings as Markdown for your decks.
@@ -225,13 +225,13 @@ export default function HomePage() {
         </CardHeader>
         <CardContent>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <SkillDownload name="Brief Builder" file="brief-builder.zip" />
-            <SkillDownload name="Concept Deck" file="concept-deck.zip" />
-            <SkillDownload name="Creative Review" file="creative-review.zip" />
-            <SkillDownload name="Script Doctor" file="script-doctor.zip" />
-            <SkillDownload name="Production Specs" file="production-specs.zip" />
-            <SkillDownload name="Copywriting" file="copywriting.zip" />
-            <SkillDownload name="Status Report" file="status-report.zip" />
+            <SkillDownload name="Brief Builder" file="brief-builder.zip" description="Structure creative briefs with objectives, audience, and deliverables" />
+            <SkillDownload name="Concept Deck" file="concept-deck.zip" description="Build concept presentations with strategic narratives and visual direction" />
+            <SkillDownload name="Creative Review" file="creative-review.zip" description="Score creative work against briefs with structured feedback" />
+            <SkillDownload name="Script Doctor" file="script-doctor.zip" description="Analyze and improve scripts for video, radio, and social content" />
+            <SkillDownload name="Production Specs" file="production-specs.zip" description="Generate spec sheets with formats, dimensions, and delivery requirements" />
+            <SkillDownload name="Copywriting" file="copywriting.zip" description="Write on-brand copy for ads, emails, social, and web" />
+            <SkillDownload name="Status Report" file="status-report.zip" description="Create RAG-rated project updates with milestones and risk flags" />
           </div>
         </CardContent>
       </Card>
@@ -315,15 +315,18 @@ function StepCard({ number, title, description }: { number: number; title: strin
   );
 }
 
-function SkillDownload({ name, file }: { name: string; file: string }) {
+function SkillDownload({ name, file, description }: { name: string; file: string; description?: string }) {
   return (
     <a
       href={`/skills/${file}`}
       download
-      className="flex items-center gap-2 p-3 rounded-lg border hover:bg-muted transition-colors"
+      className="flex items-start gap-2 p-3 rounded-lg border hover:bg-muted transition-colors"
     >
-      <Download className="h-4 w-4 text-primary" />
-      <span className="text-sm font-medium">{name}</span>
+      <Download className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+      <div>
+        <span className="text-sm font-medium">{name}</span>
+        {description && <p className="text-xs text-muted-foreground mt-0.5">{description}</p>}
+      </div>
     </a>
   );
 }

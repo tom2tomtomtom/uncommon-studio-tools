@@ -1,6 +1,6 @@
 ---
 name: digital-analytics
-description: Create digital performance reports that turn data into insights and recommendations. Use when analyzing digital marketing metrics or building performance reports.
+description: Creates digital performance reports with executive summaries, KPI dashboards, and actionable recommendations. Delivers data-driven insights with trend analysis and optimization priorities. Use when analyzing marketing metrics, building performance reports, identifying optimization opportunities, or presenting digital results to stakeholders.
 ---
 
 # Analytics & Reporting

@@ -1,6 +1,6 @@
 ---
 name: client-management
-description: Assess client relationship health and develop account management strategies. Use when evaluating client satisfaction, identifying risks, or planning relationship growth.
+description: Assesses client relationship health using scorecards and develops account growth strategies. Delivers health assessments, risk analyses, and QBR agendas. Use when evaluating client satisfaction, identifying account risks, planning quarterly business reviews, or strengthening client partnerships.
 ---
 
 # Client Relationship Health Check

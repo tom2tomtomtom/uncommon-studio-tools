@@ -1,6 +1,6 @@
 ---
 name: executive-comms
-description: Draft and refine executive communications including emails, announcements, and presentations. Ensures strategic alignment and leadership voice.
+description: Drafts executive emails, company announcements, board communications, and leadership talking points. Delivers polished communications with strategic alignment and leadership tone. Use when writing executive emails, preparing board updates, drafting company announcements, or creating leadership talking points.
 ---
 
 # Executive Communication Assistant

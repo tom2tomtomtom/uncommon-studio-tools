@@ -1,6 +1,6 @@
 ---
 name: stakeholder-update
-description: Create project status reports and stakeholder communications. Use for weekly updates, executive summaries, and progress reports.
+description: Creates RAG-rated status reports, executive summaries, and stakeholder communications with milestone tracking. Delivers formatted updates with progress metrics and risk flags. Use when writing weekly status reports, preparing executive summaries, drafting stakeholder updates, or generating meeting agendas.
 ---
 
 # Stakeholder Communication and Reporting

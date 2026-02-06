@@ -1,6 +1,6 @@
 ---
 name: content-transformer
-description: Transform source content into multiple formats for different channels and audiences. Use for content repurposing and multi-channel distribution.
+description: Transforms source content into LinkedIn articles, email newsletters, social posts, and blog formats. Delivers a complete multi-channel content package from a single input. Use when repurposing articles, creating content distribution packages, adapting content for different audiences, or building multi-channel campaigns.
 ---
 
 # Content Transformation
