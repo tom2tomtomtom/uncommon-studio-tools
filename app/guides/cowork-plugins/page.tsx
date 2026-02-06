@@ -323,10 +323,10 @@ export default function CoworkPluginsPage() {
           <div className="flex items-start gap-3">
             <AlertTriangle className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
             <div>
-              <p className="font-medium">Organization Provisioning (Coming Soon)</p>
+              <p className="font-medium">Organization provisioning</p>
               <p className="text-sm text-muted-foreground">
-                Teams will eventually be able to "push" plugins to all employees (e.g., ensuring every support agent
-                uses the same "Refund Processing" plugin), but this is currently in development.
+                Departments can "push" plugins to all members (e.g., ensuring every support agent
+                uses the same "Refund Processing" plugin). Check the Anthropic changelog for the latest availability.
               </p>
             </div>
           </div>

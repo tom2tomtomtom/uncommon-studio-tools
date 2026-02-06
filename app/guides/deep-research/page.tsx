@@ -206,7 +206,7 @@ export default function DeepResearchPage() {
             <p className="font-medium">Use Case: Personal Knowledge Synthesis</p>
             <div className="bg-muted p-4 rounded-lg mt-2 text-sm">
               "Read all the PDF notes in my 'Thesis' folder <span className="text-blue-500">(Local)</span>,
-              search the web for recent counter-arguments published in 2024 <span className="text-green-500">(Web)</span>,
+              search the web for recent counter-arguments published in 2025 <span className="text-green-500">(Web)</span>,
               and write a literature review comparing my notes to the new public data."
             </div>
           </div>

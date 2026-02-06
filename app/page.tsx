@@ -32,12 +32,12 @@ export default function HomePage() {
           <span className="text-primary"> AI Tools</span>
         </h1>
         <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          The creative advertising AI toolkit with {totalPrompts}+ prompts across {totalTeams} agency departments
+          {totalPrompts} AI prompts across {totalTeams} agency departments — ready to copy and paste
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
           <StatCard icon={<FileText className="h-5 w-5" />} label="Prompts" value={totalPrompts} />
           <StatCard icon={<Users className="h-5 w-5" />} label="Departments" value={totalTeams} />
-          <StatCard icon={<Zap className="h-5 w-5" />} label="Tools" value="4 AI Tools" />
+          <StatCard icon={<Zap className="h-5 w-5" />} label="AI Tools" value={4} />
         </div>
       </div>
 
@@ -58,7 +58,7 @@ export default function HomePage() {
         <CardContent>
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <StepCard number={1} title="Choose a solution" description="Find a prompt that addresses your creative challenge" />
-            <StepCard number={2} title="Pick your AI tool" description="Claude Projects, Skills, Cowork, or Perplexity" />
+            <StepCard number={2} title="Pick your AI tool" description="Claude Projects, Claude Skills, Cowork, or Perplexity" />
             <StepCard number={3} title="Upload knowledge" description="Add briefs, brand guidelines, and references" />
             <StepCard number={4} title="Paste & go" description="Copy the prompt and start creating" />
           </ol>
@@ -80,7 +80,7 @@ export default function HomePage() {
                     </span>
                   </CardTitle>
                   <CardDescription className="flex items-center justify-between">
-                    <span>{team.solutionCount} AI solutions</span>
+                    <span>{team.solutionCount} prompts</span>
                     <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </CardDescription>
                 </CardHeader>
@@ -94,7 +94,7 @@ export default function HomePage() {
       <div className="space-y-6">
         <div>
           <h2 className="text-2xl font-bold mb-2">AI Tool Guide</h2>
-          <p className="text-muted-foreground">Four tools, four different superpowers. Choose based on what you're trying to accomplish.</p>
+          <p className="text-muted-foreground">Four tools for different tasks. Choose based on what you need to accomplish.</p>
         </div>
 
         <div className="grid gap-6">
@@ -109,7 +109,7 @@ export default function HomePage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">What it is:</strong> A dedicated workspace in Claude where you upload documents once and they stay forever. Claude remembers everything you've shared—brand guidelines, past campaigns, client history—so you never have to re-explain context.
+                <strong className="text-foreground">What it is:</strong> A dedicated workspace in Claude where you upload documents once and they persist across conversations. Claude remembers everything you've shared — brand guidelines, past campaigns, client history — so you never have to re-explain context.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 <strong className="text-foreground">How to use it:</strong> Create a Project for each major client or campaign. Upload their brand book, tone of voice guide, past creative work, and any briefs. Now every conversation starts with Claude already knowing the brand inside-out. Ask it to write copy, develop concepts, or review work—all in the client's voice.
@@ -133,14 +133,14 @@ export default function HomePage() {
                 <Sparkles className="h-6 w-6 text-primary" />
                 Claude Skills
               </CardTitle>
-              <CardDescription className="text-base">Pre-built workflows you install once and use forever</CardDescription>
+              <CardDescription className="text-base">Pre-built workflows you install once and reuse anytime</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">What it is:</strong> Downloadable instruction sets that teach Claude how to perform specific tasks. Think of them as "apps" for Claude—install a Creative Brief skill, and Claude knows exactly how to structure briefs, what questions to ask, and what format to output.
+                <strong className="text-foreground">What it is:</strong> Downloadable instruction sets that teach Claude how to perform specific tasks. Think of them as "apps" for Claude — install a Creative Brief skill, and Claude knows exactly how to structure briefs, what questions to ask, and what format to output.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">How to use it:</strong> Download a .zip file from this site, go to Claude.ai → Settings → Capabilities → Upload Skill. Once installed, just tell Claude to use that skill: "Use the Creative Brief skill to write a brief for this campaign." The skill stays in your account forever.
+                <strong className="text-foreground">How to use it:</strong> Download a .zip file from this site, go to Claude.ai → Settings → Capabilities → Upload Skill. Once installed, just tell Claude to use that skill: "Use the Creative Brief skill to write a brief for this campaign." The skill stays in your account until you remove it.
               </p>
               <div className="pt-2 border-t">
                 <p className="text-xs font-medium text-foreground mb-2">Best for:</p>
@@ -165,10 +165,10 @@ export default function HomePage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">What it is:</strong> A feature in Claude Desktop that lets Claude see your screen, control your mouse and keyboard, open apps, and work with files on your computer. It's like having an intern who can actually do the work, not just tell you how to do it.
+                <strong className="text-foreground">What it is:</strong> A feature in Claude Desktop that lets Claude see your screen, control your mouse and keyboard, open apps, and work with files on your computer. It handles the repetitive tasks so you can focus on the creative ones.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">How to use it:</strong> Download Claude Desktop (Pro/Max required). Open Cowork mode and describe what you need: "Organize these 50 campaign assets into folders by client" or "Turn these meeting notes into a status report in Google Docs." Claude does the clicking while you grab coffee. Add the Chrome extension for web tasks, or Gemini MCP for AI image generation.
+                <strong className="text-foreground">How to use it:</strong> Download Claude Desktop (Pro/Max required). Open Cowork mode and describe what you need: "Organize these 50 campaign assets into folders by client" or "Turn these meeting notes into a status report in Google Docs." Add the Chrome extension for web tasks, or Gemini MCP for AI image generation.
               </p>
               <div className="pt-2 border-t">
                 <p className="text-xs font-medium text-foreground mb-2">Best for:</p>
@@ -196,7 +196,7 @@ export default function HomePage() {
                 <strong className="text-foreground">What it is:</strong> An AI search engine that reads the internet in real-time and gives you synthesized answers with clickable citations. Unlike Claude (which has a knowledge cutoff), Perplexity knows what happened yesterday. Every claim links to its source so you can verify.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">How to use it:</strong> Use Pro Search for deep research—it reads 10x more sources and shows its reasoning. Ask specific questions: "What campaigns won Cannes Lions for sustainability in 2024?" or "What's Nike's current brand positioning vs Adidas?" Export findings as Markdown for your decks.
+                <strong className="text-foreground">How to use it:</strong> Use Pro Search for deep research — it reads 10x more sources and shows its reasoning. Ask specific questions: "What campaigns won Cannes Lions for sustainability in 2025?" or "What's Nike's current brand positioning vs Adidas?" Export findings as Markdown for your decks.
               </p>
               <div className="pt-2 border-t">
                 <p className="text-xs font-medium text-foreground mb-2">Best for:</p>

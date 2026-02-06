@@ -8,7 +8,7 @@ function SearchFallback() {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Search Prompts</h1>
+        <h1 className="text-3xl font-bold">Search All Prompts</h1>
         <p className="text-muted-foreground mt-2">Loading...</p>
       </div>
       <div className="flex items-center justify-center py-12">

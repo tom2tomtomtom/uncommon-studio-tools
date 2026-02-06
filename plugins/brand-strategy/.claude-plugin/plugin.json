@@ -1,7 +1,7 @@
 {
   "name": "brand-strategy",
   "title": "Brand Strategy",
-  "description": "Turn Claude into your brand strategist. Get help with positioning, competitive analysis, messaging frameworks, and brand architecture.",
+  "description": "Builds brand positioning statements, competitive analysis maps, and messaging frameworks. Delivers positioning documents, competitor comparisons, and messaging hierarchies. Use when developing brand strategy, analyzing competitors, defining differentiation, or creating messaging architectures.",
   "version": "1.0.0",
   "capabilities": {
     "skills": true,

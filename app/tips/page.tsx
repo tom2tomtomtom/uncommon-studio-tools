@@ -53,7 +53,7 @@ export default function TipsPage() {
           </div>
           <div>
             <h1 className="text-3xl font-bold">Expert Tips & Meta-Workflows</h1>
-            <p className="text-muted-foreground">Power-user techniques to supercharge your Claude workflow</p>
+            <p className="text-muted-foreground">Practical techniques to get more out of Claude in your daily work</p>
           </div>
         </div>
       </div>
@@ -285,13 +285,13 @@ export default function TipsPage() {
             Collaboration Workflows
           </CardTitle>
           <CardDescription>
-            Share your Claude work and integrate with team processes
+            Share your Claude work and integrate with department workflows
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <TipBlock
             title="Sharing Conversations"
-            problem="Copying outputs to share with team"
+            problem="Copying outputs to share with your department"
             trick='Click Share → Public Link to create a shareable URL. The recipient sees the full conversation context, making it easy to hand off research or get feedback on Claude-generated work.'
             icon={<Share2 className="h-4 w-4" />}
           />
@@ -362,7 +362,7 @@ export default function TipsPage() {
           <TipBlock
             title="Quick Commands"
             problem="Clicking buttons is slow"
-            trick='Cmd+Enter sends message, Cmd+Shift+; opens new chat, Cmd+K opens command palette. Learn these three and you will navigate 50% faster.'
+            trick='Cmd+Enter sends message, Cmd+Shift+O opens new chat, Cmd+K opens command palette. Learning these three shortcuts keeps you in flow without reaching for the mouse.'
             icon={<Keyboard className="h-4 w-4" />}
           />
 
@@ -418,17 +418,17 @@ export default function TipsPage() {
             <div className="grid gap-3 sm:grid-cols-2">
               <CommandRef command="claude -p 'question'" description="One-shot answer, no session" />
               <CommandRef command="claude commit" description="Auto-generate commit message" />
-              <CommandRef command="claude chat --resume" description="Resume last conversation" />
-              <CommandRef command="claude config" description="Open settings" />
+              <CommandRef command="claude --continue" description="Resume last conversation" />
+              <CommandRef command="claude --help" description="View all available options" />
             </div>
           </div>
           <div>
             <h4 className="text-sm font-medium mb-3">Keyboard Shortcuts</h4>
             <div className="grid gap-3 sm:grid-cols-2">
               <CommandRef command="Cmd + Enter" description="Send message" />
-              <CommandRef command="Cmd + Shift + ;" description="New chat" />
+              <CommandRef command="Cmd + Shift + O" description="New chat" />
               <CommandRef command="Cmd + K" description="Command palette" />
-              <CommandRef command="Cmd + /" description="Toggle sidebar" />
+              <CommandRef command="Cmd + Shift + S" description="Toggle sidebar" />
             </div>
           </div>
         </CardContent>

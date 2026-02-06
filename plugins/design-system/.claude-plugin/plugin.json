@@ -1,7 +1,7 @@
 {
   "name": "design-system",
   "title": "Design System",
-  "description": "Turn Claude into your design consultant. Get help with visual design principles, grid systems, color theory, typography, and accessibility audits.",
+  "description": "Conducts design reviews against WCAG 2.1, generates style guide documentation, and audits accessibility compliance. Delivers annotated design feedback, documented design systems, and accessibility reports. Use when reviewing designs, documenting style guides, checking accessibility, or establishing visual standards.",
   "version": "1.0.0",
   "capabilities": {
     "skills": true,

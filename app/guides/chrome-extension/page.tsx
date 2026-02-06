@@ -49,7 +49,7 @@ export default function ChromeExtensionPage() {
           </div>
           <div>
             <h1 className="text-3xl font-bold">Claude in Chrome</h1>
-            <p className="text-muted-foreground">Turn your browser into an agentic workspace with a virtual intern</p>
+            <p className="text-muted-foreground">Turn your browser into an agentic workspace with an AI assistant</p>
           </div>
         </div>
       </div>
@@ -122,12 +122,12 @@ export default function ChromeExtensionPage() {
         </CardContent>
       </Card>
 
-      {/* Phase 2: Virtual Intern */}
+      {/* Phase 2: Browser AI Assistant */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-white text-sm font-semibold">2</span>
-            Phase 2: The "Virtual Intern" (Basic Workflows)
+            Phase 2: Your browser AI assistant (basic workflows)
           </CardTitle>
           <CardDescription>
             Instead of copying and pasting text, interact directly with your web tools

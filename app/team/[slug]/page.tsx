@@ -10,21 +10,16 @@ interface Props {
 }
 
 const teamDescriptions: Record<string, string> = {
-  'behavioural-science-team': 'Apply behavioral science principles and design evidence-based interventions that drive meaningful behavior change.',
-  'brand-strategy-team': 'Develop brand positioning, competitive intelligence, and strategic brand architecture.',
-  'campaign-management-team': 'Plan, execute, and track campaigns with AI-powered project management tools.',
-  'client-experience-team': 'Enhance client relationships with AI-assisted account management and communication.',
-  'creative-integrated-team': 'Create compelling campaigns with integrated creative and storytelling solutions.',
-  'crisis-communications-team': 'Respond to crises effectively with AI-powered communication strategies.',
-  'events-experiential-team': 'Plan memorable events and brand activations with experiential marketing tools.',
-  'government-relations-team': 'Navigate government communications, policy, and stakeholder engagement.',
-  'influencer-partnership-team': 'Manage influencer relationships and partnership strategies effectively.',
-  'insights-measurement-team': 'Analyze data and measure campaign performance with AI-powered insights.',
-  'leadership-team': 'Strategic planning, executive communications, and board-level presentations.',
-  'new-business-team': 'Win new business with AI-assisted proposals and pitch development.',
-  'operations-culture-team': 'Optimize processes and build team culture with operational excellence tools.',
-  'pr-media-relations-team': 'Master media monitoring, journalist outreach, and press release optimization.',
-  'social-content-team': 'Create engaging social content and develop messaging strategies.',
+  'creative': 'Develop campaign concepts, brainstorm ideas, and craft compelling creative work with AI-powered tools.',
+  'strategy': 'Build brand positioning, competitive analysis, and strategic frameworks for client campaigns.',
+  'account-management': 'Strengthen client relationships with AI-assisted briefs, status reports, and communication tools.',
+  'production': 'Streamline production workflows from spec sheets to vendor briefs and asset management.',
+  'design': 'Accelerate design workflows with AI-powered mood boards, layout concepts, and visual direction.',
+  'digital': 'Plan and optimize digital campaigns, SEO, paid media, and performance marketing.',
+  'copywriting': 'Write headlines, scripts, taglines, and long-form copy with AI-assisted drafting tools.',
+  'new-business': 'Win new business with AI-assisted proposals, pitch decks, and RFP responses.',
+  'project-management': 'Keep projects on track with AI-powered timelines, resource plans, and status updates.',
+  'studio-operations': 'Optimize studio workflows, capacity planning, and operational processes.',
 };
 
 export async function generateStaticParams() {
@@ -37,7 +32,7 @@ export async function generateMetadata({ params }: Props) {
   if (!team) return { title: 'Team Not Found' };
   
   return {
-    title: `${team.name} | AI Implementation Guide`,
+    title: `${team.name} | Uncommon Studio AI Tools`,
     description: teamDescriptions[slug] || `AI tools for the ${team.name}`,
   };
 }
@@ -74,8 +69,8 @@ export default async function TeamPage({ params }: Props) {
           {teamDescriptions[slug] || `AI implementation solutions for the ${team.name}`}
         </p>
         <div className="flex items-center gap-2">
-          <Badge>{team.solutionCount} solutions</Badge>
-          <Badge variant="outline">Projects, Skills, Cowork & Perplexity</Badge>
+          <Badge>{team.solutionCount} prompts</Badge>
+          <Badge variant="outline">Claude Projects, Claude Skills, Cowork & Perplexity</Badge>
         </div>
       </div>
 

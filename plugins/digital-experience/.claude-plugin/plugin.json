@@ -1,7 +1,7 @@
 {
   "name": "digital-experience",
   "title": "Digital Experience",
-  "description": "Turn Claude into your digital marketing expert. Get help with SEO, analytics, email marketing, CRO, and platform optimization.",
+  "description": "Creates SEO content briefs, email campaign plans, and performance reports with CRO recommendations. Delivers keyword-targeted briefs, segmented email sequences, and data-driven performance analyses. Use when optimizing for search, planning email campaigns, analyzing digital performance, or improving conversion rates.",
   "version": "1.0.0",
   "capabilities": {
     "skills": true,

@@ -389,7 +389,7 @@ export default function GammaPage() {
           <div className="space-y-2">
             <p className="font-medium">Pro Tips</p>
             <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
-              <li>Use ChatGPT to brainstorm and outline before Gamma</li>
+              <li>Use Claude to brainstorm and outline before Gamma</li>
               <li>Treat Gamma as a first draft generator — refine after</li>
               <li>Let Gamma Agent find supporting statistics automatically</li>
               <li>Use Smart Diagrams for complex information</li>

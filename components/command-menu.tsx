@@ -65,6 +65,7 @@ export function CommandMenu() {
       {/* Search Trigger Button */}
       <button
         onClick={() => setOpen(true)}
+        aria-label="Search prompts and departments (Cmd+K)"
         className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground bg-muted rounded-lg hover:bg-accent transition-colors w-full md:w-64"
       >
         <Search className="h-4 w-4" />
@@ -76,12 +77,12 @@ export function CommandMenu() {
 
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput
-          placeholder="Search prompts, teams..."
+          placeholder="Search prompts, departments..."
           value={query}
           onValueChange={handleSearch}
         />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandEmpty>No matching prompts or departments. Try a different search term.</CommandEmpty>
 
           {/* Quick Links */}
           {query.length < 2 && (
@@ -93,7 +94,7 @@ export function CommandMenu() {
                 </CommandItem>
                 <CommandItem onSelect={() => handleSelect('/search')}>
                   <Search className="mr-2 h-4 w-4" />
-                  Full Search
+                  Browse All Prompts
                 </CommandItem>
                 <CommandItem onSelect={() => handleSelect('/favorites')}>
                   <Star className="mr-2 h-4 w-4" />
@@ -101,7 +102,7 @@ export function CommandMenu() {
                 </CommandItem>
               </CommandGroup>
 
-              <CommandGroup heading="Teams">
+              <CommandGroup heading="Departments">
                 {teams.slice(0, 5).map(team => (
                   <CommandItem key={team.slug} onSelect={() => handleSelect(`/team/${team.slug}`)}>
                     <Users className="mr-2 h-4 w-4" />

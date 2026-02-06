@@ -59,29 +59,29 @@ export default function FavoritesPage() {
               Popular starting points
             </p>
             <div className="flex flex-wrap justify-center gap-2">
-              <Link href="/team/crisis-communications-team">
+              <Link href="/team/creative">
                 <Badge variant="outline" className="cursor-pointer hover:bg-accent">
-                  🛡️ Crisis Response
+                  🎨 Creative
                 </Badge>
               </Link>
-              <Link href="/team/pr-media-relations-team">
+              <Link href="/team/strategy">
                 <Badge variant="outline" className="cursor-pointer hover:bg-accent">
-                  📣 Press Releases
+                  🎯 Strategy
                 </Badge>
               </Link>
-              <Link href="/team/social-content-team">
+              <Link href="/team/copywriting">
                 <Badge variant="outline" className="cursor-pointer hover:bg-accent">
-                  📱 Social Content
+                  ✍️ Copywriting
                 </Badge>
               </Link>
-              <Link href="/team/brand-strategy-team">
+              <Link href="/team/digital">
                 <Badge variant="outline" className="cursor-pointer hover:bg-accent">
-                  🎯 Brand Strategy
+                  📱 Digital
                 </Badge>
               </Link>
-              <Link href="/team/client-experience-team">
+              <Link href="/team/production">
                 <Badge variant="outline" className="cursor-pointer hover:bg-accent">
-                  👥 Client Management
+                  🎬 Production
                 </Badge>
               </Link>
             </div>

@@ -1,7 +1,7 @@
 {
   "name": "client-experience",
   "title": "Client Experience",
-  "description": "Turn Claude into your account management partner. Get help with meeting notes, proposals, client health monitoring, and strategic account planning.",
+  "description": "Generates structured meeting notes, client proposals, and account health scorecards using RAID logs. Delivers formatted meeting summaries, proposal documents, and relationship health assessments. Use when running client meetings, building proposals, assessing account health, or planning quarterly business reviews.",
   "version": "1.0.0",
   "capabilities": {
     "skills": true,

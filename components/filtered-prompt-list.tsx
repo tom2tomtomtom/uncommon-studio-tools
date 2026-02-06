@@ -10,7 +10,7 @@ import type { Prompt } from '@/lib/prompts';
 type SortOption = 'default' | 'name-asc' | 'name-desc';
 
 const sortLabels: Record<SortOption, string> = {
-  'default': 'Default',
+  'default': 'Recommended',
   'name-asc': 'Name A-Z',
   'name-desc': 'Name Z-A',
 };
@@ -80,6 +80,7 @@ export function FilteredPromptList({ prompts }: FilteredPromptListProps) {
             size="sm"
             onClick={cycleSortOption}
             className="gap-2"
+            aria-label={`Sort prompts, currently ${sortLabels[sortBy]}`}
           >
             <ArrowUpDown className="h-4 w-4" />
             {sortLabels[sortBy]}
@@ -95,7 +96,8 @@ export function FilteredPromptList({ prompts }: FilteredPromptListProps) {
 
       {filteredPrompts.length === 0 && (
         <div className="text-center py-8 text-muted-foreground">
-          No prompts match this filter.
+          <p>No prompts match this filter.</p>
+          <p className="text-sm mt-1">Try selecting a different tool type or resetting the filter to see all prompts.</p>
         </div>
       )}
     </div>

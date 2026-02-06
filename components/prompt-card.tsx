@@ -108,6 +108,7 @@ export function PromptCard({ prompt }: PromptCardProps) {
                 size="icon"
                 className="h-8 w-8"
                 onClick={handleFavorite}
+                aria-label={favorited ? `Remove ${prompt.name} from favorites` : `Add ${prompt.name} to favorites`}
               >
                 <Star
                   className={`h-4 w-4 transition-colors ${
@@ -121,6 +122,7 @@ export function PromptCard({ prompt }: PromptCardProps) {
                 size="sm"
                 className="gap-1.5 h-8"
                 onClick={handleCopy}
+                aria-label={copied ? `Copied ${prompt.name}` : `Copy ${prompt.name} to clipboard`}
               >
                 {copied ? (
                   <>
@@ -135,7 +137,7 @@ export function PromptCard({ prompt }: PromptCardProps) {
                 )}
               </Button>
               <CollapsibleTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-1 h-8">
+                <Button variant="outline" size="sm" className="gap-1 h-8" aria-label={isOpen ? `Collapse ${prompt.name} details` : `Expand ${prompt.name} details`}>
                   {isOpen ? (
                     <ChevronUp className="h-4 w-4" />
                   ) : (
@@ -156,12 +158,12 @@ export function PromptCard({ prompt }: PromptCardProps) {
             {prompt.knowledgeToUpload.length > 0 && (
               <Badge variant="outline" className="gap-1">
                 <BookOpen className="h-3 w-3" />
-                {prompt.knowledgeToUpload.length} files recommended
+                {prompt.knowledgeToUpload.length} {prompt.knowledgeToUpload.length === 1 ? 'file suggested' : 'files suggested'}
               </Badge>
             )}
             {prompt.toolRecommendation === 'Claude Cowork' && (
               <Badge variant="outline" className="text-xs">
-                Requires Claude Desktop
+                Requires Claude Desktop app
               </Badge>
             )}
           </div>
@@ -189,7 +191,7 @@ export function PromptCard({ prompt }: PromptCardProps) {
                     <div className="mb-4">
                       <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
                         <BookOpen className="h-4 w-4" />
-                        Recommended Knowledge to Upload
+                        Suggested uploads
                       </h4>
                       <ul className="text-sm text-muted-foreground space-y-1 ml-4 list-disc">
                         {prompt.knowledgeToUpload.map((item, i) => (
@@ -199,40 +201,40 @@ export function PromptCard({ prompt }: PromptCardProps) {
                     </div>
                   )}
 
+                  {/* Tool-specific notes */}
+                  {prompt.toolRecommendation === 'Claude Skill' && skillFiles[prompt.id] && (
+                    <div className="mb-4 p-3 bg-primary/5 rounded-lg border border-primary/20">
+                      <p className="text-sm text-muted-foreground mb-2">
+                        <strong>Install as Skill:</strong> Download the ZIP, then go to Claude.ai &rarr; Settings &rarr; Capabilities &rarr; Upload Skill.
+                      </p>
+                      <Button variant="outline" size="sm" asChild className="gap-2">
+                        <a href={`/skills/${skillFiles[prompt.id]}`} download>
+                          <Download className="h-4 w-4" />
+                          Download Skill ZIP
+                        </a>
+                      </Button>
+                    </div>
+                  )}
+                  {prompt.toolRecommendation === 'Claude Cowork' && (
+                    <div className="mb-4 p-3 bg-muted rounded-lg">
+                      <p className="text-sm text-muted-foreground">
+                        <strong>Use with Claude Desktop:</strong> Open the Claude Desktop app on macOS, enable Cowork, and grant folder access. Install the Chrome extension for web capture and Gemini MCP for image generation.
+                      </p>
+                    </div>
+                  )}
+                  {prompt.toolRecommendation === 'Perplexity' && (
+                    <div className="mb-4 p-3 bg-muted rounded-lg">
+                      <p className="text-sm text-muted-foreground">
+                        <strong>Use with Perplexity:</strong> This prompt works best with real-time web search. Use it at perplexity.ai or via the Perplexity API.
+                      </p>
+                    </div>
+                  )}
+
                   {/* Prompt Text */}
                   <div className="relative">
                     <div className="bg-muted rounded-lg p-4 font-mono text-sm overflow-x-auto max-h-96 overflow-y-auto whitespace-pre-wrap">
                       {prompt.prompt}
                     </div>
-                    
-                    {/* Tool-specific notes */}
-                    {prompt.toolRecommendation === 'Claude Skill' && skillFiles[prompt.id] && (
-                      <div className="mb-4 p-3 bg-primary/5 rounded-lg border border-primary/20">
-                        <p className="text-sm text-muted-foreground mb-2">
-                          <strong>Install as Skill:</strong> Download the ZIP, then go to Claude.ai → Settings → Capabilities → Upload Skill
-                        </p>
-                        <Button variant="outline" size="sm" asChild className="gap-2">
-                          <a href={`/skills/${skillFiles[prompt.id]}`} download>
-                            <Download className="h-4 w-4" />
-                            Download Skill ZIP
-                          </a>
-                        </Button>
-                      </div>
-                    )}
-                    {prompt.toolRecommendation === 'Claude Cowork' && (
-                      <div className="mb-4 p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground">
-                          <strong>Use with Claude Desktop:</strong> Open Claude Desktop app on macOS, enable Cowork, and grant folder access. Install the Chrome extension for web capture and Gemini MCP for image generation.
-                        </p>
-                      </div>
-                    )}
-                    {prompt.toolRecommendation === 'Perplexity' && (
-                      <div className="mb-4 p-3 bg-muted rounded-lg">
-                        <p className="text-sm text-muted-foreground">
-                          <strong>Use with Perplexity:</strong> This prompt works best with real-time web search. Use at perplexity.ai or via the Perplexity API.
-                        </p>
-                      </div>
-                    )}
 
                     {/* Action Buttons */}
                     <div className="flex flex-wrap gap-2 mt-4">

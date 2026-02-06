@@ -240,7 +240,7 @@ export default function CustomSkillsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap className="h-5 w-5 text-amber-500" />
-            Expert Tip: "Self-Healing" Skills
+            Pro tip: "Self-healing" skills
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">

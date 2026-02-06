@@ -137,7 +137,7 @@ const googleGuides = [
     description: 'Transform documents into AI-powered study guides with Audio Overviews',
     icon: Mic,
     difficulty: 'Beginner',
-    time: '15 min',
+    time: '20 min',
     color: 'text-rose-500',
   },
 ];
@@ -150,7 +150,7 @@ const perplexityGuides = [
     description: 'Master Pro Search, Spaces, Focus Modes, and the Sonar API for research',
     icon: Compass,
     difficulty: 'Beginner',
-    time: '15 min',
+    time: '20 min',
     color: 'text-teal-500',
   },
 ];
@@ -186,7 +186,7 @@ const elevenLabsGuides = [
   {
     slug: 'elevenlabs',
     title: 'ElevenLabs Voice AI',
-    description: 'Generate lifelike speech, clone voices, and dub content in 32 languages',
+    description: 'Generate lifelike speech, clone voices, and dub content in 70+ languages',
     icon: AudioLines,
     difficulty: 'Beginner',
     time: '15 min',
@@ -303,7 +303,7 @@ export default function GuidesPage() {
             <BookOpen className="h-6 w-6" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold">Getting Started Guides</h1>
+            <h1 className="text-3xl font-bold">Getting started guides</h1>
             <p className="text-muted-foreground">{totalGuides} tutorials across {sections.length} AI platforms</p>
           </div>
         </div>
@@ -313,7 +313,7 @@ export default function GuidesPage() {
       <Card className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5">
         <CardContent className="pt-6">
           <p className="text-muted-foreground">
-            These guides are designed for non-technical users. Each one walks you through a specific AI tool or feature
+            These guides are designed for everyone on the team. Each one walks you through a specific AI tool or feature
             with plain-English explanations and copy-paste commands. No coding experience required.
           </p>
         </CardContent>

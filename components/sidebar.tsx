@@ -21,21 +21,16 @@ import {
 } from 'lucide-react';
 
 const teamIcons: Record<string, string> = {
-  'behavioural-science-team': '🧠',
-  'brand-strategy-team': '🎯',
-  'campaign-management-team': '📊',
-  'client-experience-team': '👥',
-  'creative-integrated-team': '🎨',
-  'crisis-communications-team': '🛡️',
-  'events-experiential-team': '🎪',
-  'government-relations-team': '🏛️',
-  'influencer-partnership-team': '🤝',
-  'insights-measurement-team': '📈',
-  'leadership-team': '👔',
-  'new-business-team': '💼',
-  'operations-culture-team': '⚙️',
-  'pr-media-relations-team': '📣',
-  'social-content-team': '📱',
+  'creative': '🎨',
+  'strategy': '🎯',
+  'account-management': '👥',
+  'production': '🎬',
+  'design': '✏️',
+  'digital': '📱',
+  'copywriting': '✍️',
+  'new-business': '💼',
+  'project-management': '📋',
+  'studio-operations': '⚙️',
 };
 
 export function Sidebar() {
@@ -75,7 +70,7 @@ export function Sidebar() {
       <div className="flex h-16 items-center justify-between px-4 border-b">
         {!collapsed && (
           <Link href="/" className="font-bold text-lg truncate">
-            AI Tools
+            Uncommon Studio
           </Link>
         )}
         {/* Desktop collapse button */}
@@ -129,7 +124,7 @@ export function Sidebar() {
           {/* Teams */}
           {!collapsed && (
             <div className="mb-2 px-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-              Teams
+              Departments
             </div>
           )}
           {teams.map(team => (
@@ -150,7 +145,7 @@ export function Sidebar() {
       <div className="border-t p-4">
         {!collapsed && (
           <div className="text-xs text-muted-foreground">
-            {teams.reduce((acc, t) => acc + t.solutionCount, 0)} prompts across {teams.length} teams
+            {teams.reduce((acc, t) => acc + t.solutionCount, 0)} prompts across {teams.length} departments
           </div>
         )}
       </div>

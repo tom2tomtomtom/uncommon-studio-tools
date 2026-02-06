@@ -77,12 +77,12 @@ export default function ProjectsPage() {
         <CardContent>
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="p-3 rounded-lg border">
-              <p className="font-medium text-sm">Free Plan</p>
-              <p className="text-xs text-muted-foreground">Up to 5 projects</p>
+              <p className="font-medium text-sm">Free plan</p>
+              <p className="text-xs text-muted-foreground">Limited projects available</p>
             </div>
             <div className="p-3 rounded-lg border">
               <p className="font-medium text-sm">Pro / Team / Enterprise</p>
-              <p className="text-xs text-muted-foreground">Higher project limits</p>
+              <p className="text-xs text-muted-foreground">Expanded project limits</p>
             </div>
           </div>
         </CardContent>
@@ -103,17 +103,17 @@ export default function ProjectsPage() {
           <div>
             <p className="font-medium">How to Add</p>
             <p className="text-sm text-muted-foreground mt-1">
-              Inside a project, look for the "Project Knowledge" section on the right.
-              Click <strong>Add Content</strong> to upload text files, PDFs, or code snippets.
+              Inside a project, look for the Knowledge section.
+              Click <strong>Add content</strong> to upload text files, PDFs, or code snippets.
             </p>
           </div>
 
           <div>
             <p className="font-medium">The Context Window Strategy</p>
             <p className="text-sm text-muted-foreground mt-1">
-              You have a <strong>200k token limit</strong> (roughly a 500-page book) for Project Knowledge.
-              If you exceed this, Claude uses "RAG" (Retrieval-Augmented Generation) to find relevant snippets
-              rather than reading the whole library at once.
+              Project Knowledge has a generous token limit (check current plan details for exact figures).
+              If your uploads exceed the context window, Claude uses "RAG" (Retrieval-Augmented Generation)
+              to find relevant snippets rather than reading the whole library at once.
             </p>
           </div>
 

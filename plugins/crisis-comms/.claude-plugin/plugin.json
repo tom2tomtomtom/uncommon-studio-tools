@@ -1,7 +1,7 @@
 {
   "name": "crisis-comms",
   "title": "Crisis Communications",
-  "description": "Turn Claude into your crisis communications expert. Get instant help with response plans, stakeholder messaging, and media management during critical situations.",
+  "description": "Generates crisis response plans, stakeholder updates, and media holding statements using the REACT model. Delivers response timelines, messaging matrices, and press statements. Use when responding to breaking news, managing stakeholder communications, or drafting media responses during critical situations.",
   "version": "1.0.0",
   "capabilities": {
     "skills": true,

@@ -1,4 +1,4 @@
-// Uncommon Studio - AI Implementation Guide
+// Uncommon Studio AI Tools
 // Creative Advertising Agency Prompts
 
 export interface Prompt {

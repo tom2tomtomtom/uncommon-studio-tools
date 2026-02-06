@@ -61,8 +61,8 @@ export default function NotebookLMPage() {
               <p className="font-medium">What is NotebookLM?</p>
               <p className="text-muted-foreground mt-1">
                 NotebookLM is Google's AI research assistant that works exclusively from your uploaded sources.
-                Unlike ChatGPT or Perplexity, it <strong>never makes things up</strong> — every response is grounded
-                in your documents with inline citations. The killer feature: <strong>Audio Overviews</strong> that turn
+                Unlike general-purpose chatbots, it <strong>stays grounded in your sources</strong> — every response includes
+                inline citations so you can verify claims. The killer feature: <strong>Audio Overviews</strong> that turn
                 your sources into podcast-style discussions.
               </p>
             </div>
@@ -106,8 +106,8 @@ export default function NotebookLMPage() {
                 <p className="font-medium text-sm">Debate</p>
                 <p className="text-xs text-muted-foreground">Hosts take opposing viewpoints</p>
               </div>
-              <div className="p-3 rounded-lg border border-dashed">
-                <p className="font-medium text-sm">Lecture (Coming Soon)</p>
+              <div className="p-3 rounded-lg border">
+                <p className="font-medium text-sm">Lecture</p>
                 <p className="text-xs text-muted-foreground">Single host, 30-minute structured monologue</p>
               </div>
             </div>

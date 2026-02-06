@@ -133,7 +133,7 @@ export default function N8nPage() {
         <CardContent className="space-y-4">
           <p className="text-muted-foreground">
             n8n is a full <strong>AI orchestration platform</strong> powered by LangChain,
-            with 5,000+ AI workflow templates available.
+            with 7,800+ community workflow templates available.
           </p>
 
           <div className="grid gap-3 sm:grid-cols-2">
@@ -210,7 +210,7 @@ export default function N8nPage() {
           <div className="p-4 rounded-lg border">
             <p className="font-medium">Lead Management & CRM</p>
             <p className="text-sm text-muted-foreground mt-1">
-              Capture form submissions, validate and enrich data with Clearbit,
+              Capture form submissions, validate and enrich data with enrichment APIs,
               auto-create CRM records, assign leads, and notify reps via Slack.
             </p>
           </div>

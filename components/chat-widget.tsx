@@ -11,7 +11,7 @@ import Link from 'next/link';
 interface Recommendation {
   title: string;
   url: string;
-  type: 'Guide' | 'Team' | 'Prompt' | 'Page';
+  type: 'Guide' | 'Department' | 'Prompt' | 'Page';
 }
 
 interface Message {
@@ -52,7 +52,7 @@ const APP_PAGES = {
   ],
 };
 
-const SYSTEM_PROMPT = `You are a helpful AI assistant for an AI toolkit with ${teams.length} specialized teams, ${prompts.length}+ AI prompts, and comprehensive guides for AI tools.
+const SYSTEM_PROMPT = `You are Uncommon AI, a helpful assistant for the Uncommon Studio AI Tools creative toolkit. The toolkit has ${teams.length} departments, ${prompts.length}+ AI prompts, and comprehensive guides for AI tools.
 
 You MUST respond in this EXACT JSON format:
 {
@@ -61,7 +61,7 @@ You MUST respond in this EXACT JSON format:
     {
       "title": "Display Name",
       "url": "/path/to/page",
-      "type": "Guide" | "Team" | "Prompt" | "Page"
+      "type": "Guide" | "Department" | "Prompt" | "Page"
     }
   ]
 }
@@ -88,7 +88,7 @@ AVAILABLE RESOURCES:
 - gamma: AI presentations
 - aiden-studio: AI Creative Director
 
-**Teams (use /team/slug):**
+**Departments (use /team/slug):**
 ${teams.map(t => `- ${t.slug}: ${t.name} (${t.solutionCount} prompts)`).join('\n')}
 
 **Other Pages:**
@@ -105,14 +105,14 @@ RULES:
 5. Output RAW JSON only, no markdown code blocks
 
 ROUTING LOGIC:
-- "video" → runway guide, creative team
+- "video" → runway guide, creative department
 - "voice", "audio", "speech" → elevenlabs guide
 - "presentation", "deck", "slides" → gamma guide
 - "automation", "workflow" → n8n guide
 - "research" → deep-research guide, perplexity guide
-- "creative", "campaign", "concept" → creative team, aiden-studio guide
-- "strategy", "planning" → strategy team
-- "copy", "writing", "content" → copywriting team
+- "creative", "campaign", "concept" → creative department, aiden-studio guide
+- "strategy", "planning" → strategy department
+- "copy", "writing", "content" → copywriting department
 - "project", "context", "setup" → projects guide
 - "code", "terminal", "CLI" → claude-code guide
 - "browser", "chrome" → chrome-extension guide
@@ -123,7 +123,7 @@ export function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "Hi! I'm your AI assistant. Tell me what you're working on and I'll recommend the best tools and guides!",
+      content: "Hi! I'm Uncommon AI, your guide to our creative toolkit. Tell me what you're working on and I'll point you to the right prompts, departments, and guides.",
       recommendations: []
     }
   ]);
@@ -157,7 +157,7 @@ export function ChatWidget() {
         }),
       });
       const data = await res.json();
-      let responseContent = data.content || data.error || 'Sorry, something went wrong.';
+      let responseContent = data.content || data.error || 'Something went wrong on our end. Try sending your message again.';
 
       // Try to parse JSON response
       let parsedResponse: { text: string; recommendations: Recommendation[] } | null = null;
@@ -189,7 +189,7 @@ export function ChatWidget() {
     } catch {
       setMessages(prev => [
         ...prev,
-        { role: 'assistant', content: 'Failed to get a response. Please try again.' }
+        { role: 'assistant', content: 'I couldn\'t connect just now. Check your internet connection and try again.' }
       ]);
     } finally {
       setIsLoading(false);
@@ -206,9 +206,10 @@ export function ChatWidget() {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             onClick={() => setIsOpen(true)}
+            aria-label="Open Uncommon AI chat assistant"
             className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-4 py-3 shadow-lg hover:shadow-xl transition-shadow"
           >
-            <MessageCircle className="h-5 w-5" />
+            <MessageCircle className="h-5 w-5" aria-hidden="true" />
             <span className="font-medium">Need Help?</span>
           </motion.button>
         )}
@@ -231,13 +232,14 @@ export function ChatWidget() {
             <div className="flex items-center justify-between p-4 border-b shrink-0">
               <div className="flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-primary" />
-                <span className="font-semibold">AI Assistant</span>
+                <span className="font-semibold">Uncommon AI</span>
               </div>
               <Button
                 variant="ghost"
                 size="icon"
                 className="h-8 w-8"
                 onClick={() => setIsOpen(false)}
+                aria-label="Close chat"
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -277,7 +279,7 @@ export function ChatWidget() {
                           >
                             <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
                               rec.type === 'Guide' ? 'bg-blue-500' :
-                              rec.type === 'Team' ? 'bg-purple-500' :
+                              rec.type === 'Department' ? 'bg-purple-500' :
                               rec.type === 'Prompt' ? 'bg-green-500' :
                               'bg-orange-500'
                             }`} />
@@ -318,7 +320,7 @@ export function ChatWidget() {
                   disabled={isLoading}
                   className="text-sm"
                 />
-                <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
+                <Button type="submit" size="icon" disabled={isLoading || !input.trim()} aria-label="Send message">
                   <Send className="h-4 w-4" />
                 </Button>
               </form>

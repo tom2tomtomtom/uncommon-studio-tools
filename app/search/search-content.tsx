@@ -60,9 +60,9 @@ export function SearchContent() {
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold">Search Prompts</h1>
+        <h1 className="text-3xl font-bold">Search All Prompts</h1>
         <p className="text-muted-foreground mt-2">
-          Search across {prompts.length} AI prompts
+          Find the right prompt across {prompts.length} tools and {teams.length} departments
         </p>
       </div>
 
@@ -71,10 +71,11 @@ export function SearchContent() {
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
           type="search"
-          placeholder="Search by name, description, or content..."
+          placeholder="Search by name, department, or keyword..."
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
           className="pl-10"
+          aria-label="Search prompts"
         />
         {query && (
           <Button
@@ -82,20 +83,22 @@ export function SearchContent() {
             size="icon"
             className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8"
             onClick={() => setQuery('')}
+            aria-label="Clear search"
           >
             <X className="h-4 w-4" />
           </Button>
         )}
       </div>
 
-      {/* Team Filter */}
-      <div className="flex flex-wrap gap-2">
+      {/* Department Filter */}
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by department">
         <Button
           variant={selectedTeam === null ? 'default' : 'outline'}
           size="sm"
           onClick={() => setSelectedTeam(null)}
+          aria-pressed={selectedTeam === null}
         >
-          All Teams
+          All Departments
         </Button>
         {teams.map(team => (
           <Button
@@ -103,6 +106,7 @@ export function SearchContent() {
             variant={selectedTeam === team.slug ? 'default' : 'outline'}
             size="sm"
             onClick={() => setSelectedTeam(team.slug === selectedTeam ? null : team.slug)}
+            aria-pressed={selectedTeam === team.slug}
           >
             {team.name.replace(' Team', '')}
           </Button>
@@ -121,9 +125,16 @@ export function SearchContent() {
         {results.length === 0 ? (
           <div className="text-center py-12">
             <Search className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-            <h3 className="text-lg font-medium">No results found</h3>
-            <p className="text-muted-foreground">
-              Try adjusting your search or filters
+            <h3 className="text-lg font-medium">No matching prompts</h3>
+            <p className="text-muted-foreground mt-1">
+              Try a different keyword, remove the department filter, or{' '}
+              <button
+                onClick={() => { setQuery(''); setSelectedTeam(null); }}
+                className="text-primary hover:underline font-medium"
+              >
+                clear all filters
+              </button>{' '}
+              to browse everything.
             </p>
           </div>
         ) : (

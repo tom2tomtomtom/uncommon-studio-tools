@@ -76,18 +76,18 @@ export default function ClaudeCodePage() {
         </CardHeader>
         <CardContent className="space-y-6">
           <div>
-            <h4 className="font-medium mb-2">Mac Users</h4>
+            <h4 className="font-medium mb-2">Mac / Linux users</h4>
             <p className="text-sm text-muted-foreground mb-2">Open "Terminal" and paste this line:</p>
             <pre className="bg-muted p-3 rounded-lg overflow-x-auto text-sm font-mono">
-              curl -fsSL https://claude.ai/install.sh | bash
+              npm install -g @anthropic-ai/claude-code
             </pre>
           </div>
 
           <div>
-            <h4 className="font-medium mb-2">Windows Users</h4>
+            <h4 className="font-medium mb-2">Windows users</h4>
             <p className="text-sm text-muted-foreground mb-2">Open "PowerShell" and paste this line:</p>
             <pre className="bg-muted p-3 rounded-lg overflow-x-auto text-sm font-mono">
-              irm https://claude.ai/install.ps1 | iex
+              npm install -g @anthropic-ai/claude-code
             </pre>
           </div>
 

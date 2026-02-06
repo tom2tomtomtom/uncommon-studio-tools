@@ -11,9 +11,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI Implementation Guide | PR & Communications Toolkit",
-  description: "76+ AI prompts across 15 specialized teams for PR, communications, and brand strategy",
-  keywords: ["AI", "PR", "communications", "prompts", "Claude", "Perplexity"],
+  title: "Uncommon Studio AI Tools | Creative Agency Prompt Toolkit",
+  description: "60+ AI prompts across 10 agency departments for creative advertising, strategy, and production",
+  keywords: ["AI", "creative advertising", "agency tools", "prompts", "Claude", "Perplexity"],
 };
 
 export default function RootLayout({
@@ -41,7 +41,7 @@ export default function RootLayout({
                 <div className="flex items-center justify-between px-4 md:px-6 h-16">
                   {/* Spacer for mobile menu button */}
                   <div className="w-10 md:hidden" />
-                  <h1 className="text-lg md:text-xl font-semibold">AI Implementation Guide</h1>
+                  <h1 className="text-lg md:text-xl font-semibold">Uncommon Studio AI Tools</h1>
                   <div className="flex items-center gap-3">
                     <CommandMenu />
                     <ThemeToggle />

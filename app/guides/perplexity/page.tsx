@@ -55,9 +55,9 @@ export default function PerplexityPage() {
             <div>
               <p className="font-medium">What is Perplexity?</p>
               <p className="text-muted-foreground mt-1">
-                Perplexity is an AI-powered answer engine that combines the conversational abilities of ChatGPT
+                Perplexity is an AI-powered answer engine that combines conversational AI
                 with real-time web search. Every answer includes <strong>inline citations</strong> so you can verify sources.
-                Think of it as "Google meets ChatGPT" — you get direct answers, not just links.
+                Think of it as "Google meets Claude" — you get direct answers, not just links.
               </p>
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function PerplexityPage() {
             <div className="p-4 rounded-lg border">
               <p className="font-medium">Reasoning Search</p>
               <p className="text-sm text-muted-foreground mt-1">
-                Shows Claude/GPT's step-by-step thinking process. Best for math, logic problems,
+                Shows Claude's step-by-step thinking process. Best for math, logic problems,
                 and understanding how the AI reaches conclusions.
               </p>
             </div>

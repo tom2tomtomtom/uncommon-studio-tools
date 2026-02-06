@@ -240,7 +240,7 @@ export default function PowerHacksPage() {
           </div>
 
           <div>
-            <p className="font-medium">The "Virtual Intern" Workflows</p>
+            <p className="font-medium">Browser assistant workflows</p>
             <div className="grid gap-3 sm:grid-cols-2 mt-2">
               <div className="p-3 rounded-lg border">
                 <p className="font-medium text-sm">Calendar Management</p>

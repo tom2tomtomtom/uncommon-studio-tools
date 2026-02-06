@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       (provider === 'anthropic' ? process.env.ANTHROPIC_API_KEY : process.env.PERPLEXITY_API_KEY);
 
     if (!apiKey) {
-      return NextResponse.json({ error: 'API key not configured' }, { status: 400 });
+      return NextResponse.json({ error: 'No API key found. Add your API key in Settings to start using the chat.' }, { status: 400 });
     }
 
     if (provider === 'anthropic') {
@@ -45,17 +45,29 @@ export async function POST(request: NextRequest) {
       });
 
       if (!response.ok) {
-        const error = await response.text();
-        console.error('Anthropic API error:', error);
+        const errorBody = await response.text();
+        console.error('Anthropic API error:', errorBody);
+        if (response.status === 401) {
+          return NextResponse.json(
+            { error: 'Your Anthropic API key was not accepted. Check that it is correct in Settings and try again.' },
+            { status: 401 }
+          );
+        }
+        if (response.status === 429) {
+          return NextResponse.json(
+            { error: 'Rate limit reached. Wait a moment and try again, or check your Anthropic plan usage.' },
+            { status: 429 }
+          );
+        }
         return NextResponse.json(
-          { error: 'Failed to get response from Claude.' },
+          { error: 'Claude could not process your request right now. Try again in a few seconds.' },
           { status: response.status }
         );
       }
 
       const data = await response.json();
       return NextResponse.json({
-        content: data.content?.[0]?.text || 'No response',
+        content: data.content?.[0]?.text || 'No response was returned. Try rephrasing your message.',
       });
     } else {
       // Perplexity
@@ -79,23 +91,35 @@ export async function POST(request: NextRequest) {
       });
 
       if (!response.ok) {
-        const error = await response.text();
-        console.error('Perplexity API error:', error);
+        const errorBody = await response.text();
+        console.error('Perplexity API error:', errorBody);
+        if (response.status === 401) {
+          return NextResponse.json(
+            { error: 'Your Perplexity API key was not accepted. Check that it is correct in Settings and try again.' },
+            { status: 401 }
+          );
+        }
+        if (response.status === 429) {
+          return NextResponse.json(
+            { error: 'Rate limit reached. Wait a moment and try again, or check your Perplexity plan usage.' },
+            { status: 429 }
+          );
+        }
         return NextResponse.json(
-          { error: 'Failed to get response from Perplexity.' },
+          { error: 'Perplexity could not process your request right now. Try again in a few seconds.' },
           { status: response.status }
         );
       }
 
       const data = await response.json();
       return NextResponse.json({
-        content: data.choices?.[0]?.message?.content || 'No response',
+        content: data.choices?.[0]?.message?.content || 'No response was returned. Try rephrasing your message.',
       });
     }
   } catch (error) {
     console.error('Chat API error:', error);
     return NextResponse.json(
-      { error: 'An unexpected error occurred' },
+      { error: 'Something went wrong on our end. Refresh the page and try again.' },
       { status: 500 }
     );
   }

@@ -60,6 +60,7 @@ export function RecentlyUsed() {
                 variant="ghost"
                 size="sm"
                 className="h-7 text-xs text-muted-foreground hover:text-foreground"
+                aria-label="Clear recently copied prompts"
               >
                 <X className="h-3 w-3 mr-1" />
                 Clear
@@ -69,7 +70,7 @@ export function RecentlyUsed() {
               <DialogHeader>
                 <DialogTitle>Clear recent items?</DialogTitle>
                 <DialogDescription>
-                  This will remove all {recentPrompts.length} recently copied prompts from your history. This action cannot be undone.
+                  This will remove {recentPrompts.length === 1 ? 'your 1 recently copied prompt' : `all ${recentPrompts.length} recently copied prompts`} from your history. This action cannot be undone.
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter className="gap-2 sm:gap-0">
@@ -110,6 +111,7 @@ export function RecentlyUsed() {
                 size="sm"
                 className="shrink-0 h-8 w-8 p-0"
                 onClick={() => handleCopy(prompt.id, prompt.prompt, prompt.name)}
+                aria-label={copiedId === prompt.id ? `Copied ${prompt.name}` : `Copy ${prompt.name} to clipboard`}
               >
                 {copiedId === prompt.id ? (
                   <Check className="h-3.5 w-3.5" />

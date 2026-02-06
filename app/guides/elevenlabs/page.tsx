@@ -60,7 +60,7 @@ export default function ElevenLabsPage() {
               <p className="text-muted-foreground mt-1">
                 ElevenLabs is an AI voice platform that generates <strong>lifelike speech</strong> with
                 nuanced intonation, pacing, and emotional awareness. Create voiceovers, clone voices,
-                produce audiobooks, dub content into 32 languages, and deploy conversational AI agents.
+                produce audiobooks, dub content into 70+ languages, and deploy conversational AI agents.
               </p>
             </div>
           </div>
@@ -274,7 +274,7 @@ export default function ElevenLabsPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-muted-foreground">
-            Translate and localize audio/video across <strong>32 languages</strong> while
+            Translate and localize audio/video across <strong>70+ languages</strong> while
             preserving speaker identity and emotional tone.
           </p>
 

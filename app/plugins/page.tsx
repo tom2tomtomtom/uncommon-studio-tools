@@ -9,7 +9,7 @@ const plugins = [
     slug: 'crisis-comms',
     name: 'Crisis Communications',
     emoji: '🛡️',
-    description: 'Turn Claude into your crisis response expert. Get instant help with response plans, stakeholder messaging, and media management during critical situations.',
+    description: 'Generates crisis response plans, stakeholder updates, and media holding statements using the REACT model. Use when responding to breaking news, managing stakeholder communications, or drafting press statements.',
     commands: ['/crisis-response', '/stakeholder-update', '/media-statement'],
     useCases: ['Breaking news response', 'Stakeholder communication', 'Media statements'],
     color: 'bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-900/50',
@@ -18,7 +18,7 @@ const plugins = [
     slug: 'media-relations',
     name: 'Media Relations',
     emoji: '📣',
-    description: 'Your PR expert in Claude. Get help writing press releases, crafting pitches that journalists actually open, and analyzing your media coverage.',
+    description: 'Drafts AP-style press releases, journalist pitch emails, and media coverage analysis reports. Use when announcing products, pitching journalists, or analyzing earned media performance.',
     commands: ['/press-release', '/media-pitch', '/coverage-analysis'],
     useCases: ['Product announcements', 'Journalist outreach', 'Coverage reporting'],
     color: 'bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-900/50',
@@ -27,7 +27,7 @@ const plugins = [
     slug: 'brand-strategy',
     name: 'Brand Strategy',
     emoji: '🎯',
-    description: 'Your brand strategist in Claude. Get help with positioning, competitive analysis, and messaging frameworks that actually differentiate.',
+    description: 'Builds brand positioning statements, competitive analysis maps, and messaging frameworks. Use when developing brand strategy, analyzing competitors, or creating messaging hierarchies.',
     commands: ['/positioning', '/competitor-analysis', '/messaging-framework'],
     useCases: ['Brand positioning', 'Competitive analysis', 'Messaging development'],
     color: 'bg-purple-50 dark:bg-purple-950/30 border-purple-200 dark:border-purple-900/50',
@@ -36,7 +36,7 @@ const plugins = [
     slug: 'social-content',
     name: 'Social & Content',
     emoji: '📱',
-    description: 'Your content strategist in Claude. Get help creating social posts, planning content calendars, and developing content that actually engages.',
+    description: 'Creates platform-optimized social posts, editorial content calendars, and blog outlines with SEO structure. Use when planning social content, building editorial calendars, or outlining blog posts.',
     commands: ['/social-posts', '/content-calendar', '/blog-outline'],
     useCases: ['Social media content', 'Editorial planning', 'Blog writing'],
     color: 'bg-green-50 dark:bg-green-950/30 border-green-200 dark:border-green-900/50',
@@ -45,7 +45,7 @@ const plugins = [
     slug: 'client-experience',
     name: 'Client Experience',
     emoji: '👥',
-    description: 'Your account management partner in Claude. Get help with meeting notes, proposals, and keeping client relationships healthy.',
+    description: 'Generates structured meeting notes, client proposals, and account health scorecards using RAID logs. Use when running client meetings, building proposals, or assessing account health.',
     commands: ['/meeting-notes', '/proposal-builder', '/client-health'],
     useCases: ['Meeting summaries', 'Proposal development', 'Account health'],
     color: 'bg-orange-50 dark:bg-orange-950/30 border-orange-200 dark:border-orange-900/50',
@@ -54,7 +54,7 @@ const plugins = [
     slug: 'campaign-management',
     name: 'Campaign Management',
     emoji: '📊',
-    description: 'Your project management partner in Claude. Get help with timelines, status reports, and keeping campaigns running smoothly.',
+    description: 'Creates WBS project plans, status reports, and change impact assessments with RACI matrices. Use when planning campaigns, reporting status, or managing scope changes.',
     commands: ['/project-plan', '/status-report', '/change-impact'],
     useCases: ['Project planning', 'Status reporting', 'Scope management'],
     color: 'bg-teal-50 dark:bg-teal-950/30 border-teal-200 dark:border-teal-900/50',
@@ -63,7 +63,7 @@ const plugins = [
     slug: 'production',
     name: 'Production',
     emoji: '🎬',
-    description: 'Your production expert in Claude. Get help with spec sheets, shot lists, and production briefs for video, print, and digital projects.',
+    description: 'Generates production briefs, shot lists, and delivery spec sheets with budget frameworks. Use when planning video or photo shoots, organizing shot sequences, or specifying deliverables.',
     commands: ['/production-brief', '/shot-list', '/spec-sheet'],
     useCases: ['Production specs', 'Shot planning', 'Vendor briefs'],
     color: 'bg-slate-50 dark:bg-slate-950/30 border-slate-200 dark:border-slate-900/50',
@@ -72,7 +72,7 @@ const plugins = [
     slug: 'design-system',
     name: 'Design System',
     emoji: '🎨',
-    description: 'Your design consultant in Claude. Get help with visual design principles, style guide development, and accessibility audits.',
+    description: 'Conducts design reviews against WCAG 2.1, generates style guide documentation, and audits accessibility. Use when reviewing designs, documenting design systems, or checking accessibility compliance.',
     commands: ['/design-review', '/style-guide', '/accessibility-audit'],
     useCases: ['Design critique', 'Style guides', 'Accessibility'],
     color: 'bg-pink-50 dark:bg-pink-950/30 border-pink-200 dark:border-pink-900/50',
@@ -81,7 +81,7 @@ const plugins = [
     slug: 'digital-experience',
     name: 'Digital Experience',
     emoji: '📈',
-    description: 'Your digital marketing expert in Claude. Get help with SEO, email campaigns, and performance reports that turn data into action.',
+    description: 'Creates SEO content briefs, email campaign plans, and performance reports with CRO recommendations. Use when optimizing for search, planning email campaigns, or analyzing digital performance.',
     commands: ['/seo-brief', '/email-campaign', '/performance-report'],
     useCases: ['SEO strategy', 'Email marketing', 'Analytics'],
     color: 'bg-cyan-50 dark:bg-cyan-950/30 border-cyan-200 dark:border-cyan-900/50',
@@ -90,7 +90,7 @@ const plugins = [
     slug: 'new-business-dev',
     name: 'New Business Development',
     emoji: '🚀',
-    description: 'Your business development partner in Claude. Get help with pitch decks, RFP responses, and prospect briefs that win work.',
+    description: 'Builds pitch deck narratives, drafts RFP responses with differentiators, and creates prospect research briefs. Use when preparing pitches, responding to RFPs, or researching prospects.',
     commands: ['/pitch-deck', '/rfp-response', '/prospect-brief'],
     useCases: ['Pitch preparation', 'RFP responses', 'Prospect research'],
     color: 'bg-indigo-50 dark:bg-indigo-950/30 border-indigo-200 dark:border-indigo-900/50',
@@ -99,7 +99,7 @@ const plugins = [
     slug: 'studio-ops',
     name: 'Studio Operations',
     emoji: '⚙️',
-    description: 'Your operations expert in Claude. Get help with process documentation, onboarding plans, and budget tracking.',
+    description: 'Documents SOPs, creates 30-60-90 onboarding plans, and builds budget trackers with capacity planning. Use when standardizing processes, onboarding team members, or tracking budgets.',
     commands: ['/process-doc', '/onboarding-plan', '/budget-tracker'],
     useCases: ['Process SOPs', 'Onboarding', 'Budget management'],
     color: 'bg-stone-50 dark:bg-stone-950/30 border-stone-200 dark:border-stone-900/50',
@@ -125,7 +125,7 @@ export default function PluginsPage() {
           Cowork Plugins
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Turn Claude into a specialist for your agency team. Install in 60 seconds, start working immediately.
+          Turn Claude into a specialist for your agency department. Install in 60 seconds, start working immediately.
         </p>
       </div>
 
@@ -152,7 +152,7 @@ export default function PluginsPage() {
             <div className="flex flex-col gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold">3</div>
               <h3 className="font-semibold">Claude Knows Your Domain</h3>
-              <p className="text-sm text-muted-foreground">Skills load automatically, so Claude understands PR best practices.</p>
+              <p className="text-sm text-muted-foreground">Skills load automatically, so Claude understands creative advertising best practices.</p>
             </div>
           </div>
         </CardContent>
@@ -269,7 +269,7 @@ export default function PluginsPage() {
       <div className="text-center py-8 space-y-4">
         <h2 className="text-2xl font-bold">Prefer Standalone Prompts?</h2>
         <p className="text-muted-foreground max-w-xl mx-auto">
-          We also have 76+ copy-paste prompts you can use without installing anything.
+          We also have 60 copy-paste prompts you can use without installing anything.
         </p>
         <Button asChild size="lg">
           <Link href="/">

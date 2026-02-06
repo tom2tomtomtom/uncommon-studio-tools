@@ -241,7 +241,7 @@ export default function ArtifactsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Zap className="h-5 w-5 text-amber-500" />
-            Expert Tip: The "App Builder" Prompt
+            Pro tip: The "App Builder" prompt
           </CardTitle>
           <CardDescription>
             Stop asking for "code" and start asking for "tools"

@@ -304,16 +304,6 @@ export default function CoworkPage() {
             <div className="flex items-start gap-3">
               <AlertTriangle className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
               <div>
-                <p className="font-medium">No Memory</p>
-                <p className="text-sm text-muted-foreground">
-                  Unlike Projects, Cowork sessions do not retain memory. Every task starts fresh.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <AlertTriangle className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
-              <div>
                 <p className="font-medium">Usage Costs</p>
                 <p className="text-sm text-muted-foreground">
                   Cowork consumes significantly more usage limits than standard chat.

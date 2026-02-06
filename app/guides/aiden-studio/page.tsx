@@ -43,7 +43,7 @@ export default function AidenStudioPage() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto space-y-8">
+    <div className="max-w-4xl mx-auto space-y-8">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-muted-foreground">
         <Link href="/" className="hover:text-foreground flex items-center gap-1">
@@ -55,7 +55,7 @@ export default function AidenStudioPage() {
           Guides
         </Link>
         <ChevronRight className="h-4 w-4" />
-        <span className="text-foreground">AIDEN.services</span>
+        <span className="text-foreground">AIDEN Studio</span>
       </nav>
 
       {/* Header */}

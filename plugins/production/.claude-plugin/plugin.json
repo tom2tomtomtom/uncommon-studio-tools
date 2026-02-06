@@ -1,7 +1,7 @@
 {
   "name": "production",
   "title": "Production",
-  "description": "Turn Claude into your production expert. Get help with video production, photo shoots, print specs, vendor management, and asset delivery.",
+  "description": "Generates production briefs, shot lists, and delivery spec sheets with budget frameworks. Delivers detailed production plans, sequenced shot breakdowns, and technical specifications. Use when planning video or photo shoots, organizing shot sequences, specifying deliverables, or scoping production budgets.",
   "version": "1.0.0",
   "capabilities": {
     "skills": true,
