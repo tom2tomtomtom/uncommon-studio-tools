@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Sidebar } from "@/components/sidebar";
-import { CommandMenu } from "@/components/command-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { ChatWidget } from "@/components/chat-widget";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LazyCommandMenu, LazyChatWidget } from "@/components/lazy-widgets";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -43,7 +42,7 @@ export default function RootLayout({
                   <div className="w-10 md:hidden" />
                   <h1 className="text-lg md:text-xl font-semibold">Uncommon Studio AI Tools</h1>
                   <div className="flex items-center gap-3">
-                    <CommandMenu />
+                    <LazyCommandMenu />
                     <ThemeToggle />
                   </div>
                 </div>
@@ -53,7 +52,7 @@ export default function RootLayout({
               </main>
             </div>
           </div>
-          <ChatWidget />
+          <LazyChatWidget />
           <Toaster />
         </ThemeProvider>
       </body>
