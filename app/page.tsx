@@ -232,6 +232,7 @@ export default function HomePage() {
             <SkillDownload name="Production Specs" file="production-specs.zip" description="Generate spec sheets with formats, dimensions, and delivery requirements" />
             <SkillDownload name="Copywriting" file="copywriting.zip" description="Write on-brand copy for ads, emails, social, and web" />
             <SkillDownload name="Status Report" file="status-report.zip" description="Create RAG-rated project updates with milestones and risk flags" />
+            <SkillDownload name="Competitor Research" file="competitor-research.zip" description="Analyze competitors and get prioritized improvement recommendations" />
           </div>
         </CardContent>
       </Card>
