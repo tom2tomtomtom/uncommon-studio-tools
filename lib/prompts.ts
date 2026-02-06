@@ -217,7 +217,7 @@ When asked to write a script, provide:
     teamSlug: "creative",
     teamName: "Creative",
     name: "Creative Review & Feedback",
-    toolRecommendation: "Claude",
+    toolRecommendation: "Claude Skill",
     description: "Get constructive creative feedback on concepts, scripts, or executions. Identifies what's working, what's not, and how to make it better.",
     knowledgeToUpload: [
       "The creative work to review",
@@ -458,7 +458,7 @@ Generate copy across ALL channels:
     teamSlug: "strategy",
     teamName: "Strategy",
     name: "Brand Positioning Workshop",
-    toolRecommendation: "Claude Project",
+    toolRecommendation: "Claude Skill",
     description: "Develop or refine brand positioning. Defines the target, insight, benefit, and reason to believe in a clear, compelling framework.",
     knowledgeToUpload: [
       "Brand audit or existing brand materials",
@@ -772,7 +772,7 @@ The most interesting work lives in the tensions between trends:
     teamSlug: "account-management",
     teamName: "Account Management",
     name: "Client Presentation Builder",
-    toolRecommendation: "Claude Project",
+    toolRecommendation: "Claude Skill",
     description: "Structure and write compelling client presentations that sell ideas and build confidence.",
     knowledgeToUpload: [
       "Creative work to present",
@@ -1077,7 +1077,7 @@ For each likely reaction:
     teamSlug: "production",
     teamName: "Production",
     name: "Production Spec Writer",
-    toolRecommendation: "Claude Project",
+    toolRecommendation: "Claude Skill",
     description: "Create detailed production specifications for video, print, digital, and experiential projects.",
     knowledgeToUpload: [
       "Creative concepts and scripts",
@@ -1584,7 +1584,7 @@ Don't do this
     teamSlug: "design",
     teamName: "Design",
     name: "Design Critique",
-    toolRecommendation: "Claude",
+    toolRecommendation: "Claude Skill",
     description: "Get structured design feedback on visual work with specific, actionable suggestions.",
     knowledgeToUpload: [
       "Design to review",
@@ -2077,7 +2077,7 @@ Acknowledge absence, offer value, easy path back`
     teamSlug: "digital",
     teamName: "Digital",
     name: "Analytics & Reporting",
-    toolRecommendation: "Claude",
+    toolRecommendation: "Claude Skill",
     description: "Create digital performance reports that turn data into insights and recommendations.",
     knowledgeToUpload: [
       "Analytics data exports",
@@ -2297,7 +2297,7 @@ For each ask, provide:
     teamSlug: "copywriting",
     teamName: "Copywriting",
     name: "Tone of Voice Developer",
-    toolRecommendation: "Claude Project",
+    toolRecommendation: "Claude Skill",
     description: "Define and document brand tone of voice with examples, dos and don'ts, and writing guidelines.",
     knowledgeToUpload: [
       "Brand positioning",
@@ -2729,7 +2729,7 @@ Create versions for:
     teamSlug: "new-business",
     teamName: "New Business",
     name: "Case Study Writer",
-    toolRecommendation: "Claude Project",
+    toolRecommendation: "Claude Skill",
     description: "Write compelling case studies that demonstrate your capabilities and results.",
     knowledgeToUpload: [
       "Campaign materials",
@@ -2930,7 +2930,7 @@ Where's the slack if something slips?
     teamSlug: "project-management",
     teamName: "Project Management",
     name: "Project Scope Document",
-    toolRecommendation: "Claude Project",
+    toolRecommendation: "Claude Skill",
     description: "Define project scope, deliverables, and boundaries to prevent scope creep.",
     knowledgeToUpload: [
       "Client brief or request",
@@ -3059,7 +3059,7 @@ For each conflict:
     teamSlug: "project-management",
     teamName: "Project Management",
     name: "Risk Assessment",
-    toolRecommendation: "Claude",
+    toolRecommendation: "Claude Skill",
     description: "Identify project risks and develop mitigation strategies before they become problems.",
     knowledgeToUpload: [
       "Project plan and scope",
@@ -3190,7 +3190,7 @@ Who needs to know?`
     teamSlug: "studio-operations",
     teamName: "Studio Operations",
     name: "Process Documentation",
-    toolRecommendation: "Claude Project",
+    toolRecommendation: "Claude Skill",
     description: "Document agency processes and workflows so knowledge isn't locked in people's heads.",
     knowledgeToUpload: [
       "Existing process notes",
@@ -4196,7 +4196,7 @@ AIDEN.chat boards → Export JSON → Import to AIDEN.pitch for campaign develop
     teamSlug: "account-management",
     teamName: "Account Management",
     name: "Client Relationship Health Check",
-    toolRecommendation: "Claude",
+    toolRecommendation: "Claude Skill",
     description: "Assess client relationship health, identify risks, and recommend proactive actions to strengthen partnerships.",
     knowledgeToUpload: [
       "Meeting notes and call summaries",

@@ -28,13 +28,20 @@ import type { Prompt } from '@/lib/prompts';
 
 // Map prompt IDs to skill ZIP files
 const skillFiles: Record<string, string> = {
-  'campaign-management-team-2': 'qa-testing.zip',
-  'campaign-management-team-3': 'stakeholder-update.zip',
-  'creative-integrated-team-5': 'creative-review.zip',
-  'leadership-team-3': 'executive-comms.zip',
-  'operations-culture-team-3': 'process-docs.zip',
-  'social-content-team-3': 'copywriting.zip',
-  'new-business-team-2': 'content-transformer.zip',
+  // Existing skills (corrected IDs)
+  'creative-4': 'creative-review.zip',       // Creative Review & Feedback
+  'copywriting-3': 'copywriting.zip',         // Tone of Voice Developer
+  'newbusiness-4': 'content-transformer.zip',  // Case Study Writer
+  'account-1': 'executive-comms.zip',          // Client Presentation Builder
+  'ops-1': 'process-docs.zip',                // Process Documentation
+  'pm-4': 'qa-testing.zip',                   // Risk Assessment
+  'pm-2': 'stakeholder-update.zip',           // Project Scope Document
+  // New skills
+  'strategy-1': 'brand-positioning.zip',       // Brand Positioning Workshop
+  'account-6': 'client-management.zip',        // Client Relationship Health Check
+  'production-1': 'production-specs.zip',      // Production Spec Writer
+  'design-3': 'design-critique.zip',           // Design Critique
+  'digital-5': 'digital-analytics.zip',        // Analytics & Reporting
 };
 
 // Tool badge styling

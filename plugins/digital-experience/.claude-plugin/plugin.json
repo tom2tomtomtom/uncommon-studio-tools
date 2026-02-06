@@ -1,0 +1,11 @@
+{
+  "name": "digital-experience",
+  "title": "Digital Experience",
+  "description": "Turn Claude into your digital marketing expert. Get help with SEO, analytics, email marketing, CRO, and platform optimization.",
+  "version": "1.0.0",
+  "capabilities": {
+    "skills": true,
+    "commands": true,
+    "connectors": true
+  }
+}

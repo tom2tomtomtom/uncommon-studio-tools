@@ -1,0 +1,11 @@
+{
+  "name": "design-system",
+  "title": "Design System",
+  "description": "Turn Claude into your design consultant. Get help with visual design principles, grid systems, color theory, typography, and accessibility audits.",
+  "version": "1.0.0",
+  "capabilities": {
+    "skills": true,
+    "commands": true,
+    "connectors": true
+  }
+}

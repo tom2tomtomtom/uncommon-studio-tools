@@ -1,0 +1,11 @@
+{
+  "name": "new-business-dev",
+  "title": "New Business Development",
+  "description": "Turn Claude into your new business partner. Get help with pitch strategy, RFP responses, prospect research, and case study storytelling.",
+  "version": "1.0.0",
+  "capabilities": {
+    "skills": true,
+    "commands": true,
+    "connectors": true
+  }
+}

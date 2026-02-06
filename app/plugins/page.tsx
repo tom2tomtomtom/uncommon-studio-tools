@@ -59,6 +59,51 @@ const plugins = [
     useCases: ['Project planning', 'Status reporting', 'Scope management'],
     color: 'bg-teal-50 dark:bg-teal-950/30 border-teal-200 dark:border-teal-900/50',
   },
+  {
+    slug: 'production',
+    name: 'Production',
+    emoji: '🎬',
+    description: 'Your production expert in Claude. Get help with spec sheets, shot lists, and production briefs for video, print, and digital projects.',
+    commands: ['/production-brief', '/shot-list', '/spec-sheet'],
+    useCases: ['Production specs', 'Shot planning', 'Vendor briefs'],
+    color: 'bg-slate-50 dark:bg-slate-950/30 border-slate-200 dark:border-slate-900/50',
+  },
+  {
+    slug: 'design-system',
+    name: 'Design System',
+    emoji: '🎨',
+    description: 'Your design consultant in Claude. Get help with visual design principles, style guide development, and accessibility audits.',
+    commands: ['/design-review', '/style-guide', '/accessibility-audit'],
+    useCases: ['Design critique', 'Style guides', 'Accessibility'],
+    color: 'bg-pink-50 dark:bg-pink-950/30 border-pink-200 dark:border-pink-900/50',
+  },
+  {
+    slug: 'digital-experience',
+    name: 'Digital Experience',
+    emoji: '📈',
+    description: 'Your digital marketing expert in Claude. Get help with SEO, email campaigns, and performance reports that turn data into action.',
+    commands: ['/seo-brief', '/email-campaign', '/performance-report'],
+    useCases: ['SEO strategy', 'Email marketing', 'Analytics'],
+    color: 'bg-cyan-50 dark:bg-cyan-950/30 border-cyan-200 dark:border-cyan-900/50',
+  },
+  {
+    slug: 'new-business-dev',
+    name: 'New Business Development',
+    emoji: '🚀',
+    description: 'Your business development partner in Claude. Get help with pitch decks, RFP responses, and prospect briefs that win work.',
+    commands: ['/pitch-deck', '/rfp-response', '/prospect-brief'],
+    useCases: ['Pitch preparation', 'RFP responses', 'Prospect research'],
+    color: 'bg-indigo-50 dark:bg-indigo-950/30 border-indigo-200 dark:border-indigo-900/50',
+  },
+  {
+    slug: 'studio-ops',
+    name: 'Studio Operations',
+    emoji: '⚙️',
+    description: 'Your operations expert in Claude. Get help with process documentation, onboarding plans, and budget tracking.',
+    commands: ['/process-doc', '/onboarding-plan', '/budget-tracker'],
+    useCases: ['Process SOPs', 'Onboarding', 'Budget management'],
+    color: 'bg-stone-50 dark:bg-stone-950/30 border-stone-200 dark:border-stone-900/50',
+  },
 ];
 
 export default function PluginsPage() {
@@ -80,7 +125,7 @@ export default function PluginsPage() {
           Cowork Plugins
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Turn Claude into a specialist for your PR team. Install in 60 seconds, start working immediately.
+          Turn Claude into a specialist for your agency team. Install in 60 seconds, start working immediately.
         </p>
       </div>
 

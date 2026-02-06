@@ -1,0 +1,11 @@
+{
+  "name": "studio-ops",
+  "title": "Studio Operations",
+  "description": "Turn Claude into your operations expert. Get help with process documentation, onboarding plans, resource planning, and budget tracking.",
+  "version": "1.0.0",
+  "capabilities": {
+    "skills": true,
+    "commands": true,
+    "connectors": true
+  }
+}
