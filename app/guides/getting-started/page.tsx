@@ -204,7 +204,7 @@ export default function GettingStartedPage() {
           </p>
 
           <Screenshot
-            src="/screenshots/getting-started/model-selector.png"
+            src="/screenshots/getting-started/choose-model-annotated.png"
             alt="Model selector dropdown showing Opus 4.6, Sonnet 4.5, Haiku 4.5, and Extended thinking toggle"
             caption="Click the model name to switch models or toggle Extended thinking."
           />
@@ -245,7 +245,7 @@ export default function GettingStartedPage() {
             </p>
 
             <Screenshot
-              src="/screenshots/getting-started/extended-thinking-on.png"
+              src="/screenshots/getting-started/extended-thinking-annotated.png"
               alt="Extended thinking toggled on, showing Opus 4.6 Extended with the blue toggle"
               caption="Extended thinking ON — notice 'Extended' next to the model name."
             />
@@ -665,7 +665,7 @@ export default function GettingStartedPage() {
           </p>
 
           <Screenshot
-            src="/screenshots/getting-started/styles-menu.png"
+            src="/screenshots/getting-started/response-style-annotated.png"
             alt="Use style submenu showing Normal, Learning, Concise, Explanatory, Formal, and Create & edit styles"
             caption="Switch between Normal, Concise, Formal, and more — or create your own."
           />
