@@ -23,11 +23,22 @@ import {
   Video,
   AudioLines,
   Presentation,
-  Brain
+  Brain,
+  GraduationCap
 } from 'lucide-react';
 
 // Claude Enterprise
 const claudeGuides = [
+  {
+    slug: 'getting-started',
+    title: 'Getting Started with Claude',
+    description: 'Your complete beginner\'s guide — login, connectors, modes, and first conversations',
+    icon: GraduationCap,
+    difficulty: 'Beginner',
+    time: '15 min',
+    color: 'text-emerald-500',
+    lastVerified: 'Feb 2026',
+  },
   {
     slug: 'projects',
     title: 'The Art of Project Setup',

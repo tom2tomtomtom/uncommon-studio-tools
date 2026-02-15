@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { RecentlyUsed } from '@/components/recently-used';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, Zap, Users, FileText, Download, Monitor, Globe, Image } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Users, FileText, Download, Monitor, Globe, Image, GraduationCap } from 'lucide-react';
 
 const teamIcons: Record<string, string> = {
   'creative': '🎨',
@@ -41,6 +41,28 @@ export default function HomePage() {
           <StatCard icon={<Users className="h-5 w-5" />} label="Departments" value={totalTeams} />
         </div>
       </div>
+
+      {/* Getting Started Banner */}
+      <Link href="/guides/getting-started">
+        <Card className="bg-gradient-to-r from-emerald-500/10 via-emerald-500/5 to-background hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group border-emerald-500/20">
+          <CardContent className="pt-6 pb-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-500">
+                  <GraduationCap className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">New to Claude? Start here</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Login, connect Gmail &amp; Calendar, learn the modes, and try your first prompts — 15 min guide
+                  </p>
+                </div>
+              </div>
+              <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0" />
+            </div>
+          </CardContent>
+        </Card>
+      </Link>
 
       {/* Recently Copied - client component, renders only if has items */}
       <RecentlyUsed />
