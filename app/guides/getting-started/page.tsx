@@ -24,7 +24,9 @@ import {
   CheckCircle2,
   Star,
   FileText,
-  Settings
+  Settings,
+  Download,
+  Monitor
 } from 'lucide-react';
 
 function Screenshot({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
@@ -99,6 +101,36 @@ export default function GettingStartedPage() {
         </CardContent>
       </Card>
 
+      {/* ===== DOWNLOAD DESKTOP APP ===== */}
+      <Card className="border-purple-500/30 bg-gradient-to-r from-purple-500/5 via-purple-500/10 to-purple-500/5">
+        <CardContent className="pt-6">
+          <div className="flex items-start gap-3">
+            <Download className="h-5 w-5 text-purple-500 mt-0.5 shrink-0" />
+            <div>
+              <p className="font-semibold mb-1">Download the Claude Desktop App</p>
+              <p className="text-sm text-muted-foreground mb-3">
+                Claude works in your browser at <strong>claude.ai</strong>, but some of the most powerful features — like
+                <strong> Cowork</strong> (autonomous agent mode) — are <strong>only available in the Desktop app</strong>.
+                We recommend installing it now so you have access to everything.
+              </p>
+              <a
+                href="https://claude.ai/download"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-purple-500 px-4 py-2 text-sm font-medium text-white hover:bg-purple-600 transition-colors"
+              >
+                <Monitor className="h-4 w-4" />
+                Download Claude Desktop
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <p className="text-xs text-muted-foreground mt-2">
+                Available for Mac and Windows. You&apos;ll log in with the same company SSO.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* ===== SECTION 1: THE INTERFACE ===== */}
       <Card>
         <CardHeader>
@@ -107,65 +139,50 @@ export default function GettingStartedPage() {
             Step 1: Finding Your Way Around
           </CardTitle>
           <CardDescription>
-            Once you&apos;re logged in, here&apos;s what you&apos;ll see
+            The Desktop app and the web interface
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="text-sm text-muted-foreground">
-            Go to <strong>claude.ai</strong> and log in with your company SSO. You&apos;ll land on the home screen.
-            Bookmark it — you&apos;ll be using it daily.
+            Log in with your company SSO — either in the <strong>Desktop app</strong> or at <strong>claude.ai</strong>.
+            We recommend the Desktop app because it gives you access to <strong>Cowork</strong> (autonomous agent mode).
           </p>
 
           <Screenshot
-            src="/screenshots/getting-started/home-clean.png"
-            alt="Claude home screen showing chat input, model selector, and quick action buttons"
-            caption="The Claude home screen — clean and simple. Type in the box to start chatting."
+            src="/screenshots/getting-started/desktop-home-annotated.png"
+            alt="Claude Desktop app showing Chat, Cowork, and Code tabs at the top, with annotation: Desktop app gives you access to Cowork"
+            caption="The Desktop app — with Chat, Cowork, and Code tabs at the top."
           />
 
           <p className="text-sm text-muted-foreground">
-            Open the sidebar to see your conversation history, Projects, and Artifacts.
-            At the top you&apos;ll see the three modes: <strong>Chat</strong>, <strong>Cowork</strong>, and <strong>Code</strong>.
+            The <strong>web interface</strong> at claude.ai has all the same Chat functionality — connectors, research,
+            artifacts, styles — everything except Cowork and Code.
           </p>
 
           <Screenshot
-            src="/screenshots/getting-started/full-interface.png"
-            alt="Claude full interface with sidebar showing chats, projects, artifacts, and the Chat/Cowork/Code mode tabs"
-            caption="The full interface with sidebar open — your chat history, Projects, and Artifacts are all here."
+            src="/screenshots/getting-started/web-home-annotated.png"
+            alt="Claude web interface at claude.ai with annotation: The web Claude has all other functionality"
+            caption="The web interface at claude.ai — all features except Cowork."
           />
 
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div className="p-4 rounded-lg border">
-              <p className="font-medium text-sm mb-1">Left Sidebar</p>
-              <p className="text-xs text-muted-foreground">
-                Your conversation history, Projects, and Artifacts. Click any past chat to pick up where you left off.
-                Click <strong>&quot;+ New chat&quot;</strong> to start fresh.
-              </p>
-            </div>
-            <div className="p-4 rounded-lg border">
-              <p className="font-medium text-sm mb-1">Chat / Cowork / Code tabs</p>
-              <p className="text-xs text-muted-foreground">
-                The three modes at the top of the screen. Start with <strong>Chat</strong> — that&apos;s where you&apos;ll spend most of your time.
-              </p>
-            </div>
-            <div className="p-4 rounded-lg border">
-              <p className="font-medium text-sm mb-1">Quick Action Buttons</p>
-              <p className="text-xs text-muted-foreground">
-                Below the text box you&apos;ll see buttons like <strong>Write</strong>, <strong>Learn</strong>,
-                <strong> From Drive</strong>, <strong>From Calendar</strong>, and <strong>From Gmail</strong> — quick ways to start common tasks.
-              </p>
-            </div>
-            <div className="p-4 rounded-lg border">
-              <p className="font-medium text-sm mb-1">The + Button</p>
-              <p className="text-xs text-muted-foreground">
-                Click the <strong>+</strong> in the text box to attach files, pull from Google Drive, enable Research or Web search, choose a style, and manage connectors.
-              </p>
-            </div>
-          </div>
+          <p className="text-sm text-muted-foreground">
+            Click the <strong>sidebar toggle</strong> (top-left) to see your conversation history, Projects, and Artifacts.
+          </p>
 
           <Screenshot
-            src="/screenshots/getting-started/plus-menu.png"
-            alt="The + menu showing options: Add files, Add to project, Add from Google Drive, Add from GitHub, Research, Web search, Use style, Connectors"
-            caption="The + menu — your gateway to files, research, web search, styles, and connectors."
+            src="/screenshots/getting-started/sidebar-annotated.png"
+            alt="Claude sidebar open showing Chats, Projects, Artifacts, and recent conversations with annotation: Sidebar shows previous chats, Access to Projects, and Artefacts"
+            caption="The sidebar — your chats, Projects, and Artifacts are all here."
+          />
+
+          <p className="text-sm text-muted-foreground">
+            Click the <strong>+</strong> button in the text box to access files, research, styles, and connectors.
+          </p>
+
+          <Screenshot
+            src="/screenshots/getting-started/plus-menu-annotated.png"
+            alt="The + menu showing options for adding files, research, web search, styles, and connectors with annotations"
+            caption="The + menu — add files, enable Research, pick a response style, and manage connectors."
           />
         </CardContent>
       </Card>
@@ -271,61 +288,52 @@ export default function GettingStartedPage() {
             <ol className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-semibold shrink-0">1</span>
-                <span>Click your <strong>name</strong> at the bottom-left of the sidebar to open the menu</span>
+                <span>Click your <strong>name</strong> at the bottom-left of the sidebar to open the menu, then click <strong>Settings</strong></span>
               </li>
             </ol>
           </div>
 
           <Screenshot
-            src="/screenshots/getting-started/profile-menu.png"
-            alt="Profile menu showing Settings, Language, Get help, and other options"
-            caption="Click your name at the bottom-left to access Settings."
+            src="/screenshots/getting-started/settings-access-annotated.png"
+            alt="Profile menu showing Settings option with annotation: Click here for settings"
+            caption="Click your name at the bottom-left, then Settings."
           />
 
           <ol className="space-y-3 text-sm" start={2}>
             <li className="flex items-start gap-2">
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-semibold shrink-0">2</span>
-              <span>Click <strong>Settings</strong>, then go to the <strong>Connectors</strong> tab on the left</span>
+              <span>Go to the <strong>Connectors</strong> tab on the left — this is the most useful thing to set up first</span>
             </li>
           </ol>
 
           <Screenshot
-            src="/screenshots/getting-started/settings-connectors.png"
-            alt="Settings > Connectors page showing Gmail, Google Calendar, and GitHub all connected, plus other available connectors"
-            caption="The Connectors page — click 'Connect' next to each service you want."
+            src="/screenshots/getting-started/settings-page-annotated.png"
+            alt="Settings page with Connectors tab highlighted in the left sidebar, with annotation: First most useful thing is connectors"
+            caption="In Settings, click Connectors on the left."
           />
 
           <ol className="space-y-3 text-sm" start={3}>
             <li className="flex items-start gap-2">
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-semibold shrink-0">3</span>
-              <span>Click <strong>Connect</strong> next to Gmail, Google Drive, or Google Calendar. A confirmation dialog will appear — click <strong>Continue</strong></span>
+              <span>Click <strong>Connect</strong> next to Gmail, Google Calendar, and Google Drive. Follow the Google prompts to grant access.</span>
             </li>
           </ol>
 
           <Screenshot
-            src="/screenshots/getting-started/authorize-gmail.png"
-            alt="Authorize Gmail access dialog explaining what Claude can do with your email data"
-            caption="Claude explains exactly what it will access — click Continue to proceed."
+            src="/screenshots/getting-started/connectors-page-annotated.png"
+            alt="Connectors settings page showing Gmail, Google Calendar, and Google Drive all connected, with annotation: Connect your Claude to Gmail, Calendar, and Drive. NB. this works better on the web app"
+            caption="Connect Gmail, Calendar, and Drive — once done you'll see 'Connected' in blue."
           />
 
-          <ol className="space-y-3 text-sm" start={4}>
-            <li className="flex items-start gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-semibold shrink-0">4</span>
-              <span>Choose your Google account and grant permissions</span>
-            </li>
-          </ol>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Screenshot
-              src="/screenshots/getting-started/google-choose-account.png"
-              alt="Google Choose an account screen for Claude for Gmail"
-              caption="Pick your work Google account."
-            />
-            <Screenshot
-              src="/screenshots/getting-started/google-permissions.png"
-              alt="Google permissions page showing Claude for Gmail wants access"
-              caption="Click Continue to grant access."
-            />
+          <div className="p-3 rounded-lg bg-blue-500/5 border border-blue-500/30 text-sm">
+            <div className="flex items-center gap-2 mb-1">
+              <Globe className="h-4 w-4 text-blue-500" />
+              <strong>Tip: Set up connectors on the web</strong>
+            </div>
+            <p className="text-muted-foreground">
+              Connectors work better when configured through <strong>claude.ai</strong> (the web interface) rather than the Desktop app.
+              Once connected, they&apos;ll work everywhere.
+            </p>
           </div>
 
           <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/30 text-sm">
@@ -334,7 +342,8 @@ export default function GettingStartedPage() {
               <strong>That&apos;s it!</strong>
             </div>
             <p className="text-muted-foreground">
-              Repeat for each service (Gmail, Drive, Calendar). Once connected, you&apos;ll see <strong className="text-blue-500">&quot;Connected&quot;</strong> in blue next to each one.
+              Once connected, you can ask Claude things like &quot;summarise my unread emails&quot;,
+              &quot;what meetings do I have tomorrow?&quot;, or &quot;find the brand guidelines in Drive.&quot;
             </p>
           </div>
 
@@ -374,22 +383,6 @@ export default function GettingStartedPage() {
                 </p>
               </div>
             </div>
-          </div>
-
-          {/* Web search & Research */}
-          <div className="space-y-3">
-            <p className="font-medium">Web Search &amp; Research</p>
-            <p className="text-sm text-muted-foreground">
-              You can also enable <strong>Web search</strong> and <strong>Research</strong> from the + menu.
-              Web search lets Claude look things up on the internet. Research sends Claude on a deep-dive mission across
-              dozens of sources — great for competitive analysis or trend reports.
-            </p>
-
-            <Screenshot
-              src="/screenshots/getting-started/connector-toggles.png"
-              alt="The + menu showing Connectors submenu with Drive search, Calendar search, and Gmail search toggles"
-              caption="From the + menu you can also toggle individual connectors on/off per conversation."
-            />
           </div>
 
           <div className="p-3 rounded-lg bg-muted text-sm">
@@ -471,10 +464,22 @@ export default function GettingStartedPage() {
             Understanding the Modes
           </CardTitle>
           <CardDescription>
-            Claude has three modes — you&apos;ll mostly use Chat, but here&apos;s what the others do
+            Claude has three modes — you&apos;ll mostly use Chat, but Cowork is a game-changer
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
+          <div className="p-3 rounded-lg bg-purple-500/5 border border-purple-500/30 text-sm mb-2">
+            <div className="flex items-center gap-2 mb-1">
+              <Download className="h-4 w-4 text-purple-500" />
+              <strong>Desktop app required for Cowork &amp; Code</strong>
+            </div>
+            <p className="text-muted-foreground">
+              Chat works everywhere (web + Desktop), but <strong>Cowork</strong> and <strong>Code</strong> are only available
+              in the <a href="https://claude.ai/download" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Claude Desktop app</a>.
+              If you haven&apos;t installed it yet, do that now.
+            </p>
+          </div>
+
           <div className="space-y-4">
             {/* Chat */}
             <div className="p-4 rounded-lg border border-blue-500/30 bg-blue-500/5">
@@ -482,6 +487,7 @@ export default function GettingStartedPage() {
                 <MessageSquare className="h-5 w-5 text-blue-500" />
                 <p className="font-semibold">Chat</p>
                 <Badge variant="secondary" className="text-xs">Start here</Badge>
+                <Badge variant="outline" className="text-xs">Web + Desktop</Badge>
               </div>
               <p className="text-sm text-muted-foreground">
                 This is your default mode and where you&apos;ll spend most of your time. It&apos;s a conversation —
@@ -496,13 +502,16 @@ export default function GettingStartedPage() {
               <div className="flex items-center gap-2 mb-2">
                 <Bot className="h-5 w-5 text-purple-500" />
                 <p className="font-semibold">Cowork</p>
-                <Badge variant="outline" className="text-xs">Requires Claude Desktop app</Badge>
+                <Badge variant="outline" className="text-xs border-purple-500/50 text-purple-600">Desktop only</Badge>
               </div>
               <p className="text-sm text-muted-foreground">
                 Cowork turns Claude into an autonomous agent that works on your computer. You give it a job
                 (&quot;organise these files into folders&quot; or &quot;create a spreadsheet from these invoices&quot;)
                 and it actually opens apps, clicks buttons, and does the work while you watch or do something else.
                 Think of it as a capable intern who can use your computer.
+              </p>
+              <p className="text-xs text-muted-foreground mt-2">
+                <strong>You won&apos;t see the Cowork tab on claude.ai</strong> — it only appears in the Desktop app.
               </p>
               <Link href="/guides/cowork" className="text-xs text-primary hover:underline mt-2 inline-flex items-center gap-1">
                 Learn more about Cowork <ArrowRight className="h-3 w-3" />
