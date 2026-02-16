@@ -19,20 +19,7 @@ import {
   BookOpen,
   Lightbulb
 } from 'lucide-react';
-
-const teamIcons: Record<string, string> = {
-  'creative': '🎨',
-  'strategy': '🎯',
-  'account-management': '👥',
-  'production': '🎬',
-  'design': '✏️',
-  'digital': '📱',
-  'copywriting': '✍️',
-  'new-business': '💼',
-  'project-management': '📋',
-  'studio-operations': '⚙️',
-  'finance': '💰',
-};
+import { teamIcons } from '@/lib/constants';
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);

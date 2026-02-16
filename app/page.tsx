@@ -5,20 +5,7 @@ import { Button } from '@/components/ui/button';
 import { RecentlyUsed } from '@/components/recently-used';
 import Link from 'next/link';
 import { ArrowRight, Sparkles, Zap, Users, FileText, Download, Monitor, Globe, Image, GraduationCap } from 'lucide-react';
-
-const teamIcons: Record<string, string> = {
-  'creative': '🎨',
-  'strategy': '🎯',
-  'account-management': '👥',
-  'production': '🎬',
-  'design': '✏️',
-  'digital': '📱',
-  'copywriting': '✍️',
-  'new-business': '💼',
-  'project-management': '📋',
-  'studio-operations': '⚙️',
-  'finance': '💰',
-};
+import { teamIcons } from '@/lib/constants';
 
 export default function HomePage() {
   const totalPrompts = prompts.length;

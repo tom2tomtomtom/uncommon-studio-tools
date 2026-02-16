@@ -26,10 +26,16 @@ interface Recommendation {
 }
 
 interface Message {
+  id: string;
   role: 'user' | 'assistant';
   content: string;
   recommendations?: Recommendation[];
   followUps?: FollowUp[];
+}
+
+let messageCounter = 0;
+function nextMessageId() {
+  return `msg-${Date.now()}-${++messageCounter}`;
 }
 
 const MESSAGES_STORAGE = 'uncommon-ai-chat-messages';
@@ -266,6 +272,7 @@ function renderMarkdown(text: string): ReactNode {
 }
 
 const WELCOME_MESSAGE: Message = {
+  id: 'welcome',
   role: 'assistant',
   content: "Hi! I'm **Uncommon AI**, your guide to our creative toolkit. Tell me what you're working on and I'll point you to the right prompts, departments, and guides.",
   recommendations: [],
@@ -336,14 +343,14 @@ export function ChatWidget() {
     if (!messageText) return;
 
     if (!directMessage) setInput('');
-    setMessages(prev => [...prev, { role: 'user', content: messageText }]);
+    setMessages(prev => [...prev, { id: nextMessageId(), role: 'user', content: messageText }]);
     setIsLoading(true);
 
     try {
       const systemPrompt = buildSystemPrompt(pathname, { favorites, recentlyUsed });
 
       // Cap history at last 20 messages for API call
-      const allMessages = [...messages, { role: 'user' as const, content: messageText }];
+      const allMessages: Message[] = [...messages, { id: nextMessageId(), role: 'user', content: messageText }];
       const apiMessages = allMessages
         .filter(m => !m.recommendations?.length || m.role === 'user')
         .map(m => ({ role: m.role, content: m.content }))
@@ -381,19 +388,20 @@ export function ChatWidget() {
 
       if (parsedResponse && parsedResponse.text) {
         setMessages(prev => [...prev, {
+          id: nextMessageId(),
           role: 'assistant',
           content: parsedResponse.text,
           recommendations: parsedResponse.recommendations || [],
           followUps: Array.isArray(parsedResponse.followUps) ? parsedResponse.followUps : [],
         }]);
       } else {
-        setMessages(prev => [...prev, { role: 'assistant', content: responseContent }]);
+        setMessages(prev => [...prev, { id: nextMessageId(), role: 'assistant', content: responseContent }]);
       }
     } catch (err) {
       const message = err instanceof DOMException && err.name === 'AbortError'
         ? 'The request timed out. The AI service may be busy — try again in a moment.'
         : 'I couldn\'t connect just now. Check your internet connection and try again.';
-      setMessages(prev => [...prev, { role: 'assistant', content: message }]);
+      setMessages(prev => [...prev, { id: nextMessageId(), role: 'assistant', content: message }]);
     } finally {
       setIsLoading(false);
     }
@@ -471,7 +479,7 @@ export function ChatWidget() {
             >
               <div className="space-y-4">
                 {messages.map((msg, i) => (
-                  <div key={i} className="space-y-2">
+                  <div key={msg.id} className="space-y-2">
                     <div
                       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >

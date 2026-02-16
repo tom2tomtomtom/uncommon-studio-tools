@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import { Search } from 'lucide-react';
 
-const CommandMenu = dynamic(() => import('@/components/command-menu').then(mod => mod.CommandMenu), {
+const CommandMenu = dynamic(() => import('@/components/command-menu').then(mod => mod.CommandMenu).catch(() => () => null), {
   ssr: false,
   loading: () => (
     <div className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground bg-muted rounded-lg w-full md:w-64">
@@ -16,7 +16,7 @@ const CommandMenu = dynamic(() => import('@/components/command-menu').then(mod =
   ),
 });
 
-const ChatWidget = dynamic(() => import('@/components/chat-widget').then(mod => mod.ChatWidget), {
+const ChatWidget = dynamic(() => import('@/components/chat-widget').then(mod => mod.ChatWidget).catch(() => () => null), {
   ssr: false,
 });
 

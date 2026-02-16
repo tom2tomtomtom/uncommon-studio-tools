@@ -11,8 +11,10 @@ type AnalyticsEvent =
 
 export function useAnalytics() {
   const track = useCallback((event: AnalyticsEvent) => {
-    // Log locally for now
-    console.log('[Analytics]', event);
+    // Log in development only
+    if (process.env.NODE_ENV === 'development') {
+      console.log('[Analytics]', event);
+    }
     
     // If Plausible is installed, use it
     if (typeof window !== 'undefined' && (window as unknown as { plausible?: (eventName: string, options?: { props: Record<string, string | number | boolean> }) => void }).plausible) {
