@@ -77,12 +77,13 @@ const APP_PAGES = {
   ],
 };
 
-// Build compact prompt index grouped by team
+// Build compact prompt index grouped by team (with short descriptions)
 const PROMPT_INDEX = (() => {
   const grouped: Record<string, string[]> = {};
   for (const p of prompts) {
     if (!grouped[p.teamName]) grouped[p.teamName] = [];
-    grouped[p.teamName].push(`${p.id} ${p.name}`);
+    const shortDesc = p.description.split('.')[0];
+    grouped[p.teamName].push(`${p.id} ${p.name} — ${shortDesc}`);
   }
   return Object.entries(grouped)
     .map(([team, entries]) => `${team}: ${entries.join(' | ')}`)
@@ -138,17 +139,19 @@ function buildSystemPrompt(pathname: string, userContext?: { favorites: string[]
     }
   }
 
-  return `You are Uncommon AI, a helpful assistant for the Uncommon Studio AI Tools creative toolkit.
+  return `You are Uncommon AI, a knowledgeable creative and advertising assistant built into the Uncommon Studio AI Tools toolkit.
+You have broad expertise in advertising, campaigns, strategy, copywriting, design, production, and creative processes.
 The toolkit has ${teams.length} departments, ${prompts.length}+ AI prompts, and comprehensive guides for AI tools.
 
 CURRENT PAGE CONTEXT: ${pageContext}
 ${userContextSection}
 RESPONSE FORMAT: You must respond with RAW JSON only (no markdown code fences). Use this exact format:
 {
-  "text": "Your response here. Use **bold**, *italic*, \`code\`, and - bullet lists for formatting.",
+  "text": "Answer the user's question FIRST, then mention toolkit items if relevant. Use **bold**, *italic*, \`code\`, and - bullet lists for formatting.",
   "recommendations": [{"title": "Display Name", "url": "/path/to/page", "type": "Guide" | "Department" | "Prompt" | "Page"}],
   "followUps": [{"label": "Short button label", "message": "Full message to send"}]
 }
+recommendations is optional — include 0-3 items. Only include when genuinely relevant. An empty array [] is fine.
 
 AVAILABLE PROMPTS (link format: /team/{teamSlug}#{id}):
 ${PROMPT_INDEX}
@@ -166,14 +169,17 @@ OTHER PAGES:
 - /search: Search prompts
 
 RULES:
-1. Recommend specific prompts by name and id when relevant — use type "Prompt" with url /team/{teamSlug}#{id}
-2. Return 1-3 relevant recommendations based on the query
+1. **Answer first, recommend second.** Give a substantive answer to the user's question using your creative and advertising knowledge. Then, if relevant, mention toolkit items that can help further. Do NOT just list links — be genuinely helpful
+2. Return 0-3 relevant recommendations. It is better to return none than to force-fit irrelevant ones
 3. Always include 2-3 followUps to continue the conversation
 4. Use markdown in text: **bold**, *italic*, \`code\`, - bullet lists
-5. Be concise in "text" — explain WHY you're recommending
-6. URLs must match the patterns above exactly
+5. Be concise but substantive in "text" — share real expertise, techniques, frameworks, and examples
+6. **ONLY use URLs that appear in the lists above.** Never invent or guess URLs. Every url in recommendations MUST be one of: /team/{slug}#{id}, /guides/{slug}, /tips, /plugins, /search, /guides, or /
 7. Output RAW JSON only — no markdown code fences, no extra text
-8. If greeting, return empty recommendations []`;
+8. If greeting, return empty recommendations []
+9. **Never repeat yourself.** Read the conversation history. If you already recommended something, acknowledge that and offer NEW information — deeper details, alternative tools, workflow tips, or related prompts the user hasn't seen
+10. **You have broad advertising and creative knowledge.** Answer questions about campaigns, strategy, copywriting, design, production, media, and creative processes freely. Be honest about what you genuinely cannot do (browse the web, access files, execute code) but never refuse a creative or advertising question just because it's not about the toolkit
+11. **Add real value.** Explain techniques, share frameworks, give examples, and offer practical advice. Each response should teach the user something or help them think through their problem — not just point them to a link`;
 }
 
 function getConversationStarters(pathname: string): ConversationStarter[] {
@@ -202,10 +208,10 @@ function getConversationStarters(pathname: string): ConversationStarter[] {
 
   // Default starters for homepage / other pages
   return [
-    { label: 'Help me write a brief', message: 'I need to write a creative brief. Which tool should I use?' },
+    { label: 'Great headlines', message: 'What makes a great advertising headline?' },
+    { label: 'Write a brief', message: 'I need to write a creative brief. What should I include?' },
     { label: 'Explore departments', message: 'Give me an overview of all the departments and what they do.' },
-    { label: 'AI guides', message: 'What guides do you have for learning AI tools?' },
-    { label: 'Media & PR tools', message: 'What tools do you have for media relations and PR?' },
+    { label: 'AI in creative', message: 'How should I use AI tools in my creative process?' },
   ];
 }
 
@@ -336,7 +342,7 @@ function ActionChips({ items, onSelect, disabled }: { items: { label: string; me
 const WELCOME_MESSAGE: Message = {
   id: 'welcome',
   role: 'assistant',
-  content: "Hi! I'm **Uncommon AI**, your guide to our creative toolkit. Tell me what you're working on and I'll point you to the right prompts, departments, and guides.",
+  content: "Hi! I'm **Uncommon AI**, your creative assistant. Ask me anything about campaigns, strategy, copywriting, design, or AI workflows — and I'll point you to the right toolkit resources along the way.",
   recommendations: [],
 };
 

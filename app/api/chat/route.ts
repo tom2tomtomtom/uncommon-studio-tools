@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
         },
         body: JSON.stringify({
           model: 'claude-3-5-haiku-latest',
-          max_tokens: 1500,
+          max_tokens: 2048,
           system: systemPrompt,
           messages: messages.map(m => ({
             role: m.role,
