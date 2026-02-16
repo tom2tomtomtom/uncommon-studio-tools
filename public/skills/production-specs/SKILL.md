@@ -1,6 +1,6 @@
 ---
 name: production-specs
-description: Creates detailed production specs for video, print, digital, and experiential projects with technical requirements. Delivers complete spec sheets with formats, dimensions, and delivery requirements. Use when scoping production needs, writing spec sheets, defining technical requirements, or briefing vendors on deliverables.
+description: Creates detailed production specs for video, print, digital, and experiential projects with technical requirements. Delivers complete spec sheets with formats, dimensions, and delivery requirements.
 ---
 
 # Production Spec Writer

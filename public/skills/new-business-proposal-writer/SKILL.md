@@ -1,6 +1,6 @@
 ---
 name: new-business-proposal-writer
-description: Writes new business proposals, pitch decks, capability statements, and case study formats for business development. Use when creating pitch materials, writing proposals, developing capability documents, or formatting case studies for prospects. Triggers on requests to write a proposal, create a pitch deck, develop capability statements, or format case studies for business development.
+description: Writes new business proposals, pitch decks, capability statements, and case study formats for business development.
 ---
 
 # New Business Proposal Writer

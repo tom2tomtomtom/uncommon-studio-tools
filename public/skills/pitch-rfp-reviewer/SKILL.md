@@ -1,6 +1,6 @@
 ---
 name: pitch-rfp-reviewer
-description: Evaluates pitch responses and RFP submissions for completeness, persuasiveness, strategic alignment, gaps, and improvement opportunities. Scores against typical evaluation criteria. Use when reviewing draft pitches before submission, assessing RFP responses, identifying weaknesses in proposals, or improving bid quality. Triggers on requests to review a pitch, evaluate an RFP response, assess a proposal, or improve a submission.
+description: Evaluates pitch responses and RFP submissions for completeness, persuasiveness, strategic alignment, gaps, and improvement opportunities. Scores against typical evaluation criteria.
 ---
 
 # Pitch/RFP Reviewer

@@ -1,6 +1,6 @@
 ---
 name: meeting-notes-actions
-description: Creates structured meeting summaries from raw notes with clear action items, owners, and deadlines. Use when transcribing meeting notes, summarising discussions, extracting action items, or documenting decisions. Triggers on requests to write up meeting notes, extract actions from notes, summarise a meeting, or create meeting documentation.
+description: Creates structured meeting summaries from raw notes with clear action items, owners, and deadlines.
 ---
 
 # Meeting Notes & Actions

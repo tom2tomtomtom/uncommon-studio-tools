@@ -1,6 +1,6 @@
 ---
 name: brand-voice-enforcer
-description: Enforces client-specific tone, style rules, and terminology guides. Checks copy for brand voice consistency and approval-readiness. Use when reviewing copy against brand guidelines, checking tone consistency, enforcing terminology, or preparing copy for client approval. Triggers on requests to check brand voice, review copy for brand consistency, enforce style guide, or assess approval-readiness.
+description: Enforces client-specific tone, style rules, and terminology guides. Checks copy for brand voice consistency and approval-readiness.
 ---
 
 # Brand Voice Enforcer

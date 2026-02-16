@@ -1,6 +1,6 @@
 ---
 name: audience-cultural-insight
-description: Conducts audience research and cultural analysis including demographic research, cultural moment identification, and relevance mapping. Use when researching target audiences, identifying cultural trends, understanding audience motivations, or finding cultural connection points for brands. Triggers on requests for audience research, cultural insights, demographic analysis, trend spotting, or audience understanding.
+description: Conducts audience research and cultural analysis including demographic research, cultural moment identification, and relevance mapping.
 ---
 
 # Audience & Cultural Insight

@@ -1,6 +1,6 @@
 ---
 name: competitor-research
-description: Researches competitor websites, products, and business strategies then delivers actionable improvement recommendations. Produces competitive landscape maps, feature gap analyses, and prioritized opportunity reports. Use when analyzing competitors, benchmarking your product, identifying market gaps, planning feature roadmaps, or preparing competitive positioning.
+description: Researches competitor websites, products, and business strategies then delivers actionable improvement recommendations.
 ---
 
 # Competitor Research & Improvement Analysis

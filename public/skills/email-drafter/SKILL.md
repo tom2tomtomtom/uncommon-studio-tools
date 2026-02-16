@@ -1,6 +1,6 @@
 ---
 name: email-drafter
-description: Drafts professional emails for common PR scenarios including pitching, follow-ups, introductions, and declines. Use when writing professional emails for media outreach, client communication, stakeholder engagement, or internal coordination. Triggers on requests to draft an email, write a professional message, compose outreach, or create email templates.
+description: Drafts professional emails for common PR scenarios including pitching, follow-ups, introductions, and declines.
 ---
 
 # Email Drafter

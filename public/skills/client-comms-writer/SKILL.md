@@ -1,6 +1,6 @@
 ---
 name: client-comms-writer
-description: Writes client communications including status reports, WIP updates, and recap emails in Alt/Shift's professional yet warm voice. Use when drafting client emails, writing status updates, creating work-in-progress reports, or summarising meetings and activities for clients. Triggers on requests to write client updates, status reports, WIP emails, recap communications, or client-facing correspondence.
+description: Writes client communications including status reports, WIP updates, and recap emails in Alt/Shift's professional yet warm voice.
 ---
 
 # Client Comms Writer

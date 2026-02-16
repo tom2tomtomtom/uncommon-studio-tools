@@ -1,6 +1,6 @@
 ---
 name: media-release-writer
-description: Writes media releases in Alt/Shift house style with proper structure, quote formatting, boilerplate handling, and embargo conventions. Use when drafting press releases, media announcements, news releases, or any earned media content for distribution to journalists. Triggers on requests to write, draft, or create a media release, press release, or news announcement.
+description: Writes media releases in Alt/Shift house style with proper structure, quote formatting, boilerplate handling, and embargo conventions.
 ---
 
 # Media Release Writer

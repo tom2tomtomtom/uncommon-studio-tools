@@ -1,6 +1,6 @@
 ---
 name: content-calendar-generator
-description: Generates content calendars with themed planning across channels, tentpole mapping, and cadence recommendations. Use when building editorial calendars, planning content across channels, mapping tentpole moments, or developing publishing schedules. Triggers on requests to create a content calendar, build an editorial calendar, plan content, or develop a publishing schedule.
+description: Generates content calendars with themed planning across channels, tentpole mapping, and cadence recommendations.
 ---
 
 # Content Calendar Generator

@@ -1,6 +1,6 @@
 ---
 name: strategy-brief-builder
-description: Builds structured communications strategy briefs from loose inputs, including audience definition, insight articulation, and strategic direction. Use when developing strategy documents, structuring campaign briefs, defining target audiences, articulating insights, or creating strategic frameworks for comms work. Triggers on requests to create a strategy brief, build a comms strategy, define audiences, develop campaign strategy, or structure strategic thinking.
+description: Builds structured communications strategy briefs from loose inputs, including audience definition, insight articulation, and strategic direction.
 ---
 
 # Strategy Brief Builder

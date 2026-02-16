@@ -1,6 +1,6 @@
 ---
 name: design-critique
-description: Provides structured design feedback covering visual hierarchy, typography, color, and accessibility. Delivers annotated critiques with specific improvement recommendations. Use when evaluating layouts, reviewing brand consistency in visuals, assessing design accessibility, or preparing design review feedback.
+description: Provides structured design feedback covering visual hierarchy, typography, color, and accessibility. Delivers annotated critiques with specific improvement recommendations.
 ---
 
 # Design Critique

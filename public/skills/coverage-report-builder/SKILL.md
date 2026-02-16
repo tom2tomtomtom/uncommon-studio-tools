@@ -1,6 +1,6 @@
 ---
 name: coverage-report-builder
-description: Builds media coverage reports with synthesis, sentiment analysis, reach metrics, and share of voice analysis. Use when compiling coverage reports, analysing media results, assessing campaign performance, or presenting earned media outcomes to clients. Triggers on requests to create a coverage report, analyse media coverage, compile PR results, or measure earned media performance.
+description: Builds media coverage reports with synthesis, sentiment analysis, reach metrics, and share of voice analysis.
 ---
 
 # Coverage Report Builder

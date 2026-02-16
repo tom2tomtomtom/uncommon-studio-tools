@@ -1,6 +1,6 @@
 ---
 name: crisis-comms-drafter
-description: Drafts crisis communications including holding statements, stakeholder messaging, and escalation frameworks. Use when preparing crisis response materials, drafting holding statements, developing stakeholder-specific messaging during incidents, or building crisis communication playbooks. Triggers on requests for crisis communications, holding statements, incident response messaging, or reputation management content.
+description: Drafts crisis communications including holding statements, stakeholder messaging, and escalation frameworks.
 ---
 
 # Crisis Comms Drafter

@@ -1,6 +1,6 @@
 ---
 name: event-launch-planner
-description: Creates event and launch planning documents including run sheets, logistics checklists, media event briefings, and launch timelines. Use when planning media events, product launches, press conferences, or activation logistics. Triggers on requests to create a run sheet, plan an event, develop launch logistics, prepare media event briefings, or create event timelines.
+description: Creates event and launch planning documents including run sheets, logistics checklists, media event briefings, and launch timelines.
 ---
 
 # Event & Launch Planner

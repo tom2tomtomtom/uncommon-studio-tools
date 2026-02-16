@@ -1,6 +1,6 @@
 ---
 name: media-list-intelligence
-description: Researches journalists, analyses beats, and prioritises media contacts for specific stories. Use when building media lists, researching journalist backgrounds, identifying relevant reporters for a story, or prioritising outreach targets. Triggers on requests to build a media list, research journalists, find contacts for a story, or identify reporters covering a specific beat.
+description: Researches journalists, analyses beats, and prioritises media contacts for specific stories.
 ---
 
 # Media List Intelligence

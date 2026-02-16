@@ -1,6 +1,6 @@
 ---
 name: competitor-analysis
-description: Conducts deep-dive analysis on specific competitor brands including positioning, messaging, media presence, share of voice, strengths, vulnerabilities, and strategic implications. Use when researching a specific competitor in depth, understanding a rival's communications strategy, or identifying competitive threats and opportunities. Triggers on requests to analyse a specific competitor, research a rival brand, assess competitive threats, or understand competitor strategy.
+description: Conducts deep-dive analysis on specific competitor brands including positioning, messaging, media presence, share of voice, strengths, vulnerabilities, and strategic implications.
 ---
 
 # Competitor Analysis (Deep-Dive)

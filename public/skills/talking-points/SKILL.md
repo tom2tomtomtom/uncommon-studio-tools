@@ -1,6 +1,6 @@
 ---
 name: talking-points
-description: Creates structured message frameworks and talking points for spokespeople, including key messages, bridge phrases, and deflection guidance. Use when preparing spokespeople for interviews, developing key messages for a campaign, creating Q&A documents, or briefing executives for media appearances. Triggers on requests for talking points, key messages, spokesperson briefings, Q&A documents, or media interview preparation.
+description: Creates structured message frameworks and talking points for spokespeople, including key messages, bridge phrases, and deflection guidance.
 ---
 
 # Talking Points & Key Messages

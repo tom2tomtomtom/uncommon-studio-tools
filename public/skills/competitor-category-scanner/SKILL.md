@@ -1,6 +1,6 @@
 ---
 name: competitor-category-scanner
-description: Conducts landscape and market-level analysis including positioning gaps, trend identification, and category dynamics. Use when analysing market landscapes, identifying category trends, mapping competitive positioning, or understanding broader market context. Triggers on requests for market analysis, category overview, landscape scan, positioning analysis, or trend identification.
+description: Conducts landscape and market-level analysis including positioning gaps, trend identification, and category dynamics.
 ---
 
 # Competitor & Category Scanner

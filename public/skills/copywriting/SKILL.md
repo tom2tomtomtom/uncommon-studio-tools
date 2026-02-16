@@ -1,6 +1,6 @@
 ---
 name: copywriting
-description: Writes headlines, email sequences, social posts, ad copy, and web copy with brand voice consistency. Delivers publication-ready copy with multiple variants. Use when writing ad copy, crafting email campaigns, creating social content, developing web copy, or generating headline options.
+description: Writes headlines, email sequences, social posts, ad copy, and web copy with brand voice consistency. Delivers publication-ready copy with multiple variants.
 ---
 
 # Copywriting and Content Creation

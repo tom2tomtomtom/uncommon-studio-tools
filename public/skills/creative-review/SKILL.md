@@ -1,6 +1,6 @@
 ---
 name: creative-review
-description: Reviews creative work against briefs and brand standards with structured scoring. Delivers brief-alignment reports, brand consistency audits, and optimization recommendations. Use when evaluating ads, reviewing campaign materials, checking brand alignment, or providing creative feedback before client presentations.
+description: Reviews creative work against briefs and brand standards with structured scoring. Delivers brief-alignment reports, brand consistency audits, and optimization recommendations.
 ---
 
 # Creative Review and Optimization

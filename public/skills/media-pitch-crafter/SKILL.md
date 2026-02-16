@@ -1,6 +1,6 @@
 ---
 name: media-pitch-crafter
-description: Crafts compelling media pitches with strong angles, journalist-specific tailoring, and optimised subject lines. Use when writing pitch emails to journalists, developing story angles, or preparing outreach for earned media coverage. Triggers on requests to pitch a story, write a media pitch, craft journalist outreach, or develop a story angle.
+description: Crafts compelling media pitches with strong angles, journalist-specific tailoring, and optimised subject lines.
 ---
 
 # Media Pitch Crafter

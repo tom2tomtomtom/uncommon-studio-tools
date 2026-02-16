@@ -1,6 +1,6 @@
 ---
 name: social-copy-writer
-description: Writes platform-specific social media copy with appropriate tone, formatting, hashtag usage, and CTAs calibrated to each client's brand voice. Use when drafting social posts for LinkedIn, Instagram, Facebook, Twitter/X, TikTok, or other platforms. Triggers on requests to write social copy, create social posts, draft captions, or develop social content.
+description: Writes platform-specific social media copy with appropriate tone, formatting, hashtag usage, and CTAs calibrated to each client's brand voice.
 ---
 
 # Social Copy Writer

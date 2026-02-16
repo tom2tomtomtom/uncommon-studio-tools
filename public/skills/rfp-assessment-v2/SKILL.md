@@ -1,6 +1,6 @@
 ---
 name: rfp-assessment
-description: Strategic RFP evaluation framework for advertising, PR, and creative agencies. Goes beyond go/no-go decisions to assess whether the agency is positioning to win on the right terms. Use when assessing RFP opportunities, evaluating response quality, preparing pitch strategy, or providing strategic counsel on business development. Combines systematic qualification with strategic provocation.
+description: Strategic RFP evaluation framework for advertising, PR, and creative agencies. Goes beyond go/no-go decisions to assess whether the agency is positioning to win on the right terms.
 ---
 
 # RFP Strategic Assessment Framework

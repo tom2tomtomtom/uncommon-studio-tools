@@ -1,6 +1,6 @@
 ---
 name: qa-testing
-description: Generates QA reports with severity-rated findings, testing protocols, and acceptance criteria. Delivers structured quality assessments with pass/fail status and remediation steps. Use when reviewing deliverable quality, creating acceptance criteria, building testing protocols, or documenting QA findings before client delivery.
+description: Generates QA reports with severity-rated findings, testing protocols, and acceptance criteria. Delivers structured quality assessments with pass/fail status and remediation steps.
 ---
 
 # Quality Assurance and Testing
