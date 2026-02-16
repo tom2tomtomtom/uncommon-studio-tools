@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import Fuse from 'fuse.js';
 import {
   CommandDialog,
   CommandEmpty,
@@ -11,26 +10,18 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
-import { prompts, teams } from '@/lib/prompts';
+import { teams } from '@/lib/prompts';
+import { promptSearch } from '@/lib/search';
 import { useAnalytics } from '@/hooks/use-analytics';
 import { Search, Star, FileText, Users } from 'lucide-react';
-
-const fuse = new Fuse(prompts, {
-  keys: [
-    { name: 'name', weight: 2 },
-    { name: 'description', weight: 1.5 },
-    { name: 'teamName', weight: 1 },
-    { name: 'prompt', weight: 0.5 },
-  ],
-  threshold: 0.4,
-  includeScore: true,
-});
 
 export function CommandMenu() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
   const router = useRouter();
   const { track } = useAnalytics();
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   // Handle keyboard shortcut
   useEffect(() => {
@@ -45,19 +36,29 @@ export function CommandMenu() {
     return () => document.removeEventListener('keydown', down);
   }, []);
 
-  const results = query.length > 1 ? fuse.search(query).slice(0, 10) : [];
+  // Cleanup debounce on unmount
+  useEffect(() => {
+    return () => clearTimeout(debounceRef.current);
+  }, []);
+
+  const results = debouncedQuery.length > 1 ? promptSearch.search(debouncedQuery).slice(0, 10) : [];
 
   const handleSelect = useCallback((path: string) => {
     setOpen(false);
     setQuery('');
+    setDebouncedQuery('');
     router.push(path);
   }, [router]);
 
   const handleSearch = useCallback((value: string) => {
     setQuery(value);
-    if (value.length > 2) {
-      track({ type: 'search', query: value, resultCount: fuse.search(value).length });
-    }
+    clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      setDebouncedQuery(value);
+      if (value.length > 2) {
+        track({ type: 'search', query: value, resultCount: promptSearch.search(value).length });
+      }
+    }, 150);
   }, [track]);
 
   return (
@@ -85,7 +86,7 @@ export function CommandMenu() {
           <CommandEmpty>No matching prompts or departments. Try a different search term.</CommandEmpty>
 
           {/* Quick Links */}
-          {query.length < 2 && (
+          {debouncedQuery.length < 2 && query.length < 2 && (
             <>
               <CommandGroup heading="Quick Links">
                 <CommandItem onSelect={() => handleSelect('/')}>

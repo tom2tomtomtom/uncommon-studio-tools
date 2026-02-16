@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import Fuse from 'fuse.js';
 import { prompts, teams } from '@/lib/prompts';
+import { promptSearch } from '@/lib/search';
 import { PromptCard } from '@/components/prompt-card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -11,36 +11,43 @@ import { useAnalytics } from '@/hooks/use-analytics';
 import { Search, X, Home, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
-const fuse = new Fuse(prompts, {
-  keys: [
-    { name: 'name', weight: 2 },
-    { name: 'description', weight: 1.5 },
-    { name: 'teamName', weight: 1 },
-    { name: 'prompt', weight: 0.5 },
-  ],
-  threshold: 0.4,
-  includeScore: true,
-});
-
 export function SearchContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('q') || '');
+  const [debouncedQuery, setDebouncedQuery] = useState(query);
   const [selectedTeam, setSelectedTeam] = useState<string | null>(searchParams.get('team') || null);
   const { track } = useAnalytics();
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  // Debounce search query (150ms)
+  const handleSearch = useCallback((value: string) => {
+    setQuery(value);
+    clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      setDebouncedQuery(value);
+      if (value.length > 2) {
+        track({ type: 'search', query: value, resultCount: promptSearch.search(value).length });
+      }
+    }, 150);
+  }, [track]);
+
+  useEffect(() => {
+    return () => clearTimeout(debounceRef.current);
+  }, []);
 
   // Sync state to URL params
   useEffect(() => {
     const params = new URLSearchParams();
-    if (query) params.set('q', query);
+    if (debouncedQuery) params.set('q', debouncedQuery);
     if (selectedTeam) params.set('team', selectedTeam);
     const newUrl = params.toString() ? `?${params.toString()}` : '/search';
     router.replace(newUrl, { scroll: false });
-  }, [query, selectedTeam, router]);
+  }, [debouncedQuery, selectedTeam, router]);
 
   const results = useMemo(() => {
-    let items = query.length > 1
-      ? fuse.search(query).map(r => r.item)
+    let items = debouncedQuery.length > 1
+      ? promptSearch.search(debouncedQuery).map(r => r.item)
       : prompts;
 
     if (selectedTeam) {
@@ -48,14 +55,7 @@ export function SearchContent() {
     }
 
     return items;
-  }, [query, selectedTeam]);
-
-  const handleSearch = (value: string) => {
-    setQuery(value);
-    if (value.length > 2) {
-      track({ type: 'search', query: value, resultCount: fuse.search(value).length });
-    }
-  };
+  }, [debouncedQuery, selectedTeam]);
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
@@ -125,17 +125,17 @@ export function SearchContent() {
       </div>
 
       {/* Results Count */}
-      {(query || selectedTeam) && (
+      {(debouncedQuery || selectedTeam) && (
         <div className="text-sm text-muted-foreground">
           {results.length} {results.length === 1 ? 'result' : 'results'}
-          {query && ` for "${query}"`}
+          {debouncedQuery && ` for "${debouncedQuery}"`}
           {selectedTeam && ` in ${teams.find(t => t.slug === selectedTeam)?.name}`}
         </div>
       )}
 
       {/* Results */}
       <div className="space-y-4">
-        {results.length === 0 && (query || selectedTeam) ? (
+        {results.length === 0 && (debouncedQuery || selectedTeam) ? (
           <div className="text-center py-12">
             <Search className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
             <h3 className="text-lg font-medium">No matching prompts</h3>
@@ -150,7 +150,7 @@ export function SearchContent() {
               to browse everything.
             </p>
           </div>
-        ) : !query && !selectedTeam ? (
+        ) : !debouncedQuery && !selectedTeam ? (
           <div className="space-y-4">
             <p className="text-sm text-muted-foreground">Start typing to search, or browse by department:</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">

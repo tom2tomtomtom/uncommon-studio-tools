@@ -349,6 +349,9 @@ export function ChatWidget() {
         .map(m => ({ role: m.role, content: m.content }))
         .slice(-20);
 
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 30000);
+
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -356,7 +359,9 @@ export function ChatWidget() {
           messages: apiMessages,
           systemPrompt,
         }),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
       const data = await res.json();
       const responseContent = data.content || data.error || 'Something went wrong on our end. Try sending your message again.';
 
@@ -384,11 +389,11 @@ export function ChatWidget() {
       } else {
         setMessages(prev => [...prev, { role: 'assistant', content: responseContent }]);
       }
-    } catch {
-      setMessages(prev => [
-        ...prev,
-        { role: 'assistant', content: 'I couldn\'t connect just now. Check your internet connection and try again.' }
-      ]);
+    } catch (err) {
+      const message = err instanceof DOMException && err.name === 'AbortError'
+        ? 'The request timed out. The AI service may be busy — try again in a moment.'
+        : 'I couldn\'t connect just now. Check your internet connection and try again.';
+      setMessages(prev => [...prev, { role: 'assistant', content: message }]);
     } finally {
       setIsLoading(false);
     }
