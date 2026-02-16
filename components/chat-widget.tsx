@@ -1,12 +1,23 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, ReactNode } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { prompts, teams } from '@/lib/prompts';
-import { MessageCircle, X, Send, Loader2, Sparkles, ArrowRight } from 'lucide-react';
+import { MessageCircle, X, Send, Loader2, Sparkles, ArrowRight, RotateCcw } from 'lucide-react';
 import Link from 'next/link';
+
+interface FollowUp {
+  label: string;
+  message: string;
+}
+
+interface ConversationStarter {
+  label: string;
+  message: string;
+}
 
 interface Recommendation {
   title: string;
@@ -18,7 +29,10 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
   recommendations?: Recommendation[];
+  followUps?: FollowUp[];
 }
+
+const MESSAGES_STORAGE = 'uncommon-ai-chat-messages';
 
 // Build a map of all navigable pages
 const APP_PAGES = {
@@ -57,91 +71,254 @@ const APP_PAGES = {
   ],
 };
 
-const SYSTEM_PROMPT = `You are Uncommon AI, a helpful assistant for the Uncommon Studio AI Tools creative toolkit. The toolkit has ${teams.length} departments, ${prompts.length}+ AI prompts, and comprehensive guides for AI tools.
+// Build compact prompt index grouped by team
+const PROMPT_INDEX = (() => {
+  const grouped: Record<string, string[]> = {};
+  for (const p of prompts) {
+    if (!grouped[p.teamName]) grouped[p.teamName] = [];
+    grouped[p.teamName].push(`${p.id} ${p.name}`);
+  }
+  return Object.entries(grouped)
+    .map(([team, entries]) => `${team}: ${entries.join(' | ')}`)
+    .join('\n');
+})();
 
-You MUST respond in this EXACT JSON format:
-{
-  "text": "Your helpful response explaining your recommendations...",
-  "recommendations": [
-    {
-      "title": "Display Name",
-      "url": "/path/to/page",
-      "type": "Guide" | "Department" | "Prompt" | "Page"
+function buildSystemPrompt(pathname: string, userContext?: { favorites: string[]; recentlyUsed: string[] }): string {
+  // Determine current page context
+  let pageContext = 'The user is on the homepage.';
+  const teamMatch = pathname.match(/^\/team\/([^/]+)/);
+  const guideMatch = pathname.match(/^\/guides\/([^/]+)/);
+  if (teamMatch) {
+    const team = teams.find(t => t.slug === teamMatch[1]);
+    if (team) {
+      const teamPrompts = prompts.filter(p => p.teamSlug === team.slug);
+      pageContext = `The user is browsing the ${team.name} department (${teamPrompts.length} prompts).`;
     }
-  ]
+  } else if (guideMatch) {
+    const guide = APP_PAGES.guides.find(g => g.slug === guideMatch[1]);
+    if (guide) {
+      pageContext = `The user is reading the "${guide.title}" guide.`;
+    }
+  } else if (pathname === '/guides') {
+    pageContext = 'The user is on the Guides overview page.';
+  } else if (pathname === '/plugins') {
+    pageContext = 'The user is on the Cowork Plugins page.';
+  } else if (pathname === '/tips') {
+    pageContext = 'The user is on the Expert Tips page.';
+  } else if (pathname === '/favorites') {
+    pageContext = 'The user is viewing their Favorites.';
+  }
+
+  // Build user context section
+  let userContextSection = '';
+  if (userContext) {
+    const parts: string[] = [];
+    if (userContext.favorites.length > 0) {
+      const favNames = userContext.favorites
+        .map(id => prompts.find(p => p.id === id)?.name)
+        .filter(Boolean)
+        .slice(0, 5);
+      if (favNames.length > 0) parts.push(`User's favorites: ${favNames.join(', ')}`);
+    }
+    if (userContext.recentlyUsed.length > 0) {
+      const recentNames = userContext.recentlyUsed
+        .map(id => prompts.find(p => p.id === id)?.name)
+        .filter(Boolean)
+        .slice(0, 5);
+      if (recentNames.length > 0) parts.push(`User recently used: ${recentNames.join(', ')}`);
+    }
+    if (parts.length > 0) {
+      userContextSection = `\nUSER CONTEXT:\n${parts.join('\n')}\n`;
+    }
+  }
+
+  return `You are Uncommon AI, a helpful assistant for the Uncommon Studio AI Tools creative toolkit.
+The toolkit has ${teams.length} departments, ${prompts.length}+ AI prompts, and comprehensive guides for AI tools.
+
+CURRENT PAGE CONTEXT: ${pageContext}
+${userContextSection}
+RESPONSE FORMAT: You must respond with RAW JSON only (no markdown code fences). Use this exact format:
+{
+  "text": "Your response here. Use **bold**, *italic*, \`code\`, and - bullet lists for formatting.",
+  "recommendations": [{"title": "Display Name", "url": "/path/to/page", "type": "Guide" | "Department" | "Prompt" | "Page"}],
+  "followUps": [{"label": "Short button label", "message": "Full message to send"}]
 }
 
-AVAILABLE RESOURCES:
+AVAILABLE PROMPTS (link format: /team/{teamSlug}#{id}):
+${PROMPT_INDEX}
 
-**Guides (use /guides/slug):**
-- projects: Setting up Claude Projects for context
-- mcp-setup: Model Context Protocol configuration
-- claude-code: Command-line interface for non-coders
-- artifacts: Building interactive apps and documents
-- cowork: Autonomous agent for multi-step tasks
-- cowork-plugins: Role-based skill bundles
-- deep-research: Research missions with web + local docs
-- custom-skills: Repeatable instructions
-- connectors: Google Workspace, GitHub integrations
-- chrome-extension: Browser automation
-- power-hacks: Advanced techniques
-- notebooklm: Google's AI-powered study tool
-- perplexity: Research and Pro Search
-- n8n: Workflow automation
-- runway: AI video generation
-- elevenlabs: Voice AI and cloning
-- gamma: AI presentations
-- aiden-studio: AI Creative Director
-- getting-started: Getting started with Claude basics
-- google-ai-suite: Google AI tools (Gemini, Imagen, Veo)
-- model-selection: Which AI tool for which task
-- multi-tool-workflows: Multi-tool orchestration pipelines
-- tool-governance: AI tool evaluation and compliance
+GUIDES (link format: /guides/{slug}):
+${APP_PAGES.guides.map(g => `- ${g.slug}: ${g.title}`).join('\n')}
 
-**Departments (use /team/slug):**
+DEPARTMENTS (link format: /team/{slug}):
 ${teams.map(t => `- ${t.slug}: ${t.name} (${t.solutionCount} prompts)`).join('\n')}
 
-**Other Pages:**
+OTHER PAGES:
 - /tips: Expert tips and shortcuts
 - /plugins: Cowork plugins library
 - /guides: All guides overview
 - /search: Search prompts
 
 RULES:
-1. Return 1-3 relevant recommendations based on the query
-2. If greeting, return empty recommendations []
-3. Be concise in "text" - explain WHY you're recommending
-4. URLs must match the patterns above exactly
-5. Output RAW JSON only, no markdown code blocks
+1. Recommend specific prompts by name and id when relevant — use type "Prompt" with url /team/{teamSlug}#{id}
+2. Return 1-3 relevant recommendations based on the query
+3. Always include 2-3 followUps to continue the conversation
+4. Use markdown in text: **bold**, *italic*, \`code\`, - bullet lists
+5. Be concise in "text" — explain WHY you're recommending
+6. URLs must match the patterns above exactly
+7. Output RAW JSON only — no markdown code fences, no extra text
+8. If greeting, return empty recommendations []`;
+}
 
-ROUTING LOGIC:
-- "video" → runway guide, creative department
-- "voice", "audio", "speech" → elevenlabs guide
-- "presentation", "deck", "slides" → gamma guide
-- "automation", "workflow" → n8n guide
-- "research" → deep-research guide, perplexity guide
-- "creative", "campaign", "concept" → creative department, aiden-studio guide
-- "strategy", "planning" → strategy department
-- "copy", "writing", "content" → copywriting department
-- "project", "context", "setup" → projects guide
-- "code", "terminal", "CLI" → claude-code guide
-- "browser", "chrome" → chrome-extension guide
-- "tips", "shortcuts", "hacks" → tips page, power-hacks guide
-- "invoice", "budget", "expense", "finance" → finance department`;
+function getConversationStarters(pathname: string): ConversationStarter[] {
+  const teamMatch = pathname.match(/^\/team\/([^/]+)/);
+  if (teamMatch) {
+    const team = teams.find(t => t.slug === teamMatch[1]);
+    if (team) {
+      const teamPrompts = prompts.filter(p => p.teamSlug === team.slug);
+      return [
+        { label: `What can ${team.name} do?`, message: `What tools does the ${team.name} department offer?` },
+        { label: 'Recommend a tool', message: `Which ${team.name} tool should I start with?` },
+        { label: 'Compare tools', message: `How do the ${team.name} tools differ from each other?` },
+        ...(teamPrompts[0] ? [{ label: `About ${teamPrompts[0].name.split(' ').slice(0, 3).join(' ')}...`, message: `Tell me about the ${teamPrompts[0].name} tool` }] : []),
+      ].slice(0, 4);
+    }
+  }
+
+  if (pathname.startsWith('/guides')) {
+    return [
+      { label: 'Getting started', message: 'I\'m new to AI tools. Where should I start?' },
+      { label: 'Best for research', message: 'Which guides help with research tasks?' },
+      { label: 'Automation setup', message: 'How do I set up workflow automation?' },
+      { label: 'Compare AI tools', message: 'Help me choose between Claude, Perplexity, and Gemini.' },
+    ];
+  }
+
+  // Default starters for homepage / other pages
+  return [
+    { label: 'Help me write a brief', message: 'I need to write a creative brief. Which tool should I use?' },
+    { label: 'Explore departments', message: 'Give me an overview of all the departments and what they do.' },
+    { label: 'AI guides', message: 'What guides do you have for learning AI tools?' },
+    { label: 'Media & PR tools', message: 'What tools do you have for media relations and PR?' },
+  ];
+}
+
+// Lightweight markdown renderer
+function renderInlineMarkdown(text: string): ReactNode[] {
+  const parts: ReactNode[] = [];
+  const regex = /(\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    if (match[2]) {
+      parts.push(<strong key={key++}>{match[2]}</strong>);
+    } else if (match[3]) {
+      parts.push(<em key={key++}>{match[3]}</em>);
+    } else if (match[4]) {
+      parts.push(<code key={key++} className="bg-muted-foreground/15 px-1 rounded text-xs">{match[4]}</code>);
+    }
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+  return parts.length > 0 ? parts : [text];
+}
+
+function renderMarkdown(text: string): ReactNode {
+  const lines = text.split('\n');
+  const elements: ReactNode[] = [];
+  let listItems: ReactNode[] = [];
+  let key = 0;
+
+  const flushList = () => {
+    if (listItems.length > 0) {
+      elements.push(
+        <ul key={key++} className="list-disc list-inside space-y-1 my-1">
+          {listItems}
+        </ul>
+      );
+      listItems = [];
+    }
+  };
+
+  for (const line of lines) {
+    const bulletMatch = line.match(/^[-*]\s+(.+)/);
+    if (bulletMatch) {
+      listItems.push(<li key={key++}>{renderInlineMarkdown(bulletMatch[1])}</li>);
+    } else {
+      flushList();
+      if (line.trim() === '') {
+        elements.push(<br key={key++} />);
+      } else {
+        elements.push(<p key={key++} className="my-1">{renderInlineMarkdown(line)}</p>);
+      }
+    }
+  }
+  flushList();
+
+  return <>{elements}</>;
+}
+
+const WELCOME_MESSAGE: Message = {
+  role: 'assistant',
+  content: "Hi! I'm **Uncommon AI**, your guide to our creative toolkit. Tell me what you're working on and I'll point you to the right prompts, departments, and guides.",
+  recommendations: [],
+};
 
 export function ChatWidget() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: "Hi! I'm Uncommon AI, your guide to our creative toolkit. Tell me what you're working on and I'll point you to the right prompts, departments, and guides.",
-      recommendations: []
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([WELCOME_MESSAGE]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+  const [favorites, setFavorites] = useState<string[]>([]);
+  const [recentlyUsed, setRecentlyUsed] = useState<string[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+  // Load persisted messages on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(MESSAGES_STORAGE);
+      if (saved) {
+        const parsed = JSON.parse(saved) as Message[];
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setMessages(parsed);
+        }
+      }
+    } catch {
+      // Invalid stored data, keep defaults
+    }
+    setIsHydrated(true);
+  }, []);
+
+  // Persist messages to localStorage
+  useEffect(() => {
+    if (isHydrated) {
+      localStorage.setItem(MESSAGES_STORAGE, JSON.stringify(messages));
+    }
+  }, [messages, isHydrated]);
+
+  // Re-read user context when widget opens
+  useEffect(() => {
+    if (isOpen) {
+      try {
+        const favs = localStorage.getItem('agency-tools-favorites');
+        if (favs) setFavorites(JSON.parse(favs));
+      } catch { /* ignore */ }
+      try {
+        const recent = localStorage.getItem('agency-tools-recently-used');
+        if (recent) setRecentlyUsed(JSON.parse(recent));
+      } catch { /* ignore */ }
+    }
+  }, [isOpen]);
 
   // Auto-scroll to bottom when messages change
   useEffect(() => {
@@ -150,33 +327,43 @@ export function ChatWidget() {
     }
   }, [messages]);
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
+  const startNewConversation = () => {
+    setMessages([WELCOME_MESSAGE]);
+  };
 
-    const userMessage = input.trim();
-    setInput('');
-    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+  const sendMessageDirect = async (directMessage?: string) => {
+    const messageText = directMessage || input.trim();
+    if (!messageText) return;
+
+    if (!directMessage) setInput('');
+    setMessages(prev => [...prev, { role: 'user', content: messageText }]);
     setIsLoading(true);
 
     try {
+      const systemPrompt = buildSystemPrompt(pathname, { favorites, recentlyUsed });
+
+      // Cap history at last 20 messages for API call
+      const allMessages = [...messages, { role: 'user' as const, content: messageText }];
+      const apiMessages = allMessages
+        .filter(m => !m.recommendations?.length || m.role === 'user')
+        .map(m => ({ role: m.role, content: m.content }))
+        .slice(-20);
+
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          messages: [...messages.filter(m => !m.recommendations?.length || m.role === 'user').map(m => ({ role: m.role, content: m.content })), { role: 'user', content: userMessage }],
-          systemPrompt: SYSTEM_PROMPT,
+          messages: apiMessages,
+          systemPrompt,
         }),
       });
       const data = await res.json();
-      let responseContent = data.content || data.error || 'Something went wrong on our end. Try sending your message again.';
+      const responseContent = data.content || data.error || 'Something went wrong on our end. Try sending your message again.';
 
       // Try to parse JSON response
-      let parsedResponse: { text: string; recommendations: Recommendation[] } | null = null;
+      let parsedResponse: { text: string; recommendations: Recommendation[]; followUps?: FollowUp[] } | null = null;
       try {
-        // Clean up markdown code blocks if present
         let cleanContent = responseContent.replace(/```json/g, '').replace(/```/g, '').trim();
-
-        // Find JSON in response
         const firstBrace = cleanContent.indexOf('{');
         const lastBrace = cleanContent.lastIndexOf('}');
         if (firstBrace !== -1 && lastBrace !== -1) {
@@ -184,7 +371,6 @@ export function ChatWidget() {
           parsedResponse = JSON.parse(jsonStr);
         }
       } catch {
-        // If parsing fails, use plain text response
         parsedResponse = null;
       }
 
@@ -192,7 +378,8 @@ export function ChatWidget() {
         setMessages(prev => [...prev, {
           role: 'assistant',
           content: parsedResponse.text,
-          recommendations: parsedResponse.recommendations || []
+          recommendations: parsedResponse.recommendations || [],
+          followUps: Array.isArray(parsedResponse.followUps) ? parsedResponse.followUps : [],
         }]);
       } else {
         setMessages(prev => [...prev, { role: 'assistant', content: responseContent }]);
@@ -206,6 +393,8 @@ export function ChatWidget() {
       setIsLoading(false);
     }
   };
+
+  const starters = getConversationStarters(pathname);
 
   return (
     <>
@@ -245,15 +434,29 @@ export function ChatWidget() {
                 <Sparkles className="h-5 w-5 text-primary" />
                 <span className="font-semibold">Uncommon AI</span>
               </div>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8"
-                onClick={() => setIsOpen(false)}
-                aria-label="Close chat"
-              >
-                <X className="h-4 w-4" />
-              </Button>
+              <div className="flex items-center gap-1">
+                {messages.length > 1 && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8"
+                    onClick={startNewConversation}
+                    aria-label="New chat"
+                    title="New chat"
+                  >
+                    <RotateCcw className="h-4 w-4" />
+                  </Button>
+                )}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close chat"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
 
             {/* Messages - Scrollable */}
@@ -274,7 +477,10 @@ export function ChatWidget() {
                             : 'bg-muted'
                         }`}
                       >
-                        {msg.content}
+                        {msg.role === 'assistant'
+                          ? renderMarkdown(msg.content)
+                          : msg.content
+                        }
                       </div>
                     </div>
 
@@ -302,8 +508,41 @@ export function ChatWidget() {
                         ))}
                       </div>
                     )}
+
+                    {/* Follow-up buttons — only on the latest assistant message */}
+                    {msg.role === 'assistant' && msg.followUps && msg.followUps.length > 0 && i === messages.length - 1 && (
+                      <div className="flex flex-wrap gap-1.5 ml-1">
+                        {msg.followUps.map((fu, j) => (
+                          <button
+                            key={j}
+                            onClick={() => sendMessageDirect(fu.message)}
+                            disabled={isLoading}
+                            className="text-xs px-2.5 py-1.5 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors disabled:opacity-50"
+                          >
+                            {fu.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
+
+                {/* Conversation starters — shown when only welcome message exists */}
+                {messages.length === 1 && (
+                  <div className="flex flex-wrap gap-1.5 mt-1">
+                    {starters.map((s, i) => (
+                      <button
+                        key={i}
+                        onClick={() => sendMessageDirect(s.message)}
+                        disabled={isLoading}
+                        className="text-xs px-2.5 py-1.5 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors disabled:opacity-50"
+                      >
+                        {s.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
                 {isLoading && (
                   <div className="flex justify-start">
                     <div className="bg-muted rounded-lg px-3 py-2">
@@ -320,7 +559,7 @@ export function ChatWidget() {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  sendMessage();
+                  sendMessageDirect();
                 }}
                 className="flex gap-2"
               >
