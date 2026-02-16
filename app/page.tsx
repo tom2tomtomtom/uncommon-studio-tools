@@ -33,12 +33,12 @@ export default function HomePage() {
           <span className="text-primary"> AI Tools</span>
         </h1>
         <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          {totalPrompts} prompts, 33 skills, and 12 plugins across {totalTeams} agency departments
+          {totalPrompts} prompts, 33 skills, and 13 plugins across {totalTeams} agency departments
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
           <StatCard icon={<FileText className="h-5 w-5" />} label="Prompts" value={totalPrompts} />
           <StatCard icon={<Sparkles className="h-5 w-5" />} label="Skills" value={33} />
-          <StatCard icon={<Zap className="h-5 w-5" />} label="Plugins" value={12} />
+          <StatCard icon={<Zap className="h-5 w-5" />} label="Plugins" value={13} />
           <StatCard icon={<Users className="h-5 w-5" />} label="Departments" value={totalTeams} />
         </div>
       </div>
