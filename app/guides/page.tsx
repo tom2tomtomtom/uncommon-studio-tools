@@ -24,7 +24,8 @@ import {
   AudioLines,
   Presentation,
   Brain,
-  GraduationCap
+  GraduationCap,
+  Shield
 } from 'lucide-react';
 
 // Claude Enterprise
@@ -156,6 +157,15 @@ const googleGuides = [
     time: '20 min',
     color: 'text-rose-500',
   },
+  {
+    slug: 'google-ai-suite',
+    title: 'Google AI Suite',
+    description: 'Gemini 2.5 Pro, Imagen 4, Veo 3, Sheets AI, and Gmail AI for creative workflows',
+    icon: Sparkles,
+    difficulty: 'Beginner → Intermediate',
+    time: '25 min',
+    color: 'text-blue-500',
+  },
 ];
 
 // Perplexity Enterprise Pro
@@ -236,6 +246,37 @@ const gammaGuides = [
   },
 ];
 
+// Workflows & Governance
+const workflowGuides = [
+  {
+    slug: 'model-selection',
+    title: 'AI Model Selection Guide',
+    description: 'Which AI tool for which task — a decision framework for choosing the right model',
+    icon: Brain,
+    difficulty: 'Beginner',
+    time: '15 min',
+    color: 'text-violet-500',
+  },
+  {
+    slug: 'multi-tool-workflows',
+    title: 'Multi-Tool Workflows',
+    description: 'Orchestrate Perplexity + NotebookLM + Claude + n8n for research-to-deliverable pipelines',
+    icon: Workflow,
+    difficulty: 'Intermediate',
+    time: '25 min',
+    color: 'text-green-500',
+  },
+  {
+    slug: 'tool-governance',
+    title: 'AI Tool Governance',
+    description: 'Legal, compliance, and evaluation framework for adopting new AI tools responsibly',
+    icon: Settings,
+    difficulty: 'Intermediate',
+    time: '20 min',
+    color: 'text-slate-500',
+  },
+];
+
 interface Guide {
   slug: string;
   title: string;
@@ -262,6 +303,7 @@ const sections: ToolSection[] = [
   { title: 'ElevenLabs', guides: elevenLabsGuides, color: 'text-pink-500' },
   { title: 'AIDEN Studio', guides: aidenGuides, color: 'text-red-500' },
   { title: 'Gamma', guides: gammaGuides, color: 'text-yellow-500' },
+  { title: 'Workflows & Governance', guides: workflowGuides, color: 'text-violet-500' },
 ];
 
 function GuideCard({ guide }: { guide: Guide }) {

@@ -29,7 +29,8 @@ import {
   History,
   PanelTop,
   BookOpen,
-  ArrowRight
+  ArrowRight,
+  Workflow
 } from 'lucide-react';
 
 export default function TipsPage() {
@@ -436,6 +437,58 @@ export default function TipsPage() {
             problem="Response wasn't quite right"
             trick='Click the refresh icon to get a new response without retyping. You can also edit your original message and resubmit to refine what you are asking for.'
             icon={<RefreshCw className="h-4 w-4" />}
+          />
+        </CardContent>
+      </Card>
+
+      {/* Section 11: Agency Workflows & ROI */}
+      <Card>
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <Workflow className="h-5 w-5 text-primary" />
+              Agency Workflows & ROI
+            </CardTitle>
+            <Badge variant="secondary" className="shrink-0">Everyone</Badge>
+          </div>
+          <CardDescription>
+            Multi-tool pipelines and automation patterns that save real time
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <TipBlock
+            title="The Synthetic Research Pipeline"
+            problem="Research takes days and still feels incomplete"
+            trick='Chain three tools: Perplexity Pro Search for live data with sources → NotebookLM to synthesize and generate an Audio Overview for the team → Claude Project to build the strategic deliverable. This turns 2-3 days of research into 2-3 hours with better sources.'
+            icon={<Globe className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Timeline Automation with n8n"
+            problem="Manually chasing status updates and sending deadline reminders"
+            trick='Build an n8n workflow that pulls project milestones from your PM tool and automatically sends Slack reminders 48 hours before deadlines, escalation alerts when tasks go overdue, and weekly timeline summaries to stakeholders. Set it up once, never chase again.'
+            icon={<Zap className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Invoice Processing on Autopilot"
+            problem="Manual data entry from invoices eats hours every week"
+            trick='Use Claude Cowork to read PDF invoices, extract vendor, amount, line items, and PO numbers, then validate against your records. It catches duplicates and math errors humans miss. Pair with the Finance plugin for a full AP workflow.'
+            icon={<DollarSign className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="Concept Multiplication: 1 Idea → 50 Executions"
+            problem="You have a great campaign concept but need it across every channel and format"
+            trick='Upload your core concept to a Claude Project and ask it to systematically multiply across channels (social, OOH, digital, experiential), formats (video, static, carousel, interactive), and moments (seasonal, cultural, product launches). Generates a full execution matrix in minutes instead of a brainstorm day.'
+            icon={<Sparkles className="h-4 w-4" />}
+          />
+
+          <TipBlock
+            title="ROI Quick Wins: Where AI Saves the Most Time"
+            problem="Not sure where to start with AI to get the fastest return"
+            trick='The biggest time savers we have measured: research briefs (3 days → 3 hours), status reports (2 hours → 15 min), creative brief writing (4 hours → 45 min), invoice processing (30 min each → 5 min each), meeting notes to action items (45 min → instant). Start with whichever your team does most often.'
+            icon={<Lightbulb className="h-4 w-4" />}
           />
         </CardContent>
       </Card>

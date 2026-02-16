@@ -31,6 +31,7 @@ const teamIcons: Record<string, string> = {
   'new-business': '💼',
   'project-management': '📋',
   'studio-operations': '⚙️',
+  'finance': '💰',
 };
 
 export function Sidebar() {

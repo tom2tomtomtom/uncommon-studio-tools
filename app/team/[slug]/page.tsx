@@ -20,6 +20,7 @@ const teamDescriptions: Record<string, string> = {
   'new-business': 'Win new business with AI-assisted proposals, pitch decks, and RFP responses.',
   'project-management': 'Keep projects on track with AI-powered timelines, resource plans, and status updates.',
   'studio-operations': 'Optimize studio workflows, capacity planning, and operational processes.',
+  'finance': 'Manage invoices, expenses, budgets, and financial compliance with AI-powered analysis and automation tools.',
 };
 
 export async function generateStaticParams() {
