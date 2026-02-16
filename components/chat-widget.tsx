@@ -271,6 +271,68 @@ function renderMarkdown(text: string): ReactNode {
   return <>{elements}</>;
 }
 
+// --- Extracted sub-components ---
+
+function MessageBubble({ msg }: { msg: Message }) {
+  return (
+    <div className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+      <div
+        className={`max-w-[85%] rounded-lg px-3 py-2 text-sm ${
+          msg.role === 'user'
+            ? 'bg-primary text-primary-foreground'
+            : 'bg-muted'
+        }`}
+      >
+        {msg.role === 'assistant' ? renderMarkdown(msg.content) : msg.content}
+      </div>
+    </div>
+  );
+}
+
+function RecommendationChips({ recommendations, onClose }: { recommendations: Recommendation[]; onClose: () => void }) {
+  if (!recommendations.length) return null;
+  return (
+    <div className="flex flex-wrap gap-2 ml-1">
+      {recommendations.map((rec, rIdx) => (
+        <Link
+          key={rIdx}
+          href={rec.url}
+          onClick={onClose}
+          className="flex items-center gap-2 px-3 py-2 bg-background border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors text-xs group"
+        >
+          <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+            rec.type === 'Guide' ? 'bg-blue-500' :
+            rec.type === 'Department' ? 'bg-purple-500' :
+            rec.type === 'Prompt' ? 'bg-green-500' :
+            'bg-orange-500'
+          }`} />
+          <span className="font-medium group-hover:text-primary transition-colors">
+            {rec.title}
+          </span>
+          <ArrowRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+function ActionChips({ items, onSelect, disabled }: { items: { label: string; message: string }[]; onSelect: (message: string) => void; disabled: boolean }) {
+  return (
+    <div className="flex flex-wrap gap-1.5 ml-1">
+      {items.map((item, i) => (
+        <button
+          key={i}
+          onClick={() => onSelect(item.message)}
+          disabled={disabled}
+          className="text-xs px-2.5 py-1.5 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors disabled:opacity-50"
+        >
+          {item.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 const WELCOME_MESSAGE: Message = {
   id: 'welcome',
   role: 'assistant',
@@ -306,10 +368,11 @@ export function ChatWidget() {
     setIsHydrated(true);
   }, []);
 
-  // Persist messages to localStorage
+  // Persist messages to localStorage (cap at 100 messages)
   useEffect(() => {
     if (isHydrated) {
-      localStorage.setItem(MESSAGES_STORAGE, JSON.stringify(messages));
+      const capped = messages.length > 100 ? messages.slice(-100) : messages;
+      localStorage.setItem(MESSAGES_STORAGE, JSON.stringify(capped));
     }
   }, [messages, isHydrated]);
 
@@ -480,80 +543,20 @@ export function ChatWidget() {
               <div className="space-y-4">
                 {messages.map((msg, i) => (
                   <div key={msg.id} className="space-y-2">
-                    <div
-                      className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                    >
-                      <div
-                        className={`max-w-[85%] rounded-lg px-3 py-2 text-sm ${
-                          msg.role === 'user'
-                            ? 'bg-primary text-primary-foreground'
-                            : 'bg-muted'
-                        }`}
-                      >
-                        {msg.role === 'assistant'
-                          ? renderMarkdown(msg.content)
-                          : msg.content
-                        }
-                      </div>
-                    </div>
+                    <MessageBubble msg={msg} />
 
-                    {/* Clickable Recommendations */}
                     {msg.recommendations && msg.recommendations.length > 0 && (
-                      <div className="flex flex-wrap gap-2 ml-1">
-                        {msg.recommendations.map((rec, rIdx) => (
-                          <Link
-                            key={rIdx}
-                            href={rec.url}
-                            onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-2 px-3 py-2 bg-background border rounded-lg hover:border-primary hover:bg-primary/5 transition-colors text-xs group"
-                          >
-                            <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                              rec.type === 'Guide' ? 'bg-blue-500' :
-                              rec.type === 'Department' ? 'bg-purple-500' :
-                              rec.type === 'Prompt' ? 'bg-green-500' :
-                              'bg-orange-500'
-                            }`} />
-                            <span className="font-medium group-hover:text-primary transition-colors">
-                              {rec.title}
-                            </span>
-                            <ArrowRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </Link>
-                        ))}
-                      </div>
+                      <RecommendationChips recommendations={msg.recommendations} onClose={() => setIsOpen(false)} />
                     )}
 
-                    {/* Follow-up buttons — only on the latest assistant message */}
                     {msg.role === 'assistant' && msg.followUps && msg.followUps.length > 0 && i === messages.length - 1 && (
-                      <div className="flex flex-wrap gap-1.5 ml-1">
-                        {msg.followUps.map((fu, j) => (
-                          <button
-                            key={j}
-                            onClick={() => sendMessageDirect(fu.message)}
-                            disabled={isLoading}
-                            className="text-xs px-2.5 py-1.5 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors disabled:opacity-50"
-                          >
-                            {fu.label}
-                          </button>
-                        ))}
-                      </div>
+                      <ActionChips items={msg.followUps} onSelect={sendMessageDirect} disabled={isLoading} />
                     )}
                   </div>
                 ))}
 
-                {/* Conversation starters — shown when only welcome message exists */}
                 {messages.length === 1 && (
-                  <div className="flex flex-wrap gap-1.5 mt-1">
-                    {starters.map((s, i) => (
-                      <button
-                        key={i}
-                        onClick={() => sendMessageDirect(s.message)}
-                        disabled={isLoading}
-                        className="text-xs px-2.5 py-1.5 rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-colors disabled:opacity-50"
-                      >
-                        {s.label}
-                      </button>
-                    ))}
-                  </div>
+                  <ActionChips items={starters} onSelect={sendMessageDirect} disabled={isLoading} />
                 )}
 
                 {isLoading && (

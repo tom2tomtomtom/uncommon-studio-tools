@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'sonner';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -77,12 +77,15 @@ export function PromptCard({ prompt }: PromptCardProps) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleFavorite = () => {
+  const handleFavorite = useCallback(() => {
     toggleFavorite(prompt.id);
     track({ type: 'favorite_toggle', promptId: prompt.id, favorited: !favorited });
-  };
+  }, [toggleFavorite, track, prompt.id, favorited]);
 
-  const claudeUrl = `https://claude.ai/new?q=${encodeURIComponent(prompt.prompt.slice(0, 4000))}`;
+  const claudeUrl = useMemo(
+    () => `https://claude.ai/new?q=${encodeURIComponent(prompt.prompt.slice(0, 4000))}`,
+    [prompt.prompt]
+  );
 
   return (
     <Card

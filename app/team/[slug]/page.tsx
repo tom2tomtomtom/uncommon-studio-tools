@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import { notFound } from 'next/navigation';
 import { teams, getTeamBySlug, getPromptsByTeam } from '@/lib/prompts';
 import { FilteredPromptList } from '@/components/filtered-prompt-list';

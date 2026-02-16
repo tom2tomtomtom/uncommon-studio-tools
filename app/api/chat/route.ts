@@ -1,28 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 
-interface Message {
-  role: 'user' | 'assistant';
-  content: string;
-}
+const MessageSchema = z.object({
+  role: z.enum(['user', 'assistant']),
+  content: z.string().max(10000, 'Message content too long'),
+});
 
-interface ChatRequest {
-  provider?: 'perplexity' | 'anthropic';
-  apiKey?: string;
-  messages: Message[];
-  systemPrompt: string;
-}
+const ChatRequestSchema = z.object({
+  provider: z.enum(['perplexity', 'anthropic']).default('anthropic'),
+  messages: z.array(MessageSchema).min(1).max(50, 'Too many messages'),
+  systemPrompt: z.string().max(20000, 'System prompt too long'),
+});
 
 export async function POST(request: NextRequest) {
   try {
-    const body: ChatRequest = await request.json();
-    const { provider = 'anthropic', messages, systemPrompt } = body;
+    // Reject oversized request bodies (100KB limit)
+    const contentLength = request.headers.get('content-length');
+    if (contentLength && parseInt(contentLength) > 100_000) {
+      return NextResponse.json({ error: 'Request too large.' }, { status: 413 });
+    }
 
-    // Use client API key if provided, otherwise fall back to server env var
-    const apiKey = body.apiKey ||
-      (provider === 'anthropic' ? process.env.ANTHROPIC_API_KEY : process.env.PERPLEXITY_API_KEY);
+    const body = await request.json();
+    const parsed = ChatRequestSchema.safeParse(body);
+
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: 'Invalid request. Check your message format and try again.' },
+        { status: 400 }
+      );
+    }
+
+    const { provider, messages, systemPrompt } = parsed.data;
+
+    // Use server-side API keys only
+    const apiKey = provider === 'anthropic'
+      ? process.env.ANTHROPIC_API_KEY
+      : process.env.PERPLEXITY_API_KEY;
 
     if (!apiKey) {
-      return NextResponse.json({ error: 'No API key found. Add your API key in Settings to start using the chat.' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'AI service is not configured. Contact the site administrator.' },
+        { status: 503 }
+      );
     }
 
     if (provider === 'anthropic') {
@@ -45,23 +64,25 @@ export async function POST(request: NextRequest) {
       });
 
       if (!response.ok) {
-        const errorBody = await response.text();
-        console.error('Anthropic API error:', errorBody);
+        if (process.env.NODE_ENV === 'development') {
+          const errorBody = await response.text();
+          console.error('Anthropic API error:', errorBody);
+        }
         if (response.status === 401) {
           return NextResponse.json(
-            { error: 'Your Anthropic API key was not accepted. Check that it is correct in Settings and try again.' },
-            { status: 401 }
+            { error: 'AI service authentication failed. Contact the site administrator.' },
+            { status: 502 }
           );
         }
         if (response.status === 429) {
           return NextResponse.json(
-            { error: 'Rate limit reached. Wait a moment and try again, or check your Anthropic plan usage.' },
+            { error: 'Rate limit reached. Wait a moment and try again.' },
             { status: 429 }
           );
         }
         return NextResponse.json(
           { error: 'Claude could not process your request right now. Try again in a few seconds.' },
-          { status: response.status }
+          { status: 502 }
         );
       }
 
@@ -91,23 +112,25 @@ export async function POST(request: NextRequest) {
       });
 
       if (!response.ok) {
-        const errorBody = await response.text();
-        console.error('Perplexity API error:', errorBody);
+        if (process.env.NODE_ENV === 'development') {
+          const errorBody = await response.text();
+          console.error('Perplexity API error:', errorBody);
+        }
         if (response.status === 401) {
           return NextResponse.json(
-            { error: 'Your Perplexity API key was not accepted. Check that it is correct in Settings and try again.' },
-            { status: 401 }
+            { error: 'AI service authentication failed. Contact the site administrator.' },
+            { status: 502 }
           );
         }
         if (response.status === 429) {
           return NextResponse.json(
-            { error: 'Rate limit reached. Wait a moment and try again, or check your Perplexity plan usage.' },
+            { error: 'Rate limit reached. Wait a moment and try again.' },
             { status: 429 }
           );
         }
         return NextResponse.json(
           { error: 'Perplexity could not process your request right now. Try again in a few seconds.' },
-          { status: response.status }
+          { status: 502 }
         );
       }
 
@@ -117,7 +140,9 @@ export async function POST(request: NextRequest) {
       });
     }
   } catch (error) {
-    console.error('Chat API error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Chat API error:', error);
+    }
     return NextResponse.json(
       { error: 'Something went wrong on our end. Refresh the page and try again.' },
       { status: 500 }
