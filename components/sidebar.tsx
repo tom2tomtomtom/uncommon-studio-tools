@@ -97,8 +97,8 @@ export function Sidebar() {
       </div>
 
       {/* Navigation */}
-      <ScrollArea className="flex-1 px-2 py-4">
-        <nav className="space-y-2">
+      <ScrollArea className="flex-1 overflow-hidden px-2 py-4">
+        <nav className="space-y-1">
           {/* Main Links */}
           <NavLink href="/" icon={<Home className="h-4 w-4" />} collapsed={collapsed} active={pathname === '/'}>
             Home
@@ -211,7 +211,7 @@ function NavLink({ href, icon, children, collapsed, active }: NavLinkProps) {
     <Link
       href={href}
       className={cn(
-        "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200",
+        "flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200",
         active
           ? "bg-primary text-primary-foreground shadow-sm"
           : "text-muted-foreground hover:bg-accent hover:text-foreground",
