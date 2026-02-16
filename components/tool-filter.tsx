@@ -32,6 +32,7 @@ export function ToolFilter({ selected, onChange, counts }: ToolFilterProps) {
             size="sm"
             className="gap-1.5 h-8"
             onClick={() => onChange(tool.id)}
+            aria-pressed={selected === tool.id}
           >
             {tool.icon}
             {tool.label}

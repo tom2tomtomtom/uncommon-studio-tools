@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, Download, ExternalLink, Zap, Shield, Sparkles } from 'lucide-react';
+import { Download, ExternalLink, Zap, Shield, Sparkles, Home, ChevronRight } from 'lucide-react';
 
 const plugins = [
   {
@@ -113,16 +113,29 @@ const plugins = [
     useCases: ['Competitive analysis', 'Product benchmarking', 'Roadmap planning'],
     color: 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-900/50',
   },
+  {
+    slug: 'finance-ops',
+    name: 'Finance Operations',
+    emoji: '💰',
+    description: 'Processes invoices, categorizes expenses, generates budget reports, and maintains audit trails. Use when handling financial documents, reconciling payments, or building budget forecasts.',
+    commands: ['/invoice-processor', '/budget-report', '/expense-audit'],
+    useCases: ['Invoice processing', 'Budget reporting', 'Expense auditing'],
+    color: 'bg-yellow-50 dark:bg-yellow-950/30 border-yellow-200 dark:border-yellow-900/50',
+  },
 ];
 
 export default function PluginsPage() {
   return (
     <div className="max-w-6xl mx-auto space-y-8">
-      {/* Back link */}
-      <Link href="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors">
-        <ArrowLeft className="mr-2 h-4 w-4" />
-        Back to Prompts
-      </Link>
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-2 text-sm text-muted-foreground">
+        <Link href="/" className="hover:text-foreground flex items-center gap-1">
+          <Home className="h-4 w-4" />
+          Home
+        </Link>
+        <ChevronRight className="h-4 w-4" />
+        <span className="text-foreground">Cowork Plugins</span>
+      </nav>
 
       {/* Hero */}
       <div className="text-center space-y-4 py-4">
@@ -278,7 +291,7 @@ export default function PluginsPage() {
       <div className="text-center py-8 space-y-4">
         <h2 className="text-2xl font-bold">Prefer Standalone Prompts?</h2>
         <p className="text-muted-foreground max-w-xl mx-auto">
-          We also have 60 copy-paste prompts you can use without installing anything.
+          We also have 90+ copy-paste prompts you can use without installing anything.
         </p>
         <Button asChild size="lg">
           <Link href="/">

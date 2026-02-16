@@ -41,6 +41,11 @@ const APP_PAGES = {
     { slug: 'elevenlabs', title: 'ElevenLabs Voice', type: 'Guide' as const },
     { slug: 'gamma', title: 'Gamma Presentations', type: 'Guide' as const },
     { slug: 'aiden-studio', title: 'AIDEN Studio', type: 'Guide' as const },
+    { slug: 'getting-started', title: 'Getting Started', type: 'Guide' as const },
+    { slug: 'google-ai-suite', title: 'Google AI Suite', type: 'Guide' as const },
+    { slug: 'model-selection', title: 'AI Model Selection', type: 'Guide' as const },
+    { slug: 'multi-tool-workflows', title: 'Multi-Tool Workflows', type: 'Guide' as const },
+    { slug: 'tool-governance', title: 'Tool Governance', type: 'Guide' as const },
   ],
   pages: [
     { slug: '', title: 'Home', type: 'Page' as const },
@@ -87,6 +92,11 @@ AVAILABLE RESOURCES:
 - elevenlabs: Voice AI and cloning
 - gamma: AI presentations
 - aiden-studio: AI Creative Director
+- getting-started: Getting started with Claude basics
+- google-ai-suite: Google AI tools (Gemini, Imagen, Veo)
+- model-selection: Which AI tool for which task
+- multi-tool-workflows: Multi-tool orchestration pipelines
+- tool-governance: AI tool evaluation and compliance
 
 **Departments (use /team/slug):**
 ${teams.map(t => `- ${t.slug}: ${t.name} (${t.solutionCount} prompts)`).join('\n')}
@@ -116,7 +126,8 @@ ROUTING LOGIC:
 - "project", "context", "setup" → projects guide
 - "code", "terminal", "CLI" → claude-code guide
 - "browser", "chrome" → chrome-extension guide
-- "tips", "shortcuts", "hacks" → tips page, power-hacks guide`;
+- "tips", "shortcuts", "hacks" → tips page, power-hacks guide
+- "invoice", "budget", "expense", "finance" → finance department`;
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);

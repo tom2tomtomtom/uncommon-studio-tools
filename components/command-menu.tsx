@@ -103,7 +103,7 @@ export function CommandMenu() {
               </CommandGroup>
 
               <CommandGroup heading="Departments">
-                {teams.slice(0, 5).map(team => (
+                {teams.map(team => (
                   <CommandItem key={team.slug} onSelect={() => handleSelect(`/team/${team.slug}`)}>
                     <Users className="mr-2 h-4 w-4" />
                     {team.name}

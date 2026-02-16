@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { prompts } from '@/lib/prompts';
 import { PromptCard } from '@/components/prompt-card';
 import { useFavorites } from '@/hooks/use-favorites';
-import { Star, ArrowRight, Sparkles } from 'lucide-react';
+import { Star, ArrowRight, Sparkles, Home, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -30,6 +30,16 @@ export default function FavoritesPage() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-2 text-sm text-muted-foreground">
+        <Link href="/" className="hover:text-foreground flex items-center gap-1">
+          <Home className="h-4 w-4" />
+          Home
+        </Link>
+        <ChevronRight className="h-4 w-4" />
+        <span className="text-foreground">Favorites</span>
+      </nav>
+
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold flex items-center gap-3">

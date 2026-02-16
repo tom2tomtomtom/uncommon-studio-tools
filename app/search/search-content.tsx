@@ -8,7 +8,8 @@ import { PromptCard } from '@/components/prompt-card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useAnalytics } from '@/hooks/use-analytics';
-import { Search, X } from 'lucide-react';
+import { Search, X, Home, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 const fuse = new Fuse(prompts, {
   keys: [
@@ -58,6 +59,16 @@ export function SearchContent() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
+      {/* Breadcrumb */}
+      <nav className="flex items-center gap-2 text-sm text-muted-foreground">
+        <Link href="/" className="hover:text-foreground flex items-center gap-1">
+          <Home className="h-4 w-4" />
+          Home
+        </Link>
+        <ChevronRight className="h-4 w-4" />
+        <span className="text-foreground">Search</span>
+      </nav>
+
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold">Search All Prompts</h1>
@@ -114,15 +125,17 @@ export function SearchContent() {
       </div>
 
       {/* Results Count */}
-      <div className="text-sm text-muted-foreground">
-        {results.length} {results.length === 1 ? 'result' : 'results'}
-        {query && ` for "${query}"`}
-        {selectedTeam && ` in ${teams.find(t => t.slug === selectedTeam)?.name}`}
-      </div>
+      {(query || selectedTeam) && (
+        <div className="text-sm text-muted-foreground">
+          {results.length} {results.length === 1 ? 'result' : 'results'}
+          {query && ` for "${query}"`}
+          {selectedTeam && ` in ${teams.find(t => t.slug === selectedTeam)?.name}`}
+        </div>
+      )}
 
       {/* Results */}
       <div className="space-y-4">
-        {results.length === 0 ? (
+        {results.length === 0 && (query || selectedTeam) ? (
           <div className="text-center py-12">
             <Search className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
             <h3 className="text-lg font-medium">No matching prompts</h3>
@@ -136,6 +149,22 @@ export function SearchContent() {
               </button>{' '}
               to browse everything.
             </p>
+          </div>
+        ) : !query && !selectedTeam ? (
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">Start typing to search, or browse by department:</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {teams.map(team => (
+                <button
+                  key={team.slug}
+                  onClick={() => setSelectedTeam(team.slug)}
+                  className="flex flex-col items-start gap-1 p-4 rounded-lg border hover:border-primary hover:bg-accent/50 transition-colors text-left"
+                >
+                  <span className="font-medium text-sm">{team.name.replace(' Team', '')}</span>
+                  <span className="text-xs text-muted-foreground">{team.solutionCount} prompts</span>
+                </button>
+              ))}
+            </div>
           </div>
         ) : (
           results.map(prompt => (
