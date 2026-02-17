@@ -119,25 +119,54 @@ export function PromptCard({ prompt }: PromptCardProps) {
                 />
               </Button>
               {/* Quick copy button - always visible */}
-              <Button
-                variant={copied ? "default" : "secondary"}
-                size="sm"
-                className="gap-1.5 h-8"
-                onClick={handleCopy}
-                aria-label={copied ? `Copied ${prompt.name}` : `Copy ${prompt.name} to clipboard`}
-              >
-                {copied ? (
-                  <>
-                    <Check className="h-3.5 w-3.5" />
-                    <span className="hidden sm:inline">Copied!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="h-3.5 w-3.5" />
-                    <span className="hidden sm:inline">Copy</span>
-                  </>
-                )}
-              </Button>
+              {prompt.toolRecommendation === 'Claude Skill' && skillFiles[prompt.id] ? (
+                <Button
+                  variant={copied ? "default" : "secondary"}
+                  size="sm"
+                  className="gap-1.5 h-8"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    const slug = skillFiles[prompt.id].replace('.zip', '');
+                    navigator.clipboard.writeText(`Use the ${slug} skill`);
+                    setCopied(true);
+                    toast.success('Copied skill invocation', { description: `Use the ${slug} skill`, duration: 2000 });
+                    setTimeout(() => setCopied(false), 2000);
+                  }}
+                  aria-label={copied ? `Copied ${prompt.name} invocation` : `Copy ${prompt.name} skill invocation`}
+                >
+                  {copied ? (
+                    <>
+                      <Check className="h-3.5 w-3.5" />
+                      <span className="hidden sm:inline">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="h-3.5 w-3.5" />
+                      <span className="hidden sm:inline">Copy Skill</span>
+                    </>
+                  )}
+                </Button>
+              ) : (
+                <Button
+                  variant={copied ? "default" : "secondary"}
+                  size="sm"
+                  className="gap-1.5 h-8"
+                  onClick={handleCopy}
+                  aria-label={copied ? `Copied ${prompt.name}` : `Copy ${prompt.name} to clipboard`}
+                >
+                  {copied ? (
+                    <>
+                      <Check className="h-3.5 w-3.5" />
+                      <span className="hidden sm:inline">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-3.5 w-3.5" />
+                      <span className="hidden sm:inline">Copy</span>
+                    </>
+                  )}
+                </Button>
+              )}
               <CollapsibleTrigger asChild>
                 <Button variant="outline" size="sm" className="gap-1 h-8" aria-label={isOpen ? `Collapse ${prompt.name} details` : `Expand ${prompt.name} details`}>
                   {isOpen ? (
@@ -172,9 +201,15 @@ export function PromptCard({ prompt }: PromptCardProps) {
 
           {/* Prompt Preview - shown when collapsed */}
           {!isOpen && (
-            <div className="mt-3 text-xs text-muted-foreground font-mono bg-muted/50 rounded px-2 py-1.5 line-clamp-2">
-              {prompt.prompt.slice(0, 150)}{prompt.prompt.length > 150 ? '...' : ''}
-            </div>
+            prompt.toolRecommendation === 'Claude Skill' && skillFiles[prompt.id] ? (
+              <div className="mt-3 text-xs text-muted-foreground font-mono bg-muted/50 rounded px-2 py-1.5">
+                {skillFiles[prompt.id].replace('.zip', '')}
+              </div>
+            ) : (
+              <div className="mt-3 text-xs text-muted-foreground font-mono bg-muted/50 rounded px-2 py-1.5 line-clamp-2">
+                {prompt.prompt.slice(0, 150)}{prompt.prompt.length > 150 ? '...' : ''}
+              </div>
+            )
           )}
         </CardHeader>
 
@@ -239,44 +274,46 @@ export function PromptCard({ prompt }: PromptCardProps) {
                     </div>
                   )}
 
-                  {/* Prompt Text */}
-                  <div className="relative">
-                    <div className="bg-muted rounded-lg p-4 font-mono text-sm overflow-x-auto max-h-96 overflow-y-auto whitespace-pre-wrap">
-                      {prompt.prompt}
-                    </div>
+                  {/* Prompt Text & Action Buttons — hidden for skills */}
+                  {prompt.toolRecommendation !== 'Claude Skill' && (
+                    <div className="relative">
+                      <div className="bg-muted rounded-lg p-4 font-mono text-sm overflow-x-auto max-h-96 overflow-y-auto whitespace-pre-wrap">
+                        {prompt.prompt}
+                      </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      <Button onClick={handleCopy} className="gap-2">
-                        {copied ? (
-                          <>
-                            <Check className="h-4 w-4" />
-                            Copied!
-                          </>
+                      {/* Action Buttons */}
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        <Button onClick={handleCopy} className="gap-2">
+                          {copied ? (
+                            <>
+                              <Check className="h-4 w-4" />
+                              Copied!
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="h-4 w-4" />
+                              Copy Prompt
+                            </>
+                          )}
+                        </Button>
+                        {prompt.toolRecommendation === 'Perplexity' ? (
+                          <Button variant="outline" asChild className="gap-2">
+                            <a href="https://perplexity.ai" target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="h-4 w-4" />
+                              Open Perplexity
+                            </a>
+                          </Button>
                         ) : (
-                          <>
-                            <Copy className="h-4 w-4" />
-                            Copy Prompt
-                          </>
+                          <Button variant="outline" asChild className="gap-2">
+                            <a href={claudeUrl} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="h-4 w-4" />
+                              Open in Claude
+                            </a>
+                          </Button>
                         )}
-                      </Button>
-                      {prompt.toolRecommendation === 'Perplexity' ? (
-                        <Button variant="outline" asChild className="gap-2">
-                          <a href="https://perplexity.ai" target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="h-4 w-4" />
-                            Open Perplexity
-                          </a>
-                        </Button>
-                      ) : (
-                        <Button variant="outline" asChild className="gap-2">
-                          <a href={claudeUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="h-4 w-4" />
-                            Open in Claude
-                          </a>
-                        </Button>
-                      )}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </CardContent>
               </motion.div>
             )}

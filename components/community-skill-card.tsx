@@ -1,7 +1,11 @@
+'use client';
+
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Download } from 'lucide-react';
+import { Sparkles, Check } from 'lucide-react';
+import { toast } from 'sonner';
 import { CATEGORY_LABELS, type SkillCategory } from '@/lib/skill-prompt';
 
 interface CommunitySkill {
@@ -15,12 +19,20 @@ interface CommunitySkill {
 }
 
 export function CommunitySkillCard({ skill }: { skill: CommunitySkill }) {
+  const [copied, setCopied] = useState(false);
   const categoryLabel = CATEGORY_LABELS[skill.category as SkillCategory] || skill.category;
   const date = new Date(skill.created_at).toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
   });
+
+  const handleCopyInvocation = () => {
+    navigator.clipboard.writeText(`Use the ${skill.slug} skill`);
+    setCopied(true);
+    toast.success('Copied skill invocation', { description: `Use the ${skill.slug} skill`, duration: 2000 });
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <Card className="h-full flex flex-col hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
@@ -34,13 +46,20 @@ export function CommunitySkillCard({ skill }: { skill: CommunitySkill }) {
       <CardContent className="pt-0">
         <div className="flex items-center justify-between">
           <div className="text-xs text-muted-foreground">
-            {skill.downloads} download{skill.downloads !== 1 ? 's' : ''} &middot; {date}
+            {date}
           </div>
-          <Button variant="outline" size="sm" asChild>
-            <a href={`/api/skills/community/${skill.slug}/download`}>
-              <Download className="h-3.5 w-3.5 mr-1.5" />
-              Download
-            </a>
+          <Button variant="outline" size="sm" onClick={handleCopyInvocation}>
+            {copied ? (
+              <>
+                <Check className="h-3.5 w-3.5 mr-1.5" />
+                Copied!
+              </>
+            ) : (
+              <>
+                <Sparkles className="h-3.5 w-3.5 mr-1.5" />
+                Copy Invocation
+              </>
+            )}
           </Button>
         </div>
       </CardContent>

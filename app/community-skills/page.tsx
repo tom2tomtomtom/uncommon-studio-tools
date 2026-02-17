@@ -3,7 +3,7 @@ import { CommunitySkillsList } from './community-skills-list';
 
 export const metadata: Metadata = {
   title: 'Community Skills | Uncommon Studio AI Tools',
-  description: 'Browse and download Claude Skills created by the community.',
+  description: 'Browse Claude Skills created by the community. All community skills are preloaded in your account.',
 };
 
 export default function CommunitySkillsPage() {
@@ -12,7 +12,7 @@ export default function CommunitySkillsPage() {
       <div className="space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">Community Skills</h1>
         <p className="text-muted-foreground text-lg">
-          Browse and download Claude Skills created by the community. Install in Claude.ai &rarr; Settings &rarr; Capabilities.
+          Browse Claude Skills created by the community. All community skills are preloaded in your account.
         </p>
       </div>
       <CommunitySkillsList />

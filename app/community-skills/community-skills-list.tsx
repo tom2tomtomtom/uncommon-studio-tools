@@ -59,7 +59,7 @@ export function CommunitySkillsList() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="newest">Newest First</SelectItem>
-            <SelectItem value="downloads">Most Downloaded</SelectItem>
+            <SelectItem value="downloads">Most Popular</SelectItem>
           </SelectContent>
         </Select>
       </div>
