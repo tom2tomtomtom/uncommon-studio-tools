@@ -3,6 +3,7 @@ export const revalidate = 3600;
 import { notFound } from 'next/navigation';
 import { teams, getTeamBySlug, getPromptsByTeam } from '@/lib/prompts';
 import { FilteredPromptList } from '@/components/filtered-prompt-list';
+import { StrategyGuide } from '@/components/strategy-guide';
 import { Badge } from '@/components/ui/badge';
 import { ChevronRight, Home } from 'lucide-react';
 import Link from 'next/link';
@@ -76,6 +77,9 @@ export default async function TeamPage({ params }: Props) {
           <Badge variant="outline">Claude Projects, Claude Skills, Cowork & Perplexity</Badge>
         </div>
       </div>
+
+      {/* Strategy Guide - shown only for strategy department */}
+      {slug === 'strategy' && <StrategyGuide />}
 
       {/* Prompts with Filter */}
       <FilteredPromptList prompts={teamPrompts} />
