@@ -1,9 +1,13 @@
 export const revalidate = 3600;
 
+import fs from 'fs';
+import path from 'path';
 import { notFound } from 'next/navigation';
 import { teams, getTeamBySlug, getPromptsByTeam } from '@/lib/prompts';
+import { teamGuideFiles, teamGuideMetadata } from '@/lib/guides';
 import { FilteredPromptList } from '@/components/filtered-prompt-list';
 import { StrategyGuide } from '@/components/strategy-guide';
+import { TeamGuide } from '@/components/team-guide';
 import { Badge } from '@/components/ui/badge';
 import { ChevronRight, Home } from 'lucide-react';
 import Link from 'next/link';
@@ -51,6 +55,19 @@ export default async function TeamPage({ params }: Props) {
 
   const teamPrompts = getPromptsByTeam(slug);
 
+  // Load guide content if available for this team
+  let guideContent: string | null = null;
+  const guideFile = teamGuideFiles[slug];
+  if (guideFile) {
+    const guidePath = path.join(process.cwd(), 'content', 'guides', guideFile);
+    try {
+      guideContent = fs.readFileSync(guidePath, 'utf-8');
+    } catch {
+      // Guide file not found — skip
+    }
+  }
+  const guideMeta = teamGuideMetadata[slug];
+
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Breadcrumbs */}
@@ -78,8 +95,15 @@ export default async function TeamPage({ params }: Props) {
         </div>
       </div>
 
-      {/* Strategy Guide - shown only for strategy department */}
+      {/* Team Guide */}
       {slug === 'strategy' && <StrategyGuide />}
+      {guideContent && guideMeta && (
+        <TeamGuide
+          title={guideMeta.title}
+          description={guideMeta.description}
+          content={guideContent}
+        />
+      )}
 
       {/* Prompts with Filter */}
       <FilteredPromptList prompts={teamPrompts} />
