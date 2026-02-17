@@ -77,6 +77,24 @@ const APP_PAGES = {
   ],
 };
 
+const TEAM_DESCRIPTIONS: Record<string, string> = {
+  'creative': 'Develop campaign concepts, brainstorm ideas, and craft compelling creative work with AI-powered tools.',
+  'strategy': 'Build brand positioning, competitive analysis, and strategic frameworks for client campaigns.',
+  'account-management': 'Strengthen client relationships with AI-assisted briefs, status reports, and communication tools.',
+  'production': 'Streamline production workflows from spec sheets to vendor briefs and asset management.',
+  'design': 'Accelerate design workflows with AI-powered mood boards, layout concepts, and visual direction.',
+  'digital': 'Plan and optimize digital campaigns, SEO, paid media, and performance marketing.',
+  'copywriting': 'Write headlines, scripts, taglines, and long-form copy with AI-assisted drafting tools.',
+  'new-business': 'Win new business with AI-assisted proposals, pitch decks, and RFP responses.',
+  'project-management': 'Keep projects on track with AI-powered timelines, resource plans, and status updates.',
+  'studio-operations': 'Optimize studio workflows, capacity planning, and operational processes.',
+  'finance': 'Manage invoices, expenses, budgets, and financial compliance with AI-powered analysis and automation tools.',
+};
+
+const TEAM_SPECIAL_CONTENT: Record<string, string> = {
+  'strategy': 'This page also features a "Research & Insights with AI Tools" guide — a practical walkthrough of using Claude (Projects, Research mode, prompt craft, Cowork) and Google NotebookLM (source-grounded notebooks, audio overviews, mind maps, data tables) together for strategy research. It covers the "Ping-Pong Method" workflow, a 15-minute demo script, and rules of engagement.',
+};
+
 // Build compact prompt index grouped by team (with short descriptions)
 const PROMPT_INDEX = (() => {
   const grouped: Record<string, string[]> = {};
@@ -99,7 +117,10 @@ function buildSystemPrompt(pathname: string, userContext?: { favorites: string[]
     const team = teams.find(t => t.slug === teamMatch[1]);
     if (team) {
       const teamPrompts = prompts.filter(p => p.teamSlug === team.slug);
-      pageContext = `The user is browsing the ${team.name} department (${teamPrompts.length} prompts).`;
+      const desc = TEAM_DESCRIPTIONS[team.slug] || '';
+      const promptList = teamPrompts.map(p => `- ${p.name}: ${p.description.split('.')[0]}`).join('\n');
+      const special = TEAM_SPECIAL_CONTENT[team.slug] || '';
+      pageContext = `The user is browsing the ${team.name} department (${teamPrompts.length} prompts).\nDepartment description: ${desc}\n\nPrompts on this page:\n${promptList}${special ? `\n\nSpecial content: ${special}` : ''}`;
     }
   } else if (guideMatch) {
     const guide = APP_PAGES.guides.find(g => g.slug === guideMatch[1]);
@@ -421,7 +442,6 @@ export function ChatWidget() {
       // Cap history at last 20 messages for API call
       const allMessages: Message[] = [...messages, { id: nextMessageId(), role: 'user', content: messageText }];
       const apiMessages = allMessages
-        .filter(m => !m.recommendations?.length || m.role === 'user')
         .map(m => ({ role: m.role, content: m.content }))
         .slice(-20);
 
