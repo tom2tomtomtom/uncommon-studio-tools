@@ -26,12 +26,19 @@ export async function GET(
     // Increment download counter (fire and forget)
     pool.query('UPDATE community_skills SET downloads = downloads + 1 WHERE slug = $1', [slug]).catch(() => {});
 
-    // Generate zip
+    // Generate zip with Unix format and deflate compression (matches Claude's expected format)
     const zip = new JSZip();
-    const folderName = slug;
-    zip.file(`${folderName}/SKILL.md`, content);
+    const folder = zip.folder(slug)!;
+    folder.file('SKILL.md', content, {
+      unixPermissions: '644',
+    });
 
-    const zipBuffer = await zip.generateAsync({ type: 'arraybuffer' });
+    const zipBuffer = await zip.generateAsync({
+      type: 'arraybuffer',
+      compression: 'DEFLATE',
+      compressionOptions: { level: 6 },
+      platform: 'UNIX',
+    });
 
     return new Response(zipBuffer, {
       headers: {

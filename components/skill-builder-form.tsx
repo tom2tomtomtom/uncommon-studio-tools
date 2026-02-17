@@ -138,9 +138,17 @@ export function SkillBuilderForm() {
     const folderName = toSkillName(skillName);
 
     const zip = new JSZip();
-    zip.file(`${folderName}/SKILL.md`, generatedContent);
+    const folder = zip.folder(folderName)!;
+    folder.file('SKILL.md', generatedContent, {
+      unixPermissions: '644',
+    });
 
-    const blob = await zip.generateAsync({ type: 'blob' });
+    const blob = await zip.generateAsync({
+      type: 'blob',
+      compression: 'DEFLATE',
+      compressionOptions: { level: 6 },
+      platform: 'UNIX',
+    });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
