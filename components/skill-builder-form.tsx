@@ -14,6 +14,19 @@ import JSZip from 'jszip';
 
 type Step = 'describe' | 'generating' | 'preview';
 
+/** Strip code fences, preamble text, or trailing commentary so content starts with --- */
+function cleanSkillContent(raw: string): string {
+  let text = raw.trim();
+  // Remove wrapping code fences (```markdown\n...\n``` or ```\n...\n```)
+  text = text.replace(/^```[\w]*\n?/, '').replace(/\n?```\s*$/, '').trim();
+  // If there's still text before the first ---, strip it
+  const fmIndex = text.indexOf('---');
+  if (fmIndex > 0) {
+    text = text.slice(fmIndex);
+  }
+  return text.trim();
+}
+
 export function SkillBuilderForm() {
   const [step, setStep] = useState<Step>('describe');
   const [taskDescription, setTaskDescription] = useState('');
@@ -80,6 +93,7 @@ export function SkillBuilderForm() {
         }
       }
 
+      setGeneratedContent((prev) => cleanSkillContent(prev));
       setStep('preview');
     } catch (error) {
       if (error instanceof Error && error.name === 'AbortError') {
