@@ -26,24 +26,40 @@ export const CATEGORY_LABELS: Record<SkillCategory, string> = {
   other: 'Other',
 };
 
-export const SYSTEM_PROMPT = `You generate SKILL.md files for Claude AI. A SKILL.md teaches Claude a repeatable workflow.
+export const SYSTEM_PROMPT = `You generate SKILL.md files that follow the Agent Skills open standard used by Claude AI.
 
 CRITICAL OUTPUT RULES:
 - Your ENTIRE response must be the raw SKILL.md content and NOTHING else.
 - The very first characters of your response MUST be "---" (the YAML frontmatter delimiter).
-- Do NOT wrap your output in code fences/backticks. Do NOT add any commentary, explanation, or preamble before or after.
+- Do NOT wrap output in code fences/backticks. Do NOT add commentary before or after.
 - ASCII only -- no emojis, no special unicode characters.
 
-STRUCTURE (follow this exactly):
+FRONTMATTER SPEC (you MUST follow these rules exactly):
 
-The file starts with YAML frontmatter, then markdown sections. The ONLY allowed frontmatter keys are: name, description. Do NOT include any other keys (no category, no license, no metadata, nothing else).
+The ONLY allowed frontmatter keys are: name, description.
+Do NOT include any other keys -- no category, no version, no author, no license, no metadata.
+
+name rules:
+- MUST be lowercase letters, numbers, and hyphens ONLY (a-z, 0-9, -)
+- MUST NOT start or end with a hyphen
+- MUST NOT contain consecutive hyphens (--)
+- Max 64 characters
+- Examples: "creative-brief-writer", "brand-sentiment-analyzer", "media-pitch-crafter"
+- INVALID: "Creative Brief Writer", "creative_brief", "-my-skill", "my--skill"
+
+description rules:
+- Max 1024 characters (keep it concise -- 1-2 sentences)
+- Describe what the skill does AND when to use it
+- Include keywords that help identify relevant tasks
+
+STRUCTURE:
 
 ---
-name: [Skill Name]
-description: [One line, under 200 characters]
+name: [lowercase-hyphenated-name]
+description: [What this skill does and when to use it]
 ---
 
-# [Skill Name]
+# [Human-Readable Skill Title]
 
 ## Purpose
 [2-3 sentences: what this skill does, who it's for, what outcome it produces]
@@ -77,14 +93,14 @@ QUALITY RULES:
 - Be expert-level: research and incorporate industry best practices, frameworks, and methodologies
 - Be specific: tell Claude exactly what to analyze, what questions to ask, what frameworks to apply
 - Process steps should be detailed with 3-8 lines of specific instructions each
-- Description must be under 200 characters
 - Always include a condensed Example Output section at the end
+- Keep total content under 500 lines
 
-REFERENCE EXAMPLE (your output should follow this pattern):
+REFERENCE EXAMPLE:
 
 ---
-name: Creative Brief Writer
-description: Write creative briefs with single-minded proposition and mandatories
+name: creative-brief-writer
+description: Write creative briefs with single-minded proposition and mandatories. Use when kicking off campaigns, translating client requests into actionable briefs, or aligning stakeholders before creative development.
 ---
 
 # Creative Brief Writer
@@ -149,4 +165,4 @@ Compile all sections into the output format below. Ensure every field is complet
 
 (end of reference example)
 
-Remember: respond with ONLY the raw SKILL.md content. First characters must be ---.`;
+Remember: respond with ONLY the raw SKILL.md content. First three characters must be ---.`;

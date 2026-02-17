@@ -14,18 +14,32 @@ import JSZip from 'jszip';
 
 type Step = 'describe' | 'generating' | 'preview';
 
-/** Strip code fences, preamble text, invalid frontmatter keys so content is a valid SKILL.md */
+/** Convert a name to valid skill name: lowercase, hyphens, no leading/trailing/consecutive hyphens */
+function toSkillName(input: string): string {
+  return input
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/--+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 64);
+}
+
+/** Strip code fences, preamble, invalid keys, and fix name format so content is a valid SKILL.md */
 function cleanSkillContent(raw: string): string {
   let text = raw.trim();
-  // Remove wrapping code fences (```markdown\n...\n``` or ```\n...\n```)
+  // Remove wrapping code fences
   text = text.replace(/^```[\w]*\n?/, '').replace(/\n?```\s*$/, '').trim();
-  // If there's still text before the first ---, strip it
+  // Strip preamble before first ---
   const fmIndex = text.indexOf('---');
   if (fmIndex > 0) {
     text = text.slice(fmIndex);
   }
   // Remove invalid frontmatter keys (only name, description, license, allowed-tools, compatibility, metadata are valid)
   text = text.replace(/^(category|type|tags|version|author):.*\n?/gm, '');
+  // Fix name field: must be lowercase-hyphenated
+  text = text.replace(/^(name:\s*)(.+)$/m, (_match, prefix, value) => {
+    return prefix + toSkillName(value.trim());
+  });
   return text.trim();
 }
 
@@ -117,21 +131,20 @@ export function SkillBuilderForm() {
   const handleDownload = async () => {
     if (!generatedContent) return;
 
+    // name field is already a valid slug (lowercase-hyphenated) after cleanup
     const nameMatch = generatedContent.match(/^name:\s*(.+)$/m);
     const skillName = nameMatch?.[1]?.trim() || 'custom-skill';
-    const slug = skillName
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
+    // Folder name in zip must match the name field exactly
+    const folderName = toSkillName(skillName);
 
     const zip = new JSZip();
-    zip.file(`${slug}/SKILL.md`, generatedContent);
+    zip.file(`${folderName}/SKILL.md`, generatedContent);
 
     const blob = await zip.generateAsync({ type: 'blob' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${slug}.zip`;
+    a.download = `${folderName}.zip`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

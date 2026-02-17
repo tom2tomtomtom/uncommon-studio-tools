@@ -24,12 +24,13 @@ function parseFrontmatter(content: string): { name: string; description: string 
   return { name, description };
 }
 
-function slugify(text: string): string {
+function toValidSlug(text: string): string {
   return text
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
+    .replace(/--+/g, '-')
     .replace(/^-|-$/g, '')
-    .slice(0, 100);
+    .slice(0, 64);
 }
 
 // Check ASCII-only
@@ -63,11 +64,11 @@ export async function POST(request: NextRequest) {
 
   const category = clientCategory || 'other';
 
-  if (frontmatter.description.length > 200) {
-    return NextResponse.json({ error: 'Description must be under 200 characters.' }, { status: 400 });
+  if (frontmatter.description.length > 1024) {
+    return NextResponse.json({ error: 'Description must be under 1024 characters.' }, { status: 400 });
   }
 
-  const slug = slugify(frontmatter.name);
+  const slug = toValidSlug(frontmatter.name);
   if (!slug) {
     return NextResponse.json({ error: 'Could not generate a valid slug from the skill name.' }, { status: 400 });
   }
