@@ -41,11 +41,11 @@ Map the landscape to find strategic space. Understand category dynamics, identif
 **Positioning map**: Plot competitors on two key dimensions relevant to category
 
 Common dimensions:
-- Price ↔ Premium
-- Traditional ↔ Innovative
-- Mass market ↔ Niche
-- Functional ↔ Emotional
-- Local ↔ Global
+- Price <-> Premium
+- Traditional <-> Innovative
+- Mass market <-> Niche
+- Functional <-> Emotional
+- Local <-> Global
 
 **White space identification**:
 - Where are there gaps in the positioning map?

@@ -9,11 +9,11 @@ In crisis, speed and consistency matter. Draft communications that protect reput
 
 ## Core Principles
 
-1. **Acknowledge quickly** — Silence is interpreted as guilt or incompetence
-2. **Express appropriate concern** — Lead with people, not process
-3. **State facts only** — Never speculate or assign blame
-4. **Commit to action** — Explain what you're doing, not just what happened
-5. **Centralise messaging** — One voice, consistent across channels
+1. **Acknowledge quickly** -- Silence is interpreted as guilt or incompetence
+2. **Express appropriate concern** -- Lead with people, not process
+3. **State facts only** -- Never speculate or assign blame
+4. **Commit to action** -- Explain what you're doing, not just what happened
+5. **Centralise messaging** -- One voice, consistent across channels
 
 ## Holding Statement Framework
 
@@ -34,11 +34,11 @@ Use when: Issue has emerged but full facts unknown.
 ```
 [Client] is aware of [brief, neutral description of issue].
 
-[Expression of concern appropriate to severity — e.g., "Our first priority is the safety and wellbeing of..." or "We take this matter seriously..."]
+[Expression of concern appropriate to severity -- e.g., "Our first priority is the safety and wellbeing of..." or "We take this matter seriously..."]
 
-We are [immediate action — e.g., "working with authorities", "conducting a thorough investigation", "in contact with affected parties"].
+We are [immediate action -- e.g., "working with authorities", "conducting a thorough investigation", "in contact with affected parties"].
 
-We will provide a further update [timeframe — e.g., "within the next [X] hours", "as soon as more information is confirmed"].
+We will provide a further update [timeframe -- e.g., "within the next [X] hours", "as soon as more information is confirmed"].
 
 For media enquiries, please contact [name] on [mobile/email].
 ```
@@ -138,7 +138,7 @@ For each crisis, establish:
 
 ## Quality Checklist
 
-- [ ] Facts verified — nothing speculative
+- [ ] Facts verified -- nothing speculative
 - [ ] Tone appropriate to severity
 - [ ] Human concern expressed (where appropriate)
 - [ ] Clear action commitment

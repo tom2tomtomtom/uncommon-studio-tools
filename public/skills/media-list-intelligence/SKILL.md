@@ -5,7 +5,7 @@ description: Researches journalists, analyses beats, and prioritises media conta
 
 # Media List Intelligence
 
-Build targeted media lists based on story fit, not just title matching. Quality over quantity — 10 well-matched journalists beat 100 spray-and-pray contacts.
+Build targeted media lists based on story fit, not just title matching. Quality over quantity -- 10 well-matched journalists beat 100 spray-and-pray contacts.
 
 ## Research Framework
 
@@ -46,17 +46,17 @@ When analysing a journalist's beat:
 
 Tier media by story fit and client goals:
 
-**Tier 1 — Primary Targets**
+**Tier 1 -- Primary Targets**
 - Strongest beat match
 - Highest impact for client objectives
 - History of covering similar stories
 
-**Tier 2 — Secondary Targets**
+**Tier 2 -- Secondary Targets**
 - Good beat match
 - May require angle adjustment
 - Solid reach for target audience
 
-**Tier 3 — Opportunistic**
+**Tier 3 -- Opportunistic**
 - Tangential fit
 - Worth pitching if bandwidth allows
 - May require significant angle tailoring

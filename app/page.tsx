@@ -20,11 +20,11 @@ export default function HomePage() {
           <span className="text-primary"> AI Tools</span>
         </h1>
         <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          {totalPrompts} prompts, 33 skills, and 13 plugins across {totalTeams} agency departments
+          {totalPrompts} prompts, 62 skills, and 13 plugins across {totalTeams} agency departments
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
           <StatCard icon={<FileText className="h-5 w-5" />} label="Prompts" value={totalPrompts} />
-          <StatCard icon={<Sparkles className="h-5 w-5" />} label="Skills" value={33} />
+          <StatCard icon={<Sparkles className="h-5 w-5" />} label="Skills" value={62} />
           <StatCard icon={<Zap className="h-5 w-5" />} label="Plugins" value={13} />
           <StatCard icon={<Users className="h-5 w-5" />} label="Departments" value={totalTeams} />
         </div>
@@ -231,7 +231,7 @@ export default function HomePage() {
             Download Claude Skills
           </CardTitle>
           <CardDescription>
-            33 reusable workflows — install in Claude.ai: Settings → Capabilities → Upload Skill
+            62 reusable workflows — install in Claude.ai: Settings → Capabilities → Upload Skill
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -246,6 +246,18 @@ export default function HomePage() {
               <SkillDownload name="Category Scanner" file="competitor-category-scanner.zip" description="Map competitive landscapes and identify positioning gaps" />
               <SkillDownload name="Audience & Culture" file="audience-cultural-insight.zip" description="Research audiences with demographic and cultural analysis" />
               <SkillDownload name="RFP Assessment" file="rfp-assessment-v2.zip" description="Evaluate RFP opportunities with strategic go/no-go scoring" />
+              <SkillDownload name="Brand Audit" file="brand-audit.zip" description="Assess brand health across identity, messaging, and positioning" />
+              <SkillDownload name="Market Research Designer" file="market-research-designer.zip" description="Design surveys, focus groups, and research methodologies" />
+            </div>
+          </div>
+
+          {/* Strategy & Planning */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Strategy & Planning</h4>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <SkillDownload name="Campaign Planner" file="campaign-planner.zip" description="Build integrated campaign plans with channels, phasing, and KPIs" />
+              <SkillDownload name="Media Strategy Planner" file="media-strategy-planner.zip" description="Plan PESO media mix with channel rationale and budget splits" />
+              <SkillDownload name="Creative Brief Writer" file="creative-brief-writer.zip" description="Write creative briefs with single-minded proposition and mandatories" />
             </div>
           </div>
 
@@ -259,6 +271,9 @@ export default function HomePage() {
               <SkillDownload name="Content Calendar" file="content-calendar-generator.zip" description="Generate editorial calendars with tentpole mapping" />
               <SkillDownload name="Brand Voice Enforcer" file="brand-voice-enforcer.zip" description="Check copy against brand guidelines for tone and terminology" />
               <SkillDownload name="Talking Points" file="talking-points.zip" description="Spokesperson key messages with bridge phrases and Q&A" />
+              <SkillDownload name="SEO Content Writer" file="seo-content-writer.zip" description="Write search-optimized blog posts, landing pages, and web content" />
+              <SkillDownload name="Thought Leadership" file="thought-leadership-ghostwriter.zip" description="Ghostwrite bylines, op-eds, and LinkedIn posts for executives" />
+              <SkillDownload name="Influencer Brief Writer" file="influencer-brief-writer.zip" description="Write creator briefs with deliverables, guidelines, and usage rights" />
             </div>
           </div>
 
@@ -282,22 +297,50 @@ export default function HomePage() {
               <SkillDownload name="Design Critique" file="design-critique.zip" description="Structured design feedback on hierarchy, typography, and accessibility" />
               <SkillDownload name="Production Specs" file="production-specs.zip" description="Generate spec sheets with formats, dimensions, and delivery requirements" />
               <SkillDownload name="Event & Launch Planner" file="event-launch-planner.zip" description="Create run sheets, logistics checklists, and launch timelines" />
+              <SkillDownload name="Video Script Writer" file="video-script-writer.zip" description="Write video scripts with shot descriptions, timing, and VO direction" />
+              <SkillDownload name="Concept Presenter" file="concept-presenter.zip" description="Structure concept presentations with insight, idea, and executions" />
             </div>
           </div>
 
-          {/* Account & Operations */}
+          {/* Client & Account */}
           <div>
-            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Account & Operations</h4>
+            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Client & Account</h4>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               <SkillDownload name="Client Comms Writer" file="client-comms-writer.zip" description="Draft status reports, WIP updates, and recap emails" />
               <SkillDownload name="Client Management" file="client-management.zip" description="Assess relationship health with scorecards and growth strategies" />
-              <SkillDownload name="Meeting Notes" file="meeting-notes-actions.zip" description="Structured summaries with action items, owners, and deadlines" />
               <SkillDownload name="Stakeholder Update" file="stakeholder-update.zip" description="RAG-rated status reports with milestones and risk flags" />
               <SkillDownload name="Email Drafter" file="email-drafter.zip" description="Professional emails for pitching, follow-ups, and introductions" />
               <SkillDownload name="Executive Comms" file="executive-comms.zip" description="Leadership emails, board updates, and company announcements" />
+              <SkillDownload name="Case Study Writer" file="case-study-writer.zip" description="Write challenge-approach-results case studies with data guidance" />
+              <SkillDownload name="Client Onboarding Kit" file="client-onboarding-kit.zip" description="Generate onboarding packs with ways of working and setup checklists" />
+            </div>
+          </div>
+
+          {/* Project Delivery & Operations */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Project Delivery & Operations</h4>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <SkillDownload name="Scope of Work Writer" file="scope-of-work-writer.zip" description="Write detailed SOWs with deliverables, timelines, and sign-off terms" />
+              <SkillDownload name="Timeline Generator" file="timeline-generator.zip" description="Build project timelines with phases, milestones, and dependencies" />
+              <SkillDownload name="Estimate Builder" file="estimate-builder.zip" description="Build cost estimates with line items, rates, and payment terms" />
+              <SkillDownload name="Resource Planner" file="resource-planner.zip" description="Plan team resourcing with role assignments and utilization forecasting" />
+              <SkillDownload name="Project Kickoff Builder" file="project-kickoff-builder.zip" description="Create kickoff docs with team roles, comms plan, and risk register" />
+              <SkillDownload name="Change Order Writer" file="change-order-writer.zip" description="Write scope amendments with timeline and budget impact analysis" />
+              <SkillDownload name="Vendor Brief Writer" file="vendor-brief-writer.zip" description="Write vendor briefs with specs, deliverables, and budget parameters" />
+              <SkillDownload name="Meeting Notes" file="meeting-notes-actions.zip" description="Structured summaries with action items, owners, and deadlines" />
               <SkillDownload name="Process Docs" file="process-docs.zip" description="Standardized SOPs and workflow guides with versioning" />
-              <SkillDownload name="Digital Analytics" file="digital-analytics.zip" description="Performance reports with KPI dashboards and recommendations" />
               <SkillDownload name="QA Testing" file="qa-testing.zip" description="QA reports with severity ratings and acceptance criteria" />
+            </div>
+          </div>
+
+          {/* Analytics & Reporting */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Analytics & Reporting</h4>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <SkillDownload name="Campaign Report Builder" file="campaign-report-builder.zip" description="Build end-of-campaign reports with results vs KPIs and learnings" />
+              <SkillDownload name="Digital Analytics" file="digital-analytics.zip" description="Performance reports with KPI dashboards and recommendations" />
+              <SkillDownload name="Social Analytics Reporter" file="social-analytics-reporter.zip" description="Analyze social performance with engagement, sentiment, and benchmarks" />
+              <SkillDownload name="Budget Tracker" file="budget-tracker.zip" description="Track project budgets with burn rate, forecasting, and variance analysis" />
             </div>
           </div>
 
@@ -307,6 +350,27 @@ export default function HomePage() {
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               <SkillDownload name="Proposal Writer" file="new-business-proposal-writer.zip" description="Write proposals, pitch decks, and capability statements" />
               <SkillDownload name="Pitch/RFP Reviewer" file="pitch-rfp-reviewer.zip" description="Evaluate submissions for gaps and improvement opportunities" />
+              <SkillDownload name="Presentation Builder" file="presentation-builder.zip" description="Structure presentations for credentials, QBRs, and recommendations" />
+            </div>
+          </div>
+
+          {/* Internal & Culture */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Internal & Culture</h4>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <SkillDownload name="Internal Comms Writer" file="internal-comms-writer.zip" description="Write all-hands decks, policy changes, and team announcements" />
+              <SkillDownload name="Training Workshop Builder" file="training-workshop-builder.zip" description="Design workshops with learning objectives, exercises, and facilitation guides" />
+              <SkillDownload name="Team Retro Facilitator" file="team-retro-facilitator.zip" description="Run structured retrospectives with learnings and improvement tracking" />
+            </div>
+          </div>
+
+          {/* Specialized */}
+          <div>
+            <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Specialized</h4>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <SkillDownload name="Accessibility Reviewer" file="accessibility-reviewer.zip" description="Audit content for WCAG compliance, inclusive language, and contrast" />
+              <SkillDownload name="Legal Compliance Checker" file="legal-compliance-checker.zip" description="Review ad copy for disclaimers, claims, and regulatory compliance" />
+              <SkillDownload name="Localization Adapter" file="localization-adapter.zip" description="Adapt campaigns for different markets with cultural and regulatory guidance" />
             </div>
           </div>
         </CardContent>
