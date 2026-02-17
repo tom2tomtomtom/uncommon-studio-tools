@@ -18,7 +18,6 @@ import {
   Star,
   ExternalLink,
   BookOpen,
-  Download,
   Monitor,
   Globe,
   Sparkles,
@@ -208,13 +207,20 @@ export function PromptCard({ prompt }: PromptCardProps) {
                   {prompt.toolRecommendation === 'Claude Skill' && skillFiles[prompt.id] && (
                     <div className="mb-4 p-3 bg-primary/5 rounded-lg border border-primary/20">
                       <p className="text-sm text-muted-foreground mb-2">
-                        <strong>Install as Skill:</strong> Download the ZIP, then go to Claude.ai &rarr; Settings &rarr; Capabilities &rarr; Upload Skill.
+                        <strong>Preloaded Skill:</strong> This skill is already in your Claude account. Just ask Claude to use it by name.
                       </p>
-                      <Button variant="outline" size="sm" asChild className="gap-2">
-                        <a href={`/skills/${skillFiles[prompt.id]}`} download>
-                          <Download className="h-4 w-4" />
-                          Download Skill ZIP
-                        </a>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="gap-2"
+                        onClick={() => {
+                          const slug = skillFiles[prompt.id].replace('.zip', '');
+                          navigator.clipboard.writeText(`Use the ${slug} skill`);
+                          toast.success('Copied to clipboard');
+                        }}
+                      >
+                        <Sparkles className="h-4 w-4" />
+                        Copy Skill Invocation
                       </Button>
                     </div>
                   )}
