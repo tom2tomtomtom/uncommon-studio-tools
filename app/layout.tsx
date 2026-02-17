@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Uncommon Studio AI Tools | Creative Agency Prompt Toolkit",
   description: "90+ AI prompts across 11 agency departments for creative advertising, strategy, and production",
-  keywords: ["AI", "creative advertising", "agency tools", "prompts", "Claude", "Perplexity"],
+  keywords: ["AI", "creative advertising", "agency tools", "prompts", "Claude"],
 };
 
 export default function RootLayout({

@@ -19,7 +19,6 @@ import {
   ExternalLink,
   BookOpen,
   Monitor,
-  Globe,
   Sparkles,
   FileText
 } from 'lucide-react';
@@ -48,7 +47,6 @@ const toolBadgeConfig: Record<string, { variant: 'default' | 'secondary' | 'outl
   'Claude Project': { variant: 'secondary', icon: <FileText className="h-3 w-3 mr-1" /> },
   'Claude Skill': { variant: 'default', icon: <Sparkles className="h-3 w-3 mr-1" /> },
   'Claude Cowork': { variant: 'outline', icon: <Monitor className="h-3 w-3 mr-1" /> },
-  'Perplexity': { variant: 'outline', icon: <Globe className="h-3 w-3 mr-1" /> },
 };
 
 interface PromptCardProps {
@@ -266,14 +264,6 @@ export function PromptCard({ prompt }: PromptCardProps) {
                       </p>
                     </div>
                   )}
-                  {prompt.toolRecommendation === 'Perplexity' && (
-                    <div className="mb-4 p-3 bg-muted rounded-lg">
-                      <p className="text-sm text-muted-foreground">
-                        <strong>Use with Perplexity:</strong> This prompt works best with real-time web search. Use it at perplexity.ai or via the Perplexity API.
-                      </p>
-                    </div>
-                  )}
-
                   {/* Prompt Text & Action Buttons — hidden for skills */}
                   {prompt.toolRecommendation !== 'Claude Skill' && (
                     <div className="relative">
@@ -296,21 +286,12 @@ export function PromptCard({ prompt }: PromptCardProps) {
                             </>
                           )}
                         </Button>
-                        {prompt.toolRecommendation === 'Perplexity' ? (
-                          <Button variant="outline" asChild className="gap-2">
-                            <a href="https://perplexity.ai" target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="h-4 w-4" />
-                              Open Perplexity
-                            </a>
-                          </Button>
-                        ) : (
-                          <Button variant="outline" asChild className="gap-2">
-                            <a href={claudeUrl} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="h-4 w-4" />
-                              Open in Claude
-                            </a>
-                          </Button>
-                        )}
+                        <Button variant="outline" asChild className="gap-2">
+                          <a href={claudeUrl} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="h-4 w-4" />
+                            Open in Claude
+                          </a>
+                        </Button>
                       </div>
                     </div>
                   )}

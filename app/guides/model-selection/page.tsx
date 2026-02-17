@@ -97,7 +97,7 @@ export default function ModelSelectionPage() {
               <tbody className="divide-y">
                 <tr>
                   <td className="py-2">Research with citations</td>
-                  <td className="py-2 text-muted-foreground">Perplexity Pro Search</td>
+                  <td className="py-2 text-muted-foreground">Claude Deep Research</td>
                 </tr>
                 <tr>
                   <td className="py-2">Long-form writing with brand context</td>
@@ -159,8 +159,7 @@ export default function ModelSelectionPage() {
               Research Tasks
             </p>
             <ul className="text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside">
-              <li><strong>Perplexity</strong> — Real-time web research with citations. Best for current events, competitive analysis, market data.</li>
-              <li><strong>Claude</strong> — Deep analysis and synthesis. Best when you need strategic thinking, not just facts.</li>
+              <li><strong>Claude Deep Research</strong> — Web research with citations and strategic analysis. Best for competitive analysis, market data, and synthesis.</li>
               <li><strong>NotebookLM</strong> — Source-grounded research. Best when you have your own documents to analyze.</li>
             </ul>
           </div>
@@ -216,7 +215,7 @@ export default function ModelSelectionPage() {
         <CardContent className="space-y-3">
           <div className="p-3 rounded-lg border">
             <p className="font-medium text-sm">Strategy</p>
-            <p className="text-xs text-muted-foreground">Perplexity + NotebookLM + Claude Projects</p>
+            <p className="text-xs text-muted-foreground">Claude Deep Research + NotebookLM + Claude Projects</p>
             <p className="text-xs text-muted-foreground mt-1">Research → Synthesize → Deliver strategic recommendations</p>
           </div>
           <div className="p-3 rounded-lg border">
@@ -258,7 +257,7 @@ export default function ModelSelectionPage() {
             <pre>{`START: What do you need?
 │
 ├─ Real-time web data?
-│  └─ YES → Perplexity
+│  └─ YES → Claude Deep Research
 │
 ├─ Analyze your own documents?
 │  └─ YES → NotebookLM

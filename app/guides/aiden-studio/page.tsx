@@ -196,7 +196,7 @@ export default function AidenStudioPage() {
                   </div>
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  <strong>Back Up with Stats:</strong> Uses Perplexity AI to find real statistics supporting your insight with citations.
+                  <strong>Back Up with Stats:</strong> Find real statistics supporting your insight with citations.
                 </p>
                 <p className="text-xs text-muted-foreground">
                   <strong>Problem-Solution Framework:</strong> 1) The Problem → 2) Select Key Insight → 3) Tension/Opportunity → 4) The Solution

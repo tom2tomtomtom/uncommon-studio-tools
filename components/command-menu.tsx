@@ -109,7 +109,7 @@ export function CommandMenu() {
                     <Users className="mr-2 h-4 w-4" />
                     {team.name}
                     <span className="ml-auto text-xs text-muted-foreground">
-                      {team.solutionCount} prompts
+                      {team.solutionCount} tools
                     </span>
                   </CommandItem>
                 ))}

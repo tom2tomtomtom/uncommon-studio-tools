@@ -141,7 +141,7 @@ export function Sidebar() {
       <div className="border-t p-4">
         {!collapsed && (
           <div className="text-xs text-muted-foreground">
-            {teams.reduce((acc, t) => acc + t.solutionCount, 0)} prompts across {teams.length} departments
+            {teams.reduce((acc, t) => acc + t.solutionCount, 0)} tools across {teams.length} departments
           </div>
         )}
       </div>

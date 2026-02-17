@@ -161,7 +161,7 @@ export function SearchContent() {
                   className="flex flex-col items-start gap-1 p-4 rounded-lg border hover:border-primary hover:bg-accent/50 transition-colors text-left"
                 >
                   <span className="font-medium text-sm">{team.name.replace(' Team', '')}</span>
-                  <span className="text-xs text-muted-foreground">{team.solutionCount} prompts</span>
+                  <span className="text-xs text-muted-foreground">{team.solutionCount} tools</span>
                 </button>
               ))}
             </div>

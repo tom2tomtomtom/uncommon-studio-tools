@@ -88,8 +88,8 @@ export default async function TeamPage({ params }: Props) {
           {teamDescriptions[slug] || `AI implementation solutions for the ${team.name}`}
         </p>
         <div className="flex items-center gap-2">
-          <Badge>{team.solutionCount} prompts</Badge>
-          <Badge variant="outline">Claude Projects, Claude Skills, Cowork & Perplexity</Badge>
+          <Badge>{team.solutionCount} tools</Badge>
+          <Badge variant="outline">Claude Projects, Claude Skills & Cowork</Badge>
         </div>
       </div>
 

@@ -4,9 +4,24 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { RecentlyUsed } from '@/components/recently-used';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, Zap, Users, FileText, Monitor, Globe, Image, GraduationCap, Wand2 } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Users, FileText, Monitor, Image, GraduationCap, Wand2 } from 'lucide-react';
 import { SkillInfo } from '@/components/skill-info';
 import { teamIcons } from '@/lib/constants';
+
+const DOWNLOADABLE_SKILLS = new Set([
+  'media-strategy-planner',
+  'seo-content-writer',
+  'thought-leadership-ghostwriter',
+  'video-script-writer',
+  'resource-planner',
+  'project-kickoff-builder',
+  'vendor-brief-writer',
+  'social-analytics-reporter',
+  'presentation-builder',
+  'team-retro-facilitator',
+  'competitor-research',
+  'market-research-designer',
+]);
 
 export default function HomePage() {
   const totalPrompts = prompts.length;
@@ -21,11 +36,11 @@ export default function HomePage() {
           <span className="text-primary"> AI Tools</span>
         </h1>
         <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          {totalPrompts} prompts, 62 skills, and 13 plugins across {totalTeams} agency departments
+          {totalPrompts} prompts, 50 preloaded skills, and 13 plugins across {totalTeams} agency departments
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
           <StatCard icon={<FileText className="h-5 w-5" />} label="Prompts" value={totalPrompts} />
-          <StatCard icon={<Sparkles className="h-5 w-5" />} label="Skills" value={62} />
+          <StatCard icon={<Sparkles className="h-5 w-5" />} label="Skills" value={50} />
           <StatCard icon={<Zap className="h-5 w-5" />} label="Plugins" value={13} />
           <StatCard icon={<Users className="h-5 w-5" />} label="Departments" value={totalTeams} />
         </div>
@@ -70,7 +85,7 @@ export default function HomePage() {
         <CardContent>
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <StepCard number={1} title="Choose a solution" description="Find a prompt that addresses your creative challenge" />
-            <StepCard number={2} title="Pick your AI tool" description="Claude Projects, Claude Skills, Cowork, or Perplexity" />
+            <StepCard number={2} title="Pick your AI tool" description="Claude Projects, Claude Skills, or Cowork" />
             <StepCard number={3} title="Upload knowledge" description="Add briefs, brand guidelines, and references" />
             <StepCard number={4} title="Paste & go" description="Copy the prompt and start creating" />
           </ol>
@@ -92,7 +107,7 @@ export default function HomePage() {
                     </span>
                   </CardTitle>
                   <CardDescription className="flex items-center justify-between">
-                    <span>{team.solutionCount} prompts</span>
+                    <span>{team.solutionCount} tools</span>
                     <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                   </CardDescription>
                 </CardHeader>
@@ -152,7 +167,7 @@ export default function HomePage() {
                 <strong className="text-foreground">What it does for you:</strong> Install a skill once and Claude knows how to write press releases, review creative briefs, or build pitch decks — the same way, every time. Think of skills as "apps" that teach Claude your exact process.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">How to use it:</strong> All 62 skills are preloaded in your account. Just tell Claude which skill to use: &quot;Use the creative-brief-writer skill to write a brief for this campaign.&quot; Claude will follow the skill&apos;s process step by step.
+                <strong className="text-foreground">How to use it:</strong> 50 skills are preloaded in your account. Just tell Claude which skill to use: &quot;Use the creative-brief-writer skill to write a brief for this campaign.&quot; Claude will follow the skill&apos;s process step by step.
               </p>
               <div className="pt-2 border-t">
                 <p className="text-xs font-medium text-foreground mb-2">Best for:</p>
@@ -194,33 +209,6 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          {/* Perplexity */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-xl flex items-center gap-2">
-                <Globe className="h-6 w-6 text-primary" />
-                Perplexity Pro
-              </CardTitle>
-              <CardDescription className="text-base">Get research answers with clickable sources you can verify</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">What it does for you:</strong> Get research answers with clickable sources — competitive analysis, trend reports, and fact-checking backed by real citations you can verify. Unlike Claude (which has a knowledge cutoff), Perplexity knows what happened yesterday.
-              </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                <strong className="text-foreground">How to use it:</strong> Use Pro Search for deep research — it reads 10x more sources and shows its reasoning. Ask specific questions: "What campaigns won Cannes Lions for sustainability in 2025?" or "What's Nike's current brand positioning vs Adidas?" Export findings as Markdown for your decks.
-              </p>
-              <div className="pt-2 border-t">
-                <p className="text-xs font-medium text-foreground mb-2">Best for:</p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">Competitive analysis</Badge>
-                  <Badge variant="secondary">Cultural trends</Badge>
-                  <Badge variant="secondary">Award research</Badge>
-                  <Badge variant="secondary">Fact-checking</Badge>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
 
@@ -232,7 +220,7 @@ export default function HomePage() {
             Claude Skills
           </CardTitle>
           <CardDescription>
-            62 skills are preloaded in your Claude account. Ask Claude to use any skill by name — click any skill below to copy.
+            50 skills are preloaded in your Claude account — click to copy and paste in Claude. 12 additional skills are available to download.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -243,12 +231,12 @@ export default function HomePage() {
               <SkillInfo name="Brand Positioning" slug="brand-positioning" description="Run positioning workshops with messaging hierarchies" />
               <SkillInfo name="Strategy Brief Builder" slug="strategy-brief-builder" description="Build comms strategy briefs from loose inputs" />
               <SkillInfo name="Competitor Analysis" slug="competitor-analysis" description="Deep-dive a specific competitor's positioning and strategy" />
-              <SkillInfo name="Competitor Research" slug="competitor-research" description="Benchmark your product and get improvement recommendations" />
+              <SkillInfo name="Competitor Research" slug="competitor-research" description="Benchmark your product and get improvement recommendations" preloaded={false} />
               <SkillInfo name="Category Scanner" slug="competitor-category-scanner" description="Map competitive landscapes and identify positioning gaps" />
               <SkillInfo name="Audience & Culture" slug="audience-cultural-insight" description="Research audiences with demographic and cultural analysis" />
               <SkillInfo name="RFP Assessment" slug="rfp-assessment-v2" description="Evaluate RFP opportunities with strategic go/no-go scoring" />
               <SkillInfo name="Brand Audit" slug="brand-audit" description="Assess brand health across identity, messaging, and positioning" />
-              <SkillInfo name="Market Research Designer" slug="market-research-designer" description="Design surveys, focus groups, and research methodologies" />
+              <SkillInfo name="Market Research Designer" slug="market-research-designer" description="Design surveys, focus groups, and research methodologies" preloaded={false} />
             </div>
           </div>
 
@@ -257,7 +245,7 @@ export default function HomePage() {
             <h4 className="text-sm font-semibold mb-3 text-muted-foreground uppercase tracking-wide">Strategy & Planning</h4>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               <SkillInfo name="Campaign Planner" slug="campaign-planner" description="Build integrated campaign plans with channels, phasing, and KPIs" />
-              <SkillInfo name="Media Strategy Planner" slug="media-strategy-planner" description="Plan PESO media mix with channel rationale and budget splits" />
+              <SkillInfo name="Media Strategy Planner" slug="media-strategy-planner" description="Plan PESO media mix with channel rationale and budget splits" preloaded={false} />
               <SkillInfo name="Creative Brief Writer" slug="creative-brief-writer" description="Write creative briefs with single-minded proposition and mandatories" />
             </div>
           </div>
@@ -272,8 +260,8 @@ export default function HomePage() {
               <SkillInfo name="Content Calendar" slug="content-calendar-generator" description="Generate editorial calendars with tentpole mapping" />
               <SkillInfo name="Brand Voice Enforcer" slug="brand-voice-enforcer" description="Check copy against brand guidelines for tone and terminology" />
               <SkillInfo name="Talking Points" slug="talking-points" description="Spokesperson key messages with bridge phrases and Q&A" />
-              <SkillInfo name="SEO Content Writer" slug="seo-content-writer" description="Write search-optimized blog posts, landing pages, and web content" />
-              <SkillInfo name="Thought Leadership" slug="thought-leadership-ghostwriter" description="Ghostwrite bylines, op-eds, and LinkedIn posts for executives" />
+              <SkillInfo name="SEO Content Writer" slug="seo-content-writer" description="Write search-optimized blog posts, landing pages, and web content" preloaded={false} />
+              <SkillInfo name="Thought Leadership" slug="thought-leadership-ghostwriter" description="Ghostwrite bylines, op-eds, and LinkedIn posts for executives" preloaded={false} />
               <SkillInfo name="Influencer Brief Writer" slug="influencer-brief-writer" description="Write creator briefs with deliverables, guidelines, and usage rights" />
             </div>
           </div>
@@ -298,7 +286,7 @@ export default function HomePage() {
               <SkillInfo name="Design Critique" slug="design-critique" description="Structured design feedback on hierarchy, typography, and accessibility" />
               <SkillInfo name="Production Specs" slug="production-specs" description="Generate spec sheets with formats, dimensions, and delivery requirements" />
               <SkillInfo name="Event & Launch Planner" slug="event-launch-planner" description="Create run sheets, logistics checklists, and launch timelines" />
-              <SkillInfo name="Video Script Writer" slug="video-script-writer" description="Write video scripts with shot descriptions, timing, and VO direction" />
+              <SkillInfo name="Video Script Writer" slug="video-script-writer" description="Write video scripts with shot descriptions, timing, and VO direction" preloaded={false} />
               <SkillInfo name="Concept Presenter" slug="concept-presenter" description="Structure concept presentations with insight, idea, and executions" />
             </div>
           </div>
@@ -324,10 +312,10 @@ export default function HomePage() {
               <SkillInfo name="Scope of Work Writer" slug="scope-of-work-writer" description="Write detailed SOWs with deliverables, timelines, and sign-off terms" />
               <SkillInfo name="Timeline Generator" slug="timeline-generator" description="Build project timelines with phases, milestones, and dependencies" />
               <SkillInfo name="Estimate Builder" slug="estimate-builder" description="Build cost estimates with line items, rates, and payment terms" />
-              <SkillInfo name="Resource Planner" slug="resource-planner" description="Plan team resourcing with role assignments and utilization forecasting" />
-              <SkillInfo name="Project Kickoff Builder" slug="project-kickoff-builder" description="Create kickoff docs with team roles, comms plan, and risk register" />
+              <SkillInfo name="Resource Planner" slug="resource-planner" description="Plan team resourcing with role assignments and utilization forecasting" preloaded={false} />
+              <SkillInfo name="Project Kickoff Builder" slug="project-kickoff-builder" description="Create kickoff docs with team roles, comms plan, and risk register" preloaded={false} />
               <SkillInfo name="Change Order Writer" slug="change-order-writer" description="Write scope amendments with timeline and budget impact analysis" />
-              <SkillInfo name="Vendor Brief Writer" slug="vendor-brief-writer" description="Write vendor briefs with specs, deliverables, and budget parameters" />
+              <SkillInfo name="Vendor Brief Writer" slug="vendor-brief-writer" description="Write vendor briefs with specs, deliverables, and budget parameters" preloaded={false} />
               <SkillInfo name="Meeting Notes" slug="meeting-notes-actions" description="Structured summaries with action items, owners, and deadlines" />
               <SkillInfo name="Process Docs" slug="process-docs" description="Standardized SOPs and workflow guides with versioning" />
               <SkillInfo name="QA Testing" slug="qa-testing" description="QA reports with severity ratings and acceptance criteria" />
@@ -340,7 +328,7 @@ export default function HomePage() {
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               <SkillInfo name="Campaign Report Builder" slug="campaign-report-builder" description="Build end-of-campaign reports with results vs KPIs and learnings" />
               <SkillInfo name="Digital Analytics" slug="digital-analytics" description="Performance reports with KPI dashboards and recommendations" />
-              <SkillInfo name="Social Analytics Reporter" slug="social-analytics-reporter" description="Analyze social performance with engagement, sentiment, and benchmarks" />
+              <SkillInfo name="Social Analytics Reporter" slug="social-analytics-reporter" description="Analyze social performance with engagement, sentiment, and benchmarks" preloaded={false} />
               <SkillInfo name="Budget Tracker" slug="budget-tracker" description="Track project budgets with burn rate, forecasting, and variance analysis" />
             </div>
           </div>
@@ -351,7 +339,7 @@ export default function HomePage() {
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               <SkillInfo name="Proposal Writer" slug="new-business-proposal-writer" description="Write proposals, pitch decks, and capability statements" />
               <SkillInfo name="Pitch/RFP Reviewer" slug="pitch-rfp-reviewer" description="Evaluate submissions for gaps and improvement opportunities" />
-              <SkillInfo name="Presentation Builder" slug="presentation-builder" description="Structure presentations for credentials, QBRs, and recommendations" />
+              <SkillInfo name="Presentation Builder" slug="presentation-builder" description="Structure presentations for credentials, QBRs, and recommendations" preloaded={false} />
             </div>
           </div>
 
@@ -361,7 +349,7 @@ export default function HomePage() {
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               <SkillInfo name="Internal Comms Writer" slug="internal-comms-writer" description="Write all-hands decks, policy changes, and team announcements" />
               <SkillInfo name="Training Workshop Builder" slug="training-workshop-builder" description="Design workshops with learning objectives, exercises, and facilitation guides" />
-              <SkillInfo name="Team Retro Facilitator" slug="team-retro-facilitator" description="Run structured retrospectives with learnings and improvement tracking" />
+              <SkillInfo name="Team Retro Facilitator" slug="team-retro-facilitator" description="Run structured retrospectives with learnings and improvement tracking" preloaded={false} />
             </div>
           </div>
 

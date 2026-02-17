@@ -403,7 +403,7 @@ How do these ideas connect? What's the content rhythm?`
 **Step 2: Strategy Generation**
 Click "Generate Strategy" to get:
 - Consumer, Market, Cultural, and Brand insights
-- "Back Up with Stats" adds Perplexity-sourced statistics
+- "Back Up with Stats" adds real statistics with citations
 - Use the Problem-Solution Framework:
   1. The Problem
   2. Select Key Insight (choose your foundation)
@@ -576,7 +576,7 @@ A 2-page audience portrait that brings them to life as humans, not data points.`
     teamSlug: "strategy",
     teamName: "Strategy",
     name: "Competitor Analysis",
-    toolRecommendation: "Perplexity",
+    toolRecommendation: "Claude Project",
     description: "Analyze competitor brands, campaigns, and positioning to identify opportunities and threats for your client.",
     knowledgeToUpload: [
       "Your client's current positioning",
@@ -706,7 +706,7 @@ A campaign strategy that creatives can brief from and clients can approve.`
     teamSlug: "strategy",
     teamName: "Strategy",
     name: "Cultural Trend Spotter",
-    toolRecommendation: "Perplexity",
+    toolRecommendation: "Claude Project",
     description: "Identify and analyze cultural trends relevant to your brand or category. Find the shifts that create opportunities.",
     knowledgeToUpload: [
       "Brand category and audience",
@@ -2796,7 +2796,7 @@ For LinkedIn and new business content`
     teamSlug: "new-business",
     teamName: "New Business",
     name: "Prospect Research",
-    toolRecommendation: "Perplexity",
+    toolRecommendation: "Claude Project",
     description: "Research prospective clients to prepare for outreach and pitches.",
     knowledgeToUpload: [
       "Target company list",
@@ -3419,7 +3419,7 @@ For each meeting:
     teamSlug: "studio-operations",
     teamName: "Studio Operations",
     name: "Tool Stack Evaluator",
-    toolRecommendation: "Perplexity",
+    toolRecommendation: "Claude Project",
     description: "Evaluate and recommend tools for agency workflows—project management, creative, collaboration, etc.",
     knowledgeToUpload: [
       "Current tool list",
@@ -4346,7 +4346,7 @@ Rate each dimension 1-5 (1=Critical, 5=Excellent):
     teamSlug: "digital",
     teamName: "Digital",
     name: "SEO Content Strategy",
-    toolRecommendation: "Perplexity",
+    toolRecommendation: "Claude Project",
     description: "Research keywords, analyze competitors, and build comprehensive SEO content strategies.",
     knowledgeToUpload: [
       "Current rankings and organic traffic data",
@@ -5521,14 +5521,14 @@ Make sure you have:
   },
 
   // ============================================
-  // NEW PERPLEXITY PROMPTS
+  // RESEARCH PROMPTS
   // ============================================
   {
     id: "creative-9",
     teamSlug: "creative",
     teamName: "Creative",
     name: "Creative Award & Trend Research",
-    toolRecommendation: "Perplexity",
+    toolRecommendation: "Claude Project",
     description: "Research award-winning campaigns, emerging creative trends, and innovative techniques to inspire and inform creative development.",
     knowledgeToUpload: [
       "Current creative brief or project description",
@@ -5602,7 +5602,7 @@ Provide a structured research report with:
     teamSlug: "account-management",
     teamName: "Account Management",
     name: "Client Industry Researcher",
-    toolRecommendation: "Perplexity",
+    toolRecommendation: "Claude Project",
     description: "Research a client's industry landscape, recent news, competitive dynamics, and market trends to prepare for client conversations and strategic planning.",
     knowledgeToUpload: [
       "Client name and industry",
@@ -5676,7 +5676,7 @@ Deliver a structured briefing document:
     teamSlug: "production",
     teamName: "Production",
     name: "Vendor & Location Scout",
-    toolRecommendation: "Perplexity",
+    toolRecommendation: "Claude Project",
     description: "Research production vendors, shoot locations, or talent options with capabilities, pricing benchmarks, and availability information.",
     knowledgeToUpload: [
       "Production brief or treatment",
@@ -5759,7 +5759,7 @@ Deliver a structured research brief:
     teamSlug: "design",
     teamName: "Design",
     name: "Design Trend & Benchmark Research",
-    toolRecommendation: "Perplexity",
+    toolRecommendation: "Claude Project",
     description: "Research current design trends, benchmark competitor visual identities, and gather inspiration for design direction and brand development.",
     knowledgeToUpload: [
       "Project brief or design challenge",
@@ -5842,7 +5842,7 @@ Deliver a structured design research report:
     teamSlug: "copywriting",
     teamName: "Copywriting",
     name: "Tone & Language Research",
-    toolRecommendation: "Perplexity",
+    toolRecommendation: "Claude Project",
     description: "Research audience language patterns, cultural references, and competitor messaging to inform tone of voice development and copywriting direction.",
     knowledgeToUpload: [
       "Target audience profile",
@@ -5921,7 +5921,7 @@ Deliver a structured language research brief:
     teamSlug: "project-management",
     teamName: "Project Management",
     name: "Tool & Process Benchmarking",
-    toolRecommendation: "Perplexity",
+    toolRecommendation: "Claude Project",
     description: "Research industry-standard tools, processes, and methodologies for agency project management to improve workflows and efficiency.",
     knowledgeToUpload: [
       "Current tools and processes in use",
@@ -6442,20 +6442,20 @@ Deliver:
     teamSlug: "strategy",
     teamName: "Strategy",
     name: "Synthetic Research Pipeline",
-    toolRecommendation: "Perplexity → NotebookLM → Claude",
-    description: "The flagship multi-tool research workflow. Use Perplexity for live research, NotebookLM for source synthesis and audio briefings, then Claude for strategic analysis and deliverable creation.",
+    toolRecommendation: "Claude Project",
+    description: "The flagship multi-tool research workflow. Use Claude Deep Research for live research, NotebookLM for source synthesis and audio briefings, then Claude Projects for strategic analysis and deliverable creation.",
     knowledgeToUpload: [
       "Research brief or question",
       "Existing research or data",
       "Client context",
       "Category/industry background"
     ],
-    prompt: `You are a senior strategist orchestrating a multi-tool research pipeline that combines the best capabilities of Perplexity, NotebookLM, and Claude to produce world-class strategic research.
+    prompt: `You are a senior strategist orchestrating a multi-tool research pipeline that combines the best capabilities of Claude and NotebookLM to produce world-class strategic research.
 
 ## The Pipeline:
 
-**Step 1: Perplexity Deep Research**
-Use Perplexity Pro Search to run 5-10 queries covering:
+**Step 1: Claude Deep Research**
+Use Claude's Deep Research mode to run comprehensive queries covering:
 - Market size, growth rates, and trajectory
 - Competitor landscape and positioning
 - Consumer behavior shifts and emerging needs
@@ -6463,13 +6463,12 @@ Use Perplexity Pro Search to run 5-10 queries covering:
 - Emerging technology impact on the industry
 
 Best practices:
-- Run queries in parallel for speed
 - Use follow-up questions to dig deeper on promising findings
 - Export all findings as markdown with source URLs
 - Save the most data-rich sources for Step 2
 
 **Step 2: NotebookLM Synthesis**
-Upload all Perplexity outputs plus any existing research to a NotebookLM notebook:
+Upload all research outputs plus any existing research to a NotebookLM notebook:
 - Generate an Audio Overview for a team briefing (shareable, listenable summary)
 - Use the notebook's Q&A to ask cross-source questions:
   - "Where do sources contradict each other?"
@@ -6479,7 +6478,7 @@ Upload all Perplexity outputs plus any existing research to a NotebookLM noteboo
 - Export key synthesis notes
 
 **Step 3: Claude Strategic Analysis**
-Upload the synthesized research to Claude and build:
+Upload the synthesized research to a Claude Project and build:
 - Executive summary (1 page max)
 - Key insight framework with 3-5 strategic implications
 - Opportunity map (where can the brand/client win?)
@@ -6488,7 +6487,6 @@ Upload the synthesized research to Claude and build:
 - Format for presentation or strategic brief
 
 ## Pipeline Tips:
-- Run Perplexity queries in parallel for speed
 - Use NotebookLM's citation feature to verify claims across sources
 - Claude's Project feature lets you build on this research over time
 - Total pipeline time: 2-4 hours for comprehensive research that would normally take days`
@@ -6498,7 +6496,7 @@ Upload the synthesized research to Claude and build:
     teamSlug: "strategy",
     teamName: "Strategy",
     name: "Cultural Monitoring & Connection",
-    toolRecommendation: "Perplexity + Claude",
+    toolRecommendation: "Claude Project",
     description: "Monitor cultural trends, social conversations, and emerging movements to find authentic connection points between brands and culture.",
     knowledgeToUpload: [
       "Brand values and positioning",

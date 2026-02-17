@@ -275,7 +275,7 @@ export default function NotebookLMPage() {
               Layer 1: Gather Quality Sources
             </p>
             <ul className="text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside ml-8">
-              <li>Use Perplexity or Gemini to research your topic first</li>
+              <li>Research your topic first using Claude Deep Research or Gemini</li>
               <li>Collect 20-50 high-quality URLs (.edu, .gov, major publications)</li>
               <li>Avoid random blogs, outdated content, promotional material</li>
             </ul>
@@ -495,71 +495,21 @@ export default function NotebookLMPage() {
         </CardContent>
       </Card>
 
-      {/* NotebookLM vs Perplexity */}
-      <Card>
-        <CardHeader>
-          <CardTitle>NotebookLM vs Perplexity</CardTitle>
-          <CardDescription>
-            When to use each tool
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b">
-                  <th className="text-left py-2 font-medium">Use Case</th>
-                  <th className="text-left py-2 font-medium">NotebookLM</th>
-                  <th className="text-left py-2 font-medium">Perplexity</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y">
-                <tr>
-                  <td className="py-2">Analyzing your own documents</td>
-                  <td className="py-2 text-green-600">Best</td>
-                  <td className="py-2 text-muted-foreground">Good</td>
-                </tr>
-                <tr>
-                  <td className="py-2">Real-time web search</td>
-                  <td className="py-2 text-muted-foreground">No</td>
-                  <td className="py-2 text-green-600">Best</td>
-                </tr>
-                <tr>
-                  <td className="py-2">Audio summaries</td>
-                  <td className="py-2 text-green-600">Best</td>
-                  <td className="py-2 text-muted-foreground">No</td>
-                </tr>
-                <tr>
-                  <td className="py-2">Current events</td>
-                  <td className="py-2 text-muted-foreground">No</td>
-                  <td className="py-2 text-green-600">Best</td>
-                </tr>
-                <tr>
-                  <td className="py-2">Study materials</td>
-                  <td className="py-2 text-green-600">Best</td>
-                  <td className="py-2 text-muted-foreground">Limited</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Next Steps */}
       <Card className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5">
         <CardContent className="pt-6">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="font-semibold">Need real-time web research?</h3>
+              <h3 className="font-semibold">Ready to chain tools together?</h3>
               <p className="text-sm text-muted-foreground">
-                Check out Perplexity for AI-powered search with citations.
+                Learn how to build multi-tool pipelines for end-to-end workflows.
               </p>
             </div>
             <Link
-              href="/guides/perplexity"
+              href="/guides/multi-tool-workflows"
               className="flex items-center gap-1 text-primary hover:underline font-medium"
             >
-              Perplexity Guide
+              Multi-Tool Workflows
               <ChevronRight className="h-4 w-4" />
             </Link>
           </div>

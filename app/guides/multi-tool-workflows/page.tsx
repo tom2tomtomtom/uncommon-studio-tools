@@ -48,7 +48,7 @@ export default function MultiToolWorkflowsPage() {
           </div>
           <div>
             <h1 className="text-3xl font-bold">Multi-Tool Workflows</h1>
-            <p className="text-muted-foreground">Orchestrate Perplexity + NotebookLM + Claude + n8n for end-to-end pipelines</p>
+            <p className="text-muted-foreground">Orchestrate NotebookLM + Claude + n8n for end-to-end pipelines</p>
           </div>
         </div>
       </div>
@@ -61,9 +61,9 @@ export default function MultiToolWorkflowsPage() {
             <div>
               <p className="font-medium">Why Multi-Tool?</p>
               <p className="text-muted-foreground mt-1">
-                No single AI tool does everything well. Perplexity excels at research but can&apos;t write long-form.
-                Claude writes brilliantly but doesn&apos;t search the web. NotebookLM synthesizes documents but doesn&apos;t
-                automate. The real power comes from <strong>chaining tools together</strong>, using each where it excels.
+                No single AI tool does everything well. Claude writes brilliantly and now has Deep Research for web searches.
+                NotebookLM synthesizes documents but doesn&apos;t automate. n8n automates workflows but doesn&apos;t create content.
+                The real power comes from <strong>chaining tools together</strong>, using each where it excels.
               </p>
             </div>
           </div>
@@ -85,13 +85,13 @@ export default function MultiToolWorkflowsPage() {
           <div className="p-4 rounded-lg border">
             <p className="font-medium flex items-center gap-2">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-white text-xs font-semibold">1</span>
-              Perplexity Deep Research
+              Claude Deep Research
             </p>
             <ul className="text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside ml-8">
-              <li>Run 5-10 Pro Search queries across your research topic</li>
-              <li>Use Focus Modes to target academic, news, or social sources</li>
-              <li>Export each search result as markdown</li>
-              <li>Save to a Perplexity Space for organization</li>
+              <li>Use Claude&apos;s Deep Research mode for comprehensive web research</li>
+              <li>Run multiple queries across your research topic</li>
+              <li>Export findings as structured markdown</li>
+              <li>Gather source documents, reports, and data</li>
             </ul>
           </div>
 
@@ -101,7 +101,7 @@ export default function MultiToolWorkflowsPage() {
               NotebookLM Synthesis
             </p>
             <ul className="text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside ml-8">
-              <li>Upload all Perplexity exports as sources</li>
+              <li>Upload research exports and source documents</li>
               <li>Generate an Audio Overview for passive absorption</li>
               <li>Ask cross-referencing questions to find patterns</li>
               <li>Identify contradictions and gaps across sources</li>
@@ -212,10 +212,10 @@ export default function MultiToolWorkflowsPage() {
           <div className="p-4 rounded-lg border">
             <p className="font-medium flex items-center gap-2">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-500 text-white text-xs font-semibold">1</span>
-              Perplexity — Research Client Context
+              Claude Deep Research — Client Context
             </p>
             <p className="text-sm text-muted-foreground mt-2 ml-8">
-              Research the client&apos;s industry, competitors, recent news, and market position.
+              Use Claude&apos;s Deep Research mode to research the client&apos;s industry, competitors, recent news, and market position.
               Export findings as structured markdown.
             </p>
           </div>

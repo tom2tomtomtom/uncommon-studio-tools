@@ -459,7 +459,7 @@ export default function TipsPage() {
           <TipBlock
             title="The Synthetic Research Pipeline"
             problem="Research takes days and still feels incomplete"
-            trick='Chain three tools: Perplexity Pro Search for live data with sources → NotebookLM to synthesize and generate an Audio Overview for the team → Claude Project to build the strategic deliverable. This turns 2-3 days of research into 2-3 hours with better sources.'
+            trick='Chain two tools: NotebookLM to synthesize research sources and generate an Audio Overview for the team → Claude Project to build the strategic deliverable. This turns 2-3 days of research into 2-3 hours with better sources.'
             icon={<Globe className="h-4 w-4" />}
           />
 

@@ -7,7 +7,6 @@ const MessageSchema = z.object({
 });
 
 const ChatRequestSchema = z.object({
-  provider: z.enum(['perplexity', 'anthropic']).default('anthropic'),
   messages: z.array(MessageSchema).min(1).max(50, 'Too many messages'),
   systemPrompt: z.string().max(20000, 'System prompt too long'),
 });
@@ -30,12 +29,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { provider, messages, systemPrompt } = parsed.data;
+    const { messages, systemPrompt } = parsed.data;
 
-    // Use server-side API keys only
-    const apiKey = provider === 'anthropic'
-      ? process.env.ANTHROPIC_API_KEY
-      : process.env.PERPLEXITY_API_KEY;
+    const apiKey = process.env.ANTHROPIC_API_KEY;
 
     if (!apiKey) {
       return NextResponse.json(
@@ -44,101 +40,51 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (provider === 'anthropic') {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-        },
-        body: JSON.stringify({
-          model: 'claude-3-5-haiku-latest',
-          max_tokens: 2048,
-          system: systemPrompt,
-          messages: messages.map(m => ({
-            role: m.role,
-            content: m.content,
-          })),
-        }),
-      });
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: 'claude-3-5-haiku-latest',
+        max_tokens: 2048,
+        system: systemPrompt,
+        messages: messages.map(m => ({
+          role: m.role,
+          content: m.content,
+        })),
+      }),
+    });
 
-      if (!response.ok) {
-        if (process.env.NODE_ENV === 'development') {
-          const errorBody = await response.text();
-          console.error('Anthropic API error:', errorBody);
-        }
-        if (response.status === 401) {
-          return NextResponse.json(
-            { error: 'AI service authentication failed. Contact the site administrator.' },
-            { status: 502 }
-          );
-        }
-        if (response.status === 429) {
-          return NextResponse.json(
-            { error: 'Rate limit reached. Wait a moment and try again.' },
-            { status: 429 }
-          );
-        }
+    if (!response.ok) {
+      if (process.env.NODE_ENV === 'development') {
+        const errorBody = await response.text();
+        console.error('Anthropic API error:', errorBody);
+      }
+      if (response.status === 401) {
         return NextResponse.json(
-          { error: 'Claude could not process your request right now. Try again in a few seconds.' },
+          { error: 'AI service authentication failed. Contact the site administrator.' },
           { status: 502 }
         );
       }
-
-      const data = await response.json();
-      return NextResponse.json({
-        content: data.content?.[0]?.text || 'No response was returned. Try rephrasing your message.',
-      });
-    } else {
-      // Perplexity
-      const response = await fetch('https://api.perplexity.ai/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          model: 'sonar',
-          max_tokens: 1500,
-          messages: [
-            { role: 'system', content: systemPrompt },
-            ...messages.map(m => ({
-              role: m.role,
-              content: m.content,
-            })),
-          ],
-        }),
-      });
-
-      if (!response.ok) {
-        if (process.env.NODE_ENV === 'development') {
-          const errorBody = await response.text();
-          console.error('Perplexity API error:', errorBody);
-        }
-        if (response.status === 401) {
-          return NextResponse.json(
-            { error: 'AI service authentication failed. Contact the site administrator.' },
-            { status: 502 }
-          );
-        }
-        if (response.status === 429) {
-          return NextResponse.json(
-            { error: 'Rate limit reached. Wait a moment and try again.' },
-            { status: 429 }
-          );
-        }
+      if (response.status === 429) {
         return NextResponse.json(
-          { error: 'Perplexity could not process your request right now. Try again in a few seconds.' },
-          { status: 502 }
+          { error: 'Rate limit reached. Wait a moment and try again.' },
+          { status: 429 }
         );
       }
-
-      const data = await response.json();
-      return NextResponse.json({
-        content: data.choices?.[0]?.message?.content || 'No response was returned. Try rephrasing your message.',
-      });
+      return NextResponse.json(
+        { error: 'Claude could not process your request right now. Try again in a few seconds.' },
+        { status: 502 }
+      );
     }
+
+    const data = await response.json();
+    return NextResponse.json({
+      content: data.content?.[0]?.text || 'No response was returned. Try rephrasing your message.',
+    });
   } catch (error) {
     if (process.env.NODE_ENV === 'development') {
       console.error('Chat API error:', error);

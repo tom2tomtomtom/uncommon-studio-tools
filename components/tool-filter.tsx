@@ -1,14 +1,13 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { FileText, Sparkles, Monitor, Globe } from 'lucide-react';
+import { FileText, Sparkles, Monitor } from 'lucide-react';
 
 const tools = [
   { id: 'all', label: 'All', icon: null },
   { id: 'Claude Project', label: 'Projects', icon: <FileText className="h-3.5 w-3.5" /> },
   { id: 'Claude Skill', label: 'Skills', icon: <Sparkles className="h-3.5 w-3.5" /> },
   { id: 'Claude Cowork', label: 'Cowork', icon: <Monitor className="h-3.5 w-3.5" /> },
-  { id: 'Perplexity', label: 'Perplexity', icon: <Globe className="h-3.5 w-3.5" /> },
 ] as const;
 
 interface ToolFilterProps {

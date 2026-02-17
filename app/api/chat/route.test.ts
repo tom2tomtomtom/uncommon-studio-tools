@@ -8,7 +8,6 @@ const MessageSchema = z.object({
 });
 
 const ChatRequestSchema = z.object({
-  provider: z.enum(['perplexity', 'anthropic']).default('anthropic'),
   messages: z.array(MessageSchema).min(1).max(50),
   systemPrompt: z.string().max(20000),
 });
@@ -21,30 +20,8 @@ describe('Chat API validation', () => {
     });
     expect(result.success).toBe(true);
     if (result.success) {
-      expect(result.data.provider).toBe('anthropic');
       expect(result.data.messages).toHaveLength(1);
     }
-  });
-
-  it('accepts perplexity provider', () => {
-    const result = ChatRequestSchema.safeParse({
-      provider: 'perplexity',
-      messages: [{ role: 'user', content: 'Hello' }],
-      systemPrompt: 'test',
-    });
-    expect(result.success).toBe(true);
-    if (result.success) {
-      expect(result.data.provider).toBe('perplexity');
-    }
-  });
-
-  it('rejects invalid provider', () => {
-    const result = ChatRequestSchema.safeParse({
-      provider: 'openai',
-      messages: [{ role: 'user', content: 'Hello' }],
-      systemPrompt: 'test',
-    });
-    expect(result.success).toBe(false);
   });
 
   it('rejects empty messages', () => {

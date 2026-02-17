@@ -238,11 +238,6 @@ export default function ToolGovernancePage() {
                   <td className="py-2 text-green-600">No training on data</td>
                 </tr>
                 <tr>
-                  <td className="py-2 font-medium">Perplexity Enterprise</td>
-                  <td className="py-2 text-muted-foreground">Research with citations</td>
-                  <td className="py-2 text-green-600">Enterprise data protection</td>
-                </tr>
-                <tr>
                   <td className="py-2 font-medium">NotebookLM</td>
                   <td className="py-2 text-muted-foreground">Document synthesis</td>
                   <td className="py-2 text-green-600">Google Workspace integrated</td>

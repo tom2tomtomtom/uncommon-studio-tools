@@ -17,7 +17,6 @@ import {
   Plug,
   FolderOpen,
   Puzzle,
-  Compass,
   Mic,
   Workflow,
   Video,
@@ -168,19 +167,6 @@ const googleGuides = [
   },
 ];
 
-// Perplexity Enterprise Pro
-const perplexityGuides = [
-  {
-    slug: 'perplexity',
-    title: 'Perplexity AI',
-    description: 'Master Pro Search, Spaces, Focus Modes, and the Sonar API for research',
-    icon: Compass,
-    difficulty: 'Beginner',
-    time: '20 min',
-    color: 'text-teal-500',
-  },
-];
-
 // n8n
 const n8nGuides = [
   {
@@ -260,7 +246,7 @@ const workflowGuides = [
   {
     slug: 'multi-tool-workflows',
     title: 'Multi-Tool Workflows',
-    description: 'Orchestrate Perplexity + NotebookLM + Claude + n8n for research-to-deliverable pipelines',
+    description: 'Orchestrate NotebookLM + Claude + n8n for research-to-deliverable pipelines',
     icon: Workflow,
     difficulty: 'Intermediate',
     time: '25 min',
@@ -297,7 +283,6 @@ interface ToolSection {
 const sections: ToolSection[] = [
   { title: 'Claude Enterprise', guides: claudeGuides, color: 'text-orange-500' },
   { title: 'Google', guides: googleGuides, color: 'text-blue-500' },
-  { title: 'Perplexity Enterprise Pro', guides: perplexityGuides, color: 'text-teal-500' },
   { title: 'n8n', guides: n8nGuides, color: 'text-green-500' },
   { title: 'Runway Enterprise', guides: runwayGuides, color: 'text-purple-500' },
   { title: 'ElevenLabs', guides: elevenLabsGuides, color: 'text-pink-500' },

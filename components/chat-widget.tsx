@@ -55,7 +55,6 @@ const APP_PAGES = {
     { slug: 'chrome-extension', title: 'Chrome Extension', type: 'Guide' as const },
     { slug: 'power-hacks', title: 'Power Hacks', type: 'Guide' as const },
     { slug: 'notebooklm', title: 'NotebookLM', type: 'Guide' as const },
-    { slug: 'perplexity', title: 'Perplexity AI', type: 'Guide' as const },
     { slug: 'n8n', title: 'n8n Automation', type: 'Guide' as const },
     { slug: 'runway', title: 'Runway Video', type: 'Guide' as const },
     { slug: 'elevenlabs', title: 'ElevenLabs Voice', type: 'Guide' as const },
@@ -181,7 +180,7 @@ GUIDES (link format: /guides/{slug}):
 ${APP_PAGES.guides.map(g => `- ${g.slug}: ${g.title}`).join('\n')}
 
 DEPARTMENTS (link format: /team/{slug}):
-${teams.map(t => `- ${t.slug}: ${t.name} (${t.solutionCount} prompts)`).join('\n')}
+${teams.map(t => `- ${t.slug}: ${t.name} (${t.solutionCount} tools)`).join('\n')}
 
 OTHER PAGES:
 - /tips: Expert tips and shortcuts
@@ -223,7 +222,7 @@ function getConversationStarters(pathname: string): ConversationStarter[] {
       { label: 'Getting started', message: 'I\'m new to AI tools. Where should I start?' },
       { label: 'Best for research', message: 'Which guides help with research tasks?' },
       { label: 'Automation setup', message: 'How do I set up workflow automation?' },
-      { label: 'Compare AI tools', message: 'Help me choose between Claude, Perplexity, and Gemini.' },
+      { label: 'Compare AI tools', message: 'Help me choose between Claude and other AI tools.' },
     ];
   }
 
