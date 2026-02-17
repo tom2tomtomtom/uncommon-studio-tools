@@ -17,7 +17,9 @@ import {
   Menu,
   X,
   BookOpen,
-  Lightbulb
+  Lightbulb,
+  Wand2,
+  Users
 } from 'lucide-react';
 import { teamIcons } from '@/lib/constants';
 
@@ -104,6 +106,12 @@ export function Sidebar() {
           </NavLink>
           <NavLink href="/plugins" icon={<Puzzle className="h-4 w-4" />} collapsed={collapsed} active={pathname === '/plugins'}>
             Cowork Plugins
+          </NavLink>
+          <NavLink href="/skill-builder" icon={<Wand2 className="h-4 w-4" />} collapsed={collapsed} active={pathname === '/skill-builder'}>
+            Skill Builder
+          </NavLink>
+          <NavLink href="/community-skills" icon={<Users className="h-4 w-4" />} collapsed={collapsed} active={pathname === '/community-skills'}>
+            Community Skills
           </NavLink>
 
           {/* Separator */}

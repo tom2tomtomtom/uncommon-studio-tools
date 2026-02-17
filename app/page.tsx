@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { RecentlyUsed } from '@/components/recently-used';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, Zap, Users, FileText, Download, Monitor, Globe, Image, GraduationCap } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Users, FileText, Download, Monitor, Globe, Image, GraduationCap, Wand2 } from 'lucide-react';
 import { teamIcons } from '@/lib/constants';
 
 export default function HomePage() {
@@ -375,6 +375,28 @@ export default function HomePage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Skill Builder CTA */}
+      <Link href="/skill-builder">
+        <Card className="bg-gradient-to-r from-primary/10 via-primary/5 to-background hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group border-primary/20">
+          <CardContent className="pt-6 pb-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Wand2 className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">Build Your Own Skill</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Describe any task and AI will generate an expert-level Claude Skill in seconds &mdash; download or share with the community
+                  </p>
+                </div>
+              </div>
+              <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all shrink-0" />
+            </div>
+          </CardContent>
+        </Card>
+      </Link>
 
       {/* Cowork Setup */}
       <Card>
