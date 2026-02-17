@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { notFound } from 'next/navigation';
 import { teams, getTeamBySlug, getPromptsByTeam } from '@/lib/prompts';
-import { teamGuideFiles, teamGuideMetadata } from '@/lib/guides';
+import { teamGuides } from '@/lib/guides';
 import { FilteredPromptList } from '@/components/filtered-prompt-list';
 import { StrategyGuide } from '@/components/strategy-guide';
 import { TeamGuide } from '@/components/team-guide';
@@ -55,18 +55,16 @@ export default async function TeamPage({ params }: Props) {
 
   const teamPrompts = getPromptsByTeam(slug);
 
-  // Load guide content if available for this team
-  let guideContent: string | null = null;
-  const guideFile = teamGuideFiles[slug];
-  if (guideFile) {
-    const guidePath = path.join(process.cwd(), 'content', 'guides', guideFile);
+  // Load guide content for this team
+  const guides = (teamGuides[slug] || []).map((entry) => {
+    const guidePath = path.join(process.cwd(), 'content', 'guides', entry.file);
     try {
-      guideContent = fs.readFileSync(guidePath, 'utf-8');
+      const content = fs.readFileSync(guidePath, 'utf-8');
+      return { ...entry, content };
     } catch {
-      // Guide file not found — skip
+      return null;
     }
-  }
-  const guideMeta = teamGuideMetadata[slug];
+  }).filter((g): g is NonNullable<typeof g> => g !== null);
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
@@ -95,15 +93,16 @@ export default async function TeamPage({ params }: Props) {
         </div>
       </div>
 
-      {/* Team Guide */}
+      {/* Team Guides */}
       {slug === 'strategy' && <StrategyGuide />}
-      {guideContent && guideMeta && (
+      {guides.map((guide) => (
         <TeamGuide
-          title={guideMeta.title}
-          description={guideMeta.description}
-          content={guideContent}
+          key={guide.file}
+          title={guide.title}
+          description={guide.description}
+          content={guide.content}
         />
-      )}
+      ))}
 
       {/* Prompts with Filter */}
       <FilteredPromptList prompts={teamPrompts} />
