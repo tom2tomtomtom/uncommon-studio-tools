@@ -73,6 +73,7 @@ const APP_PAGES = {
     { slug: 'plugins', title: 'Cowork Plugins', type: 'Page' as const },
     { slug: 'search', title: 'Search', type: 'Page' as const },
     { slug: 'favorites', title: 'Favorites', type: 'Page' as const },
+    { slug: 'prompt-generator', title: 'Prompt Generator', type: 'Page' as const },
   ],
 };
 

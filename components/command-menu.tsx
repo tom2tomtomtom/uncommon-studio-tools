@@ -13,7 +13,7 @@ import {
 import { teams } from '@/lib/prompts';
 import { promptSearch } from '@/lib/search';
 import { useAnalytics } from '@/hooks/use-analytics';
-import { Search, Star, FileText, Users } from 'lucide-react';
+import { Search, Star, FileText, Users, Video } from 'lucide-react';
 
 export function CommandMenu() {
   const [open, setOpen] = useState(false);
@@ -100,6 +100,10 @@ export function CommandMenu() {
                 <CommandItem onSelect={() => handleSelect('/favorites')}>
                   <Star className="mr-2 h-4 w-4" />
                   Favorites
+                </CommandItem>
+                <CommandItem onSelect={() => handleSelect('/prompt-generator')}>
+                  <Video className="mr-2 h-4 w-4" />
+                  Prompt Generator
                 </CommandItem>
               </CommandGroup>
 
