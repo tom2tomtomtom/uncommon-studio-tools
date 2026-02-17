@@ -14,7 +14,7 @@ import JSZip from 'jszip';
 
 type Step = 'describe' | 'generating' | 'preview';
 
-/** Strip code fences, preamble text, or trailing commentary so content starts with --- */
+/** Strip code fences, preamble text, invalid frontmatter keys so content is a valid SKILL.md */
 function cleanSkillContent(raw: string): string {
   let text = raw.trim();
   // Remove wrapping code fences (```markdown\n...\n``` or ```\n...\n```)
@@ -24,6 +24,8 @@ function cleanSkillContent(raw: string): string {
   if (fmIndex > 0) {
     text = text.slice(fmIndex);
   }
+  // Remove invalid frontmatter keys (only name, description, license, allowed-tools, compatibility, metadata are valid)
+  text = text.replace(/^(category|type|tags|version|author):.*\n?/gm, '');
   return text.trim();
 }
 
@@ -151,7 +153,7 @@ export function SkillBuilderForm() {
       const response = await fetch('/api/skills/publish', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: generatedContent }),
+        body: JSON.stringify({ content: generatedContent, ...(category ? { category } : {}) }),
       });
 
       const data = await response.json();

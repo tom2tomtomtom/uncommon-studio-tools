@@ -36,12 +36,11 @@ CRITICAL OUTPUT RULES:
 
 STRUCTURE (follow this exactly):
 
-The file starts with YAML frontmatter, then markdown sections:
+The file starts with YAML frontmatter, then markdown sections. The ONLY allowed frontmatter keys are: name, description. Do NOT include any other keys (no category, no license, no metadata, nothing else).
 
 ---
 name: [Skill Name]
 description: [One line, under 200 characters]
-category: [One of: strategy, content, creative, media, client, operations, analytics, internal, specialized, other]
 ---
 
 # [Skill Name]
@@ -86,7 +85,6 @@ REFERENCE EXAMPLE (your output should follow this pattern):
 ---
 name: Creative Brief Writer
 description: Write creative briefs with single-minded proposition and mandatories
-category: creative
 ---
 
 # Creative Brief Writer
