@@ -9,6 +9,8 @@ import {
   RotateCcw,
   ChevronDown,
   Lightbulb,
+  Sparkles,
+  Loader2,
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -41,7 +43,6 @@ import {
   ASPECT_RATIO_OPTIONS,
   EMPTY_FIELDS,
   getVisibleFields,
-  assemblePrompt,
   TOOL_TIPS,
 } from '@/lib/prompt-generator';
 
@@ -124,6 +125,9 @@ function getSelectOptions(
 export function PromptGeneratorForm() {
   const [selectedTool, setSelectedTool] = useState<ToolId>('runway');
   const [fields, setFields] = useState<PromptFields>(EMPTY_FIELDS);
+  const [generatedPrompt, setGeneratedPrompt] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
   const [tipsOpen, setTipsOpen] = useState(false);
 
@@ -132,10 +136,7 @@ export function PromptGeneratorForm() {
     [selectedTool]
   );
 
-  const prompt = useMemo(
-    () => assemblePrompt(selectedTool, fields),
-    [selectedTool, fields]
-  );
+  const hasSubject = fields.subject.trim().length > 0;
 
   const updateField = useCallback(
     (field: keyof PromptFields, value: string) => {
@@ -144,20 +145,52 @@ export function PromptGeneratorForm() {
     []
   );
 
+  const handleGenerate = useCallback(async () => {
+    if (!hasSubject) return;
+
+    setIsGenerating(true);
+    setError('');
+
+    try {
+      const res = await fetch('/api/prompt-generator', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tool: selectedTool, fields }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || 'Failed to generate prompt.');
+        return;
+      }
+
+      setGeneratedPrompt(data.prompt);
+    } catch {
+      setError('Network error. Check your connection and try again.');
+    } finally {
+      setIsGenerating(false);
+    }
+  }, [selectedTool, fields, hasSubject]);
+
   const handleCopy = useCallback(async () => {
-    if (!prompt) return;
-    await navigator.clipboard.writeText(prompt);
+    if (!generatedPrompt) return;
+    await navigator.clipboard.writeText(generatedPrompt);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  }, [prompt]);
+  }, [generatedPrompt]);
 
   const handleClear = useCallback(() => {
     setFields(EMPTY_FIELDS);
+    setGeneratedPrompt('');
+    setError('');
   }, []);
 
   const handleToolChange = useCallback((toolId: ToolId) => {
     setSelectedTool(toolId);
     setFields(EMPTY_FIELDS);
+    setGeneratedPrompt('');
+    setError('');
   }, []);
 
   const tips = TOOL_TIPS[selectedTool];
@@ -278,65 +311,94 @@ export function PromptGeneratorForm() {
               })}
             </div>
           )}
-        </CardContent>
-      </Card>
 
-      {/* Live Prompt Preview */}
-      <Card>
-        <CardContent>
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-sm font-semibold text-foreground">
-              Generated Prompt
-            </span>
-            <div className="flex gap-2">
-              <Button variant="ghost" size="sm" onClick={handleClear}>
-                <RotateCcw className="h-3 w-3 mr-1" />
-                Clear
-              </Button>
-              <Button size="sm" onClick={handleCopy} disabled={!prompt}>
-                {copied ? (
-                  <>
-                    <Check className="h-3 w-3 mr-1" />
-                    Copied
-                  </>
-                ) : (
-                  <>
-                    <Copy className="h-3 w-3 mr-1" />
-                    Copy Prompt
-                  </>
-                )}
-              </Button>
-            </div>
-          </div>
-          <div className="bg-muted rounded-lg border p-4 min-h-[100px] font-mono text-sm text-foreground whitespace-pre-wrap">
-            {prompt || (
-              <span className="text-muted-foreground">
-                Fill in the fields above to generate your prompt...
-              </span>
+          {/* Generate Button */}
+          <Button
+            onClick={handleGenerate}
+            disabled={!hasSubject || isGenerating}
+            className="w-full"
+            size="lg"
+          >
+            {isGenerating ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Generating...
+              </>
+            ) : (
+              <>
+                <Sparkles className="h-4 w-4 mr-2" />
+                Generate {toolMeta.name} Prompt
+              </>
             )}
-          </div>
-          {prompt && (
-            <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
-              <span>{prompt.length} characters</span>
-              <span>
-                {selectedTool === 'runway' && fields.aspectRatio
-                  ? `${fields.aspectRatio}`
-                  : ''}
-                {selectedTool === 'runway' && fields.duration
-                  ? ` / ${fields.duration}s`
-                  : ''}
-                {selectedTool === 'veo3' && fields.aspectRatio
-                  ? `${fields.aspectRatio}`
-                  : ''}
-                {selectedTool === 'veo3' ? ' / 8s' : ''}
-                {selectedTool === 'nanobanana' && fields.aspectRatio
-                  ? `${fields.aspectRatio}`
-                  : ''}
-              </span>
-            </div>
+          </Button>
+
+          {error && (
+            <p className="text-sm text-destructive text-center">{error}</p>
           )}
         </CardContent>
       </Card>
+
+      {/* Generated Prompt Output */}
+      {(generatedPrompt || isGenerating) && (
+        <Card>
+          <CardContent>
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm font-semibold text-foreground">
+                Your {toolMeta.name} Prompt
+              </span>
+              <div className="flex gap-2">
+                <Button variant="ghost" size="sm" onClick={handleClear}>
+                  <RotateCcw className="h-3 w-3 mr-1" />
+                  Start Over
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={handleCopy}
+                  disabled={!generatedPrompt}
+                >
+                  {copied ? (
+                    <>
+                      <Check className="h-3 w-3 mr-1" />
+                      Copied
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-3 w-3 mr-1" />
+                      Copy
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+            <div className="bg-muted rounded-lg border p-4 min-h-[100px] font-mono text-sm text-foreground whitespace-pre-wrap">
+              {isGenerating ? (
+                <span className="text-muted-foreground flex items-center gap-2">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Crafting the perfect prompt...
+                </span>
+              ) : (
+                generatedPrompt
+              )}
+            </div>
+            {generatedPrompt && (
+              <div className="mt-3 flex items-center justify-between">
+                <span className="text-xs text-muted-foreground">
+                  {generatedPrompt.length} characters
+                </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleGenerate}
+                  disabled={isGenerating}
+                >
+                  <Sparkles className="h-3 w-3 mr-1" />
+                  Regenerate
+                </Button>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
       {/* Best Practices Tips */}
       <Collapsible open={tipsOpen} onOpenChange={setTipsOpen}>
