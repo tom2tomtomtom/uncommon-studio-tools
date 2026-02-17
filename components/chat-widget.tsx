@@ -38,7 +38,7 @@ function nextMessageId() {
   return `msg-${Date.now()}-${++messageCounter}`;
 }
 
-const MESSAGES_STORAGE = 'uncommon-ai-chat-messages';
+const MESSAGES_STORAGE = 'uncommon-ai-chat-v2';
 
 // Build a map of all navigable pages
 const APP_PAGES = {
