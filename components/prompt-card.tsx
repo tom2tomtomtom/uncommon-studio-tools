@@ -37,7 +37,7 @@ const skillFiles: Record<string, string> = {
   // New skills
   'strategy-1': 'brand-positioning.zip',       // Brand Positioning Workshop
   'account-6': 'client-management.zip',        // Client Relationship Health Check
-  'production-1': 'production-specs.zip',      // Production Spec Writer
+  'production-1': 'production-specs.zip',      // Production Scope/Brief
   'design-3': 'design-critique.zip',           // Design Critique
   'digital-5': 'digital-analytics.zip',        // Analytics & Reporting
 };
@@ -196,6 +196,13 @@ export function PromptCard({ prompt }: PromptCardProps) {
               </Badge>
             )}
           </div>
+
+          {/* Notes */}
+          {prompt.notes && (
+            <p className="mt-2 text-xs text-muted-foreground italic">
+              {prompt.notes}
+            </p>
+          )}
 
           {/* Prompt Preview - shown when collapsed */}
           {!isOpen && (

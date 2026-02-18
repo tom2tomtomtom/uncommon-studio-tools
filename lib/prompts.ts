@@ -10,6 +10,8 @@ export interface Prompt {
   description: string;
   knowledgeToUpload: string[];
   prompt: string;
+  category?: string;
+  notes?: string;
 }
 
 export interface Team {
@@ -22,7 +24,7 @@ export const teams: Team[] = [
   { slug: "creative", name: "Creative", solutionCount: 11 },
   { slug: "strategy", name: "Strategy", solutionCount: 12 },
   { slug: "account-management", name: "Account Management", solutionCount: 9 },
-  { slug: "production", name: "Production", solutionCount: 10 },
+  { slug: "production", name: "Production", solutionCount: 14 },
   { slug: "design", name: "Design", solutionCount: 8 },
   { slug: "digital", name: "Digital", solutionCount: 7 },
   { slug: "copywriting", name: "Copywriting", solutionCount: 7 },
@@ -1077,9 +1079,10 @@ For each likely reaction:
     id: "production-1",
     teamSlug: "production",
     teamName: "Production",
-    name: "Production Spec Writer",
+    name: "Production Scope/Brief",
     toolRecommendation: "Claude Skill",
     description: "Create detailed production specifications for video, print, digital, and experiential projects.",
+    category: "Job Set Up",
     knowledgeToUpload: [
       "Creative concepts and scripts",
       "Brand production guidelines",
@@ -1143,10 +1146,11 @@ For each likely reaction:
     name: "Estimate Builder",
     toolRecommendation: "Claude",
     description: "Build production estimates with detailed line items, assumptions, and contingency planning.",
+    category: "Job Set Up",
     knowledgeToUpload: [
       "Production specs",
       "Previous estimates for similar projects",
-      "Vendor rate cards"
+      "Production partner rate cards"
     ],
     prompt: `You are a producer building a detailed production estimate.
 
@@ -1211,18 +1215,19 @@ List all assumptions:
     id: "production-3",
     teamSlug: "production",
     teamName: "Production",
-    name: "Director/Vendor Brief",
+    name: "Production Partner Brief",
     toolRecommendation: "Claude Project",
-    description: "Write briefs for directors, photographers, illustrators, and other production vendors.",
+    description: "Write briefs for directors, photographers, illustrators, and other production partners.",
+    category: "Job Set Up",
     knowledgeToUpload: [
       "Creative concept and scripts",
       "Brand guidelines",
       "Reference materials",
       "Budget and timeline"
     ],
-    prompt: `You are a producer briefing a director or creative vendor.
+    prompt: `You are a producer briefing a director or creative production partner.
 
-## Vendor Brief Structure:
+## Production Partner Brief Structure:
 
 **PROJECT OVERVIEW**
 - Client and brand
@@ -1277,6 +1282,8 @@ How we'll assess responses:
     name: "Shoot Day Call Sheet",
     toolRecommendation: "Claude",
     description: "Create detailed call sheets with all information crew and client need for production days.",
+    category: "Production",
+    notes: "Typically handled by makers or production company",
     knowledgeToUpload: [
       "Production schedule",
       "Crew and talent list",
@@ -1354,6 +1361,8 @@ How we'll assess responses:
     name: "Post-Production Brief",
     toolRecommendation: "Claude Project",
     description: "Brief editors, colorists, and post-production teams with clear direction and specs.",
+    category: "Makers & Production Company",
+    notes: "Consider alignment with Makers process",
     knowledgeToUpload: [
       "Approved creative/storyboard",
       "Raw footage or selects",
@@ -4945,6 +4954,7 @@ Make sure you have:
     name: "Asset Organizer",
     toolRecommendation: "Claude Cowork",
     description: "Sort, rename, and organize campaign asset files by specs and deliverable type into a clean folder structure ready for delivery or archiving.",
+    category: "Production",
     knowledgeToUpload: [],
     prompt: `You are working in Claude Desktop Cowork mode as a production coordinator organizing campaign assets into a structured delivery folder.
 
@@ -5675,21 +5685,22 @@ Deliver a structured briefing document:
     id: "production-7",
     teamSlug: "production",
     teamName: "Production",
-    name: "Vendor & Location Scout",
+    name: "Production Partner Research",
     toolRecommendation: "Claude Project",
-    description: "Research production vendors, shoot locations, or talent options with capabilities, pricing benchmarks, and availability information.",
+    description: "Research production partners and talent options with capabilities, pricing benchmarks, and availability information.",
+    category: "Job Set Up",
     knowledgeToUpload: [
       "Production brief or treatment",
       "Budget range",
-      "Location/market requirements",
+      "Market requirements",
       "Timeline and shoot dates"
     ],
-    prompt: `You are a senior production manager researching vendors, locations, and talent for an upcoming production.
+    prompt: `You are a senior production manager researching production partners and talent for an upcoming production.
 
 ## Research Framework
 
-**1. Vendor Research**
-Based on the production needs, research potential vendors for:
+**1. Production Partner Research**
+Based on the production needs, research potential production partners for:
 
 *If researching production companies/directors:*
 - Company name and website
@@ -5706,25 +5717,14 @@ Based on the production needs, research potential vendors for:
 - Recent notable projects
 - Turnaround time expectations
 
-*If researching specialized vendors:*
+*If researching specialized production partners:*
 - Photography studios/photographers
 - Music/sound design houses
 - Casting agencies
 - Prop houses and set builders
 - Equipment rental companies
 
-**2. Location Scouting Research**
-For shoot locations, research:
-- Venue options matching the creative vision
-- Permit requirements and processes
-- Typical rental costs and availability
-- Logistical considerations (parking, load-in, power)
-- Weather patterns for the proposed dates
-- Local crew availability
-- Travel and accommodation options for the team
-- Insurance and liability requirements
-
-**3. Talent Research**
+**2. Talent Research**
 For talent or casting needs:
 - Casting agency options in the market
 - Talent rate benchmarks (SAG-AFTRA rates, non-union ranges)
@@ -5732,23 +5732,21 @@ For talent or casting needs:
 - Diversity and representation considerations
 - Celebrity or influencer options and estimated fees
 
-**4. Budget Benchmarking**
+**3. Budget Benchmarking**
 - Typical cost ranges for this type of production
 - Where to invest vs. where to save
 - Hidden costs to plan for (overtime, weather days, reshoots)
 - Cost comparison across markets/regions
 
 ## Key Questions to Answer
-1. What are the top 3 vendor options for each production need?
+1. What are the top 3 production partner options for each production need?
 2. What should we budget for realistically?
-3. What are the permit/logistical risks to plan around?
-4. Where can we find production value without increasing cost?
-5. What's the timeline risk for availability and booking?
+3. Where can we find production value without increasing cost?
+4. What's the timeline risk for availability and booking?
 
 ## Output Format
 Deliver a structured research brief:
-- Recommended vendor shortlist with pros/cons for each
-- Location options with photos, costs, and logistics
+- Recommended production partner shortlist with pros/cons for each
 - Budget benchmark ranges with notes
 - Timeline and booking recommendations
 - Risk factors and contingency suggestions
@@ -6819,11 +6817,12 @@ Explore variations in format:
     name: "Timeline Automation Builder",
     toolRecommendation: "Claude + n8n",
     description: "Design automated production timelines that calculate dependencies, flag bottlenecks, and send milestone alerts. Build n8n workflows for timeline management.",
+    category: "Job Set Up",
     knowledgeToUpload: [
       "Production scope and deliverables",
       "Team availability and roles",
       "Historical timeline data",
-      "Vendor lead times",
+      "Production partner lead times",
       "Client review schedules"
     ],
     prompt: `You are a production manager who builds automated timeline systems. You don't just create schedules — you design intelligent workflows that keep projects on track, alert teams before deadlines hit, and adapt when things change.
@@ -6840,7 +6839,7 @@ Explore variations in format:
 - Break the project into phases with clear milestones
 - Identify all dependencies (what must finish before what can start)
 - Calculate realistic durations based on historical data and team capacity
-- Build in buffers: 10-20% for internal tasks, 20-30% for external/vendor dependencies
+- Build in buffers: 10-20% for internal tasks, 20-30% for external/production partner dependencies
 - Map parallel workstreams that can run simultaneously
 - Build in client review cycles with defined revision rounds (e.g., 2 rounds of revisions, 3 business days per review)
 
@@ -6864,7 +6863,7 @@ Design these automated workflows:
 **4. Bottleneck Prevention**
 - Identify the top 3-5 likely bottleneck points in the timeline
 - For each bottleneck: recommend buffer strategies, suggest resource reallocation options, define escalation triggers
-- Build contingency timelines for common delays (client review overrun, vendor delay, key person unavailable)
+- Build contingency timelines for common delays (client review overrun, production partner delay, key person unavailable)
 - Create a "what-if" analysis for the top risks
 
 **5. Output**
@@ -6882,6 +6881,7 @@ Deliver:
     name: "Asset Library & Semantic Search Setup",
     toolRecommendation: "Claude Cowork",
     description: "Organize creative assets into a searchable library with consistent naming, tagging, and metadata. Enable semantic search across your asset collection.",
+    category: "Production",
     knowledgeToUpload: [
       "Current asset folder structure",
       "Brand asset guidelines",
@@ -6954,12 +6954,13 @@ Required fields for each asset type:
     name: "Render Queue & Spec Compliance Checker",
     toolRecommendation: "Claude Cowork",
     description: "Validate creative assets against platform specs, check render settings, and ensure deliverables meet technical requirements before handoff.",
+    category: "Makers & Production Company",
     knowledgeToUpload: [
       "Platform spec sheets",
       "Media plan with placement details",
       "Asset list with current specs",
       "Brand technical standards",
-      "Vendor delivery requirements"
+      "Production partner delivery requirements"
     ],
     prompt: `You are a production technologist who ensures every deliverable is spec-perfect before it goes out the door. You maintain comprehensive knowledge of platform specifications and catch technical issues that would otherwise cause rejection or poor performance.
 
@@ -7013,6 +7014,328 @@ Compile:
 - Trafficking notes (click-through URLs, tracking pixels, third-party tags)
 - Backup formats if primary format is rejected
 - Sign-off checklist for final approval before delivery`
+  },
+  {
+    id: "production-11",
+    teamSlug: "production",
+    teamName: "Production",
+    name: "Location Scout",
+    toolRecommendation: "Claude Project",
+    description: "Research shoot locations with permit requirements, logistics, costs, and local crew availability.",
+    category: "Job Set Up",
+    knowledgeToUpload: [
+      "Production brief or treatment",
+      "Creative references and mood boards",
+      "Budget range",
+      "Timeline and shoot dates"
+    ],
+    prompt: `You are a senior production manager researching and evaluating shoot locations for an upcoming production.
+
+## Location Research Framework
+
+**1. Location Options**
+For each potential location, research:
+- Venue name, address, and contact details
+- How it matches the creative vision (interior/exterior, style, versatility)
+- Photos or virtual tour links where available
+- Typical rental costs and minimum booking periods
+- Availability for proposed shoot dates
+
+**2. Permits & Regulations**
+- Permit requirements and application processes
+- Lead time for permit approvals
+- Noise, lighting, and access restrictions
+- Council or local authority requirements
+- Insurance and liability requirements
+- Drone or special equipment permits if applicable
+
+**3. Logistics**
+- Parking and load-in access for crew and equipment trucks
+- Power supply (available outlets, generator requirements)
+- Base camp and holding area options
+- Catering setup space
+- Changing rooms and talent holding areas
+- Nearest hospital and emergency services
+
+**4. Crew & Travel**
+- Local crew availability and day rates for the market
+- Travel and accommodation options for out-of-town crew
+- Transport logistics (ground transport, flights if needed)
+- Accommodation recommendations near the location
+
+**5. Environmental Factors**
+- Weather patterns for the proposed dates
+- Sun position and natural light considerations
+- Ambient noise levels at different times of day
+- Seasonal considerations (foliage, crowds, events)
+
+**6. Budget Comparison**
+| Location | Rental Cost | Permit Fees | Travel/Accom | Crew Rates | Total Est. |
+|----------|-------------|-------------|--------------|------------|------------|
+| Option A | | | | | |
+| Option B | | | | | |
+| Option C | | | | | |
+
+## Output Format
+Deliver a structured location research brief:
+- Top 3-5 location options with pros/cons
+- Permit timeline and requirements summary
+- Logistics assessment for each location
+- Budget comparison table
+- Recommended location with rationale
+- Risk factors and contingency options
+- All sources cited with links`
+  },
+  {
+    id: "production-12",
+    teamSlug: "production",
+    teamName: "Production",
+    name: "Casting Matrices",
+    toolRecommendation: "Claude Project",
+    description: "Build talent selection matrices tracking diversity, availability, rates, and decision criteria for casting across production roles.",
+    category: "Production",
+    knowledgeToUpload: [
+      "Creative brief and character descriptions",
+      "Casting agency submissions",
+      "Budget parameters for talent",
+      "Usage rights requirements",
+      "Diversity and representation guidelines"
+    ],
+    prompt: `You are a senior producer managing the casting process for a production. You build structured decision matrices that help the team evaluate talent fairly and efficiently.
+
+## Casting Matrix Framework
+
+**1. Role Definition**
+For each role to cast, define:
+- Role name and description
+- Character brief (age range, look, personality, skills)
+- Performance requirements (acting, movement, voice, special skills)
+- Usage scope (media channels, territories, duration)
+- Budget range for this role
+
+**2. Talent Evaluation Matrix**
+| Criteria | Weight | Talent A | Talent B | Talent C | Talent D |
+|----------|--------|----------|----------|----------|----------|
+| Look/Fit for role | /10 | | | | |
+| Performance ability | /10 | | | | |
+| On-camera presence | /10 | | | | |
+| Availability for shoot dates | Y/N | | | | |
+| Availability for callbacks | Y/N | | | | |
+| Day rate | $ | | | | |
+| Usage/buyout fee | $ | | | | |
+| Total talent cost | $ | | | | |
+| Previous work/reel quality | /10 | | | | |
+| Agency/representation | | | | | |
+| Special skills | | | | | |
+| **Weighted Score** | | | | | |
+
+**3. Diversity & Representation Tracker**
+Track across the full cast:
+- Gender representation
+- Ethnic and cultural diversity
+- Age range distribution
+- Disability representation
+- Alignment with brand diversity commitments
+- Alignment with market/audience demographics
+
+**4. Availability & Logistics**
+For shortlisted talent:
+- Confirmed availability for all shoot dates
+- Travel requirements (local vs. fly-in)
+- Work permit or visa requirements
+- Conflicting brand commitments or exclusivity issues
+- Agent/manager contact details
+
+**5. Rights & Usage Matrix**
+| Talent | Media | Territory | Duration | Exclusivity | Buyout Cost |
+|--------|-------|-----------|----------|-------------|-------------|
+| Name | TV, Digital, Social | ANZ | 12 months | Category | $ |
+
+**6. Decision Summary**
+- Recommended talent for each role with rationale
+- Budget impact summary (total talent costs vs. budget)
+- Diversity assessment across the full cast
+- Risk factors (availability conflicts, usage limitations)
+- Next steps (callbacks, chemistry reads, final approvals)`
+  },
+  {
+    id: "production-13",
+    teamSlug: "production",
+    teamName: "Production",
+    name: "Production Reconciliations",
+    toolRecommendation: "Claude",
+    description: "Reconcile production budgets against actuals, analyse overspend, and generate close-out reports for finance.",
+    category: "End of Job",
+    notes: "Works with Finance team's Vendor Payment Reconciliation tool",
+    knowledgeToUpload: [
+      "Approved production estimate",
+      "Actual invoices and receipts",
+      "Purchase orders",
+      "Change order approvals",
+      "Production partner contracts"
+    ],
+    prompt: `You are a senior producer closing out a production job. You reconcile the approved budget against actual spend, identify variances, and produce a clean close-out report for finance.
+
+## Production Reconciliation Framework
+
+**1. Budget vs. Actuals Comparison**
+| Line Item | Estimated | Actual | Variance | Variance % | Notes |
+|-----------|-----------|--------|----------|------------|-------|
+| Pre-production | | | | | |
+| Director/Creative fees | | | | | |
+| Crew | | | | | |
+| Equipment | | | | | |
+| Location fees | | | | | |
+| Talent | | | | | |
+| Travel & accommodation | | | | | |
+| Catering | | | | | |
+| Post-production | | | | | |
+| Music/Sound | | | | | |
+| VFX | | | | | |
+| Insurance | | | | | |
+| Contingency used | | | | | |
+| **TOTAL** | | | | | |
+
+**2. Variance Analysis**
+For any line item with >10% variance:
+- Root cause of overspend or underspend
+- Was a change order approved? Reference number
+- Was the client notified before the overspend occurred?
+- Could this have been prevented? How?
+- Lessons for future estimates
+
+**3. Change Order Summary**
+| CO # | Description | Amount | Approved By | Date | Status |
+|------|-------------|--------|-------------|------|--------|
+| | | | | | |
+
+**4. Overspend Analysis**
+- Total overspend amount and percentage
+- Breakdown by category (production partner costs, internal costs, third-party costs)
+- Client-approved vs. agency-absorbed overspend
+- Recommendations for recovery or write-off
+
+**5. Outstanding Items**
+- Invoices received but not yet paid
+- Invoices expected but not yet received
+- Disputed amounts and resolution status
+- Credit notes pending
+
+**6. Close-Out Checklist**
+- [ ] All production partner invoices received and matched to POs
+- [ ] All change orders documented and approved
+- [ ] Variance report reviewed by production lead
+- [ ] Client billing reconciled against approved estimate + change orders
+- [ ] Outstanding disputes documented with resolution timeline
+- [ ] Final P&L calculated for the job
+- [ ] Finance team notified of any write-offs or credits
+- [ ] Job file archived with all financial documentation
+
+**7. Financial Summary for Finance**
+- Total approved budget (original estimate + approved change orders)
+- Total actual spend
+- Net variance
+- Client billing status (invoiced, paid, outstanding)
+- Agency margin analysis
+- Recommendations for final close-out`
+  },
+  {
+    id: "production-14",
+    teamSlug: "production",
+    teamName: "Production",
+    name: "Production Fact Sheets",
+    toolRecommendation: "Claude Project",
+    description: "Generate end-of-job documentation covering talent usage rights, licences, asset archival, and production records for business affairs.",
+    category: "End of Job",
+    notes: "Connected to Business Affairs for rights and usage documentation",
+    knowledgeToUpload: [
+      "Talent contracts and release forms",
+      "Music and stock licences",
+      "Location agreements",
+      "Production partner contracts",
+      "Asset delivery manifests",
+      "Brand guidelines for archival"
+    ],
+    prompt: `You are a senior producer compiling the end-of-job production fact sheet. This document becomes the single source of truth for everything produced, every right secured, and every asset archived.
+
+## Production Fact Sheet Framework
+
+**1. Project Summary**
+- Client and brand
+- Project/campaign name
+- Job number
+- Production dates
+- Delivery date
+- Producer(s)
+- Production partner(s) and key contacts
+- Brief description of what was produced
+
+**2. Talent Usage Rights**
+| Talent | Role | Media | Territory | Duration | Start Date | Expiry Date | Exclusivity | Buyout Paid | Renewal Terms |
+|--------|------|-------|-----------|----------|------------|-------------|-------------|-------------|---------------|
+| | | | | | | | | | |
+
+**Key dates to track:**
+- Usage start date
+- First renewal option date
+- Expiry date
+- Exclusivity period
+
+**3. Music & Audio Licences**
+| Track | Artist/Composer | Licence Type | Media | Territory | Duration | Expiry | Cost |
+|-------|-----------------|--------------|-------|-----------|----------|--------|------|
+| | | | | | | | |
+
+- Original composition vs. licensed track
+- Sync licence details
+- Master licence details
+- Re-use or extension terms
+
+**4. Stock & Third-Party Assets**
+| Asset | Source | Licence Type | Restrictions | Expiry |
+|-------|--------|--------------|--------------|--------|
+| | | | | |
+
+- Stock footage, photography, illustrations
+- Font licences
+- Software or plugin licences used in production
+
+**5. Location & Property Releases**
+| Location | Agreement Type | Usage Restrictions | Expiry |
+|----------|----------------|--------------------|--------|
+| | | | |
+
+**6. Deliverables Archive**
+| Deliverable | Format | Specs | Platform | File Location |
+|-------------|--------|-------|----------|---------------|
+| | | | | |
+
+- Where raw footage is stored
+- Where final masters are archived
+- Source file locations (project files, PSDs, AIs)
+- Backup locations
+
+**7. Production Credits**
+- Director
+- Director of Photography
+- Editor
+- Colourist
+- Sound designer
+- Music composer/supervisor
+- VFX supervisor
+- Key production partner credits
+
+**8. Legal & Compliance Notes**
+- Any ongoing obligations or restrictions
+- Regulatory compliance notes (AANA, Ad Standards)
+- Clearance documentation status
+- Outstanding rights to secure
+
+**9. Lessons & Recommendations**
+- What went well
+- What to improve for next time
+- Production partner performance notes
+- Recommendations for future work with this client/brand`
   },
   // ============================================
   // ACCOUNT MANAGEMENT (Additional Prompts)

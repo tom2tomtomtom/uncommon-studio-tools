@@ -20,7 +20,7 @@ const teamDescriptions: Record<string, string> = {
   'creative': 'Develop campaign concepts, brainstorm ideas, and craft compelling creative work with AI-powered tools.',
   'strategy': 'Build brand positioning, competitive analysis, and strategic frameworks for client campaigns.',
   'account-management': 'Strengthen client relationships with AI-assisted briefs, status reports, and communication tools.',
-  'production': 'Streamline production workflows from spec sheets to vendor briefs and asset management.',
+  'production': 'Streamline production workflows from scoping and production partner briefs through to reconciliation and close-out.',
   'design': 'Accelerate design workflows with AI-powered mood boards, layout concepts, and visual direction.',
   'digital': 'Plan and optimize digital campaigns, SEO, paid media, and performance marketing.',
   'copywriting': 'Write headlines, scripts, taglines, and long-form copy with AI-assisted drafting tools.',

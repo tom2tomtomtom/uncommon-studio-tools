@@ -48,6 +48,58 @@ export function FilteredPromptList({ prompts }: FilteredPromptListProps) {
     return result;
   }, [prompts, selectedTool, sortBy]);
 
+  // Check if prompts have categories (for section grouping)
+  const hasCategories = useMemo(() => {
+    return filteredPrompts.some(p => p.category);
+  }, [filteredPrompts]);
+
+  // Group prompts by category, maintaining lifecycle phase order
+  const groupedPrompts = useMemo(() => {
+    if (!hasCategories || sortBy !== 'default') return null;
+
+    // Define lifecycle phase order
+    const categoryOrder = [
+      'Job Set Up',
+      'Production',
+      'Makers & Production Company',
+      'End of Job',
+    ];
+
+    const groups: { category: string; prompts: Prompt[] }[] = [];
+    const categorized = new Set<string>();
+
+    // First, add groups in the defined order
+    for (const category of categoryOrder) {
+      const categoryPrompts = filteredPrompts.filter(p => p.category === category);
+      if (categoryPrompts.length > 0) {
+        groups.push({ category, prompts: categoryPrompts });
+        categorized.add(category);
+      }
+    }
+
+    // Then add any uncategorized prompts
+    const uncategorized = filteredPrompts.filter(p => !p.category);
+    if (uncategorized.length > 0) {
+      groups.push({ category: '', prompts: uncategorized });
+    }
+
+    // Add any categories not in the predefined order
+    const remainingCategories = filteredPrompts
+      .filter(p => p.category && !categorized.has(p.category))
+      .reduce((acc, p) => {
+        const cat = p.category!;
+        if (!acc.has(cat)) acc.set(cat, []);
+        acc.get(cat)!.push(p);
+        return acc;
+      }, new Map<string, Prompt[]>());
+
+    for (const [category, categoryPrompts] of remainingCategories) {
+      groups.push({ category, prompts: categoryPrompts });
+    }
+
+    return groups;
+  }, [filteredPrompts, hasCategories, sortBy]);
+
   const cycleSortOption = () => {
     const options: SortOption[] = ['default', 'name-asc', 'name-desc'];
     const currentIndex = options.indexOf(sortBy);
@@ -88,11 +140,28 @@ export function FilteredPromptList({ prompts }: FilteredPromptListProps) {
         </div>
       </div>
 
-      <div className="space-y-4">
-        {filteredPrompts.map(prompt => (
-          <PromptCard key={prompt.id} prompt={prompt} />
-        ))}
-      </div>
+      {groupedPrompts ? (
+        <div className="space-y-8">
+          {groupedPrompts.map(({ category, prompts: groupPrompts }) => (
+            <div key={category || '_uncategorized'} className="space-y-4">
+              {category && (
+                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+                  {category}
+                </h3>
+              )}
+              {groupPrompts.map(prompt => (
+                <PromptCard key={prompt.id} prompt={prompt} />
+              ))}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {filteredPrompts.map(prompt => (
+            <PromptCard key={prompt.id} prompt={prompt} />
+          ))}
+        </div>
+      )}
 
       {filteredPrompts.length === 0 && (
         <div className="text-center py-8 text-muted-foreground">

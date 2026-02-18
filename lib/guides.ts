@@ -30,7 +30,7 @@ export const teamGuides: Record<string, GuideEntry[]> = {
     {
       file: 'Guide_Production.md',
       title: 'AI Tools for Production',
-      description: 'Create production specs, research vendors, estimate timelines, and troubleshoot technical requirements.',
+      description: 'Create production specs, research production partners, estimate timelines, and troubleshoot technical requirements.',
     },
   ],
   'design': [
