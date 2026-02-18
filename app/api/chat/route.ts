@@ -11,6 +11,60 @@ const ChatRequestSchema = z.object({
   systemPrompt: z.string().max(20000, 'System prompt too long'),
 });
 
+const RESPONSE_TOOL = {
+  name: 'format_response',
+  description: 'Format your response with optional navigation recommendations and follow-up suggestions. Use this when you want to recommend specific toolkit pages, guides, or prompts. For simple conversational replies, respond without this tool.',
+  input_schema: {
+    type: 'object' as const,
+    properties: {
+      text: { type: 'string' as const, description: 'Your conversational response with markdown formatting' },
+      recommendations: {
+        type: 'array' as const,
+        description: '0-3 relevant toolkit links. Omit if none are genuinely relevant.',
+        items: {
+          type: 'object' as const,
+          properties: {
+            title: { type: 'string' as const },
+            url: { type: 'string' as const, description: 'URL like /team/creative#creative-1 or /guides/claude-code' },
+            type: { type: 'string' as const, enum: ['Guide', 'Department', 'Prompt', 'Page'] },
+          },
+          required: ['title', 'url', 'type'],
+        },
+      },
+      followUps: {
+        type: 'array' as const,
+        description: '2-3 follow-up suggestions to continue the conversation.',
+        items: {
+          type: 'object' as const,
+          properties: {
+            label: { type: 'string' as const, description: 'Short button label (2-5 words)' },
+            message: { type: 'string' as const, description: 'Full message sent when clicked' },
+          },
+          required: ['label', 'message'],
+        },
+      },
+    },
+    required: ['text', 'followUps'],
+  },
+};
+
+interface ToolUseBlock {
+  type: 'tool_use';
+  name: string;
+  input: {
+    text: string;
+    recommendations?: { title: string; url: string; type: string }[];
+    followUps: { label: string; message: string }[];
+  };
+}
+
+interface TextBlock {
+  type: 'text';
+  text: string;
+}
+
+type ContentBlock = ToolUseBlock | TextBlock;
+
 export async function POST(request: NextRequest) {
   try {
     // Reject oversized request bodies (100KB limit)
@@ -51,6 +105,8 @@ export async function POST(request: NextRequest) {
         model: 'claude-3-5-haiku-latest',
         max_tokens: 2048,
         system: systemPrompt,
+        tools: [RESPONSE_TOOL],
+        tool_choice: { type: 'auto' },
         messages: messages.map(m => ({
           role: m.role,
           content: m.content,
@@ -82,8 +138,34 @@ export async function POST(request: NextRequest) {
     }
 
     const data = await response.json();
+    const content: ContentBlock[] = data.content || [];
+
+    // Extract from tool_use block if Claude used the format_response tool
+    const toolBlock = content.find(
+      (b): b is ToolUseBlock => b.type === 'tool_use' && b.name === 'format_response'
+    );
+
+    if (toolBlock) {
+      return NextResponse.json({
+        text: toolBlock.input.text,
+        recommendations: toolBlock.input.recommendations || [],
+        followUps: toolBlock.input.followUps || [],
+      });
+    }
+
+    // Plain text response — Claude chose not to use the tool (e.g. greetings)
+    const textParts = content
+      .filter((b): b is TextBlock => b.type === 'text')
+      .map(b => b.text);
+    const text = textParts.join('\n') || 'No response was returned. Try rephrasing your message.';
+
     return NextResponse.json({
-      content: data.content?.[0]?.text || 'No response was returned. Try rephrasing your message.',
+      text,
+      recommendations: [],
+      followUps: [
+        { label: 'Tell me more', message: 'Can you tell me more about that?' },
+        { label: 'What else?', message: 'What else can you help with?' },
+      ],
     });
   } catch (error) {
     if (process.env.NODE_ENV === 'development') {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, ReactNode } from 'react';
+import { useState, useRef, useEffect, type ComponentPropsWithoutRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { prompts, teams } from '@/lib/prompts';
 import { MessageCircle, X, Send, Loader2, Sparkles, ArrowRight, RotateCcw } from 'lucide-react';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface FollowUp {
   label: string;
@@ -81,7 +83,7 @@ const TEAM_DESCRIPTIONS: Record<string, string> = {
   'creative': 'Develop campaign concepts, brainstorm ideas, and craft compelling creative work with AI-powered tools.',
   'strategy': 'Build brand positioning, competitive analysis, and strategic frameworks for client campaigns.',
   'account-management': 'Strengthen client relationships with AI-assisted briefs, status reports, and communication tools.',
-  'production': 'Streamline production workflows from spec sheets to vendor briefs and asset management.',
+  'production': 'Streamline production workflows from spec sheets to production partner briefs and asset management.',
   'design': 'Accelerate design workflows with AI-powered mood boards, layout concepts, and visual direction.',
   'digital': 'Plan and optimize digital campaigns, SEO, paid media, and performance marketing.',
   'copywriting': 'Write headlines, scripts, taglines, and long-form copy with AI-assisted drafting tools.',
@@ -166,14 +168,6 @@ The toolkit has ${teams.length} departments, ${prompts.length}+ AI prompts, and 
 
 CURRENT PAGE CONTEXT: ${pageContext}
 ${userContextSection}
-RESPONSE FORMAT: You must respond with RAW JSON only (no markdown code fences). Use this exact format:
-{
-  "text": "Answer the user's question FIRST, then mention toolkit items if relevant. Use **bold**, *italic*, \`code\`, and - bullet lists for formatting.",
-  "recommendations": [{"title": "Display Name", "url": "/path/to/page", "type": "Guide" | "Department" | "Prompt" | "Page"}],
-  "followUps": [{"label": "Short button label", "message": "Full message to send"}]
-}
-recommendations is optional — include 0-3 items. Only include when genuinely relevant. An empty array [] is fine.
-
 AVAILABLE PROMPTS (link format: /team/{teamSlug}#{id}):
 ${PROMPT_INDEX}
 
@@ -190,17 +184,13 @@ OTHER PAGES:
 - /search: Search prompts
 
 RULES:
-1. **Answer first, recommend second.** Give a substantive answer to the user's question using your creative and advertising knowledge. Then, if relevant, mention toolkit items that can help further. Do NOT just list links — be genuinely helpful
-2. Return 0-3 relevant recommendations. It is better to return none than to force-fit irrelevant ones
-3. Always include 2-3 followUps to continue the conversation
-4. Use markdown in text: **bold**, *italic*, \`code\`, - bullet lists
-5. Be concise but substantive in "text" — share real expertise, techniques, frameworks, and examples
-6. **ONLY use URLs that appear in the lists above.** Never invent or guess URLs. Every url in recommendations MUST be one of: /team/{slug}#{id}, /guides/{slug}, /tips, /plugins, /search, /guides, or /
-7. Output RAW JSON only — no markdown code fences, no extra text
-8. If greeting, return empty recommendations []
-9. **Never repeat yourself.** Read the conversation history. If you already recommended something, acknowledge that and offer NEW information — deeper details, alternative tools, workflow tips, or related prompts the user hasn't seen
-10. **You have broad advertising and creative knowledge.** Answer questions about campaigns, strategy, copywriting, design, production, media, and creative processes freely. Be honest about what you genuinely cannot do (browse the web, access files, execute code) but never refuse a creative or advertising question just because it's not about the toolkit
-11. **Add real value.** Explain techniques, share frameworks, give examples, and offer practical advice. Each response should teach the user something or help them think through their problem — not just point them to a link`;
+1. **Be a creative partner, not a link dispenser.** Teach techniques, share frameworks, give examples, and offer practical advice. Each response should help the user think through their problem.
+2. **Ask before assuming.** If a question is broad or ambiguous, ask a clarifying question rather than giving a generic answer with links.
+3. **Recommend toolkit resources sparingly.** Only use the format_response tool when you have genuinely relevant pages to link. Explain why a resource is useful. For greetings, simple questions, or conversational replies, just respond in plain text.
+4. **Build on the conversation.** Never repeat recommendations. Go deeper — offer alternative tools, workflow tips, or related prompts the user hasn't seen.
+5. **Be concise but substantive.** 2-4 short paragraphs with markdown formatting (**bold**, *italic*, \`code\`, - bullet lists).
+6. **ONLY use URLs from the lists above.** Never invent or guess URLs. Every url must be one of: /team/{slug}#{id}, /guides/{slug}, /tips, /plugins, /search, /guides, or /
+7. **You have broad advertising and creative knowledge.** Answer questions about campaigns, strategy, copywriting, design, production, media, and creative processes freely. Be honest about what you genuinely cannot do (browse the web, access files, execute code) but never refuse a creative or advertising question just because it's not about the toolkit.`;
 }
 
 function getConversationStarters(pathname: string): ConversationStarter[] {
@@ -236,67 +226,35 @@ function getConversationStarters(pathname: string): ConversationStarter[] {
   ];
 }
 
-// Lightweight markdown renderer
-function renderInlineMarkdown(text: string): ReactNode[] {
-  const parts: ReactNode[] = [];
-  const regex = /(\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/g;
-  let lastIndex = 0;
-  let match: RegExpExecArray | null;
-  let key = 0;
-
-  while ((match = regex.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      parts.push(text.slice(lastIndex, match.index));
-    }
-    if (match[2]) {
-      parts.push(<strong key={key++}>{match[2]}</strong>);
-    } else if (match[3]) {
-      parts.push(<em key={key++}>{match[3]}</em>);
-    } else if (match[4]) {
-      parts.push(<code key={key++} className="bg-muted-foreground/15 px-1 rounded text-xs">{match[4]}</code>);
-    }
-    lastIndex = match.index + match[0].length;
-  }
-  if (lastIndex < text.length) {
-    parts.push(text.slice(lastIndex));
-  }
-  return parts.length > 0 ? parts : [text];
-}
-
-function renderMarkdown(text: string): ReactNode {
-  const lines = text.split('\n');
-  const elements: ReactNode[] = [];
-  let listItems: ReactNode[] = [];
-  let key = 0;
-
-  const flushList = () => {
-    if (listItems.length > 0) {
-      elements.push(
-        <ul key={key++} className="list-disc list-inside space-y-1 my-1">
-          {listItems}
-        </ul>
-      );
-      listItems = [];
-    }
-  };
-
-  for (const line of lines) {
-    const bulletMatch = line.match(/^[-*]\s+(.+)/);
-    if (bulletMatch) {
-      listItems.push(<li key={key++}>{renderInlineMarkdown(bulletMatch[1])}</li>);
-    } else {
-      flushList();
-      if (line.trim() === '') {
-        elements.push(<br key={key++} />);
-      } else {
-        elements.push(<p key={key++} className="my-1">{renderInlineMarkdown(line)}</p>);
-      }
-    }
-  }
-  flushList();
-
-  return <>{elements}</>;
-}
+// Chat-optimized markdown components (compact spacing for small widget)
+const chatMarkdownComponents = {
+  p: ({ children, ...props }: ComponentPropsWithoutRef<'p'>) => (
+    <p className="my-1" {...props}>{children}</p>
+  ),
+  strong: ({ children, ...props }: ComponentPropsWithoutRef<'strong'>) => (
+    <strong className="font-semibold" {...props}>{children}</strong>
+  ),
+  em: ({ children, ...props }: ComponentPropsWithoutRef<'em'>) => (
+    <em {...props}>{children}</em>
+  ),
+  ul: ({ children, ...props }: ComponentPropsWithoutRef<'ul'>) => (
+    <ul className="list-disc list-inside space-y-1 my-1" {...props}>{children}</ul>
+  ),
+  ol: ({ children, ...props }: ComponentPropsWithoutRef<'ol'>) => (
+    <ol className="list-decimal list-inside space-y-1 my-1" {...props}>{children}</ol>
+  ),
+  code: ({ children, className, ...props }: ComponentPropsWithoutRef<'code'>) => {
+    const isBlock = className?.includes('language-');
+    return isBlock ? (
+      <code className={`block bg-muted-foreground/10 p-2 rounded text-xs my-1 overflow-x-auto ${className || ''}`} {...props}>{children}</code>
+    ) : (
+      <code className="bg-muted-foreground/15 px-1 rounded text-xs" {...props}>{children}</code>
+    );
+  },
+  a: ({ children, href, ...props }: ComponentPropsWithoutRef<'a'>) => (
+    <a href={href} className="text-primary underline hover:no-underline" target={href?.startsWith('http') ? '_blank' : undefined} {...props}>{children}</a>
+  ),
+};
 
 // --- Extracted sub-components ---
 
@@ -310,7 +268,11 @@ function MessageBubble({ msg }: { msg: Message }) {
             : 'bg-muted'
         }`}
       >
-        {msg.role === 'assistant' ? renderMarkdown(msg.content) : msg.content}
+        {msg.role === 'assistant' ? (
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={chatMarkdownComponents}>
+            {msg.content}
+          </ReactMarkdown>
+        ) : msg.content}
       </div>
     </div>
   );
@@ -459,33 +421,19 @@ export function ChatWidget() {
       });
       clearTimeout(timeout);
       const data = await res.json();
-      const responseContent = data.content || data.error || 'Something went wrong on our end. Try sending your message again.';
 
-      // Try to parse JSON response
-      let parsedResponse: { text: string; recommendations: Recommendation[]; followUps?: FollowUp[] } | null = null;
-      try {
-        let cleanContent = responseContent.replace(/```json/g, '').replace(/```/g, '').trim();
-        const firstBrace = cleanContent.indexOf('{');
-        const lastBrace = cleanContent.lastIndexOf('}');
-        if (firstBrace !== -1 && lastBrace !== -1) {
-          const jsonStr = cleanContent.substring(firstBrace, lastBrace + 1);
-          parsedResponse = JSON.parse(jsonStr);
-        }
-      } catch {
-        parsedResponse = null;
+      if (data.error) {
+        setMessages(prev => [...prev, { id: nextMessageId(), role: 'assistant', content: data.error }]);
+        return;
       }
 
-      if (parsedResponse && parsedResponse.text) {
-        setMessages(prev => [...prev, {
-          id: nextMessageId(),
-          role: 'assistant',
-          content: parsedResponse.text,
-          recommendations: parsedResponse.recommendations || [],
-          followUps: Array.isArray(parsedResponse.followUps) ? parsedResponse.followUps : [],
-        }]);
-      } else {
-        setMessages(prev => [...prev, { id: nextMessageId(), role: 'assistant', content: responseContent }]);
-      }
+      setMessages(prev => [...prev, {
+        id: nextMessageId(),
+        role: 'assistant',
+        content: data.text || 'Something went wrong on our end. Try sending your message again.',
+        recommendations: data.recommendations || [],
+        followUps: data.followUps || [],
+      }]);
     } catch (err) {
       const message = err instanceof DOMException && err.name === 'AbortError'
         ? 'The request timed out. The AI service may be busy — try again in a moment.'
