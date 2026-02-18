@@ -13,7 +13,7 @@ const ChatRequestSchema = z.object({
 
 const RESPONSE_TOOL = {
   name: 'format_response',
-  description: 'Format your response with optional navigation recommendations and follow-up suggestions. Use this when you want to recommend specific toolkit pages, guides, or prompts. For simple conversational replies, respond without this tool.',
+  description: 'Format your response with optional navigation recommendations and follow-up suggestions. Always use this tool. Include recommendations only when genuinely relevant — omit them for greetings or simple conversational replies.',
   input_schema: {
     type: 'object' as const,
     properties: {
@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
         max_tokens: 2048,
         system: systemPrompt,
         tools: [RESPONSE_TOOL],
-        tool_choice: { type: 'auto' },
+        tool_choice: { type: 'tool', name: 'format_response' },
         messages: messages.map(m => ({
           role: m.role,
           content: m.content,
